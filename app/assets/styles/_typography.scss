@@ -1,0 +1,145 @@
+/**
+ * 全域樣式與 Typography
+ * 參考 kiri 專案的 typography 設定
+ */
+
+@use './variables' as *;
+@use './mixins' as *;
+
+// 全域重置
+html {
+    -webkit-text-size-adjust: none;
+    -webkit-print-color-adjust: exact;
+}
+
+body {
+    width: 100%;
+    -webkit-text-size-adjust: none;
+    text-rendering: optimizeLegibility;
+    font-family: $font-family-main;
+    line-height: 1.5;
+    color: $color-primary;
+}
+
+body,
+div,
+span,
+a,
+p,
+img,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+select {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    color: $color-primary;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+p {
+    letter-spacing: 1px;
+    color: $color-primary;
+
+    @include sp {
+        letter-spacing: 0.5px;
+    }
+}
+
+img {
+    width: 100%;
+    border-style: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
+    vertical-align: bottom;
+}
+
+// 工具類別
+.kerning {
+    @include kerning;
+}
+
+.clear {
+    clear: both !important;
+    float: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+
+.opa {
+    opacity: 0;
+}
+
+.none {
+    display: none !important;
+}
+
+// 字體類別
+.ja0 {
+    @include font-ja;
+}
+
+.en0 {
+    @include font-en;
+}
+
+// 響應式顯示類別
+.pc_disp {
+    @include pc {
+        display: inline-block !important;
+    }
+    @include tb {
+        display: none;
+    }
+    @include sp {
+        display: none;
+    }
+}
+
+.tb_disp {
+    @include pc {
+        display: none;
+    }
+    @include tb {
+        display: inline-block !important;
+    }
+    @include sp {
+        display: none;
+    }
+}
+
+.sp_disp {
+    @include pc {
+        display: none;
+    }
+    @include tb {
+        display: none;
+    }
+    @include sp {
+        display: inline-block !important;
+    }
+}

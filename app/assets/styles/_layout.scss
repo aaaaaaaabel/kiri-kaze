@@ -1,0 +1,240 @@
+/**
+ * Layout 樣式
+ * 參考 kiri 專案的 layout 設定
+ */
+
+@use './variables' as *;
+@use './mixins' as *;
+
+// Wrap
+.wrap {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: $color-bg;
+}
+
+// Loading 動畫對 contents 和 footer 的影響
+.loading_on .contents,
+.loading_on .footer {
+    animation: loadingOn1 0.5s ease-in forwards;
+}
+
+@keyframes loadingOn1 {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-30px);
+    }
+}
+
+.loading_off .contents,
+.loading_off .footer {
+    animation: loadingOff1 0.5s ease-out forwards;
+}
+
+@keyframes loadingOff1 {
+    0% {
+        transform: translateY(30px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+// Contents
+.contents {
+    width: 100%;
+    position: relative;
+}
+
+.contents_inner {
+    width: 100%;
+    position: relative;
+}
+
+.contents_detail {
+    width: 100%;
+    position: relative;
+}
+
+.contents_detail_inner {
+    width: 100%;
+    position: relative;
+}
+
+.contents_block {
+    width: 100%;
+    position: relative;
+}
+
+.contents_block_inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+    position: relative;
+
+    @include tb {
+        padding: 0 30px;
+    }
+
+    @include sp {
+        padding: 0 20px;
+    }
+}
+
+// Grid Block
+.grid_block {
+    width: 100%;
+    font-size: 0;
+    line-height: 0;
+}
+
+.grid_list {
+    display: inline-block;
+    width: calc(100% / #{$grid-columns-pc});
+    vertical-align: top;
+
+    @include tb {
+        width: calc(100% / #{$grid-columns-tb});
+    }
+
+    @media (min-width: $breakpoint-tb) and (max-width: $breakpoint-pc - 1px) {
+        width: calc(100% / #{$grid-columns-tablet});
+    }
+
+    @include sp {
+        width: calc(100% / #{$grid-columns-mobile});
+    }
+}
+
+.grid_link {
+    display: block;
+    width: 100%;
+    position: relative;
+    padding: $spacing-sm;
+}
+
+.grid_img {
+    width: 100%;
+    position: relative;
+    padding-top: 100%; // 1:1 aspect ratio
+    overflow: hidden;
+
+    > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    > div {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+
+        > div {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0;
+            line-height: 0;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                overflow: hidden;
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+                pointer-events: auto;
+            }
+        }
+    }
+}
+
+.grid_number {
+    position: absolute;
+    top: $spacing-sm;
+    left: $spacing-sm;
+    z-index: $z-index-grid-number;
+    pointer-events: none;
+
+    span {
+        display: block;
+        height: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -20px;
+        background-color: $color-accent;
+        transform: rotate(0) scale(0);
+        border-radius: 50%;
+    }
+
+    p {
+        font-size: 0.75rem;
+        line-height: 1;
+        color: $color-primary;
+        font-weight: 400;
+        margin: 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    @include sp {
+        top: 10px;
+        left: 10px;
+
+        span {
+            height: 30px;
+            margin-top: -15px;
+        }
+
+        p {
+            font-size: 0.625rem;
+        }
+    }
+}
+
+// Grid list variants
+.grid_list0 .grid_number span,
+.grid_list1 .grid_number span {
+    width: 40px;
+    margin-left: -20px;
+
+    @include sp {
+        width: 30px;
+        margin-left: -15px;
+    }
+}
+
+.grid_list2 .grid_number span,
+.grid_list3 .grid_number span {
+    width: 50px;
+    margin-left: -25px;
+
+    @include sp {
+        width: 30px;
+        margin-left: -15px;
+    }
+}
+
+.grid_list0 .grid_number span,
+.grid_list2 .grid_number span {
+    border-radius: 50%;
+}
+
+.grid_list1 .grid_number span,
+.grid_list3 .grid_number span {
+    border-radius: 0;
+}

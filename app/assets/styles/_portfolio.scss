@@ -1,0 +1,22 @@
+/**
+ * Portfolio 專用樣式
+ * 參考 kiri 專案的 portfolio grid 設定
+ */
+
+@use './variables' as *;
+@use './mixins' as *;
+@use './layout';
+
+.portfolio-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 0;
+    background-color: $color-bg;
+}
+
+.portfolio-grid {
+    width: 100%;
+    display: block;
+    font-size: 0;
+    line-height: 0;
+}

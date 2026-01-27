@@ -1,0 +1,13 @@
+/**
+ * 主樣式檔案
+ * 匯入所有 SCSS 模組
+ * 使用 @use 和 @forward 替代 @import（Sass 新語法）
+ */
+
+@forward './variables';
+@use './variables' as *;
+@use './mixins' as *;
+@use './typography';
+@use './layout';
+@use './buttons';
+@use './portfolio';

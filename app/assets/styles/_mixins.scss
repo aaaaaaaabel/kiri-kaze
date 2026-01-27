@@ -1,0 +1,84 @@
+/**
+ * SCSS Mixins
+ * 參考 kiri 專案的 mixins
+ */
+
+@use './variables' as *;
+
+// 響應式斷點
+@mixin pc {
+    @media (min-width: $breakpoint-pc) {
+        @content;
+    }
+}
+
+@mixin tb {
+    @media (min-width: $breakpoint-tb) and (max-width: $breakpoint-pc - 1px) {
+        @content;
+    }
+}
+
+@mixin sp {
+    @media (max-width: $breakpoint-sp) {
+        @content;
+    }
+}
+
+// 自定義最大寬度斷點
+@mixin breakpoint-max($max-width) {
+    @media (max-width: $max-width) {
+        @content;
+    }
+}
+
+// 清除浮動
+@mixin clearfix {
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+// 文字省略
+@mixin text-ellipsis($lines: 1) {
+    @if $lines == 1 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    } @else {
+        display: -webkit-box;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+// 絕對置中
+@mixin absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// 動畫
+@mixin transition($property: all, $duration: $transition-normal, $ease: ease-in-out) {
+    transition: $property $duration $ease;
+}
+
+// 字體設定
+@mixin font-ja {
+    font-family: $font-family-ja;
+    font-weight: 400;
+}
+
+@mixin font-en {
+    font-family: $font-family-en;
+    font-weight: 400;
+}
+
+// Kerning
+@mixin kerning {
+    font-feature-settings: "palt";
+}
