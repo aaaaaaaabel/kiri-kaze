@@ -1,27 +1,37 @@
 <template>
-    <div class="grid_list" :class="[`grid_list${gridClass}`, { 'grid_list_on': isHovered }]">
+    <div class="grid_list" :class="[`grid_list${gridClass}`, { 'grid_list_on': isHovered, 'grid_list_off': isHoveredOff }, viewModeClass]">
         <NuxtLink 
-            :to="`/portfolio/${project.slug}`" 
+            :to="projectLink"
             class="grid_link link"
-            @mouseenter="isHovered = true"
-            @mouseleave="isHovered = false"
+            @mouseenter="handleMouseEnter"
+            @mouseleave="handleMouseLeave"
+            @click="!hasValidSlug ? $event.preventDefault() : undefined"
         >
             <div ref="numberRef" class="grid_number">
                 <span></span>
-                <p class="kerning en0">{{ index + 1 }}</p>
+                <p class="kiri en0">{{ index + 1 }}</p>
             </div>
             <div ref="imageRef" class="grid_img">
-                <img src="/images/transparent0.png" alt="" />
+                <!-- ⭐ 優化：移除透明佔位圖，減少不必要的圖片請求 -->
                 <!-- 第一個 div：顯示 thumbnail（預設顯示） -->
                 <div>
                     <div>
-                        <img ref="thumbnailRef" :src="project.thumbnail" :alt="project.title" loading="lazy" />
+                        <img 
+                            ref="thumbnailRef" 
+                            :data-src="thumbnailUrl" 
+                            :alt="project.title" 
+                            data-manual-lazy
+                        />
                     </div>
                 </div>
-                <!-- 第二個 div：顯示 cover（hover 時顯示，參考 kiri 結構） -->
+                <!-- 第二個 div：顯示 cover（grid_image 模式顯示，參考 kiri 結構） -->
                 <div>
                     <div>
-                        <img :src="project.images?.[0]?.url || project.thumbnail" :alt="project.title" loading="lazy" />
+                        <img 
+                            :data-src="coverUrl" 
+                            :alt="project.title" 
+                            data-manual-lazy
+                        />
                     </div>
                 </div>
             </div>
@@ -33,6 +43,8 @@
 import type { IProject } from '~/types/portfolio'
 import { ref, computed, onMounted } from 'vue'
 import { useMotion } from '@vueuse/motion'
+import { usePortfolioView } from '~/composables/usePortfolioView'
+import { useStorage } from '~/composables/useStorage'
 
 interface Props {
     project: IProject
@@ -49,12 +61,64 @@ const numberRef = ref<HTMLElement>()
 const imageRef = ref<HTMLElement>()
 const thumbnailRef = ref<HTMLImageElement>()
 const isHovered = ref(false)
+const isHoveredOff = ref(false)
+
+// Portfolio view mode
+const { viewMode } = usePortfolioView()
+
+// Storage URL 轉換
+const { storageBucket } = useFirebaseConfig()
+const { getStorageUrl } = await import('~/utils/storage')
+const convertUrl = (url: string) => {
+    if (!url || url.startsWith('http://') || url.startsWith('https://')) return url
+    return storageBucket ? getStorageUrl(url, storageBucket) : url
+}
+
+const thumbnailUrl = computed(() => convertUrl(props.project.thumbnail || ''))
+const coverUrl = computed(() => {
+    const cover = props.project.cover || props.project.images?.[0]?.url || props.project.thumbnail
+    return convertUrl(cover || '')
+})
 
 // Grid class based on index
 const gridClass = computed(() => {
     const classes: string[] = ['0', '1', '2', '3']
     return classes[props.index % 4] ?? '0'
 })
+
+// View mode class for CSS control
+const viewModeClass = computed(() => {
+    return viewMode.value === 'grid' ? 'grid_item' : 'grid_image'
+})
+
+/**
+ * 作品內頁連結（避免 slug 缺失導致 /portfolio/undefined -> 404）
+ * - 有 slug：`/portfolio/${encodeURIComponent(slug)}`
+ * - 無 slug：回到列表頁，並在 click 時阻止導向
+ */
+const hasValidSlug = computed(() => {
+    return typeof props.project.slug === 'string' && props.project.slug.trim().length > 0
+})
+
+const projectLink = computed(() => {
+    if (!hasValidSlug.value) return '/portfolio'
+    return `/portfolio/${encodeURIComponent(props.project.slug.trim())}`
+})
+
+// Handle hover events for shake animation
+const handleMouseEnter = () => {
+    isHoveredOff.value = false
+    isHovered.value = true
+}
+
+const handleMouseLeave = () => {
+    isHovered.value = false
+    isHoveredOff.value = true
+    // 動畫結束後移除 class
+    setTimeout(() => {
+        isHoveredOff.value = false
+    }, 2000)
+}
 
 // Animation delays
 const imageDelay = computed(() => props.animationDelay)
@@ -177,6 +241,11 @@ onMounted(() => {
     }
 }
 
+// grid_image 模式的數字顏色（參考 kiri）
+.grid_image .grid_number p {
+    color: rgba(255, 255, 255, 1);
+}
+
 // Grid number span 尺寸根據 grid_list class
 .grid_list0 .grid_number span,
 .grid_list1 .grid_number span {
@@ -236,6 +305,7 @@ onMounted(() => {
             left: 0;
             font-size: 0;
             line-height: 0;
+            transform-origin: center center;
             @include transition(transform, 0.25s);
 
             img {
@@ -247,20 +317,32 @@ onMounted(() => {
                 backface-visibility: hidden;
                 -webkit-backface-visibility: hidden;
                 transform-origin: left bottom;
+                will-change: transform;
             }
         }
     }
 
-    // 第一個 div (nth-child(2))：預設顯示
-    > div:nth-child(2) {
+    // 根據視圖模式控制顯示（參考 kiri）
+    // grid_item 模式：顯示第一個 div (nth-child(2))
+    .grid_item & > div:nth-child(2) {
         transform: scale(1);
         z-index: 20;
     }
 
-    // 第二個 div (nth-child(3))：預設隱藏
-    > div:nth-child(3) {
+    .grid_item & > div:nth-child(3) {
         transform: scale(0);
         z-index: 10;
+    }
+
+    // grid_image 模式：顯示第二個 div (nth-child(3))
+    .grid_image & > div:nth-child(2) {
+        transform: scale(0);
+        z-index: 10;
+    }
+
+    .grid_image & > div:nth-child(3) {
+        transform: scale(1);
+        z-index: 20;
     }
 }
 
@@ -279,7 +361,7 @@ onMounted(() => {
         @include transition(transform, 0.25s);
     }
 
-    // grid_list_on 狀態（hover 時）
+    // grid_list_on 狀態（hover 時）- 只影響數字和旋轉，不切換圖片
     .grid_list_on .grid_number span {
         transform: rotate(-15deg) scale(1);
     }
@@ -289,21 +371,31 @@ onMounted(() => {
         transform: rotate(-15deg);
     }
 
-    // hover 時切換到第二個 div（nth-child(3)）
-    .grid_list_on .grid_img > div:nth-child(2) {
-        transform: scale(0);
-    }
-
-    .grid_list_on .grid_img > div:nth-child(3) {
-        transform: scale(1);
-    }
-
-    .grid_list_on .grid_img > div:nth-child(2) > div {
+    // hover 時只旋轉圖片，不切換（參考 kiri）
+    .grid_item .grid_list_on .grid_img > div:nth-child(2) > div {
         transform: rotate(15deg) scale(1.1);
     }
 
-    .grid_list_on .grid_img > div:nth-child(3) > div {
-        transform: rotate(15deg) scale(1.1);
+    .grid_image .grid_list_on .grid_img > div:nth-child(3) > div {
+        transform: scale(1.1);
+    }
+
+    // hover 時停止動畫（參考 kiri）
+    .grid_item .grid_list_on .grid_img div div img {
+        animation: none !important;
+    }
+
+    .grid_image .grid_list_on .grid_img div div img {
+        animation: none !important;
+    }
+
+    // 離開 hover 時觸發抖動動畫（參考 kiri 的 grid_list_off）
+    .grid_item .grid_list_off .grid_img div div img {
+        animation: grid_off_shake 2s ease-in-out forwards;
+    }
+
+    .grid_image .grid_list_off .grid_img div div img {
+        animation: grid_off_shake 2s ease-in-out forwards;
     }
 
     // grid_list4 和 grid_list5 的特殊 hover 效果
@@ -312,12 +404,41 @@ onMounted(() => {
         color: rgba(0, 0, 0, 1);
     }
 
-    .grid_list4.grid_list_on .grid_img > div:nth-child(3) > div {
+    .grid_list4.grid_list_on .grid_img > div > div {
         transform: rotate(15deg) scale(1.1);
     }
 
-    .grid_list5.grid_list_on .grid_img > div:nth-child(2) > div {
+    .grid_list5.grid_list_on .grid_img > div > div {
         transform: rotate(15deg);
+    }
+}
+
+// 離開 hover 時的抖動動畫（參考 kiri 的 grid_off1 動畫）
+@keyframes grid_off_shake {
+    0%,
+    100% {
+        transform: rotate(0);
+        transform-origin: left bottom;
+    }
+    22% {
+        transform: rotate(1.5deg);
+        transform-origin: right bottom;
+    }
+    44% {
+        transform: rotate(-1.5deg);
+        transform-origin: left bottom;
+    }
+    66% {
+        transform: rotate(0.75deg);
+        transform-origin: right bottom;
+    }
+    77% {
+        transform: rotate(-0.375deg);
+        transform-origin: left bottom;
+    }
+    88% {
+        transform: rotate(0.1875deg);
+        transform-origin: right bottom;
     }
 }
 </style>

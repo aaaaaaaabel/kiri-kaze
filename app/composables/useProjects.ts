@@ -1,7 +1,6 @@
 /**
  * 作品集專案操作 Composable
  * 提供作品集專案的 CRUD 操作和資料查詢功能
- * 支援 Firestore 失敗時自動使用 mock 資料作為 fallback
  */
 
 import type { IProject, ProjectCategory } from '~/types/portfolio'
@@ -10,7 +9,7 @@ import type { CollectionReference, Query } from 'firebase/firestore'
 import { collection, doc, getDoc, getDocs, addDoc, updateDoc, deleteDoc, query, orderBy, limit, startAfter, Timestamp, where } from 'firebase/firestore'
 import { useFirestore } from 'vuefire'
 import { ref, readonly } from 'vue'
-import { mockProjects } from '~/data/mockProjects'
+import { getStorageUrl } from '~/utils/storage'
 
 /**
  * 排序選項
@@ -37,16 +36,72 @@ export interface IFetchProjectsOptions extends IPaginationOptions {
  * 使用作品集專案資料的 Composable
  */
 export const useProjects = () => {
-    const db = useFirestore()
+    // SSR 時 Firebase 未初始化，回傳 stub 避免 500
+    if (import.meta.server) {
+        const loading = ref(false)
+        const error = ref<Error | null>(null)
+        const projects = ref<IProject[]>([])
+        const currentProject = ref<IProject | null>(null)
+        const noop = async () => [] as IProject[]
+        const noopNull = async () => null as IProject | null
+        return {
+            projects: readonly(projects),
+            currentProject: readonly(currentProject),
+            loading: readonly(loading),
+            error: readonly(error),
+            fetchProjects: noop,
+            fetchProjectBySlug: noopNull,
+            fetchProjectById: noopNull,
+            createProject: noopNull,
+            updateProject: async () => {},
+            deleteProject: async () => {},
+            clearError: () => {},
+            reset: () => {},
+            waitForFirestore: () => Promise.resolve(),
+        }
+    }
+
+    const config = useFirebaseConfig();
+    const firebaseConfigIncomplete =
+        !config.apiKey ||
+        !config.authDomain ||
+        !config.projectId
+
+    let db = useFirestore()
     let projectsCollection: CollectionReference<IProject> | null = null
 
-    // 嘗試初始化 collection
+    const ensureFirestore = (): CollectionReference<IProject> | null => {
+        if (projectsCollection) return projectsCollection
+        const cfg = useFirebaseConfig()
+        const nextDb = useFirestore()
+        if (nextDb && cfg.apiKey && cfg.authDomain && cfg.projectId) {
+            db = nextDb
+            projectsCollection = collection(db, 'projects') as CollectionReference<IProject>
+            return projectsCollection
+        }
+        return null
+    }
+
+    /** Client 專用：輪詢直到 Firestore 就緒或逾時（用於重整後第一次 fetch 前） */
+    const waitForFirestore = (maxMs = 4000): Promise<void> => {
+        return new Promise((resolve) => {
+            const start = Date.now()
+            const check = () => {
+                if (ensureFirestore()) return resolve()
+                if (Date.now() - start >= maxMs) return resolve()
+                setTimeout(check, 80)
+            }
+            check()
+        })
+    }
+
+    // 初始化 collection（VueFire 可能尚未就緒，fetchProjects 內會再試一次）
     try {
-        if (db) {
+        if (db && !firebaseConfigIncomplete) {
             projectsCollection = collection(db, 'projects') as CollectionReference<IProject>
         }
     } catch (err) {
-        console.warn('⚠️ 無法初始化 Firestore collection:', err)
+        // 初始化失敗時 projectsCollection 保持為 null
     }
 
     // 狀態管理
@@ -55,73 +110,11 @@ export const useProjects = () => {
     const projects = ref<IProject[]>([])
     const currentProject = ref<IProject | null>(null)
 
-    /**
-     * 對 mock 資料套用篩選條件
-     */
-    function applyMockFallback(options: IFetchProjectsOptions = {}): IProject[] {
-        console.log('[useProjects] applyMockFallback called with options:', options)
-        const {
-            category,
-            featuredOnly = false,
-            publicOnly = true,
-        } = options
-
-        let filtered = [...mockProjects]
-        console.log('[useProjects] mockProjects length:', mockProjects.length)
-
-        // 篩選公開專案
-        if (publicOnly) {
-            filtered = filtered.filter((project) => project.isPublic !== false)
-        }
-
-        // 篩選精選專案
-        if (featuredOnly) {
-            filtered = filtered.filter((project) => project.featured === true)
-        }
-
-        // 篩選分類
-        if (category) {
-            filtered = filtered.filter((project) => project.category === category)
-        }
-
-        // 排序
-        const { sortBy = 'createdAt', sortDirection = 'desc' } = options
-        filtered.sort((a, b) => {
-            let aValue: any
-            let bValue: any
-
-            if (sortBy === 'createdAt' || sortBy === 'updatedAt') {
-                aValue = a[sortBy] instanceof Date ? a[sortBy].getTime() : new Date(a[sortBy] as string).getTime()
-                bValue = b[sortBy] instanceof Date ? b[sortBy].getTime() : new Date(b[sortBy] as string).getTime()
-            } else if (sortBy === 'period') {
-                aValue = a.period
-                bValue = b.period
-            } else {
-                return 0
-            }
-
-            if (sortDirection === 'asc') {
-                return aValue > bValue ? 1 : -1
-            } else {
-                return aValue < bValue ? 1 : -1
-            }
-        })
-
-        // 分頁
-        const { pageSize = 20, lastDocId } = options
-        if (lastDocId) {
-            const lastIndex = filtered.findIndex((p) => p.id === lastDocId)
-            if (lastIndex >= 0) {
-                filtered = filtered.slice(lastIndex + 1)
-            }
-        }
-        if (pageSize) {
-            filtered = filtered.slice(0, pageSize)
-        }
-
-        console.log('[useProjects] applyMockFallback result length:', filtered.length)
-        return filtered
+    // 取得 bucket（每次讀取以支援 VueFire 晚就緒）
+    const getBucket = (): string | undefined => {
+        return useFirebaseConfig().storageBucket
     }
+
 
     /**
      * 獲取專案列表
@@ -132,17 +125,13 @@ export const useProjects = () => {
         loading.value = true
         error.value = null
 
-        // 1️⃣ 防呆：檢查 Firestore 是否可用 - 更嚴格的檢查
-        if (!db || !projectsCollection) {
-            console.warn('⚠️ Firestore 未初始化，直接使用 mock 資料 fallback')
-            const fallbackResult = applyMockFallback(options)
-            projects.value = fallbackResult
+        const col = ensureFirestore()
+        if (!col) {
+            projects.value = []
             loading.value = false
-            console.log('[useProjects] final projects:', projects.value.length)
-            return fallbackResult
+            return []
         }
 
-        // 嘗試執行 Firestore 查詢，任何錯誤都 fallback
         try {
             const {
                 sortBy = 'createdAt',
@@ -154,7 +143,7 @@ export const useProjects = () => {
             } = options
 
             // 建立查詢
-            let q: Query<IProject> = query(projectsCollection)
+            let q: Query<IProject> = query(col)
 
             // 篩選條件
             if (publicOnly) {
@@ -179,58 +168,53 @@ export const useProjects = () => {
 
             // 如果有 lastDocId，從該文件之後開始查詢
             if (options.lastDocId) {
-                const lastDocSnapshot = await getDoc(doc(projectsCollection, options.lastDocId))
+                const lastDocSnapshot = await getDoc(doc(col, options.lastDocId))
                 if (lastDocSnapshot.exists()) {
                     q = query(q, startAfter(lastDocSnapshot))
                 }
             }
 
+            const bucket = getBucket()
+
             // 執行查詢
             const querySnapshot = await getDocs(q)
 
-            // 3️⃣ 檢查 querySnapshot.empty
             if (querySnapshot.empty) {
-                console.warn('⚠️ Firestore 查詢結果為空，使用 mock 資料 fallback')
-                const fallbackResult = applyMockFallback(options)
-                projects.value = fallbackResult
+                projects.value = []
                 loading.value = false
-                console.log('[useProjects] final projects:', projects.value.length)
-                return fallbackResult
+                return []
             }
 
             const fetchedProjects: IProject[] = []
+            const convertUrl = (url: string) => bucket ? getStorageUrl(url, bucket) : url
 
             querySnapshot.forEach((docSnapshot) => {
                 const data = docSnapshot.data()
-                fetchedProjects.push({
+                const project: IProject = {
                     ...data,
                     id: docSnapshot.id,
-                } as IProject)
+                    slug: (data as any)?.slug || docSnapshot.id,
+                    thumbnail: data.thumbnail ? convertUrl(data.thumbnail) : '',
+                    cover: data.cover ? convertUrl(data.cover) : undefined,
+                    technologies: Array.isArray(data.technologies) ? data.technologies : [],
+                    images: Array.isArray(data.images) 
+                        ? data.images.map((img: any) => ({
+                            ...img,
+                            url: img.url ? convertUrl(img.url) : '',
+                        }))
+                        : [],
+                } as IProject
+                fetchedProjects.push(project)
             })
-
-            // 如果 Firestore 回傳空陣列，使用 mock 資料
-            if (fetchedProjects.length === 0) {
-                console.warn('⚠️ Firestore 回傳空陣列，使用 mock 資料 fallback')
-                const fallbackResult = applyMockFallback(options)
-                projects.value = fallbackResult
-                loading.value = false
-                console.log('[useProjects] final projects:', projects.value.length)
-                return fallbackResult
-            }
 
             projects.value = fetchedProjects
             loading.value = false
-            console.log('[useProjects] final projects:', projects.value.length)
             return fetchedProjects
         } catch (err) {
-            // 2️⃣ catch 區塊：不要 throw，使用 mock 資料作為 fallback
-            console.warn('⚠️ Firestore 查詢失敗，使用 mock 資料 fallback:', err)
-            const fallbackResult = applyMockFallback(options)
-            projects.value = fallbackResult
-            error.value = null
+            projects.value = []
+            error.value = err instanceof Error ? err : new Error('Firestore 查詢失敗')
             loading.value = false
-            console.log('[useProjects] final projects:', projects.value.length)
-            return fallbackResult
+            return []
         }
     }
 
@@ -243,32 +227,24 @@ export const useProjects = () => {
         loading.value = true
         error.value = null
 
-        // 檢查 Firestore 是否可用
-        if (!db || !projectsCollection) {
-            const mockProject = mockProjects.find((p) => p.slug === slug)
-            if (mockProject) {
-                currentProject.value = mockProject
+        const col = ensureFirestore()
+        if (!col) {
+            if (import.meta.server) {
+                currentProject.value = null
                 loading.value = false
-                return mockProject
+                return null
             }
-            error.value = new Error(`找不到 slug 為 ${slug} 的專案`)
+            error.value = new Error('Firestore 未初始化')
             currentProject.value = null
             loading.value = false
             return null
         }
 
         try {
-            const q = query(projectsCollection, where('slug', '==', slug), limit(1))
+            const q = query(col, where('slug', '==', slug), limit(1))
             const querySnapshot = await getDocs(q)
 
-            if (querySnapshot.empty) {
-                // Firestore 找不到，從 mock 資料中尋找
-                const mockProject = mockProjects.find((p) => p.slug === slug)
-                if (mockProject) {
-                    currentProject.value = mockProject
-                    loading.value = false
-                    return mockProject
-                }
+            if (querySnapshot.empty || !querySnapshot.docs[0]) {
                 error.value = new Error(`找不到 slug 為 ${slug} 的專案`)
                 currentProject.value = null
                 loading.value = false
@@ -276,43 +252,30 @@ export const useProjects = () => {
             }
 
             const docSnapshot = querySnapshot.docs[0]
-
-            // 檢查 docSnapshot 是否存在
-            if (!docSnapshot) {
-                // Firestore 找不到，從 mock 資料中尋找
-                const mockProject = mockProjects.find((p) => p.slug === slug)
-                if (mockProject) {
-                    currentProject.value = mockProject
-                    loading.value = false
-                    return mockProject
-                }
-                error.value = new Error(`找不到 slug 為 ${slug} 的專案`)
-                currentProject.value = null
-                loading.value = false
-                return null
-            }
-
             const data = docSnapshot.data()
+            const bucket = getBucket()
+            const convertUrl = (url: string) => bucket ? getStorageUrl(url, bucket) : url
+            
             const project: IProject = {
                 ...data,
                 id: docSnapshot.id,
+                slug: (data as any)?.slug || docSnapshot.id,
+                thumbnail: data.thumbnail ? convertUrl(data.thumbnail) : '',
+                cover: data.cover ? convertUrl(data.cover) : undefined,
+                technologies: Array.isArray(data.technologies) ? data.technologies : [],
+                images: Array.isArray(data.images) 
+                    ? data.images.map((img: any) => ({
+                        ...img,
+                        url: img.url ? convertUrl(img.url) : '',
+                    }))
+                    : [],
             } as IProject
 
             currentProject.value = project
             loading.value = false
             return project
         } catch (err) {
-            // Firestore 失敗時，從 mock 資料中尋找
-            console.warn('⚠️ Firestore 查詢失敗，從 mock 資料中尋找:', err)
-            const mockProject = mockProjects.find((p) => p.slug === slug)
-            if (mockProject) {
-                currentProject.value = mockProject
-                error.value = null
-                loading.value = false
-                return mockProject
-            }
-            const errorMessage = err instanceof Error ? err.message : '獲取專案失敗'
-            error.value = new Error(errorMessage)
+            error.value = err instanceof Error ? err : new Error('獲取專案失敗')
             currentProject.value = null
             loading.value = false
             return null
@@ -328,32 +291,22 @@ export const useProjects = () => {
         loading.value = true
         error.value = null
 
-        // 檢查 Firestore 是否可用
-        if (!db || !projectsCollection) {
-            const mockProject = mockProjects.find((p) => p.id === id)
-            if (mockProject) {
-                currentProject.value = mockProject
-                loading.value = false
-                return mockProject
-            }
-            error.value = new Error(`找不到 ID 為 ${id} 的專案`)
+        const col = ensureFirestore()
+        if (!col) {
+            error.value = new Error('Firestore 未初始化')
             currentProject.value = null
             loading.value = false
             return null
         }
 
         try {
-            const docRef = doc(projectsCollection, id)
+            const bucket = getBucket()
+            const convertUrl = (url: string) => bucket ? getStorageUrl(url, bucket) : url
+            
+            const docRef = doc(col, id)
             const docSnapshot = await getDoc(docRef)
 
             if (!docSnapshot.exists()) {
-                // Firestore 找不到，從 mock 資料中尋找
-                const mockProject = mockProjects.find((p) => p.id === id)
-                if (mockProject) {
-                    currentProject.value = mockProject
-                    loading.value = false
-                    return mockProject
-                }
                 error.value = new Error(`找不到 ID 為 ${id} 的專案`)
                 currentProject.value = null
                 loading.value = false
@@ -364,23 +317,22 @@ export const useProjects = () => {
             const project: IProject = {
                 ...data,
                 id: docSnapshot.id,
+                thumbnail: data.thumbnail ? convertUrl(data.thumbnail) : '',
+                cover: data.cover ? convertUrl(data.cover) : undefined,
+                technologies: Array.isArray(data.technologies) ? data.technologies : [],
+                images: Array.isArray(data.images) 
+                    ? data.images.map((img: any) => ({
+                        ...img,
+                        url: img.url ? convertUrl(img.url) : '',
+                    }))
+                    : [],
             } as IProject
 
             currentProject.value = project
             loading.value = false
             return project
         } catch (err) {
-            // Firestore 失敗時，從 mock 資料中尋找
-            console.warn('⚠️ Firestore 查詢失敗，從 mock 資料中尋找:', err)
-            const mockProject = mockProjects.find((p) => p.id === id)
-            if (mockProject) {
-                currentProject.value = mockProject
-                error.value = null
-                loading.value = false
-                return mockProject
-            }
-            const errorMessage = err instanceof Error ? err.message : '獲取專案失敗'
-            error.value = new Error(errorMessage)
+            error.value = err instanceof Error ? err : new Error('獲取專案失敗')
             currentProject.value = null
             loading.value = false
             return null
@@ -396,7 +348,8 @@ export const useProjects = () => {
         loading.value = true
         error.value = null
 
-        if (!db || !projectsCollection) {
+        const col = ensureFirestore()
+        if (!col) {
             const errorMessage = 'Firestore 未初始化，無法新增專案'
             error.value = new Error(errorMessage)
             loading.value = false
@@ -414,13 +367,11 @@ export const useProjects = () => {
             // 移除 id (Firebase 會自動產生)
             const { id: _, ...dataWithoutId } = projectData
 
-            const docRef = await addDoc(projectsCollection, dataWithoutId as Omit<IProject, 'id'>)
+            const docRef = await addDoc(col, dataWithoutId as Omit<IProject, 'id'>)
             loading.value = false
             return docRef.id
         } catch (err) {
-            const errorMessage = err instanceof Error ? err.message : '新增專案失敗'
-            error.value = new Error(errorMessage)
-            console.error('❌ createProject error:', err)
+            error.value = err instanceof Error ? err : new Error('新增專案失敗')
             loading.value = false
             throw error.value
         }
@@ -435,7 +386,8 @@ export const useProjects = () => {
         loading.value = true
         error.value = null
 
-        if (!db || !projectsCollection) {
+        const col = ensureFirestore()
+        if (!col) {
             const errorMessage = 'Firestore 未初始化，無法更新專案'
             error.value = new Error(errorMessage)
             loading.value = false
@@ -443,7 +395,7 @@ export const useProjects = () => {
         }
 
         try {
-            const docRef = doc(projectsCollection, id)
+            const docRef = doc(col, id)
 
             // 準備更新資料，加入更新時間
             const updateData: Partial<IProject> = {
@@ -465,9 +417,7 @@ export const useProjects = () => {
             }
             loading.value = false
         } catch (err) {
-            const errorMessage = err instanceof Error ? err.message : '更新專案失敗'
-            error.value = new Error(errorMessage)
-            console.error('❌ updateProject error:', err)
+            error.value = err instanceof Error ? err : new Error('更新專案失敗')
             loading.value = false
             throw error.value
         }
@@ -481,7 +431,8 @@ export const useProjects = () => {
         loading.value = true
         error.value = null
 
-        if (!db || !projectsCollection) {
+        const col = ensureFirestore()
+        if (!col) {
             const errorMessage = 'Firestore 未初始化，無法刪除專案'
             error.value = new Error(errorMessage)
             loading.value = false
@@ -489,7 +440,7 @@ export const useProjects = () => {
         }
 
         try {
-            const docRef = doc(projectsCollection, id)
+            const docRef = doc(col, id)
             await deleteDoc(docRef)
 
             // 更新本地狀態
@@ -499,9 +450,7 @@ export const useProjects = () => {
             }
             loading.value = false
         } catch (err) {
-            const errorMessage = err instanceof Error ? err.message : '刪除專案失敗'
-            error.value = new Error(errorMessage)
-            console.error('❌ deleteProject error:', err)
+            error.value = err instanceof Error ? err : new Error('刪除專案失敗')
             loading.value = false
             throw error.value
         }
@@ -540,5 +489,6 @@ export const useProjects = () => {
         deleteProject,
         clearError,
         reset,
+        waitForFirestore,
     }
 }

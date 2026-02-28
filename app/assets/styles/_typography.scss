@@ -10,10 +10,16 @@
 html {
     -webkit-text-size-adjust: none;
     -webkit-print-color-adjust: exact;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 body {
     width: 100%;
+    margin: 0;
+    padding: 0;
     -webkit-text-size-adjust: none;
     text-rendering: optimizeLegibility;
     font-family: $font-family-main;
@@ -75,8 +81,8 @@ img {
 }
 
 // 工具類別
-.kerning {
-    @include kerning;
+.kiri {
+    @include kiri;
 }
 
 .clear {

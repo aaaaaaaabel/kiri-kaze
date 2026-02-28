@@ -76,6 +76,10 @@
         background-color: $color-accent;
         border: 1px solid $color-accent;
         color: $color-secondary;
+
+        p {
+            color: #fff;
+        }
     }
 
     @include pc {
@@ -89,4 +93,33 @@
         }
     }
 }
+
+// 白色按鈕（白底棕字，用於 menu）
+.round_button_bt {
+    a {
+        background-color: $color-secondary;
+        border: 1px solid $color-secondary;
+        color: $color-accent;
+    }
+
+    @include pc {
+        a:hover {
+            background-color: $color-accent;
+            color: $color-secondary;
+
+            p {
+                color: $color-secondary;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
 

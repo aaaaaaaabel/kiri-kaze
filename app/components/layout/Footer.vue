@@ -1,5 +1,5 @@
 <template>
-    <footer class="footer">
+    <footer ref="footerRootRef" class="footer">
         <div class="footer_inner">
             <!-- Footer Top: 圖片 + 文字描述 -->
             <div class="footer_top scroll_element" :class="scrollClass">
@@ -9,12 +9,11 @@
                     </a>
                 </div>
                 <div class="footer_copy">
-                    <p class="kerning ja0">
-                        一名熱愛古生物的<br class="sp_disp" />網頁開發人員。
+                    <p class="kiri en0">
+                        A web developer who<br class="sp_disp" /> loves paleontology
                     </p>
-                    <p class="kerning ja0">
-                        KIRI KAZE是三葉蟲的爬行聲<br class="sp_disp" />
-                        (⁎⁍̴̛ᴗ⁍̴̛⁎)
+                    <p class="kiri en0">
+                        KIRI KAZE is the sound of a trilobite crawling
                     </p>
                 </div>
             </div>
@@ -24,28 +23,28 @@
                 <div class="footer_button">
                     <div class="round_button round_button_w">
                         <a href="#" class="link">
-                            <p class="kerning ja0">化石修復室(籌備中)</p>
+                            <p class="kiri ja0">化石修復室(籌備中)</p>
                         </a>
                     </div>
                     <div class="round_button round_button_b">
                         <a href="https://line.me/ti/p/By5dhWxd1m" target="_blank" class="_blank">
-                            <p class="kerning ja0">聯絡詢問服務</p>
+                            <p class="kiri ja0">聯絡詢問服務</p>
                         </a>
                     </div>
                 </div>
                 <div class="footer_company">
-                    <p class="kerning ja0">KIRI KAZE工作室</p>
-                    <p class="kerning ja0">
-                        台灣,台北<br />
-                        <a href="tel:0972-022-301">電話／0972-022-301</a>
-                        <a href="mailto:mumucoco67@gmail.com">Mail／mumucoco67@gmail.com</a>
+                    <p class="kiri en0">KIRI KAZE Studio</p>
+                    <p class="kiri en0">
+                        Taipei, Taiwan<br />
+                        <a href="tel:0972-022-301">Tel / 0972-022-301</a>
+                        <a href="mailto:mumucoco67@gmail.com">Mail / mumucoco67@gmail.com</a>
                     </p>
                 </div>
             </div>
 
             <!-- Footer Copyright -->
             <div class="footer_copyright scroll_element" :class="scrollClass">
-                <p class="kerning en0">© 2025 KIRI-studio Co.,Ltd.</p>
+                <p class="kiri en0">© {{ currentYear }} KIRI-studio Co.,Ltd.</p>
             </div>
         </div>
     </footer>
@@ -53,6 +52,26 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useIntersectionObserver } from '@vueuse/core'
+
+const footerRootRef = ref<HTMLElement | null>(null)
+
+// 抵達 footer 時 portfolio-circle-button fadeout，離開時 fadein（body.footer-in-view 由 MainNav 樣式控制）
+useIntersectionObserver(
+  footerRootRef,
+  ([entry]) => {
+    if (!import.meta.client) return
+    if (entry?.isIntersecting) document.body.classList.add('footer-in-view')
+    else document.body.classList.remove('footer-in-view')
+  },
+  { threshold: 0 }
+)
+
+onUnmounted(() => {
+  if (import.meta.client) document.body.classList.remove('footer-in-view')
+})
+
+const currentYear = new Date().getFullYear()
 
 const scrollClass = ref('scroll_off')
 const currentLabelIndex = ref(0)
@@ -137,6 +156,8 @@ onUnmounted(() => {
         height: auto !important;
         min-height: auto;
         padding: 0 30px 0 30px;
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -168,6 +189,9 @@ onUnmounted(() => {
         left: auto;
         transform: none;
         padding: 60px 0 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -183,8 +207,8 @@ onUnmounted(() => {
     }
 
     @include sp {
-        width: 80px;
-        height: 80px;
+        width: 120px;
+        height: 120px;
     }
 
     a {
@@ -290,6 +314,9 @@ onUnmounted(() => {
         left: auto;
         transform: none;
         padding: 40px 0 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -316,6 +343,10 @@ onUnmounted(() => {
         right: auto;
         text-align: center;
         padding: 0 0 30px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
     }
 
     .round_button {
@@ -326,7 +357,7 @@ onUnmounted(() => {
         }
 
         @include sp {
-            margin: 0 10px;
+            margin: 0;
         }
     }
 }
@@ -340,6 +371,9 @@ onUnmounted(() => {
 
     @include sp {
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     p {
@@ -407,6 +441,9 @@ onUnmounted(() => {
         right: auto;
         text-align: center;
         padding: 30px 0 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     p {

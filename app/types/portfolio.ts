@@ -65,8 +65,11 @@ export interface IProject {
     /** 技術棧 */
     technologies: ITechnology[]
 
-    /** 縮圖 URL */
+    /** 縮圖 URL (用於 grid_item 模式 - 項目顯示) */
     thumbnail: string
+
+    /** 封面圖 URL (用於 grid_image 模式 - 圖片顯示, 選填) */
+    cover?: string
 
     /** 詳細圖片陣列 */
     images: IProjectImage[]

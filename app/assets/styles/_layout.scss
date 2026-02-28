@@ -9,9 +9,14 @@
 // Wrap
 .wrap {
     width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     background-color: $color-bg;
+    box-sizing: border-box;
 }
 
 // Loading 動畫對 contents 和 footer 的影響

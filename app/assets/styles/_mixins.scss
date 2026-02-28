@@ -78,7 +78,7 @@
     font-weight: 400;
 }
 
-// Kerning
-@mixin kerning {
+// Kiri（字距／kerning）
+@mixin kiri {
     font-feature-settings: "palt";
 }
