@@ -116,11 +116,11 @@ useGalleryInView(galleryRef);
 
 // SEO Meta
 useHead({
-  title: "化石圖鑑 | Fossil Index",
+  title: "Fossil Index",
   meta: [
     {
       name: "description",
-      content: "探索遠古生物化石的數位圖鑑",
+      content: "Explore the digital fossil index of ancient specimens.",
     },
   ],
 });

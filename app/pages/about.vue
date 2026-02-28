@@ -354,7 +354,7 @@ onMounted(() => {
 });
 
 useHead({
-  title: "About | Fossil Index",
+  title: "About",
   meta: [
     {
       name: "description",

@@ -52,8 +52,8 @@ import { ref, computed, onMounted, nextTick } from "vue";
 
 // SEO Meta
 useSeoMeta({
-  title: "作品集 - Fossil Index",
-  description: "前端開發與設計作品展示",
+  title: "Portfolio",
+  description: "Web development and design portfolio.",
 });
 
 // 使用 useProjects composable

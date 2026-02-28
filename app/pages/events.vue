@@ -116,11 +116,11 @@ onMounted(async () => {
 });
 
 useHead({
-  title: "Events | Fossil Index",
+  title: "Events",
   meta: [
     {
       name: "description",
-      content: "Events page",
+      content: "Events and updates.",
     },
   ],
 });

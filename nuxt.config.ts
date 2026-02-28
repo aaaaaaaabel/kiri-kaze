@@ -19,6 +19,29 @@ export default defineNuxtConfig({
     typeCheck: true,
   },
 
+  app: {
+    head: {
+      title: "Kiri Kaze",
+      titleTemplate: "%s | Kiri Kaze",
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        {
+          name: "description",
+          content: "Kiri Kaze Studio — Web Fossil Excavator",
+        },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "Kiri Kaze" },
+        {
+          property: "og:description",
+          content: "Kiri Kaze Studio — Web Fossil Excavator",
+        },
+        { property: "og:image", content: "/og-image.png" },
+      ],
+      link: [{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
+    },
+  },
+
   modules: [
     "nuxt-vuefire",
     "@pinia/nuxt", // 狀態管理（用於 route 和 transition 系統）

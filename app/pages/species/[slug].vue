@@ -902,7 +902,7 @@ const getConditionLabel = (condition: string): string => {
 // SEO Meta
 useHead(() => ({
   title: species.value
-    ? `${species.value.name.zh} (${species.value.name.scientific}) | Fossil Index`
+    ? `${species.value.name.zh} (${species.value.name.scientific})`
     : "Fossil Index",
 }));
 </script>

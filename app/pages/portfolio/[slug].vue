@@ -237,7 +237,7 @@ const getImageUrl = (url: string | undefined): string => {
 
 // SEO Meta
 useSeoMeta({
-    title: computed(() => project.value ? `${project.value.title} - 作品集` : '作品集'),
+    title: computed(() => project.value ? `${project.value.title} - Portfolio` : 'Portfolio'),
     description: computed(() => project.value?.description || ''),
     ogTitle: computed(() => project.value?.title || ''),
     ogDescription: computed(() => project.value?.description || ''),

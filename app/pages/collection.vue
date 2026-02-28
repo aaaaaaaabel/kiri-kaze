@@ -35,11 +35,11 @@ import FossilGrid from "~/components/fossil/FossilGrid.vue";
 import { useGalleryInView } from "~/composables/useGalleryInView";
 
 useHead({
-  title: "Collection | Fossil Index",
+  title: "Collection",
   meta: [
     {
       name: "description",
-      content: "收藏頁面",
+      content: "Your fossil collection.",
     },
   ],
 });
