@@ -1,0 +1,903 @@
+{
+  "specimens": [
+    {
+      "species": "Asterocidaris bistriata",
+      "country": "Morocco",
+      "state": "Unknown",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-UNK-ASTBIS-001",
+      "collectionDate": "2026-01-01",
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "category": "echinoid",
+      "tags": ["Morocco", "Asterocidaris", "echinoid"],
+      "description": {
+        "zh": "這是一個 Asterocidaris bistriata（Asterocidaris bistriata）的標本，產地為摩洛哥Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Asterocidaris bistriata specimen from Morocco, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      }
+    },
+    {
+      "species": "Asterocidaris meandrina",
+      "country": "Morocco",
+      "state": "Unknown",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-UNK-ASTMEA-001",
+      "collectionDate": "2026-01-01",
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "category": "echinoid",
+      "tags": ["Morocco", "Asterocidaris", "echinoid"],
+      "description": {
+        "zh": "這是一個 Asterocidaris meandrina（Asterocidaris meandrina）的標本，產地為摩洛哥Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Asterocidaris meandrina specimen from Morocco, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      }
+    },
+    {
+      "species": "Barrandeops sp.",
+      "country": "Morocco",
+      "state": "Alnif",
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas (Alnif area)",
+      "condition": "good",
+      "completeness": 82,
+      "catalogNumber": "MOR-ALNIF-BARSP-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "category": "trilobite",
+      "tags": ["Morocco", "Barrandeops", "trilobite"],
+      "description": {
+        "zh": "這是一個 Barrandeops sp.（Barrandeops sp.）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Barrandeops sp. specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      }
+    },
+    {
+      "species": "Calymene sp.",
+      "country": "Morocco",
+      "state": "Alnif",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-CALSPX-001",
+      "collectionDate": "2026-01-01",
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "category": "trilobite",
+      "tags": ["Morocco", "Calymene", "trilobite"],
+      "description": {
+        "zh": "這是一個 Calymene sp.（Calymene sp.）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Calymene sp. specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      }
+    },
+    {
+      "species": "Crotalocephalus gibba",
+      "country": "Morocco",
+      "state": "Alnif",
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas (Alnif area)",
+      "condition": "excellent",
+      "completeness": 88,
+      "catalogNumber": "MOR-ALNIF-CROGIB-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "category": "trilobite",
+      "tags": ["Morocco", "Crotalocephalus", "trilobite"],
+      "description": {
+        "zh": "這是一個 Crotalocephalus gibba（Crotalocephalus gibba）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Crotalocephalus gibba specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      }
+    },
+    {
+      "species": "Drotops megalomanicus",
+      "country": "Morocco",
+      "state": "Alnif",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-DROMEG-001",
+      "collectionDate": "2026-01-01",
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "category": "trilobite",
+      "tags": ["Morocco", "Drotops", "trilobite"],
+      "description": {
+        "zh": "這是一個 Drotops megalomanicus（Drotops megalomanicus）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Drotops megalomanicus specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      }
+    },
+    {
+      "species": "Gerastos granulosus",
+      "country": "Morocco",
+      "state": "Alnif",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-GERGRA-001",
+      "collectionDate": "2026-01-01",
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "category": "trilobite",
+      "tags": ["Morocco", "Gerastos", "trilobite"],
+      "description": {
+        "zh": "這是一個 Gerastos granulosus（Gerastos granulosus）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Gerastos granulosus specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      }
+    },
+    {
+      "species": "Harpes perradiatus",
+      "country": "Morocco",
+      "state": "Alnif",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-HARPER-001",
+      "collectionDate": "2026-01-01",
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "category": "trilobite",
+      "tags": ["Morocco", "Harpes", "trilobite"],
+      "description": {
+        "zh": "這是一個 Harpes perradiatus（Harpes perradiatus）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Harpes perradiatus specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      }
+    },
+    {
+      "species": "Harpes perradiatus",
+      "country": "Russia",
+      "state": "Alnif",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "city": null,
+      "formation": null,
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "RUS-ALNIF-HARPER-001",
+      "collectionDate": "2026-01-01",
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "category": "trilobite",
+      "tags": ["Russia", "Harpes", "trilobite"],
+      "description": {
+        "zh": "這是一個 Harpes perradiatus（Harpes perradiatus）的標本，產地為俄羅斯Alnif。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Harpes perradiatus specimen from Russia, Alnif. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      }
+    },
+    {
+      "species": "Hollardops mesocristata",
+      "country": "Morocco",
+      "state": "Alnif",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-HOLMES-001",
+      "collectionDate": "2026-01-01",
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "category": "trilobite",
+      "tags": ["Morocco", "Hollardops", "trilobite"],
+      "description": {
+        "zh": "這是一個 Hollardops mesocristata（Hollardops mesocristata）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Hollardops mesocristata specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      }
+    },
+    {
+      "species": "Scyphocrinites elegans",
+      "country": "Morocco",
+      "state": "Alnif",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-SCYELE-001",
+      "collectionDate": "2026-01-01",
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "category": "crinoid",
+      "tags": ["Morocco", "Scyphocrinites", "crinoid"],
+      "description": {
+        "zh": "這是一個 Scyphocrinites elegans（Scyphocrinites elegans）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Scyphocrinites elegans specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      }
+    },
+    {
+      "species": "Anetoceras sp.",
+      "country": "Morocco",
+      "state": "Alnif",
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-ANESPX-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 松卷菊石（Anetoceras sp.）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Anetoceras sp. specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["松卷菊石", "Morocco", "Anetoceras", "ammonite"],
+      "category": "ammonite"
+    },
+    {
+      "species": "Paralejurus hamlagdadicus",
+      "country": "Morocco",
+      "state": "Alnif",
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-PARHAM-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 擬平鬃蟲（Paralejurus hamlagdadicus）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Paralejurus hamlagdadicus specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["擬平鬃蟲", "Morocco", "Paralejurus", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Zlichovaspis rugosa",
+      "country": "Morocco",
+      "state": "Alnif",
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-ZLIRUG-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 里可法蟲（Zlichovaspis rugosa）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Zlichovaspis rugosa specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["里可法蟲", "Morocco", "Zlichovaspis", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Scabriscutellum sp.",
+      "country": "Morocco",
+      "state": "Alnif",
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-SCASPX-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 盾形三葉蟲（Scabriscutellum sp.）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Scabriscutellum sp. specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["盾形三葉蟲", "Morocco", "Scabriscutellum", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Dicranurus monstrosus",
+      "country": "Morocco",
+      "state": "Alnif",
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-DICMON-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 惡麼雙角（Dicranurus monstrosus）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Dicranurus monstrosus specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["惡麼雙角", "Morocco", "Dicranurus", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Cyphaspis kraidensis",
+      "country": "Morocco",
+      "state": "Alnif",
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-CYPKRA-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 鬼鞍角蟲（Cyphaspis kraidensis）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Cyphaspis kraidensis specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["鬼鞍角蟲", "Morocco", "Cyphaspis", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Leonaspis sp.",
+      "country": "Morocco",
+      "state": "Alnif",
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-LEOSPX-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 獅頭三葉蟲（Leonaspis sp.）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Leonaspis sp. specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["獅頭三葉蟲", "Morocco", "Leonaspis", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Walliserops trifurcatus",
+      "country": "Morocco",
+      "state": "Alnif",
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-WALTRI-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 海神三葉蟲（Walliserops trifurcatus）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Walliserops trifurcatus specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["海神三葉蟲", "Morocco", "Walliserops", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Erbenochile erbeni",
+      "country": "Morocco",
+      "state": "Alnif",
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-ERBERB-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 厄本星尾三葉蟲（Erbenochile erbeni）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Erbenochile erbeni specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["厄本星尾三葉蟲", "Morocco", "Erbenochile", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Acadoparadoxides sp.",
+      "country": "Morocco",
+      "state": "Alnif",
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-ACASPX-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 奇異三葉蟲（Acadoparadoxides sp.）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Acadoparadoxides sp. specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["奇異三葉蟲", "Morocco", "Acadoparadoxides", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Koneprusia dahmani",
+      "country": "Morocco",
+      "state": "Alnif",
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-KONDAH-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 達赫馬尼多棘刺蟲（Koneprusia dahmani）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Koneprusia dahmani specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["達赫馬尼多棘刺蟲", "Morocco", "Koneprusia", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Cyrtometopus sp.",
+      "country": "Morocco",
+      "state": "Alnif",
+      "city": "Anti-Atlas",
+      "formation": "Anti-Atlas Formation",
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "MOR-ALNIF-CYRSPX-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 圓頂鐘頭蟲（Cyrtometopus sp.）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Cyrtometopus sp. specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["圓頂鐘頭蟲", "Morocco", "Cyrtometopus", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Megistaspidella triangularis",
+      "country": "Russia",
+      "state": "Unknown",
+      "city": null,
+      "formation": null,
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "RUS-UNK-MEGTRI-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 三角巨盾蟲（Megistaspidella triangularis）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Megistaspidella triangularis specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["三角巨盾蟲", "Russia", "Megistaspidella", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Asaphus punctatus",
+      "country": "Russia",
+      "state": "Unknown",
+      "city": null,
+      "formation": null,
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "RUS-UNK-ASAPUN-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 斑櫛蟲（Asaphus punctatus）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Asaphus punctatus specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["斑櫛蟲", "Russia", "Asaphus", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Asaphus cornutus",
+      "country": "Russia",
+      "state": "Unknown",
+      "city": null,
+      "formation": null,
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "RUS-UNK-ASACOR-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 角櫛蟲（Asaphus cornutus）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Asaphus cornutus specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["角櫛蟲", "Russia", "Asaphus", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Hoplolichoides furcifer",
+      "country": "Russia",
+      "state": "Unknown",
+      "city": null,
+      "formation": null,
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "RUS-UNK-HOPFUR-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 叉冠武裝裂肋蟲（Hoplolichoides furcifer）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Hoplolichoides furcifer specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["叉冠武裝裂肋蟲", "Russia", "Hoplolichoides", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Asaphus kowalewskii",
+      "country": "Russia",
+      "state": "Unknown",
+      "city": null,
+      "formation": null,
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "RUS-UNK-ASAKOW-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 卡瓦勒斯基櫛蟲（Asaphus kowalewskii）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Asaphus kowalewskii specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["卡瓦勒斯基櫛蟲", "Russia", "Asaphus", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Cybele bellatula",
+      "country": "Russia",
+      "state": "Unknown",
+      "city": null,
+      "formation": null,
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "RUS-UNK-CYBBEL-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 美麗西芭莉蟲（Cybele bellatula）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Cybele bellatula specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["美麗西芭莉蟲", "Russia", "Cybele", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Damesella paronai",
+      "country": "China",
+      "state": "Unknown",
+      "city": null,
+      "formation": null,
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "RUS-UNK-DAMPAR-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 帕氏德氏三葉蟲（Damesella paronai）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Damesella paronai specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["帕氏德氏三葉蟲", "Russia", "Damesella", "trilobite"],
+      "category": "trilobite"
+    },
+    {
+      "species": "Paraceraurus Exsul",
+      "country": "Russia",
+      "state": "Asery",
+      "city": null,
+      "formation": null,
+      "condition": "good",
+      "completeness": 80,
+      "catalogNumber": "RUS-UNK-PAREXS-001",
+      "collectionDate": "2026-01-01",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      },
+      "description": {
+        "zh": "這是一個 nan（Paraceraurus Exsul）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+        "en": "A well-preserved Paraceraurus Exsul specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+      },
+      "tags": ["Russia", "Paraceraurus", "trilobite"],
+      "category": "trilobite"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 使用者資料：只能讀寫自己的
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // 化石資料：公開可讀，登入才能寫
+    match /fossils/{fossilId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // 物種資料（圖鑑內頁用）：公開可讀，登入才能寫
+    match /species/{speciesId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Portfolio 作品：公開可讀，登入才能寫（若有使用 /portfolio 頁面）
+    match /projects/{projectId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}

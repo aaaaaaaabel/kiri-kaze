@@ -1,0 +1,686 @@
+/**
+ * Menu 樣式
+ * 參考 kiri 專案的 menu 實作
+ */
+
+@use "variables" as *;
+@use "mixins" as *;
+
+.menu {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $z-index-menu;
+  // 初始狀態：隱藏
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  
+  // 當 menu_on 時顯示
+  .menu_on & {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+  
+  // ⭐ 關鍵：當 menu_off 時也要顯示，以便關閉動畫能正確觸發
+  // menu_off6 動畫會負責在動畫完成後隱藏
+  .menu_off & {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+  
+  // ⭐ 當有 none class 時，完全隱藏（優先級最高）
+  // 注意：不要在動畫進行中添加 none class，否則會阻止動畫
+  &.none {
+    display: none !important;
+    // 確保動畫完成後才隱藏
+    animation: none !important;
+  }
+}
+
+.menu_inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.menu_back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.menu_front {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  cursor: default;
+  pointer-events: none;
+}
+
+.menu_circle {
+  // 使用視窗對角線長度確保圓形能覆蓋整個螢幕
+  // 計算方式：sqrt(100vw^2 + 100vh^2) ≈ 141.42vw (或 vh)
+  // 使用更大的值確保完全覆蓋，考慮到從右上角開始擴展
+  width: 300vw;
+  height: 300vw;
+  border-radius: 50%;
+  position: absolute;
+  top: 85px;
+  right: 85px;
+  // 調整位置讓圓形從右上角按鈕位置開始擴展
+  transform: translate(50%, -50%);
+
+  @include tb {
+    top: 60px;
+    right: 60px;
+    width: 250vw;
+    height: 250vw;
+  }
+
+  @include sp {
+    top: 40px;
+    right: 40px;
+    // 手機直向時 vw 較小，圓會蓋不滿下方；改用 vmax 依較長邊縮放以覆蓋整個畫面
+    width: 280vmax;
+    height: 280vmax;
+  }
+}
+
+.menu_back .menu_circle {
+  background-color: $color-accent; // rgb(164, 138, 86)
+  // 確保動畫時能正確觸發
+  will-change: transform;
+}
+
+.menu_front .menu_circle {
+  background-color: $color-secondary; // rgb(255, 255, 255)
+  transform: translate(50%, -50%) scale(0);
+  // 確保關閉動畫時能正確觸發
+  will-change: transform;
+}
+
+.menu_contents {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.menu_element {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  div {
+    display: none;
+    position: absolute;
+  }
+}
+
+.menu0 .menu_element > div:nth-child(1),
+.menu1 .menu_element > div:nth-child(2),
+.menu2 .menu_element > div:nth-child(3) {
+  display: block;
+}
+
+.menu_element > div:nth-child(1) {
+  width: 112.5%;
+  bottom: 100px;
+  left: 50%;
+  transform-origin: 66.66666%, 0, 0;
+}
+
+.menu_element > div:nth-child(2) {
+  width: 112.5%;
+  top: 150px;
+  left: 50%;
+  margin: 0 0 0 -37.5%;
+  transform-origin: 100%, 92.81182%, 0;
+}
+
+.menu_element > div:nth-child(3) {
+  width: 150%;
+  top: 50%;
+  left: -25%;
+  transform-origin: 50%, 100%, 0;
+}
+
+.menu_area {
+  width: 80%;
+  height: 70%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 180px;
+  padding-bottom: 180px;
+  padding-left: 180px;
+  padding-right: 500px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @include tb {
+    padding-top: 120px;
+    padding-bottom: 120px;
+    padding-left: 120px;
+    padding-right: 300px;
+  }
+
+  @include sp {
+    padding-top: 80px;
+    padding-bottom: 100px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.menu_block {
+  width: 100%;
+}
+
+.menu_list {
+  width: 100%;
+
+  a {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 0;
+    line-height: 0;
+    text-decoration: none;
+  }
+}
+
+.menu_number {
+  display: inline-block;
+  vertical-align: top;
+  width: 10%;
+  max-width: 80px;
+  text-align: center;
+  position: relative;
+
+  p {
+    font-size: 20px;
+    line-height: 40px;
+    color: rgb(255, 255, 255);
+    position: relative;
+  }
+
+  span {
+    display: block;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -20px;
+    background-color: rgb(255, 255, 255);
+    transform: rotate(0) scale(0);
+  }
+}
+
+.menu_list0 .menu_number span,
+.menu_list1 .menu_number span {
+  width: 40px;
+  margin-left: -20px;
+}
+
+.menu_list2 .menu_number span,
+.menu_list3 .menu_number span {
+  width: 60px;
+  margin-left: -30px;
+}
+
+.menu_list0 .menu_number span,
+.menu_list2 .menu_number span {
+  border-radius: 50%;
+}
+
+.menu_title {
+  display: inline-block;
+  vertical-align: top;
+  width: 90%;
+  padding: 0 0 0 20px;
+
+  p {
+    font-size: 20px;
+    line-height: 40px;
+    color: rgb(255, 255, 255);
+  }
+}
+
+.menu_filter {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  cursor: default;
+  pointer-events: none;
+
+  span {
+    display: block;
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    left: 0;
+  }
+
+  > span:nth-child(1) {
+    top: 0;
+    background: linear-gradient(to bottom, $color-accent 0, rgba($color-accent, 0) 100%);
+  }
+
+  > span:nth-child(2) {
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba($color-accent, 0) 0, $color-accent 100%);
+  }
+}
+
+.menu_button {
+  position: absolute;
+  bottom: 200px;
+  right: 200px;
+  font-size: 0;
+  line-height: 0;
+  text-align: right;
+
+  @include tb {
+    right: 150px;
+    bottom: 150px;
+  }
+
+  @include sp {
+    width: 100%;
+    bottom: 24px;
+    right: 0;
+    padding: 0 24px 0 24px;
+    text-align: center;
+
+    .round_button {
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+  }
+}
+
+// Menu animations (參考 kiri 的動畫)
+// Header button animations
+.menu_on .header_button .menu_link > div:nth-child(1) {
+  animation: menu_on0 0.5s ease-in-out forwards;
+}
+
+.menu_on .header_button .menu_link > div:nth-child(2) {
+  animation: menu_on1 0.5s ease-in-out forwards;
+}
+
+.menu_on .header_button .menu_link > div:nth-child(3) {
+  animation: menu_on2 0.5s ease-in-out forwards;
+}
+
+.menu_off .header_button .menu_link > div:nth-child(1) {
+  animation: menu_off0 0.5s ease-in-out forwards;
+}
+
+.menu_off .header_button .menu_link > div:nth-child(2) {
+  animation: menu_off1 0.5s ease-in-out forwards;
+}
+
+.menu_off .header_button .menu_link > div:nth-child(3) {
+  animation: menu_off2 0.5s ease-in-out forwards;
+}
+
+.menu_on .header_button .menu_link {
+  background-color: $color-secondary !important;
+  border-color: $color-secondary !important;
+}
+
+.menu_on .header_button .menu_link span {
+  background-color: $color-accent !important;
+}
+
+@keyframes menu_on0 {
+  0% {
+    margin-top: -6px;
+    transform: rotate(0) translateY(-1px);
+  }
+  50% {
+    margin-top: 0;
+    transform: rotate(0) translateY(-1px);
+  }
+  100% {
+    margin-top: 0;
+    transform: rotate(45deg) translateY(0);
+  }
+}
+
+@keyframes menu_on1 {
+  0% {
+    opacity: 1;
+  }
+  100%,
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes menu_on2 {
+  0% {
+    margin-top: 6px;
+    transform: rotate(0) translateY(-1px);
+  }
+  50% {
+    margin-top: 0;
+    transform: rotate(0) translateY(-1px);
+  }
+  100% {
+    margin-top: 0;
+    transform: rotate(-45deg) translateY(0);
+  }
+}
+
+@keyframes menu_off0 {
+  0% {
+    margin-top: 0;
+    transform: rotate(45deg) translateY(0);
+  }
+  50% {
+    margin-top: 0;
+    transform: rotate(0) translateY(-1px);
+  }
+  100% {
+    margin-top: -6px;
+    transform: rotate(0) translateY(-1px);
+  }
+}
+
+@keyframes menu_off1 {
+  0%,
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes menu_off2 {
+  0% {
+    margin-top: 0;
+    transform: rotate(-45deg) translateY(0);
+  }
+  50% {
+    margin-top: 0;
+    transform: rotate(0) translateY(-1px);
+  }
+  100% {
+    margin-top: 6px;
+    transform: rotate(0) translateY(-1px);
+  }
+}
+
+// Menu circle and content animations
+.menu_on .menu_back .menu_circle {
+  animation: menu_on3 0.5s ease-in forwards;
+}
+
+// 關閉時，menu_back 的 circle 保持顯示，直到被 menu_front 的 circle 覆蓋
+.menu_off .menu_back .menu_circle {
+  // 保持 scale(1)，讓白色圓形覆蓋它
+  transform: translate(50%, -50%) scale(1);
+}
+
+.menu_on .menu_contents {
+  animation: menu_on4 1.5s ease-in-out 0.5s forwards;
+}
+
+.menu_on .menu_element div {
+  animation: menu_on5 2s ease-in-out forwards;
+}
+
+// 關閉時，menu_front 的 circle 擴展（白色圓形覆蓋）
+.menu_off .menu_front .menu_circle {
+  animation: menu_off3 0.5s ease-in forwards;
+}
+
+.menu_off .menu_contents {
+  animation: menu_off4 0.5s ease-in-out forwards;
+}
+
+.menu_off .menu_element div {
+  animation: menu_off5 1s ease-in-out forwards;
+}
+
+// ⭐ 關鍵：當 menu 有 menu_closing class 時，觸發淡出動畫
+// 這個 class 會在 JavaScript 中添加
+.menu.menu_closing {
+  // 確保在動畫開始前是可見的
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none;
+  // 觸發淡出動畫（0.5s delay + 0.5s duration）
+  animation: menu_off6 0.5s ease-out 0.5s forwards;
+}
+
+@keyframes menu_on3 {
+  0% {
+    transform: translate(50%, -50%) scale(0);
+  }
+  100% {
+    transform: translate(50%, -50%) scale(1);
+  }
+}
+
+@keyframes menu_on4 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes menu_on5 {
+  0% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+// ==========================================
+// Menu 關閉動畫 keyframes
+// ==========================================
+
+// menu_off3: menu_front circle 白色圓形擴展動畫（從 scale(0) 到 scale(1)）
+@keyframes menu_off3 {
+  0% {
+    transform: translate(50%, -50%) scale(0);
+  }
+  100% {
+    transform: translate(50%, -50%) scale(1);
+  }
+}
+
+// menu_off4: menu_contents 淡出動畫
+@keyframes menu_off4 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+// menu_off5: menu_element 旋轉動畫
+@keyframes menu_off5 {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(-15deg);
+  }
+}
+
+// menu_off6: 整個 menu 淡出動畫（關鍵：這是整個 popup 關閉的動畫）
+@keyframes menu_off6 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+// ==========================================
+// Header Logo 和 Portfolio Button 動畫
+// ==========================================
+
+// ⭐ Header Logo 淡出/淡入動畫
+.menu_on .header_logo {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.menu_off .header_logo {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+// ⭐ Portfolio Circle Button 在 menu 打開時隱藏
+.menu_on .portfolio-circle-button {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  z-index: 50; // 低於 menu 的 z-index (200)
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.menu_off .portfolio-circle-button {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  z-index: 100;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+// Hover effects (PC only)
+@media (min-width: 1000px) {
+  .menu_list {
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+    transition-property: opacity;
+  }
+
+  .menu_list:hover {
+    opacity: 1 !important;
+  }
+
+  .menu_block:hover .menu_list {
+    opacity: 0.5;
+  }
+
+  .menu_number span {
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+    transition-property: transform;
+  }
+
+  .menu_list:hover .menu_number span {
+    transform: rotate(-15deg) scale(1.2);
+  }
+
+  .menu_number p {
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+    transition-property: color, transform;
+  }
+
+  .menu_list:hover .menu_number p {
+    color: $color-accent;
+    transform: rotate(-15deg);
+  }
+
+  .menu_button .round_button_bt a:hover {
+    background-color: rgba(255, 255, 255, 0);
+  }
+}
+
+// Responsive adjustments
+@media (min-width: 560px) and (max-width: 999px) {
+  .menu_area {
+    position: relative;
+    padding-top: 180px;
+    padding-bottom: 30px;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+  .menu_filter > span:nth-child(1) {
+    height: 360px;
+    background: linear-gradient(to bottom, $color-accent 0, rgba($color-accent, 0) 50%);
+  }
+
+  .menu_filter > span:nth-child(2) {
+    height: 420px;
+    background: linear-gradient(to bottom, rgba($color-accent, 0) 0, $color-accent 50%);
+  }
+
+  .menu_button {
+    width: 100%;
+    bottom: 60px;
+    right: 0;
+    padding: 0 60px 0 60px;
+    text-align: center;
+
+    .round_button {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 559px) {
+  .menu_area {
+    padding-top: 80px;
+    padding-bottom: 100px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .menu_number {
+    width: 20%;
+  }
+
+  .menu_title {
+    width: 80%;
+  }
+}
+
