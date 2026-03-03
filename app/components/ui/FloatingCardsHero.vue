@@ -558,8 +558,10 @@ onMounted(() => {
 
   // Touch：手機上由 touch 決定錨點，避免與 handleScroll 的 scroll 邏輯衝突
   let touchStartY = 0;
+  let touchStartScrollY = 0;
   onTouchStartHandler = (e: TouchEvent) => {
     touchStartY = e.touches[0]?.clientY ?? 0;
+    touchStartScrollY = window.scrollY;
   };
   onTouchEndHandler = (e: TouchEvent) => {
     if (
@@ -574,27 +576,34 @@ onMounted(() => {
 
     if (Math.abs(delta) < 30) return;
 
+    // 如果 touch 期間頁面已被其他邏輯捲動，忽略這次 touch
+    if (Math.abs(window.scrollY - touchStartScrollY) > 50) return;
+
+    e.preventDefault();
+
     const anchors = getAnchors();
     if (!anchors) return;
     const zone = getZone(window.scrollY, anchors);
 
+    isAutoScrolling.value = true;
+
     if (delta > 0) {
       if (zone === "hero") {
-        e.preventDefault();
         goToAnchor("quote", "hero");
       } else if (zone === "quote") {
-        e.preventDefault();
         goToAnchor("gallery", "quote");
       }
     } else {
       if (zone === "gallery" && isAtTopOfGallery(window.scrollY, anchors)) {
-        e.preventDefault();
         goToAnchor("quote", "gallery");
       } else if (zone === "quote") {
-        e.preventDefault();
         goToAnchor("hero", "quote");
       }
     }
+
+    setTimeout(() => {
+      isAutoScrolling.value = false;
+    }, TRANSITION_DURATION + 200);
   };
   window.addEventListener("touchstart", onTouchStartHandler, { passive: true });
   window.addEventListener("touchend", onTouchEndHandler, { passive: false });
