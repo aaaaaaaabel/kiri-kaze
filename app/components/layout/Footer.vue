@@ -475,26 +475,16 @@ onUnmounted(() => {
 }
 
 .footer_disclaimer {
-  position: absolute;
-  bottom: 24px;
-  left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 24px;
-  font-size: 9px;
+  padding: 24px 24px 24px;
+  font-size: 11px;
   line-height: 1.4;
 
-  @include tb {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    padding: 24px 24px 0;
-  }
-
   @include sp {
-    padding: 20px 16px 0;
+    padding: 20px 16px 24px;
     font-size: 10px;
   }
 

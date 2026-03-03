@@ -415,6 +415,34 @@ const hasTriggeredAutoScroll = ref(false);
 const lastScrollY = ref(0);
 const MIN_DELTA = 35; // 至少滑動這麼多才依方向切換錨點，避免抖動
 
+// 觸控裝置：不在 scroll 中做程式捲動，僅被動跟隨；捲動結束後再 snap，避免與慣性捲動打架造成抖動
+const isTouchDevice = ref(false);
+let scrollEndTimeoutId = 0;
+const SCROLL_END_DEBOUNCE_MS = 300;
+const SNAP_DURATION_MS = 400;
+
+function snapToNearestAnchor() {
+  if (
+    !import.meta.client ||
+    isAutoScrolling.value ||
+    isTransitioning.value ||
+    isReverseTransitioning.value
+  )
+    return;
+  const anchors = getAnchors();
+  if (!anchors) return;
+  const scrollY = window.scrollY;
+  const zone = getZone(scrollY, anchors);
+  const targetY =
+    zone === "hero" ? anchors.hero : zone === "quote" ? anchors.quote : anchors.gallery;
+  isAutoScrolling.value = true;
+  smoothScrollTo(targetY, SNAP_DURATION_MS);
+  setTimeout(() => {
+    isAutoScrolling.value = false;
+    handleScroll();
+  }, SNAP_DURATION_MS + 50);
+}
+
 // 供 onUnmounted 清理：scroll/wheel 使用同一引用才能正確 removeEventListener
 let optimizedScroll: () => void = () => {};
 let onWheelHandler: (e: WheelEvent) => void = () => {};
@@ -449,25 +477,35 @@ const handleScroll = () => {
   const direction =
     delta >= MIN_DELTA ? "down" : delta <= -MIN_DELTA ? "up" : null;
 
-  if (direction === "down") {
-    if (zone === "hero") {
-      goToAnchor("quote", "hero");
-      return;
+  // 觸控裝置：不在 scroll 中做程式捲動，僅被動跟隨視覺，避免與慣性捲動打架造成抖動
+  if (!isTouchDevice.value) {
+    if (direction === "down") {
+      if (zone === "hero") {
+        goToAnchor("quote", "hero");
+        return;
+      }
+      if (zone === "quote") {
+        goToAnchor("gallery", "quote");
+        return;
+      }
     }
-    if (zone === "quote") {
-      goToAnchor("gallery", "quote");
-      return;
+    if (direction === "up") {
+      if (zone === "gallery" && isAtTopOfGallery(scrollY, anchors)) {
+        goToAnchor("quote", "gallery");
+        return;
+      }
+      if (zone === "quote") {
+        goToAnchor("hero", "quote");
+        return;
+      }
     }
-  }
-  if (direction === "up") {
-    if (zone === "gallery" && isAtTopOfGallery(scrollY, anchors)) {
-      goToAnchor("quote", "gallery");
-      return;
-    }
-    if (zone === "quote") {
-      goToAnchor("hero", "quote");
-      return;
-    }
+  } else {
+    // 觸控：捲動結束後 debounce 再 snap 到最近錨點
+    if (scrollEndTimeoutId) clearTimeout(scrollEndTimeoutId);
+    scrollEndTimeoutId = window.setTimeout(() => {
+      scrollEndTimeoutId = 0;
+      snapToNearestAnchor();
+    }, SCROLL_END_DEBOUNCE_MS);
   }
 
   lastScrollY.value = scrollY;
@@ -497,6 +535,9 @@ const handleScroll = () => {
 
 onMounted(() => {
   if (!import.meta.client) return;
+
+  isTouchDevice.value =
+    "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
   // 初始化卡片位置
   initCardPositions();
@@ -562,6 +603,7 @@ onMounted(() => {
 onUnmounted(() => {
   if (transitionRafId) cancelAnimationFrame(transitionRafId);
   if (reverseTransitionRafId) cancelAnimationFrame(reverseTransitionRafId);
+  if (scrollEndTimeoutId) clearTimeout(scrollEndTimeoutId);
   if (heroRef.value) {
     heroRef.value.removeEventListener("mousemove", handleMouseMove);
   }
