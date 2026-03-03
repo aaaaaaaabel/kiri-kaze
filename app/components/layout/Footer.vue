@@ -162,6 +162,8 @@ onUnmounted(() => {
   width: 100%;
   min-height: 600px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 
   @include tb {
     height: auto !important;
@@ -482,6 +484,7 @@ onUnmounted(() => {
   padding: 24px 24px 24px;
   font-size: 11px;
   line-height: 1.4;
+  margin-top: auto;
 
   @include sp {
     padding: 20px 16px 24px;
