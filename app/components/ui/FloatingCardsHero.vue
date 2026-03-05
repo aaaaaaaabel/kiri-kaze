@@ -55,6 +55,7 @@ const props = withDefaults(defineProps<Props>(), {
   fossils: () => [],
 });
 
+const isTouchDevice = ref(false);
 const heroRef = ref<HTMLElement | null>(null);
 const mouseX = ref(0);
 const mouseY = ref(0);
@@ -65,7 +66,8 @@ const isTransitioning = ref(false);
 const isReverseTransitioning = ref(false);
 let transitionRafId = 0;
 let reverseTransitionRafId = 0;
-const heroWasOut = ref(false);
+let touchStartY = 0;
+let touchSnapFired = false;
 
 const HERO_BN_BASE = "/images/hero_bn";
 const CARD_MAX_W = 140;
@@ -374,6 +376,9 @@ let onMatchChange: (e: MediaQueryListEvent) => void = () => {};
 let resizeHandler: () => void = () => {};
 let orientationHandler: () => void = () => {};
 let loadHandler: () => void = () => {};
+let onTouchStart: (e: TouchEvent) => void = () => {};
+let onTouchEnd: () => void = () => {};
+let onTouchMove: (e: TouchEvent) => void = () => {};
 
 // Scroll: visual sync only (no anchors, no goToAnchor)
 const handleScroll = () => {
@@ -400,7 +405,6 @@ const handleScroll = () => {
       heroRef.value.style.transform = `translateY(${wrapperTop * 0.7}px)`;
     }
   } else if (wrapperTop + wrapperHeight <= 0) {
-    heroWasOut.value = true;
     scrollProgress.value = 1;
     contentFadeProgress.value = 1;
     if (heroRef.value) {
@@ -421,10 +425,62 @@ onMounted(() => {
 
   mql = window.matchMedia("(hover: hover) and (pointer: fine)");
   isDesktopSnapMode.value = mql.matches;
+  isTouchDevice.value = navigator.maxTouchPoints > 0;
   onMatchChange = (e: MediaQueryListEvent) => {
     isDesktopSnapMode.value = e.matches;
   };
   mql.addEventListener("change", onMatchChange);
+
+  onTouchStart = (e: TouchEvent) => {
+    if (!e.touches[0]) return;
+    touchStartY = e.touches[0].clientY;
+    touchSnapFired = false;
+  };
+  onTouchMove = (e: TouchEvent) => {
+    if (touchSnapFired) {
+      e.preventDefault();
+      return;
+    }
+    if (!e.touches[0]) return;
+    if (
+      isAutoScrolling.value ||
+      isTransitioning.value ||
+      isReverseTransitioning.value
+    )
+      return;
+    const deltaY = touchStartY - e.touches[0].clientY;
+    if (Math.abs(deltaY) < 10) return;
+    const anchors = getAnchors();
+    if (!anchors) return;
+    const zone = getZone(window.scrollY, anchors);
+    if (deltaY > 0) {
+      if (zone === "hero") {
+        touchSnapFired = true;
+        e.preventDefault();
+        goToAnchor("quote", "hero");
+      } else if (zone === "quote") {
+        touchSnapFired = true;
+        e.preventDefault();
+        goToAnchor("gallery", "quote");
+      }
+    } else {
+      if (zone === "gallery" && isAtTopOfGallery(window.scrollY, anchors)) {
+        touchSnapFired = true;
+        e.preventDefault();
+        goToAnchor("quote", "gallery");
+      } else if (zone === "quote") {
+        touchSnapFired = true;
+        e.preventDefault();
+        goToAnchor("hero", "quote");
+      }
+    }
+  };
+  onTouchEnd = () => {
+    touchSnapFired = false;
+  };
+  window.addEventListener("touchstart", onTouchStart, { passive: true });
+  window.addEventListener("touchmove", onTouchMove, { passive: false });
+  window.addEventListener("touchend", onTouchEnd, { passive: true });
 
   initCardPositions();
   if (heroRef.value) {
@@ -445,6 +501,7 @@ onMounted(() => {
 
   // Desktop-only wheel snap; |deltaY| >= 8 to avoid touchpad jitter; isAutoScrolling only inside goToAnchor/start*
   onWheelHandler = (e: WheelEvent) => {
+    if (isTouchDevice.value) return;
     if (
       isAutoScrolling.value ||
       isTransitioning.value ||
@@ -504,6 +561,9 @@ onUnmounted(() => {
   }
   window.removeEventListener("scroll", optimizedScroll);
   window.removeEventListener("wheel", onWheelHandler);
+  window.removeEventListener("touchstart", onTouchStart);
+  window.removeEventListener("touchmove", onTouchMove);
+  window.removeEventListener("touchend", onTouchEnd);
   if (mql) mql.removeEventListener("change", onMatchChange);
   window.removeEventListener("resize", resizeHandler);
   window.removeEventListener("orientationchange", orientationHandler);
