@@ -57,7 +57,8 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: auto;
+  // 純視覺開場：不攔截 header／Menu 點擊，避免「第一次點失效」
+  pointer-events: none;
   background: #000;
 
   &--off {

@@ -82,7 +82,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from "vue";
+import { ref, computed, watch, onMounted, onUnmounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter, useRoute } from "vue-router";
 import { useWindowScroll } from "@vueuse/core";
@@ -97,8 +97,35 @@ const {
 /** overlay 內顯示的 view：menu | login | profile */
 const overlayView = ref<"menu" | "login" | "profile">("menu");
 
+const isButtonActive = ref(false);
+const isMenuOpen = ref(false);
+const router = useRouter();
+const route = useRoute();
+const { y: scrollY } = useWindowScroll();
+
+/** 取消過期的 open/close setTimeout，避免「打開後被舊的 close 回呼加上 none」造成閃退 */
+let menuTimers: ReturnType<typeof setTimeout>[] = [];
+let menuGeneration = 0;
+
+function clearMenuTimers() {
+  for (const id of menuTimers) clearTimeout(id);
+  menuTimers = [];
+}
+
+function scheduleMenuTimer(fn: () => void, ms: number) {
+  const id = setTimeout(fn, ms);
+  menuTimers.push(id);
+}
+
+function getMenuEls() {
+  const wrap = document.querySelector(".wrap");
+  const menu = document.querySelector(".menu");
+  if (!wrap || !menu) return null;
+  return { wrap, menu };
+}
+
 function onLoginSuccess() {
-  closeMenu();
+  closeMenu(true);
   overlayView.value = "menu";
 }
 
@@ -107,19 +134,97 @@ function onLoginSuccess() {
  */
 function openMenuWithView(view: "menu" | "login" | "profile") {
   if (import.meta.server) return;
-  const wrap = document.querySelector(".wrap");
-  const menu = document.querySelector(".menu");
-  if (!wrap || !menu) return;
-  if (wrap.classList.contains("menu_stop")) return;
-
   overlayView.value = view;
-  if (!isMenuOpen.value) {
-    isMenuOpen.value = true;
-    isButtonActive.value = true;
-    menu.classList.remove("none", "menu_closing");
-    wrap.classList.remove("menu_off");
-    wrap.classList.add("menu_on", "menu_stop", "menu0");
-    setTimeout(() => wrap.classList.remove("menu_stop"), 2000);
+  if (!isMenuOpen.value) openMenu();
+}
+
+function openMenu() {
+  if (import.meta.server) return;
+  const els = getMenuEls();
+  if (!els) return;
+  const { wrap, menu } = els;
+
+  clearMenuTimers();
+  const generation = ++menuGeneration;
+
+  isMenuOpen.value = true;
+  isButtonActive.value = true;
+
+  menu.classList.remove("none", "menu_closing");
+  wrap.classList.remove("menu_off");
+  wrap.classList.add("menu_on", "menu_stop", "menu0");
+
+  // 只擋極短時間，避免同一手勢連點立刻關閉；遠短於圓形展開動畫
+  scheduleMenuTimer(() => {
+    if (generation !== menuGeneration) return;
+    wrap.classList.remove("menu_stop");
+  }, 450);
+}
+
+/**
+ * 關閉 Menu。force=true 時略過 menu_stop（路由切換、登入成功、使用者明確要關）。
+ */
+function closeMenu(force = false) {
+  if (import.meta.server) return;
+  const els = getMenuEls();
+  if (!els) return;
+  const { wrap, menu } = els;
+
+  if (!force && wrap.classList.contains("menu_stop") && !isMenuOpen.value) {
+    return;
+  }
+
+  clearMenuTimers();
+  const generation = ++menuGeneration;
+
+  isMenuOpen.value = false;
+  wrap.classList.remove("menu_on");
+  wrap.classList.add("menu_off", "menu_stop");
+  menu.classList.add("menu_closing");
+
+  const menuFrontCircle = document.querySelector(
+    ".menu_front .menu_circle",
+  ) as HTMLElement | null;
+  if (menuFrontCircle) {
+    menuFrontCircle.style.animation = "none";
+    menuFrontCircle.style.transform = "";
+    void menuFrontCircle.offsetHeight;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (generation !== menuGeneration) return;
+        menuFrontCircle.style.animation = "";
+      });
+    });
+  }
+
+  scheduleMenuTimer(() => {
+    if (generation !== menuGeneration) return;
+    isButtonActive.value = false;
+  }, 500);
+
+  // menu-off-6：0.5s delay + 0.5s duration
+  scheduleMenuTimer(() => {
+    if (generation !== menuGeneration) return;
+    wrap.classList.remove("menu_stop");
+  }, 1000);
+
+  scheduleMenuTimer(() => {
+    if (generation !== menuGeneration) return;
+    menu.classList.remove("menu_closing");
+    menu.classList.add("none");
+  }, 1100);
+}
+
+/**
+ * 切換 Menu：關閉永遠可執行；開啟會清掉舊的 close timer，避免閃退。
+ */
+function toggleMenu() {
+  if (import.meta.server) return;
+  if (isMenuOpen.value) {
+    closeMenu(true);
+  } else {
+    overlayView.value = "menu";
+    openMenu();
   }
 }
 
@@ -134,12 +239,6 @@ watch(
   },
 );
 
-const isButtonActive = ref(false);
-const isMenuOpen = ref(false);
-const router = useRouter();
-const route = useRoute();
-const { y: scrollY } = useWindowScroll();
-
 const isHomePage = computed(() => route.path === "/");
 
 // 首頁 logo：捲動進入 hero-quote-section 時由白漸變為黑（與父層背景 200px 一致）
@@ -149,100 +248,6 @@ const logoScrollProgress = computed(() => {
   const y = scrollY.value ?? 0;
   return Math.min(1, Math.max(0, y / LOGO_WHITE_TO_BLACK_THRESHOLD));
 });
-
-/**
- * 切換 Menu 開關
- */
-const toggleMenu = () => {
-  if (import.meta.server) return;
-
-  const wrap = document.querySelector(".wrap");
-  const menu = document.querySelector(".menu");
-  if (!wrap || !menu) return;
-
-  // 檢查是否正在動畫中
-  if (wrap.classList.contains("menu_stop")) {
-    return;
-  }
-
-  if (!isMenuOpen.value) {
-    // ⭐ 打開 Menu，預設顯示 menu view
-    isMenuOpen.value = true;
-    isButtonActive.value = true;
-    overlayView.value = "menu";
-
-    // 移除 none 和 menu_closing class,讓 Menu 可見
-    menu.classList.remove("none", "menu_closing");
-
-    wrap.classList.remove("menu_off");
-    wrap.classList.add("menu_on", "menu_stop", "menu0");
-
-    // 2 秒後移除 menu_stop
-    setTimeout(() => {
-      wrap.classList.remove("menu_stop");
-    }, 2000);
-  } else {
-    // ⭐ 關閉 Menu
-    closeMenu();
-  }
-};
-
-/**
- * 關閉 Menu
- */
-const closeMenu = () => {
-  if (import.meta.server) return;
-
-  const wrap = document.querySelector(".wrap");
-  const menu = document.querySelector(".menu");
-  if (!wrap || !menu) return;
-
-  // 檢查是否正在動畫中
-  if (wrap.classList.contains("menu_stop")) {
-    return;
-  }
-
-  isMenuOpen.value = false;
-
-  // 移除 menu_on,添加 menu_off
-  wrap.classList.remove("menu_on");
-  wrap.classList.add("menu_off", "menu_stop");
-
-  // ⭐ 添加 menu_closing class 觸發淡出動畫
-  menu.classList.add("menu_closing");
-
-  // ⭐ 重置 menu_front circle 動畫
-  const menuFrontCircle = document.querySelector(
-    ".menu_front .menu_circle",
-  ) as HTMLElement;
-  if (menuFrontCircle) {
-    menuFrontCircle.style.animation = "none";
-    menuFrontCircle.style.transform = "";
-    void menuFrontCircle.offsetHeight;
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        menuFrontCircle.style.animation = "";
-      });
-    });
-  }
-
-  // 延遲移除按鈕 active 狀態
-  setTimeout(() => {
-    isButtonActive.value = false;
-  }, 500);
-
-  // ⭐⭐⭐ 1 秒後:移除 menu_stop（對應 menu_off6 的 0.5s delay + 0.5s duration）
-  setTimeout(() => {
-    wrap.classList.remove("menu_stop");
-  }, 1000);
-
-  // ⭐⭐⭐ 1.5 秒後:移除 menu_closing + 添加 none class 隱藏 Menu
-  // 確保 menu_off6 動畫完成（0.5s delay + 0.5s duration = 1s，再加 0.5s 緩衝）
-  setTimeout(() => {
-    menu.classList.remove("menu_closing");
-    menu.classList.add("none"); // ⭐ 關鍵:添加 none class
-  }, 1500);
-};
 
 /**
  * 處理 Logo 點擊事件
@@ -263,13 +268,13 @@ const handleLogoClick = (event: MouseEvent) => {
 };
 
 /**
- * 監聽路由變化,關閉 menu
+ * 監聽路由變化,關閉 menu（force，避免卡在 menu_stop）
  */
 watch(
   () => route.path,
   () => {
     if (isMenuOpen.value) {
-      closeMenu();
+      closeMenu(true);
     }
   },
 );
@@ -288,6 +293,10 @@ onMounted(() => {
       menu.classList.add("none");
     }
   }
+});
+
+onUnmounted(() => {
+  clearMenuTimers();
 });
 </script>
 
