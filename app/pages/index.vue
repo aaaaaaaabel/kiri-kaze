@@ -313,10 +313,10 @@ onMounted(async () => {
 @use "~/assets/styles/variables" as *;
 @use "~/assets/styles/mixins" as *;
 
-// 父層：背景由 JS 依 scroll 設為黑→白，此處不設 background
+// 父層：背景由 JS 依 scroll 設為黑→白；高度略大於一屏即可完成過渡，避免 200vh 空轉
 .hero-quote-parent {
   width: 100%;
-  min-height: 200vh;
+  min-height: 140vh;
   transition: background 0.15s ease-out;
 }
 
