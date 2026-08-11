@@ -1,0 +1,932 @@
+[
+  {
+    "id": "asterocidaris-bistriata",
+    "slug": "asterocidaris-bistriata",
+    "name": {
+      "zh": "Asterocidaris bistriata",
+      "en": "Asterocidaris bistriata",
+      "scientific": "Asterocidaris bistriata"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "棘皮動物門",
+      "class": "海膽綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Asterocidaris",
+      "species": "bistriata"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Asterocidaris bistriata，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "echinoid",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "asterocidaris-meandrina",
+    "slug": "asterocidaris-meandrina",
+    "name": {
+      "zh": "Asterocidaris meandrina",
+      "en": "Asterocidaris meandrina",
+      "scientific": "Asterocidaris meandrina"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "棘皮動物門",
+      "class": "海膽綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Asterocidaris",
+      "species": "meandrina"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Asterocidaris meandrina，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "echinoid",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "barrandeops-sp",
+    "slug": "barrandeops-sp",
+    "name": {
+      "zh": "Barrandeops sp.",
+      "en": "Barrandeops sp.",
+      "scientific": "Barrandeops sp."
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Barrandeops",
+      "species": "sp."
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Barrandeops sp.，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "calymene-sp",
+    "slug": "calymene-sp",
+    "name": {
+      "zh": "Calymene sp.",
+      "en": "Calymene sp.",
+      "scientific": "Calymene sp."
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Calymene",
+      "species": "sp."
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Calymene sp.，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "crotalocephalus-gibba",
+    "slug": "crotalocephalus-gibba",
+    "name": {
+      "zh": "Crotalocephalus gibba",
+      "en": "Crotalocephalus gibba",
+      "scientific": "Crotalocephalus gibba"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Crotalocephalus",
+      "species": "gibba"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Crotalocephalus gibba，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "drotops-megalomanicus",
+    "slug": "drotops-megalomanicus",
+    "name": {
+      "zh": "Drotops megalomanicus",
+      "en": "Drotops megalomanicus",
+      "scientific": "Drotops megalomanicus"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Drotops",
+      "species": "megalomanicus"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Drotops megalomanicus，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "gerastos-granulosus",
+    "slug": "gerastos-granulosus",
+    "name": {
+      "zh": "Gerastos granulosus",
+      "en": "Gerastos granulosus",
+      "scientific": "Gerastos granulosus"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Gerastos",
+      "species": "granulosus"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Gerastos granulosus，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "harpes-perradiatus",
+    "slug": "harpes-perradiatus",
+    "name": {
+      "zh": "Harpes perradiatus",
+      "en": "Harpes perradiatus",
+      "scientific": "Harpes perradiatus"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Harpes",
+      "species": "perradiatus"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Harpes perradiatus，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 2,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "hollardops-mesocristata",
+    "slug": "hollardops-mesocristata",
+    "name": {
+      "zh": "Hollardops mesocristata",
+      "en": "Hollardops mesocristata",
+      "scientific": "Hollardops mesocristata"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Hollardops",
+      "species": "mesocristata"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Hollardops mesocristata，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "scyphocrinites-elegans",
+    "slug": "scyphocrinites-elegans",
+    "name": {
+      "zh": "Scyphocrinites elegans",
+      "en": "Scyphocrinites elegans",
+      "scientific": "Scyphocrinites elegans"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "棘皮動物門",
+      "class": "海百合綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Scyphocrinites",
+      "species": "elegans"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Scyphocrinites elegans，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "crinoid",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "anetoceras-sp",
+    "slug": "anetoceras-sp",
+    "name": {
+      "zh": "Anetoceras sp.",
+      "en": "Anetoceras sp.",
+      "scientific": "Anetoceras sp."
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "軟體動物門",
+      "class": "頭足綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Anetoceras",
+      "species": "sp."
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Anetoceras sp.，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "ammonite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "paralejurus-hamlagdadicus",
+    "slug": "paralejurus-hamlagdadicus",
+    "name": {
+      "zh": "Paralejurus hamlagdadicus",
+      "en": "Paralejurus hamlagdadicus",
+      "scientific": "Paralejurus hamlagdadicus"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Paralejurus",
+      "species": "hamlagdadicus"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Paralejurus hamlagdadicus，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "zlichovaspis-rugosa",
+    "slug": "zlichovaspis-rugosa",
+    "name": {
+      "zh": "Zlichovaspis rugosa",
+      "en": "Zlichovaspis rugosa",
+      "scientific": "Zlichovaspis rugosa"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Zlichovaspis",
+      "species": "rugosa"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Zlichovaspis rugosa，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "scabriscutellum-sp",
+    "slug": "scabriscutellum-sp",
+    "name": {
+      "zh": "Scabriscutellum sp.",
+      "en": "Scabriscutellum sp.",
+      "scientific": "Scabriscutellum sp."
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Scabriscutellum",
+      "species": "sp."
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Scabriscutellum sp.，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "dicranurus-monstrosus",
+    "slug": "dicranurus-monstrosus",
+    "name": {
+      "zh": "Dicranurus monstrosus",
+      "en": "Dicranurus monstrosus",
+      "scientific": "Dicranurus monstrosus"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Dicranurus",
+      "species": "monstrosus"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Dicranurus monstrosus，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "cyphaspis-kraidensis",
+    "slug": "cyphaspis-kraidensis",
+    "name": {
+      "zh": "Cyphaspis kraidensis",
+      "en": "Cyphaspis kraidensis",
+      "scientific": "Cyphaspis kraidensis"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Cyphaspis",
+      "species": "kraidensis"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Cyphaspis kraidensis，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "leonaspis-sp",
+    "slug": "leonaspis-sp",
+    "name": {
+      "zh": "Leonaspis sp.",
+      "en": "Leonaspis sp.",
+      "scientific": "Leonaspis sp."
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Leonaspis",
+      "species": "sp."
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Leonaspis sp.，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "walliserops-trifurcatus",
+    "slug": "walliserops-trifurcatus",
+    "name": {
+      "zh": "Walliserops trifurcatus",
+      "en": "Walliserops trifurcatus",
+      "scientific": "Walliserops trifurcatus"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Walliserops",
+      "species": "trifurcatus"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Walliserops trifurcatus，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "erbenochile-erbeni",
+    "slug": "erbenochile-erbeni",
+    "name": {
+      "zh": "Erbenochile erbeni",
+      "en": "Erbenochile erbeni",
+      "scientific": "Erbenochile erbeni"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Erbenochile",
+      "species": "erbeni"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Erbenochile erbeni，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "acadoparadoxides-sp",
+    "slug": "acadoparadoxides-sp",
+    "name": {
+      "zh": "Acadoparadoxides sp.",
+      "en": "Acadoparadoxides sp.",
+      "scientific": "Acadoparadoxides sp."
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Acadoparadoxides",
+      "species": "sp."
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Acadoparadoxides sp.，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "koneprusia-dahmani",
+    "slug": "koneprusia-dahmani",
+    "name": {
+      "zh": "Koneprusia dahmani",
+      "en": "Koneprusia dahmani",
+      "scientific": "Koneprusia dahmani"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Koneprusia",
+      "species": "dahmani"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Koneprusia dahmani，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.182Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "cyrtometopus-sp",
+    "slug": "cyrtometopus-sp",
+    "name": {
+      "zh": "Cyrtometopus sp.",
+      "en": "Cyrtometopus sp.",
+      "scientific": "Cyrtometopus sp."
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Cyrtometopus",
+      "species": "sp."
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Cyrtometopus sp.，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.183Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "megistaspidella-triangularis",
+    "slug": "megistaspidella-triangularis",
+    "name": {
+      "zh": "Megistaspidella triangularis",
+      "en": "Megistaspidella triangularis",
+      "scientific": "Megistaspidella triangularis"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Megistaspidella",
+      "species": "triangularis"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Megistaspidella triangularis，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.183Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "asaphus-punctatus",
+    "slug": "asaphus-punctatus",
+    "name": {
+      "zh": "Asaphus punctatus",
+      "en": "Asaphus punctatus",
+      "scientific": "Asaphus punctatus"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Asaphus",
+      "species": "punctatus"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Asaphus punctatus，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.183Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "asaphus-cornutus",
+    "slug": "asaphus-cornutus",
+    "name": {
+      "zh": "Asaphus cornutus",
+      "en": "Asaphus cornutus",
+      "scientific": "Asaphus cornutus"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Asaphus",
+      "species": "cornutus"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Asaphus cornutus，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.183Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "hoplolichoides-furcifer",
+    "slug": "hoplolichoides-furcifer",
+    "name": {
+      "zh": "Hoplolichoides furcifer",
+      "en": "Hoplolichoides furcifer",
+      "scientific": "Hoplolichoides furcifer"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Hoplolichoides",
+      "species": "furcifer"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Hoplolichoides furcifer，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.183Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "asaphus-kowalewskii",
+    "slug": "asaphus-kowalewskii",
+    "name": {
+      "zh": "Asaphus kowalewskii",
+      "en": "Asaphus kowalewskii",
+      "scientific": "Asaphus kowalewskii"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Asaphus",
+      "species": "kowalewskii"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Asaphus kowalewskii，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.183Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "cybele-bellatula",
+    "slug": "cybele-bellatula",
+    "name": {
+      "zh": "Cybele bellatula",
+      "en": "Cybele bellatula",
+      "scientific": "Cybele bellatula"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Cybele",
+      "species": "bellatula"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Cybele bellatula，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.183Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "damesella-paronai",
+    "slug": "damesella-paronai",
+    "name": {
+      "zh": "Damesella paronai",
+      "en": "Damesella paronai",
+      "scientific": "Damesella paronai"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Damesella",
+      "species": "paronai"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Damesella paronai，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.183Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  },
+  {
+    "id": "paraceraurus-exsul",
+    "slug": "paraceraurus-exsul",
+    "name": {
+      "zh": "Paraceraurus Exsul",
+      "en": "Paraceraurus Exsul",
+      "scientific": "Paraceraurus Exsul"
+    },
+    "taxonomy": {
+      "kingdom": "動物界",
+      "phylum": "節肢動物門",
+      "class": "三葉蟲綱",
+      "order": "待補",
+      "family": "待補",
+      "genus": "Paraceraurus",
+      "species": "Exsul"
+    },
+    "period": {
+      "era": "待補",
+      "period": "待補",
+      "age": "待補"
+    },
+    "description": {
+      "zh": "Paraceraurus Exsul，目前資料仍在整理中，正式的中文名稱、分類與地質年代待補充。"
+    },
+    "specimenCount": 1,
+    "tags": [],
+    "category": "trilobite",
+    "createdAt": "2026-08-10T18:34:25.183Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  }
+]

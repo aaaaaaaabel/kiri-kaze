@@ -1,0 +1,2344 @@
+[
+  {
+    "id": "asterocidaris-bistriata-001",
+    "slug": "asterocidaris-bistriata-001",
+    "shortCode": "00205174561",
+    "speciesRef": {
+      "id": "asterocidaris-bistriata",
+      "slug": "asterocidaris-bistriata",
+      "name": {
+        "zh": "Asterocidaris bistriata",
+        "scientific": "Asterocidaris bistriata"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-UNK-ASTBIS-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-unknown",
+        "country": "Morocco",
+        "state": "Unknown",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Unknown, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/asterocidaris-bistriata/morocco-unknown/001/0dbcb9ae656ea3610df0f7634cc93857.jpg",
+        "width": 1024,
+        "height": 683,
+        "type": "detail",
+        "order": 1
+      }
+    ],
+    "thumbnail": "/images/fossils/asterocidaris-bistriata/morocco-unknown/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 Asterocidaris bistriata（Asterocidaris bistriata）的標本，產地為摩洛哥Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Asterocidaris bistriata specimen from Morocco, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "Morocco",
+      "Asterocidaris",
+      "echinoid"
+    ],
+    "category": "echinoid",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.653Z",
+    "updatedAt": "2026-08-11T05:24:06.654Z"
+  },
+  {
+    "id": "asterocidaris-meandrina-001",
+    "slug": "asterocidaris-meandrina-001",
+    "shortCode": "00183765689",
+    "speciesRef": {
+      "id": "asterocidaris-meandrina",
+      "slug": "asterocidaris-meandrina",
+      "name": {
+        "zh": "Asterocidaris meandrina",
+        "scientific": "Asterocidaris meandrina"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-UNK-ASTMEA-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-unknown",
+        "country": "Morocco",
+        "state": "Unknown",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Unknown, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/asterocidaris-meandrina/morocco-unknown/001/634d631b0773ec3beee26c9583c20852.jpg",
+        "width": 500,
+        "height": 455,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/asterocidaris-meandrina/morocco-unknown/001/a48a0c5b21ffd9669bca74e92d8cbfe4.jpg",
+        "width": 1200,
+        "height": 1092,
+        "type": "detail",
+        "order": 2
+      }
+    ],
+    "thumbnail": "/images/fossils/asterocidaris-meandrina/morocco-unknown/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 Asterocidaris meandrina（Asterocidaris meandrina）的標本，產地為摩洛哥Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Asterocidaris meandrina specimen from Morocco, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "Morocco",
+      "Asterocidaris",
+      "echinoid"
+    ],
+    "category": "echinoid",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.654Z",
+    "updatedAt": "2026-08-11T05:24:06.654Z"
+  },
+  {
+    "id": "barrandeops-sp-001",
+    "slug": "barrandeops-sp-001",
+    "shortCode": "01564863831",
+    "speciesRef": {
+      "id": "barrandeops-sp",
+      "slug": "barrandeops-sp",
+      "name": {
+        "zh": "Barrandeops sp.",
+        "scientific": "Barrandeops sp."
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 82,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-BARSP-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas (Alnif area)",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/barrandeops-sp/morocco-alnif/001/74fb7d269e1f89015d981c637b132fc0.jpg",
+        "width": 500,
+        "height": 421,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/barrandeops-sp/morocco-alnif/001/1328494dc255686ce6be352ab2f1b301.jpg",
+        "width": 735,
+        "height": 490,
+        "type": "detail",
+        "order": 2
+      }
+    ],
+    "thumbnail": "/images/fossils/barrandeops-sp/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 Barrandeops sp.（Barrandeops sp.）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Barrandeops sp. specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "Morocco",
+      "Barrandeops",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.655Z",
+    "updatedAt": "2026-08-11T05:24:06.655Z"
+  },
+  {
+    "id": "calymene-sp-001",
+    "slug": "calymene-sp-001",
+    "shortCode": "00632207796",
+    "speciesRef": {
+      "id": "calymene-sp",
+      "slug": "calymene-sp",
+      "name": {
+        "zh": "Calymene sp.",
+        "scientific": "Calymene sp."
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-CALSPX-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/calymene-sp/morocco-alnif/001/652baafe565b7ff240947e5dd63e825a.jpg",
+        "width": 697,
+        "height": 854,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/calymene-sp/morocco-alnif/001/92073870c8f420a6d3cc46d30fd88e9f.jpg",
+        "width": 1200,
+        "height": 1200,
+        "type": "detail",
+        "order": 2
+      }
+    ],
+    "thumbnail": "/images/fossils/calymene-sp/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 Calymene sp.（Calymene sp.）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Calymene sp. specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "Morocco",
+      "Calymene",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.655Z",
+    "updatedAt": "2026-08-11T05:24:06.655Z"
+  },
+  {
+    "id": "crotalocephalus-gibba-001",
+    "slug": "crotalocephalus-gibba-001",
+    "shortCode": "00422825591",
+    "speciesRef": {
+      "id": "crotalocephalus-gibba",
+      "slug": "crotalocephalus-gibba",
+      "name": {
+        "zh": "Crotalocephalus gibba",
+        "scientific": "Crotalocephalus gibba"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 88,
+      "condition": "excellent",
+      "catalogNumber": "MOR-ALNIF-CROGIB-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas (Alnif area)",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/crotalocephalus-gibba/morocco-alnif/001/8ed119af241dd35af40b375ecf96532d.jpg",
+        "width": 1200,
+        "height": 1600,
+        "type": "detail",
+        "order": 1
+      }
+    ],
+    "thumbnail": "/images/fossils/crotalocephalus-gibba/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 Crotalocephalus gibba（Crotalocephalus gibba）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Crotalocephalus gibba specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "Morocco",
+      "Crotalocephalus",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.655Z",
+    "updatedAt": "2026-08-11T05:24:06.655Z"
+  },
+  {
+    "id": "drotops-megalomanicus-001",
+    "slug": "drotops-megalomanicus-001",
+    "shortCode": "01267203955",
+    "speciesRef": {
+      "id": "drotops-megalomanicus",
+      "slug": "drotops-megalomanicus",
+      "name": {
+        "zh": "Drotops megalomanicus",
+        "scientific": "Drotops megalomanicus"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-DROMEG-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/drotops-megalomanicus/morocco-alnif/001/0488c1bf250fee40cded2a70955951be.jpg",
+        "width": 800,
+        "height": 1001,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/drotops-megalomanicus/morocco-alnif/001/c012b1cd28a3d1184ecc7f6837e6c8b8.jpg",
+        "width": 1000,
+        "height": 1000,
+        "type": "detail",
+        "order": 2
+      }
+    ],
+    "thumbnail": "/images/fossils/drotops-megalomanicus/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 Drotops megalomanicus（Drotops megalomanicus）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Drotops megalomanicus specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "Morocco",
+      "Drotops",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.656Z",
+    "updatedAt": "2026-08-11T05:24:06.656Z"
+  },
+  {
+    "id": "gerastos-granulosus-001",
+    "slug": "gerastos-granulosus-001",
+    "shortCode": "01505515664",
+    "speciesRef": {
+      "id": "gerastos-granulosus",
+      "slug": "gerastos-granulosus",
+      "name": {
+        "zh": "Gerastos granulosus",
+        "scientific": "Gerastos granulosus"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-GERGRA-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [],
+    "thumbnail": "/images/fossils/gerastos-granulosus/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 Gerastos granulosus（Gerastos granulosus）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Gerastos granulosus specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "Morocco",
+      "Gerastos",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.656Z",
+    "updatedAt": "2026-08-11T05:24:06.656Z"
+  },
+  {
+    "id": "harpes-perradiatus-morocco-alnif-001",
+    "slug": "harpes-perradiatus-morocco-alnif-001",
+    "shortCode": "00627610156",
+    "speciesRef": {
+      "id": "harpes-perradiatus",
+      "slug": "harpes-perradiatus",
+      "name": {
+        "zh": "Harpes perradiatus",
+        "scientific": "Harpes perradiatus"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-HARPER-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/harpes-perradiatus/morocco-alnif/001/48811bd6153d1a23ce4e2381d5e9c79c.jpg",
+        "width": 800,
+        "height": 724,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/harpes-perradiatus/morocco-alnif/001/ce06b3bf73b97d82a1bc74be1c20abd0.jpg",
+        "width": 429,
+        "height": 500,
+        "type": "detail",
+        "order": 2
+      }
+    ],
+    "thumbnail": "/images/fossils/harpes-perradiatus/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 Harpes perradiatus（Harpes perradiatus）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Harpes perradiatus specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "Morocco",
+      "Harpes",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.656Z",
+    "updatedAt": "2026-08-11T05:24:06.656Z"
+  },
+  {
+    "id": "harpes-perradiatus-russia-alnif-001",
+    "slug": "harpes-perradiatus-russia-alnif-001",
+    "shortCode": "00072390139",
+    "speciesRef": {
+      "id": "harpes-perradiatus",
+      "slug": "harpes-perradiatus",
+      "name": {
+        "zh": "Harpes perradiatus",
+        "scientific": "Harpes perradiatus"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "RUS-ALNIF-HARPER-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "russia-alnif",
+        "country": "Russia",
+        "state": "Alnif",
+        "city": null,
+        "formation": null,
+        "displayName": "Russia, Alnif"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [],
+    "thumbnail": "/images/fossils/harpes-perradiatus/russia-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 Harpes perradiatus（Harpes perradiatus）的標本，產地為俄羅斯Alnif。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Harpes perradiatus specimen from Russia, Alnif. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "Russia",
+      "Harpes",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.656Z",
+    "updatedAt": "2026-08-11T05:24:06.656Z"
+  },
+  {
+    "id": "hollardops-mesocristata-001",
+    "slug": "hollardops-mesocristata-001",
+    "shortCode": "01569628210",
+    "speciesRef": {
+      "id": "hollardops-mesocristata",
+      "slug": "hollardops-mesocristata",
+      "name": {
+        "zh": "Hollardops mesocristata",
+        "scientific": "Hollardops mesocristata"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-HOLMES-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/hollardops-mesocristata/morocco-alnif/001/cc19209938d58d8974b7b05d786d3037.jpg",
+        "width": 561,
+        "height": 500,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/hollardops-mesocristata/morocco-alnif/001/e2d980a6e6fe4ee538629ecfe9ad5476.jpg",
+        "width": 1124,
+        "height": 1102,
+        "type": "detail",
+        "order": 2
+      }
+    ],
+    "thumbnail": "/images/fossils/hollardops-mesocristata/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 Hollardops mesocristata（Hollardops mesocristata）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Hollardops mesocristata specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "Morocco",
+      "Hollardops",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.657Z",
+    "updatedAt": "2026-08-11T05:24:06.657Z"
+  },
+  {
+    "id": "scyphocrinites-elegans-001",
+    "slug": "scyphocrinites-elegans-001",
+    "shortCode": "00777153297",
+    "speciesRef": {
+      "id": "scyphocrinites-elegans",
+      "slug": "scyphocrinites-elegans",
+      "name": {
+        "zh": "Scyphocrinites elegans",
+        "scientific": "Scyphocrinites elegans"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-SCYELE-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/scyphocrinites-elegans/morocco-alnif/001/3082adc4c66b054c5850d0bc67672262.jpg",
+        "width": 1200,
+        "height": 1779,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/scyphocrinites-elegans/morocco-alnif/001/fb6f43fcc8bd94fece4076d6965c2c7a.jpg",
+        "width": 700,
+        "height": 700,
+        "type": "detail",
+        "order": 2
+      }
+    ],
+    "thumbnail": "/images/fossils/scyphocrinites-elegans/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 Scyphocrinites elegans（Scyphocrinites elegans）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Scyphocrinites elegans specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "Morocco",
+      "Scyphocrinites",
+      "crinoid"
+    ],
+    "category": "crinoid",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.657Z",
+    "updatedAt": "2026-08-11T05:24:06.657Z"
+  },
+  {
+    "id": "anetoceras-sp-001",
+    "slug": "anetoceras-sp-001",
+    "shortCode": "00597086271",
+    "speciesRef": {
+      "id": "anetoceras-sp",
+      "slug": "anetoceras-sp",
+      "name": {
+        "zh": "Anetoceras sp.",
+        "scientific": "Anetoceras sp."
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-ANESPX-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/anetoceras-sp/morocco-alnif/001/264875-1.jpg",
+        "width": 708,
+        "height": 472,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/anetoceras-sp/morocco-alnif/001/264875-4.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 2
+      }
+    ],
+    "thumbnail": "/images/fossils/anetoceras-sp/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 松卷菊石（Anetoceras sp.）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Anetoceras sp. specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "松卷菊石",
+      "Morocco",
+      "Anetoceras",
+      "ammonite"
+    ],
+    "category": "ammonite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.657Z",
+    "updatedAt": "2026-08-11T05:24:06.657Z"
+  },
+  {
+    "id": "paralejurus-hamlagdadicus-001",
+    "slug": "paralejurus-hamlagdadicus-001",
+    "shortCode": "00507507588",
+    "speciesRef": {
+      "id": "paralejurus-hamlagdadicus",
+      "slug": "paralejurus-hamlagdadicus",
+      "name": {
+        "zh": "Paralejurus hamlagdadicus",
+        "scientific": "Paralejurus hamlagdadicus"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-PARHAM-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/paralejurus-hamlagdadicus/morocco-alnif/001/-20.jpg",
+        "width": 1500,
+        "height": 1239,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/paralejurus-hamlagdadicus/morocco-alnif/001/-24.jpg",
+        "width": 1500,
+        "height": 954,
+        "type": "detail",
+        "order": 2
+      }
+    ],
+    "thumbnail": "/images/fossils/paralejurus-hamlagdadicus/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 擬平鬃蟲（Paralejurus hamlagdadicus）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Paralejurus hamlagdadicus specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "擬平鬃蟲",
+      "Morocco",
+      "Paralejurus",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.658Z",
+    "updatedAt": "2026-08-11T05:24:06.658Z"
+  },
+  {
+    "id": "zlichovaspis-rugosa-001",
+    "slug": "zlichovaspis-rugosa-001",
+    "shortCode": "00036497883",
+    "speciesRef": {
+      "id": "zlichovaspis-rugosa",
+      "slug": "zlichovaspis-rugosa",
+      "name": {
+        "zh": "Zlichovaspis rugosa",
+        "scientific": "Zlichovaspis rugosa"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-ZLIRUG-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/zlichovaspis-rugosa/morocco-alnif/001/18620-21.jpg",
+        "width": 1142,
+        "height": 1600,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/zlichovaspis-rugosa/morocco-alnif/001/18620-24.jpg",
+        "width": 1117,
+        "height": 1600,
+        "type": "detail",
+        "order": 2
+      },
+      {
+        "url": "/images/fossils/zlichovaspis-rugosa/morocco-alnif/001/18620-25.jpg",
+        "width": 1131,
+        "height": 1600,
+        "type": "detail",
+        "order": 3
+      },
+      {
+        "url": "/images/fossils/zlichovaspis-rugosa/morocco-alnif/001/18620-29.jpg",
+        "width": 1600,
+        "height": 1221,
+        "type": "detail",
+        "order": 4
+      }
+    ],
+    "thumbnail": "/images/fossils/zlichovaspis-rugosa/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 里可法蟲（Zlichovaspis rugosa）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Zlichovaspis rugosa specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "里可法蟲",
+      "Morocco",
+      "Zlichovaspis",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.659Z",
+    "updatedAt": "2026-08-11T05:24:06.659Z"
+  },
+  {
+    "id": "scabriscutellum-sp-001",
+    "slug": "scabriscutellum-sp-001",
+    "shortCode": "00886149272",
+    "speciesRef": {
+      "id": "scabriscutellum-sp",
+      "slug": "scabriscutellum-sp",
+      "name": {
+        "zh": "Scabriscutellum sp.",
+        "scientific": "Scabriscutellum sp."
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-SCASPX-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/scabriscutellum-sp/morocco-alnif/001/300563-7.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/scabriscutellum-sp/morocco-alnif/001/300563-10.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 2
+      },
+      {
+        "url": "/images/fossils/scabriscutellum-sp/morocco-alnif/001/300563-11.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 3
+      },
+      {
+        "url": "/images/fossils/scabriscutellum-sp/morocco-alnif/001/300563-12.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 4
+      }
+    ],
+    "thumbnail": "/images/fossils/scabriscutellum-sp/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 盾形三葉蟲（Scabriscutellum sp.）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Scabriscutellum sp. specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "盾形三葉蟲",
+      "Morocco",
+      "Scabriscutellum",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.659Z",
+    "updatedAt": "2026-08-11T05:24:06.659Z"
+  },
+  {
+    "id": "dicranurus-monstrosus-001",
+    "slug": "dicranurus-monstrosus-001",
+    "shortCode": "02038635108",
+    "speciesRef": {
+      "id": "dicranurus-monstrosus",
+      "slug": "dicranurus-monstrosus",
+      "name": {
+        "zh": "Dicranurus monstrosus",
+        "scientific": "Dicranurus monstrosus"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-DICMON-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/dicranurus-monstrosus/morocco-alnif/001/250013-10.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/dicranurus-monstrosus/morocco-alnif/001/250013-11.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 2
+      },
+      {
+        "url": "/images/fossils/dicranurus-monstrosus/morocco-alnif/001/250013-18.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 3
+      },
+      {
+        "url": "/images/fossils/dicranurus-monstrosus/morocco-alnif/001/250013-19.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 4
+      }
+    ],
+    "thumbnail": "/images/fossils/dicranurus-monstrosus/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 惡麼雙角（Dicranurus monstrosus）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Dicranurus monstrosus specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "惡麼雙角",
+      "Morocco",
+      "Dicranurus",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.660Z",
+    "updatedAt": "2026-08-11T05:24:06.660Z"
+  },
+  {
+    "id": "cyphaspis-kraidensis-001",
+    "slug": "cyphaspis-kraidensis-001",
+    "shortCode": "02117982250",
+    "speciesRef": {
+      "id": "cyphaspis-kraidensis",
+      "slug": "cyphaspis-kraidensis",
+      "name": {
+        "zh": "Cyphaspis kraidensis",
+        "scientific": "Cyphaspis kraidensis"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-CYPKRA-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/cyphaspis-kraidensis/morocco-alnif/001/206476-23.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/cyphaspis-kraidensis/morocco-alnif/001/206476-26.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 2
+      },
+      {
+        "url": "/images/fossils/cyphaspis-kraidensis/morocco-alnif/001/206476-27.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 3
+      },
+      {
+        "url": "/images/fossils/cyphaspis-kraidensis/morocco-alnif/001/206476-28.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 4
+      },
+      {
+        "url": "/images/fossils/cyphaspis-kraidensis/morocco-alnif/001/206476-29.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 5
+      }
+    ],
+    "thumbnail": "/images/fossils/cyphaspis-kraidensis/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 鬼鞍角蟲（Cyphaspis kraidensis）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Cyphaspis kraidensis specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "鬼鞍角蟲",
+      "Morocco",
+      "Cyphaspis",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.661Z",
+    "updatedAt": "2026-08-11T05:24:06.661Z"
+  },
+  {
+    "id": "leonaspis-sp-001",
+    "slug": "leonaspis-sp-001",
+    "shortCode": "01189941534",
+    "speciesRef": {
+      "id": "leonaspis-sp",
+      "slug": "leonaspis-sp",
+      "name": {
+        "zh": "Leonaspis sp.",
+        "scientific": "Leonaspis sp."
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-LEOSPX-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/leonaspis-sp/morocco-alnif/001/232773-45.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/leonaspis-sp/morocco-alnif/001/232773-47.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 2
+      }
+    ],
+    "thumbnail": "/images/fossils/leonaspis-sp/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 獅頭三葉蟲（Leonaspis sp.）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Leonaspis sp. specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "獅頭三葉蟲",
+      "Morocco",
+      "Leonaspis",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.661Z",
+    "updatedAt": "2026-08-11T05:24:06.661Z"
+  },
+  {
+    "id": "walliserops-trifurcatus-001",
+    "slug": "walliserops-trifurcatus-001",
+    "shortCode": "00156815868",
+    "speciesRef": {
+      "id": "walliserops-trifurcatus",
+      "slug": "walliserops-trifurcatus",
+      "name": {
+        "zh": "Walliserops trifurcatus",
+        "scientific": "Walliserops trifurcatus"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-WALTRI-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/walliserops-trifurcatus/morocco-alnif/001/86319-26.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/walliserops-trifurcatus/morocco-alnif/001/86319-28.jpg",
+        "width": 1200,
+        "height": 801,
+        "type": "detail",
+        "order": 2
+      },
+      {
+        "url": "/images/fossils/walliserops-trifurcatus/morocco-alnif/001/86319-30.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 3
+      }
+    ],
+    "thumbnail": "/images/fossils/walliserops-trifurcatus/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 海神三葉蟲（Walliserops trifurcatus）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Walliserops trifurcatus specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "海神三葉蟲",
+      "Morocco",
+      "Walliserops",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.662Z",
+    "updatedAt": "2026-08-11T05:24:06.662Z"
+  },
+  {
+    "id": "erbenochile-erbeni-001",
+    "slug": "erbenochile-erbeni-001",
+    "shortCode": "00259745552",
+    "speciesRef": {
+      "id": "erbenochile-erbeni",
+      "slug": "erbenochile-erbeni",
+      "name": {
+        "zh": "Erbenochile erbeni",
+        "scientific": "Erbenochile erbeni"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-ERBERB-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/erbenochile-erbeni/morocco-alnif/001/b275c8869d0c7a00425d8aa5245cbd4e.jpg",
+        "width": 559,
+        "height": 297,
+        "type": "detail",
+        "order": 1
+      }
+    ],
+    "thumbnail": "/images/fossils/erbenochile-erbeni/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 厄本星尾三葉蟲（Erbenochile erbeni）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Erbenochile erbeni specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "厄本星尾三葉蟲",
+      "Morocco",
+      "Erbenochile",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.662Z",
+    "updatedAt": "2026-08-11T05:24:06.662Z"
+  },
+  {
+    "id": "acadoparadoxides-sp-001",
+    "slug": "acadoparadoxides-sp-001",
+    "shortCode": "01624687294",
+    "speciesRef": {
+      "id": "acadoparadoxides-sp",
+      "slug": "acadoparadoxides-sp",
+      "name": {
+        "zh": "Acadoparadoxides sp.",
+        "scientific": "Acadoparadoxides sp."
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-ACASPX-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/acadoparadoxides-sp/morocco-alnif/001/0b5885db71716945af50113fa85da702.jpg",
+        "width": 450,
+        "height": 600,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/acadoparadoxides-sp/morocco-alnif/001/585c67eefdac4b57f882e16a0a7960e6.jpg",
+        "width": 1200,
+        "height": 1432,
+        "type": "detail",
+        "order": 2
+      }
+    ],
+    "thumbnail": "/images/fossils/acadoparadoxides-sp/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 奇異三葉蟲（Acadoparadoxides sp.）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Acadoparadoxides sp. specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "奇異三葉蟲",
+      "Morocco",
+      "Acadoparadoxides",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.662Z",
+    "updatedAt": "2026-08-11T05:24:06.662Z"
+  },
+  {
+    "id": "koneprusia-dahmani-001",
+    "slug": "koneprusia-dahmani-001",
+    "shortCode": "00388597380",
+    "speciesRef": {
+      "id": "koneprusia-dahmani",
+      "slug": "koneprusia-dahmani",
+      "name": {
+        "zh": "Koneprusia dahmani",
+        "scientific": "Koneprusia dahmani"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-KONDAH-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/koneprusia-dahmani/morocco-alnif/001/40349-2.jpg",
+        "width": 1200,
+        "height": 838,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/koneprusia-dahmani/morocco-alnif/001/40349-3.jpg",
+        "width": 1200,
+        "height": 957,
+        "type": "detail",
+        "order": 2
+      },
+      {
+        "url": "/images/fossils/koneprusia-dahmani/morocco-alnif/001/40349-4.jpg",
+        "width": 1200,
+        "height": 848,
+        "type": "detail",
+        "order": 3
+      }
+    ],
+    "thumbnail": "/images/fossils/koneprusia-dahmani/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 達赫馬尼多棘刺蟲（Koneprusia dahmani）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Koneprusia dahmani specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "達赫馬尼多棘刺蟲",
+      "Morocco",
+      "Koneprusia",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.663Z",
+    "updatedAt": "2026-08-11T05:24:06.663Z"
+  },
+  {
+    "id": "cyrtometopus-sp-001",
+    "slug": "cyrtometopus-sp-001",
+    "shortCode": "01057329834",
+    "speciesRef": {
+      "id": "cyrtometopus-sp",
+      "slug": "cyrtometopus-sp",
+      "name": {
+        "zh": "Cyrtometopus sp.",
+        "scientific": "Cyrtometopus sp."
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "MOR-ALNIF-CYRSPX-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "morocco-alnif",
+        "country": "Morocco",
+        "state": "Alnif",
+        "city": "Anti-Atlas",
+        "formation": "Anti-Atlas Formation",
+        "displayName": "Morocco, Alnif, Anti-Atlas"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/cyrtometopus-sp/morocco-alnif/001/191778-15.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/cyrtometopus-sp/morocco-alnif/001/191778-18.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 2
+      },
+      {
+        "url": "/images/fossils/cyrtometopus-sp/morocco-alnif/001/191778-19.jpg",
+        "width": 1200,
+        "height": 800,
+        "type": "detail",
+        "order": 3
+      }
+    ],
+    "thumbnail": "/images/fossils/cyrtometopus-sp/morocco-alnif/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 圓頂鐘頭蟲（Cyrtometopus sp.）的標本，產地為摩洛哥Alnif、Anti-Atlas。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Cyrtometopus sp. specimen from Morocco, Alnif, Anti-Atlas. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "圓頂鐘頭蟲",
+      "Morocco",
+      "Cyrtometopus",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.663Z",
+    "updatedAt": "2026-08-11T05:24:06.663Z"
+  },
+  {
+    "id": "megistaspidella-triangularis-001",
+    "slug": "megistaspidella-triangularis-001",
+    "shortCode": "01389754136",
+    "speciesRef": {
+      "id": "megistaspidella-triangularis",
+      "slug": "megistaspidella-triangularis",
+      "name": {
+        "zh": "Megistaspidella triangularis",
+        "scientific": "Megistaspidella triangularis"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "RUS-UNK-MEGTRI-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "russia-unknown",
+        "country": "Russia",
+        "state": "Unknown",
+        "city": null,
+        "formation": null,
+        "displayName": "Russia, Unknown"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/megistaspidella-triangularis/russia-unknown/001/4ea6b91a59f963ebaa0a86082b927254.jpg",
+        "width": 1000,
+        "height": 700,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/megistaspidella-triangularis/russia-unknown/001/42d8a5f6aa5d7fbc4182e21b236bf400.jpg",
+        "width": 1200,
+        "height": 1217,
+        "type": "detail",
+        "order": 2
+      },
+      {
+        "url": "/images/fossils/megistaspidella-triangularis/russia-unknown/001/1665e8cada6c07ec7edfaf6b488c0fb8.jpg",
+        "width": 1000,
+        "height": 750,
+        "type": "detail",
+        "order": 3
+      },
+      {
+        "url": "/images/fossils/megistaspidella-triangularis/russia-unknown/001/4818627324410fcdf53a8390d025bd8e.jpg",
+        "width": 1200,
+        "height": 900,
+        "type": "detail",
+        "order": 4
+      }
+    ],
+    "thumbnail": "/images/fossils/megistaspidella-triangularis/russia-unknown/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 三角巨盾蟲（Megistaspidella triangularis）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Megistaspidella triangularis specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "三角巨盾蟲",
+      "Russia",
+      "Megistaspidella",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.664Z",
+    "updatedAt": "2026-08-11T05:24:06.664Z"
+  },
+  {
+    "id": "asaphus-punctatus-001",
+    "slug": "asaphus-punctatus-001",
+    "shortCode": "01361767783",
+    "speciesRef": {
+      "id": "asaphus-punctatus",
+      "slug": "asaphus-punctatus",
+      "name": {
+        "zh": "Asaphus punctatus",
+        "scientific": "Asaphus punctatus"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "RUS-UNK-ASAPUN-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "russia-unknown",
+        "country": "Russia",
+        "state": "Unknown",
+        "city": null,
+        "formation": null,
+        "displayName": "Russia, Unknown"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/asaphus-punctatus/russia-unknown/001/5b32e5dd630e476df58a7e71083b04a9.jpg",
+        "width": 1000,
+        "height": 666,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/asaphus-punctatus/russia-unknown/001/f910ffbdc8874493f92099077bd2c2dd.jpg",
+        "width": 1200,
+        "height": 798,
+        "type": "detail",
+        "order": 2
+      }
+    ],
+    "thumbnail": "/images/fossils/asaphus-punctatus/russia-unknown/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 斑櫛蟲（Asaphus punctatus）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Asaphus punctatus specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "斑櫛蟲",
+      "Russia",
+      "Asaphus",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.665Z",
+    "updatedAt": "2026-08-11T05:24:06.665Z"
+  },
+  {
+    "id": "asaphus-cornutus-001",
+    "slug": "asaphus-cornutus-001",
+    "shortCode": "01290599633",
+    "speciesRef": {
+      "id": "asaphus-cornutus",
+      "slug": "asaphus-cornutus",
+      "name": {
+        "zh": "Asaphus cornutus",
+        "scientific": "Asaphus cornutus"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "RUS-UNK-ASACOR-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "russia-unknown",
+        "country": "Russia",
+        "state": "Unknown",
+        "city": null,
+        "formation": null,
+        "displayName": "Russia, Unknown"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/asaphus-cornutus/russia-unknown/001/2a3268ce3b30e255f52b12b7c86116dc.jpg",
+        "width": 1200,
+        "height": 900,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/asaphus-cornutus/russia-unknown/001/dfa2f37dbf3f9da98570b3cf55da88ef.jpg",
+        "width": 1200,
+        "height": 900,
+        "type": "detail",
+        "order": 2
+      }
+    ],
+    "thumbnail": "/images/fossils/asaphus-cornutus/russia-unknown/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 角櫛蟲（Asaphus cornutus）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Asaphus cornutus specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "角櫛蟲",
+      "Russia",
+      "Asaphus",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.665Z",
+    "updatedAt": "2026-08-11T05:24:06.665Z"
+  },
+  {
+    "id": "hoplolichoides-furcifer-001",
+    "slug": "hoplolichoides-furcifer-001",
+    "shortCode": "01456584721",
+    "speciesRef": {
+      "id": "hoplolichoides-furcifer",
+      "slug": "hoplolichoides-furcifer",
+      "name": {
+        "zh": "Hoplolichoides furcifer",
+        "scientific": "Hoplolichoides furcifer"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "RUS-UNK-HOPFUR-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "russia-unknown",
+        "country": "Russia",
+        "state": "Unknown",
+        "city": null,
+        "formation": null,
+        "displayName": "Russia, Unknown"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/hoplolichoides-furcifer/russia-unknown/001/6f11b0984b953e298bc975a07eaa830a.jpg",
+        "width": 528,
+        "height": 500,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/hoplolichoides-furcifer/russia-unknown/001/8ba8a61144ce7ce35ddc85adbaa680bc.jpg",
+        "width": 480,
+        "height": 640,
+        "type": "detail",
+        "order": 2
+      }
+    ],
+    "thumbnail": "/images/fossils/hoplolichoides-furcifer/russia-unknown/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 叉冠武裝裂肋蟲（Hoplolichoides furcifer）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Hoplolichoides furcifer specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "叉冠武裝裂肋蟲",
+      "Russia",
+      "Hoplolichoides",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.665Z",
+    "updatedAt": "2026-08-11T05:24:06.665Z"
+  },
+  {
+    "id": "asaphus-kowalewskii-001",
+    "slug": "asaphus-kowalewskii-001",
+    "shortCode": "00767606716",
+    "speciesRef": {
+      "id": "asaphus-kowalewskii",
+      "slug": "asaphus-kowalewskii",
+      "name": {
+        "zh": "Asaphus kowalewskii",
+        "scientific": "Asaphus kowalewskii"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "RUS-UNK-ASAKOW-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "russia-unknown",
+        "country": "Russia",
+        "state": "Unknown",
+        "city": null,
+        "formation": null,
+        "displayName": "Russia, Unknown"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/asaphus-kowalewskii/russia-unknown/001/7e139ae5b8cad7a158c88d963e610f35.jpg",
+        "width": 1200,
+        "height": 900,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/asaphus-kowalewskii/russia-unknown/001/61bbb4cbf3ca01200b333f38ee8948ba.jpg",
+        "width": 1200,
+        "height": 900,
+        "type": "detail",
+        "order": 2
+      },
+      {
+        "url": "/images/fossils/asaphus-kowalewskii/russia-unknown/001/88e3ccda02bd9cc83084cbb43efa2613.jpg",
+        "width": 1200,
+        "height": 900,
+        "type": "detail",
+        "order": 3
+      },
+      {
+        "url": "/images/fossils/asaphus-kowalewskii/russia-unknown/001/844fd557bd9ac2f0dc02e3958f86a0a7.jpg",
+        "width": 500,
+        "height": 451,
+        "type": "detail",
+        "order": 4
+      }
+    ],
+    "thumbnail": "/images/fossils/asaphus-kowalewskii/russia-unknown/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 卡瓦勒斯基櫛蟲（Asaphus kowalewskii）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Asaphus kowalewskii specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "卡瓦勒斯基櫛蟲",
+      "Russia",
+      "Asaphus",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.666Z",
+    "updatedAt": "2026-08-11T05:24:06.666Z"
+  },
+  {
+    "id": "cybele-bellatula-001",
+    "slug": "cybele-bellatula-001",
+    "shortCode": "01901131459",
+    "speciesRef": {
+      "id": "cybele-bellatula",
+      "slug": "cybele-bellatula",
+      "name": {
+        "zh": "Cybele bellatula",
+        "scientific": "Cybele bellatula"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "RUS-UNK-CYBBEL-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "russia-unknown",
+        "country": "Russia",
+        "state": "Unknown",
+        "city": null,
+        "formation": null,
+        "displayName": "Russia, Unknown"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [],
+    "thumbnail": "/images/fossils/cybele-bellatula/russia-unknown/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 美麗西芭莉蟲（Cybele bellatula）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Cybele bellatula specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "美麗西芭莉蟲",
+      "Russia",
+      "Cybele",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.666Z",
+    "updatedAt": "2026-08-11T05:24:06.666Z"
+  },
+  {
+    "id": "damesella-paronai-001",
+    "slug": "damesella-paronai-001",
+    "shortCode": "00559347097",
+    "speciesRef": {
+      "id": "damesella-paronai",
+      "slug": "damesella-paronai",
+      "name": {
+        "zh": "Damesella paronai",
+        "scientific": "Damesella paronai"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "RUS-UNK-DAMPAR-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "china-unknown",
+        "country": "China",
+        "state": "Unknown",
+        "city": null,
+        "formation": null,
+        "displayName": "China, Unknown"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/damesella-paronai/china-unknown/001/14351bdc821fbbf26ea7abab8873749b.jpg",
+        "width": 1080,
+        "height": 1080,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/damesella-paronai/china-unknown/001/a68105a6469c350ebbabdca9b06b08f7.jpg",
+        "width": 800,
+        "height": 794,
+        "type": "detail",
+        "order": 2
+      }
+    ],
+    "thumbnail": "/images/fossils/damesella-paronai/china-unknown/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 帕氏德氏三葉蟲（Damesella paronai）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Damesella paronai specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "帕氏德氏三葉蟲",
+      "Russia",
+      "Damesella",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.666Z",
+    "updatedAt": "2026-08-11T05:24:06.666Z"
+  },
+  {
+    "id": "paraceraurus-exsul-001",
+    "slug": "paraceraurus-exsul-001",
+    "shortCode": "01798201606",
+    "speciesRef": {
+      "id": "paraceraurus-exsul",
+      "slug": "paraceraurus-exsul",
+      "name": {
+        "zh": "Paraceraurus Exsul",
+        "scientific": "Paraceraurus Exsul"
+      }
+    },
+    "specimen": {
+      "type": "complete-skeleton",
+      "bodyPart": {
+        "category": "other",
+        "specific": "complete",
+        "position": "完整標本",
+        "side": null
+      },
+      "completeness": 80,
+      "condition": "good",
+      "catalogNumber": "RUS-UNK-PAREXS-001",
+      "collectionDate": "2026-01-01",
+      "location": {
+        "locationId": "russia-asery",
+        "country": "Russia",
+        "state": "Asery",
+        "city": null,
+        "formation": null,
+        "displayName": "Russia, Asery"
+      },
+      "measurements": {
+        "length": null,
+        "width": null,
+        "height": null,
+        "weight": null
+      }
+    },
+    "images": [
+      {
+        "url": "/images/fossils/paraceraurus-exsul/russia-asery/001/-4.jpg",
+        "width": 1500,
+        "height": 1379,
+        "type": "detail",
+        "order": 1
+      },
+      {
+        "url": "/images/fossils/paraceraurus-exsul/russia-asery/001/-5.jpg",
+        "width": 1500,
+        "height": 1179,
+        "type": "detail",
+        "order": 2
+      },
+      {
+        "url": "/images/fossils/paraceraurus-exsul/russia-asery/001/-6.jpg",
+        "width": 665,
+        "height": 500,
+        "type": "detail",
+        "order": 3
+      },
+      {
+        "url": "/images/fossils/paraceraurus-exsul/russia-asery/001/-7.jpg",
+        "width": 1500,
+        "height": 984,
+        "type": "detail",
+        "order": 4
+      }
+    ],
+    "thumbnail": "/images/fossils/paraceraurus-exsul/russia-asery/001/thumbnail.jpg",
+    "description": {
+      "zh": "這是一個 nan（Paraceraurus Exsul）的標本，產地為俄羅斯未知產地。目前以完整標本為預設資料，待你補上實際尺寸、地層與細節描述。",
+      "en": "A well-preserved Paraceraurus Exsul specimen from Russia, Unknown locality. This is a default placeholder record (complete specimen) to be refined with exact measurements, stratigraphy, and preparation notes."
+    },
+    "tags": [
+      "Russia",
+      "Paraceraurus",
+      "trilobite"
+    ],
+    "category": "trilobite",
+    "likeCount": 0,
+    "viewCount": 0,
+    "isPublic": true,
+    "featured": false,
+    "createdAt": "2026-08-11T05:24:06.667Z",
+    "updatedAt": "2026-08-11T05:24:06.667Z"
+  }
+]
