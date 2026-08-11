@@ -180,4 +180,4 @@ curl -X POST http://localhost:3000/api/_dev/migrate-images
 
 - `server/utils/fossil-mapper.ts` 的 `attachSpeciesRef(fossilRow)`：查出 `fossilRow.speciesId` 對應的物種，組成 `{ ...fossil, speciesRef: { id, slug, name: { zh, scientific } } }`，找不到物種回傳 `null`。單筆查詢類的 route（`[id]`、`slug/[slug]`、`code/[code]`）都靠這個函式組裝回傳值。
 - 列表類 route（`fossils/index.get.ts`、`fossils/by-species/[speciesSlug].get.ts`）因為要處理多筆，改成先撈出所有涉及的 `speciesId`，一次查完 `species` 表建 `Map`，避免對每一筆標本各查一次物種（N+1 查詢）。
-- `bookings` 沒有對應的 `useMockBookings`——mock 模式下的報名資料是直接寫在 `useMockEvents.ts` 裡用 `localStorage` 模擬的，遷移到 D1 後這部分邏輯整個被 `server/api/bookings/*` 取代。
+- `bookings` 沒有對應的 `useMockBookings`——mock 模式下的報名資料原本是寫在（已刪除的）`useMockEvents.ts` 裡用 `localStorage` 模擬的，遷移到 D1 後這部分邏輯整個被 `server/api/bookings/*` 取代。

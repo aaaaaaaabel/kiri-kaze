@@ -70,9 +70,9 @@ mock 模式下：`isLoggedIn` 永遠是 `false`，`loginWithGoogle()` 直接 thr
 - mock 模式下：完全忽略 `useCurrentUser()`/Firestore，一律使用 `localStorage`（key: `fossil_favorites`），不管有沒有殘留的舊登入狀態
 - 非 mock 模式：未登入用 `localStorage`，登入後存 Firestore `users/{uid}/favorites`，登入瞬間呼叫 `mergeFavorites()` 把 localStorage 內容合併進 Firestore
 
-## Mock 資料層（`useMockFossils`/`useMockSpecies`/`useMockProjects`/`useMockEvents`）
+## Mock 資料層（已刪除）
 
-四個檔案現在**都已經沒有任何地方呼叫**——`useFossils`/`useSpecies`/`useProjects`/`useEvents` 全部遷移到 D1 之後不再委派給它們。保留是為了保險，等確認 D1 版本穩定後可以整批刪除，連同 `data/mock/*.json`（見 [data-architecture.md](./data-architecture.md#可以刪除的東西確認-d1-版本穩定後)）。
+`useMockFossils`/`useMockSpecies`/`useMockProjects`/`useMockEvents` 這四個檔案在 D1 版本穩定、確認沒有任何呼叫者後已經刪除（2026-08-11）。`data/mock/*.json` **沒有**跟著刪——它們同時是 `/api/_dev/seed` 灌資料庫用的資料來源，見 [data-architecture.md](./data-architecture.md#可以刪除的東西確認-d1-版本穩定後)。
 
 ## UI 邏輯類（跟資料來源無關，沒有被這次遷移影響）
 

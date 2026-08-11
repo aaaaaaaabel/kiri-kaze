@@ -19,7 +19,7 @@ useAuth() / useFavorites()
     → false：走下面沒被刪除、但目前打不通的 Firebase Auth / Firestore 實作
 ```
 
-**所有內容類 composable 都已經沒有 mock 分支**——`useFossils`/`useSpecies`/`useProjects`/`useEvents` 現在都直接打 D1，`useMockFossils`/`useMockSpecies`/`useMockProjects`/`useMockEvents` 這四個檔案已經沒有任何地方呼叫，可以視為待清理的遺留檔案（見下方「可以刪除的東西」）。
+**所有內容類 composable 都已經沒有 mock 分支**——`useFossils`/`useSpecies`/`useProjects`/`useEvents` 現在都直接打 D1。原本的 `useMockFossils`/`useMockSpecies`/`useMockProjects`/`useMockEvents` 四個檔案已確認沒有任何呼叫者並刪除（見下方「可以刪除的東西」）。
 
 ## `isMockDataEnabled` 開關在哪裡
 
@@ -56,9 +56,9 @@ runtimeConfig: {
 
 理論上不需要。除非你決定要真的接回 Firebase（例如新資料庫計畫作廢），否則 `useAuth.ts`/`useFavorites.ts` 裡 `if (isMockDataEnabled)` 判斷之後的程式碼可以當作「看不到」——它們不會被執行，也不會影響你現在的開發。
 
-## 可以刪除的東西（確認 D1 版本穩定後）
+## 可以刪除的東西
 
-- `app/composables/useMockFossils.ts`、`useMockSpecies.ts`、`useMockProjects.ts`、`useMockEvents.ts`
+- ~~`app/composables/useMockFossils.ts`、`useMockSpecies.ts`、`useMockProjects.ts`、`useMockEvents.ts`~~ **已刪除（2026-08-11）**
 - `data/mock/species.json`、`fossils.json`、`projects.json`、`events.json`（改成只留在 D1 裡，不再需要 JSON 副本）——**但如果你還在依賴「改 JSON 檔案 + 重新 seed」這個大量修正資料的工作流程（見 [database.md](./database.md)），先不要刪**，這幾個檔案同時也是 seed 端點的資料來源
 
 ## 之後要遷移登入/收藏時，該怎麼做
