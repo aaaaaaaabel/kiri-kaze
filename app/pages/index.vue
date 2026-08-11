@@ -25,7 +25,7 @@
             src="/images/index-txt.png"
             alt="化石圖鑑"
             class="fossils-page__title-image"
-          />
+          >
         </div>
 
         <FossilGrid
@@ -36,7 +36,7 @@
           @fossil-click="handleFossilClick"
         />
 
-        <div ref="infiniteTarget" class="fossils-page__infinite-trigger"></div>
+        <div ref="infiniteTarget" class="fossils-page__infinite-trigger"/>
       </div>
     </div>
   </div>
@@ -78,13 +78,12 @@ const quoteText = "In the end, I have caught up with you.";
 const typewriterLength = ref(0);
 const typewriterDone = ref(false);
 const TYPEWRITER_DURATION = 2600;
-const TYPEWRITER_INTERVAL = 45;
 
 // 僅在「捲動抵達」quote 區才觸發：用 scroll 判斷區塊頂部已進入視窗上方，不用 IntersectionObserver 避免一載入就觸發
 const QUOTE_ARRIVE_TOP = 220; // 區塊頂部進入視窗上方此 px 內才算抵達
 watch(
   scrollY,
-  (y) => {
+  () => {
     if (quoteVisible.value || !import.meta.client || !quoteSectionRef.value)
       return;
     const top = quoteSectionRef.value.getBoundingClientRect().top;
@@ -237,19 +236,6 @@ const fetchData = async (
   };
 };
 
-// ⭐ 載入更多（無限載入）
-// ⭐ 完全參照 LRC Magazine 10 做法，加上批次載入優化
-const seeMore = async () => {
-  const { items } = await fetchData();
-  displayedFossils.value = displayedFossils.value.concat(items);
-
-  // ⭐ 完全參照 LRC：await nextTick() → $lazyLoadImage()
-  await nextTick();
-  const nuxtApp = useNuxtApp();
-  // ⭐ 批次載入優化：立即載入新載入的前 15 張圖片
-  nuxtApp.$lazyLoadImage?.(15);
-};
-
 // ⭐ 無限載入觸發：先讓 spinner 明顯跑一段，再取資料、再短暫停留，最後才 concat 進畫面
 const onInfiniteLoad = async () => {
   await promiseTimeout(800); // spinner 先跑
@@ -274,7 +260,6 @@ const initData = async () => {
 const {
   isLoading: InfiniteIsLoading,
   createObserverInfiniteScroll,
-  removeObserverInfiniteScroll,
 } = useInfiniteScroll(onInfiniteLoad, () => hasMore.value);
 
 // ⭐ 點擊事件處理 - 導航到物種頁並帶上 code
@@ -286,14 +271,6 @@ const handleFossilClick = (fossil: IFossil) => {
   } else {
     navigateTo(`/species/${speciesSlug}?specimen=${fossil.id}`);
   }
-};
-
-// ⭐ 重置分頁狀態
-const resetPagination = () => {
-  removeObserverInfiniteScroll();
-  _offset.value = 0;
-  _last_offset.value = 0;
-  displayedFossils.value = [];
 };
 
 // 載入資料（只在客戶端執行）
@@ -344,26 +321,26 @@ onMounted(async () => {
 }
 
 .hero-quote-section {
-  width: 100%;
-  height: 100vh;
-  min-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100vh;
+  min-height: 500px;
+  padding: 0;
+  margin: 0;
   background: transparent;
   border: none;
-  margin: 0;
-  padding: 0;
 }
 
 .hero-quote-section__text {
+  padding: 0 24px;
   margin: 0;
   font-size: 2rem;
   font-weight: 600;
   color: #1a1a1a;
-  letter-spacing: 0.02em;
   text-align: center;
-  padding: 0 24px;
+  letter-spacing: 0.02em;
   opacity: 0;
   transition: opacity 1.5s ease-out;
 
@@ -391,6 +368,7 @@ onMounted(async () => {
   50% {
     opacity: 1;
   }
+
   51%,
   100% {
     opacity: 0;
@@ -400,14 +378,14 @@ onMounted(async () => {
 .fossils-page {
   width: 100%;
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: #fff;
 
   // 圖鑑區塊（在 Hero 下方，白色背景）
   &__gallery {
     position: relative;
-    background-color: #ffffff;
     z-index: 1;
     padding-top: 0;
+    background-color: #fff;
 
     @include tb {
       padding-top: 0;
@@ -419,28 +397,29 @@ onMounted(async () => {
   }
 
   &__header {
-    width: 100%;
-    padding: 40px;
-    text-align: center;
-    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    padding: 40px;
+    margin-bottom: 20px;
+    text-align: center;
 
     @include sp {
+      padding: 30px 20px 0;
       margin-top: 68px;
       margin-bottom: 0;
-      padding: 30px 20px 0;
     }
   }
 
   &__title-image {
-    max-width: 1000px;
-    width: 100%;
-    height: auto;
     display: block;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
     padding: 20px;
+    margin: 0 auto;
+
     @include sp {
       max-width: 90%;
     }
@@ -448,10 +427,10 @@ onMounted(async () => {
 
   // ⭐ 無限載入觸發點（參考 Magazine 10）
   &__infinite-trigger {
+    visibility: hidden;
     width: 100%;
     height: 1px;
     margin: 20px 0;
-    visibility: hidden;
   }
 }
 </style>

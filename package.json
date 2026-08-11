@@ -8,13 +8,23 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "hero-bn-sizes": "node scripts/hero_bn_sizes.mjs"
+    "hero-bn-sizes": "node scripts/hero_bn_sizes.mjs",
+    "lint:script": "eslint . --max-warnings=0",
+    "lint:script:fix": "eslint . --fix",
+    "lint:style": "stylelint \"**/*.{css,scss,vue}\"",
+    "lint:style:fix": "stylelint --fix \"**/*.{css,scss,vue}\"",
+    "lint": "nuxt prepare && npm run lint:script && npm run lint:style",
+    "typecheck": "nuxi typecheck"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@fontsource/bodoni-moda": "^5.3.0",
+    "@libsql/client": "^0.17.4",
+    "@nuxthub/core": "^0.10.8",
     "@pinia/nuxt": "^0.11.3",
     "@vueuse/core": "^14.2.0",
     "@vueuse/motion": "^3.0.3",
+    "drizzle-orm": "^0.45.2",
     "firebase": "^12.8.0",
     "firebase-admin": "^13.6.1",
     "gsap": "^3.14.2",
@@ -30,10 +40,19 @@
     "vue-virtual-waterfall": "^1.3.0"
   },
   "devDependencies": {
+    "@nuxt/eslint": "^1.17.0",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "@types/image-size": "^0.7.0",
     "@types/nprogress": "^0.2.3",
+    "drizzle-kit": "^0.31.10",
+    "eslint": "^10.8.1",
     "image-size": "^2.0.2",
+    "postcss-html": "^2.0.0",
     "sass": "^1.97.3",
+    "stylelint": "^17.14.1",
+    "stylelint-config-recess-order": "^7.7.0",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "stylelint-config-standard-vue": "^2.0.0",
     "typescript": "^5.9.3",
     "vue-tsc": "^3.2.4"
   }

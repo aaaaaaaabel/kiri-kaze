@@ -39,9 +39,9 @@
 </template>
 
 <script setup lang="ts">
-import type { IFossil } from '~/types/fossil'
-import FossilCard from './FossilCard.vue'
-import LoadingSpinner from '~/components/ui/LoadingSpinner.vue'
+import type { IFossil } from '~/types/fossil';
+import FossilCard from './FossilCard.vue';
+import LoadingSpinner from '~/components/ui/LoadingSpinner.vue';
 
 interface Props {
   fossils: IFossil[]
@@ -52,28 +52,28 @@ interface Props {
 }
 
 interface Emits {
-  (e: 'fossil-click', fossil: IFossil): void
+  (e: 'fossilClick', fossil: IFossil): void
   (e: 'favorite', fossilId: string): void
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   loading: false,
   loadingMore: false,
   hasMore: false,
   loadingMessage: '載入圖鑑中...',
-})
+});
 
-const emit = defineEmits<Emits>()
+const emit = defineEmits<Emits>();
 
 // 處理卡片點擊
 const handleCardClick = (fossil: IFossil) => {
-  emit('fossil-click', fossil)
-}
+  emit('fossilClick', fossil);
+};
 
 // 收藏點擊
 const handleFavorite = (fossilId: string) => {
-  emit('favorite', fossilId)
-}
+  emit('favorite', fossilId);
+};
 </script>
 
 <style scoped lang="scss">
@@ -82,8 +82,8 @@ const handleFavorite = (fossilId: string) => {
 
 .fossil-grid {
   width: 100%;
-  margin: 0 auto;
   padding: 20px 40px;
+  margin: 0 auto;
 
   @include tb {
     padding: 20px 30px;
@@ -94,55 +94,54 @@ const handleFavorite = (fossilId: string) => {
   }
 
   &__empty {
-    width: 100%;
-    min-height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    min-height: 400px;
     padding: 60px 40px;
     text-align: center;
 
     p {
+      margin: 0 0 16px;
       font-size: 1rem;
       color: $color-primary;
-      margin: 0 0 16px 0;
     }
   }
 
   // ⭐ Pinterest 風格：使用 CSS Columns 瀑布流（與圖鑑頁一致）
   &__container {
+    column-gap: 24px; // 與垂直間距一致
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
     column-count: 4; // 桌面 4 列
-    column-gap: 24px; // 與垂直間距一致
     column-fill: balance; // 平衡各列高度
 
-    @media (max-width: 1024px) {
+    @media (width <= 1024px) {
       column-count: 3; // 平板 3 列
       column-gap: 12px;
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       column-count: 2; // 手機 2 列
       column-gap: 16px;
     }
   }
 
   &__item {
-    // 重要：防止卡片被分割到不同列
-    break-inside: avoid;
-    page-break-inside: avoid;
-    margin-bottom: 24px; // 桌機版垂直間距
     display: inline-block; // 必須設定，讓 break-inside 生效
     width: 100%; // 確保卡片填滿列寬
+    margin-bottom: 24px; // 桌機版垂直間距
+    // 重要：防止卡片被分割到不同列
+    break-inside: avoid;
 
-    @media (max-width: 1024px) {
+    @media (width <= 1024px) {
       margin-bottom: 12px;
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       margin-bottom: 16px;
     }
   }

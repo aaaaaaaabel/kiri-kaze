@@ -14,7 +14,7 @@
             :alt="card.speciesName"
             class="floating-card__image"
             @error="handleImageError"
-          />
+          >
         </div>
       </div>
 
@@ -159,7 +159,7 @@ const darkLayerStyle = computed(() => ({
   opacity: 1 - scrollProgress.value,
 }));
 
-const getCardStyle = (card: any, index: number) => {
+const getCardStyle = (_card: unknown, index: number) => {
   const pos = cardPositions.value[index];
   if (!pos) return {};
   const depthMultiplier = 0.5 + (index % 3) * 0.25;
@@ -250,7 +250,7 @@ const getQuoteSectionScrollTop = (): number | null => {
   return a ? a.quote : null;
 };
 
-const emit = defineEmits<{ (e: "navigated-to-quote"): void }>();
+const emit = defineEmits<{ (e: "navigatedToQuote"): void }>();
 
 const hasTriggeredAutoScroll = ref(false);
 const isAutoScrolling = ref(false);
@@ -258,7 +258,7 @@ const isAutoScrolling = ref(false);
 const triggerGoToQuote = () => {
   if (hasTriggeredAutoScroll.value) return;
   hasTriggeredAutoScroll.value = true;
-  emit("navigated-to-quote");
+  emit("navigatedToQuote");
   startTransition();
 };
 
@@ -594,17 +594,17 @@ onUnmounted(() => {
   top: 0;
   left: 0;
   z-index: 1;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  transition:
-    opacity 0.45s ease-out,
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: none;
-  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  transition:
+    opacity 0.45s ease-out,
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 }
 
@@ -620,20 +620,20 @@ onUnmounted(() => {
 .floating-card {
   position: absolute;
   min-width: 80px;
-  min-height: 100px;
   max-width: 140px;
+  min-height: 100px;
   max-height: 180px;
-  border-radius: 12px;
   overflow: hidden;
+  border-radius: 12px;
   box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.15),
-    0 2px 8px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  will-change: transform, opacity, filter;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center center;
-  backdrop-filter: blur(0);
+    0 4px 20px rgb(0 0 0 / 15%),
+    0 2px 8px rgb(0 0 0 / 10%),
+    inset 0 1px 0 rgb(255 255 255 / 10%);
   filter: blur(var(--card-blur, 2px));
+  backdrop-filter: blur(0);
+  transform-origin: center center;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity, filter;
 
   @include sp {
     max-width: 100px;
@@ -641,10 +641,10 @@ onUnmounted(() => {
   }
 
   &__image {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
     filter: brightness(0.95) contrast(1.05);
   }
 }
@@ -652,35 +652,36 @@ onUnmounted(() => {
 .floating-cards-hero__foreground {
   position: relative;
   z-index: 10;
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(0.5px);
   transition:
     opacity 0.25s ease-out,
     transform 0.25s ease-out;
-  backdrop-filter: blur(0.5px);
+
   &::before {
-    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    pointer-events: none;
+    content: "";
     background: radial-gradient(
       ellipse at center,
       transparent 0%,
-      rgba(0, 0, 0, 0.2) 100%
+      rgb(0 0 0 / 20%) 100%
     );
-    pointer-events: none;
   }
 }
 
 .floating-cards-hero__content {
-  text-align: center;
-  padding: 32px 24px;
   max-width: 640px;
+  padding: 32px 24px;
+  text-align: center;
 
   @include sp {
     padding: 20px 16px;
@@ -688,13 +689,14 @@ onUnmounted(() => {
 }
 
 .floating-cards-hero__title {
+  margin: 0 0 16px;
   font-size: 3rem;
   font-weight: 400;
-  color: #ffffff;
-  margin: 0 0 16px;
   line-height: 1.2;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  color: #fff;
   letter-spacing: 0.15rem;
+  text-shadow: 0 4px 12px rgb(0 0 0 / 50%);
+
   @include tb {
     font-size: 2rem;
   }
@@ -705,39 +707,40 @@ onUnmounted(() => {
 }
 
 .floating-cards-hero__subtitle {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.9);
   margin: 0 0 28px;
+  font-size: 0.8rem;
   line-height: 1.55;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  color: rgb(255 255 255 / 90%);
+  text-shadow: 0 2px 8px rgb(0 0 0 / 30%);
 
   @include sp {
-    font-size: 0.9rem;
     margin-bottom: 22px;
+    font-size: 0.9rem;
   }
 }
 
 .floating-cards-hero__cta {
   display: inline-flex;
-  align-items: center;
   gap: 10px;
+  align-items: center;
   padding: 12px 24px;
   font-size: 1rem;
   font-weight: 400;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: #fff;
   letter-spacing: 0.1rem;
+  text-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+  cursor: pointer;
+  background: rgb(255 255 255 / 15%);
+  border: 2px solid rgb(255 255 255 / 30%);
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+
   &:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.5);
+    background: rgb(255 255 255 / 25%);
+    border-color: rgb(255 255 255 / 50%);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 30%);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   }
 
   &:active {

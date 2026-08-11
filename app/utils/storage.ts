@@ -17,37 +17,37 @@
  * ```
  */
 export function getStorageUrl(path: string, bucket?: string): string {
-    if (!path) return ''
+    if (!path) return '';
     
     // 如果已經是完整 URL，直接返回
     if (path.startsWith('http://') || path.startsWith('https://')) {
-        return path
+        return path;
     }
     
     // 如果是以 / 開頭的相對路徑（public 資料夾），直接返回
     if (path.startsWith('/')) {
-        return path
+        return path;
     }
     
     // 如果沒有提供 bucket，無法在非 setup 上下文中取得，直接回傳原路徑
-    let storageBucket = bucket
+    const storageBucket = bucket;
     if (!storageBucket) {
         if (import.meta.dev && typeof window !== 'undefined') {
-            console.warn('⚠️ 無法取得 Firebase Storage bucket，請在呼叫端傳入 bucket 或於 setup 內使用 useStorage().toStorageUrl')
+            console.warn('⚠️ 無法取得 Firebase Storage bucket，請在呼叫端傳入 bucket 或於 setup 內使用 useStorage().toStorageUrl');
         }
-        return path
+        return path;
     }
     
     // 移除開頭的斜線（如果有的話）
-    const cleanPath = path.startsWith('/') ? path.slice(1) : path
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path;
     
     // 編碼路徑（將 / 轉換為 %2F）
-    const encodedPath = encodeURIComponent(cleanPath)
+    const encodedPath = encodeURIComponent(cleanPath);
     
     // 組合成完整的 Firebase Storage URL
-    const storageUrl = `https://firebasestorage.googleapis.com/v0/b/${storageBucket}/o/${encodedPath}?alt=media`
+    const storageUrl = `https://firebasestorage.googleapis.com/v0/b/${storageBucket}/o/${encodedPath}?alt=media`;
 
-    return storageUrl
+    return storageUrl;
 }
 
 /**
@@ -57,8 +57,8 @@ export function getStorageUrl(path: string, bucket?: string): string {
  * @returns 是否為 Firebase Storage URL
  */
 export function isStorageUrl(url: string): boolean {
-    if (!url) return false
-    return url.includes('firebasestorage.googleapis.com')
+    if (!url) return false;
+    return url.includes('firebasestorage.googleapis.com');
 }
 
 /**
@@ -74,24 +74,24 @@ export function isStorageUrl(url: string): boolean {
  * ```
  */
 export function extractStoragePath(url: string): string {
-    if (!url) return ''
+    if (!url) return '';
     
     // 如果不是 Storage URL，直接返回
     if (!isStorageUrl(url)) {
-        return url
+        return url;
     }
     
     try {
         // 從 URL 中提取編碼的路徑
-        const match = url.match(/\/o\/([^?]+)/)
+        const match = url.match(/\/o\/([^?]+)/);
         if (match && match[1]) {
             // 解碼路徑
-            return decodeURIComponent(match[1])
+            return decodeURIComponent(match[1]);
         }
     } catch (error) {
-        console.warn('⚠️ 無法解析 Storage URL:', url, error)
+        console.warn('⚠️ 無法解析 Storage URL:', url, error);
     }
     
-    return url
+    return url;
 }
 

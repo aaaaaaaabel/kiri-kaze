@@ -2,6 +2,10 @@
 import { onAuthStateChanged } from "firebase/auth";
 
 export default defineNuxtPlugin(() => {
+  const { public: { isMockDataEnabled } } = useRuntimeConfig();
+  // mock 模式：Firebase 連不上，不監聽已死掉的 Auth 狀態
+  if (isMockDataEnabled) return;
+
   const auth = useFirebaseAuth();
   if (!auth) return;
   const authStore = useAuthStore();

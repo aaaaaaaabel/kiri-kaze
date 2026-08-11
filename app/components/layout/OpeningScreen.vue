@@ -1,7 +1,7 @@
 <template>
   <div class="opening-screen" :class="{ 'opening-screen--off': isOff }">
     <div class="opening-screen__inner">
-      <p ref="textRef" class="opening-screen__text">KiriKazeFossil</p>
+      <p ref="textRef" class="opening-screen__text">Lacunae</p>
     </div>
   </div>
 </template>
@@ -54,53 +54,52 @@ onMounted(() => {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: auto;
+  background: #000;
 
   &--off {
-    animation: openingFadeOut 1s ease-out forwards;
     pointer-events: none;
+    animation: opening-fade-out 1s ease-out forwards;
   }
 }
 
-@keyframes openingFadeOut {
+@keyframes opening-fade-out {
   to {
     opacity: 0;
   }
 }
 
 .opening-screen__inner {
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .opening-screen__text {
   margin: 0;
+  font-family: $font-family-logo;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-style: italic;
+  font-weight: 900;
   color: #fff;
-  font-family: $font-family-en;
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
-  font-weight: 400;
-  letter-spacing: 0.7em;
-  // text-transform: uppercase;
+  letter-spacing: 0;
   opacity: 0; /* 初始 0，由 Web Animations API 淡入 */
 }
 
 @include tb {
   .opening-screen__text {
-    font-size: clamp(1.25rem, 3.5vw, 2rem);
+    font-size: clamp(2rem, 7vw, 4rem);
   }
 }
 
 @include sp {
   .opening-screen__text {
-    font-size: clamp(1.1rem, 5vw, 1.5rem);
-    letter-spacing: 0.12em;
+    font-size: clamp(1.75rem, 9vw, 3rem);
   }
 }
 </style>

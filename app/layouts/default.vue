@@ -26,7 +26,6 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from "vue";
-import { storeToRefs } from "pinia";
 import MainNav from "~/components/layout/MainNav.vue";
 import Footer from "~/components/layout/Footer.vue";
 import OpeningScreen from "~/components/layout/OpeningScreen.vue";
@@ -47,25 +46,20 @@ const route = useRoute();
 
 // 使用全域 Store（參考 LRC）
 const storeGlobal = useGlobalStore();
-const {
-  isOpenTransitionFinished,
-} = storeToRefs(storeGlobal);
 
 // ⭐ 開場動畫狀態（只在首頁顯示）
 const isOpening = ref(false);
 const showOpeningScreen = ref(false);
 // ⭐ 避免重整時 SSR 與 client 差異導致元件閃現：client 掛載後才顯示主要區塊
 const isClientReady = ref(false);
-// ⭐ 判斷是否為首頁
-const isHomePage = computed(() => route.path === "/");
 
 // ⭐ 判斷是否為 about 頁面（深色背景頁面）
-const isAboutPage = computed(() => route.path === '/about')
+const isAboutPage = computed(() => route.path === '/about');
 
 // ⭐ 設置 CSS 變數，讓 header logo 在深色背景頁面使用混合模式
 const layoutStyle = computed(() => ({
   '--logo-blend-mode': isAboutPage.value ? 'difference' : 'normal',
-}))
+}));
 
 /**
  * 開場動畫：在首頁就顯示（含 refresh）
@@ -107,7 +101,7 @@ watch(
   () => route.path,
   (path) => {
     if (path === "/") tryShowOpening();
-  }
+  },
 );
 
 const wrapClasses = computed(() => {
@@ -121,19 +115,19 @@ const wrapClasses = computed(() => {
 
 <style scoped lang="scss">
 .layout {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 .main-content {
+  box-sizing: border-box;
   flex: 1;
   width: 100%;
   min-width: 0; /* 讓 flex 子項可縮小，避免內容撐開 */
   max-width: 100%;
-  margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  margin: 0;
   overflow-x: hidden;
 }
 
@@ -143,6 +137,7 @@ const wrapClasses = computed(() => {
 .layout:not(.layout--client-ready) :deep(.footer) {
   visibility: hidden;
 }
+
 .layout.layout--client-ready :deep(.header),
 .layout.layout--client-ready .main-content,
 .layout.layout--client-ready :deep(.footer) {

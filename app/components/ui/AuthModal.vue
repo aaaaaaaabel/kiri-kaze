@@ -25,7 +25,7 @@
           </div>
 
           <div v-if="loading" class="auth-modal__loading">
-            <div class="auth-modal__spinner"></div>
+            <div class="auth-modal__spinner"/>
             <p>Signing in...</p>
           </div>
 
@@ -142,7 +142,7 @@ watch(
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgb(0 0 0 / 50%);
   backdrop-filter: blur(4px);
 }
 
@@ -153,32 +153,32 @@ watch(
   padding: 32px 28px;
   background: $color-bg;
   border-radius: 12px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 40px rgb(0 0 0 / 15%);
 }
 
 .auth-modal__close {
   position: absolute;
   top: 16px;
   right: 16px;
-  width: 32px;
-  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  background: transparent;
-  color: #666;
+  width: 32px;
+  height: 32px;
   font-size: 1.25rem;
   line-height: 1;
+  color: #666;
   cursor: pointer;
+  background: transparent;
+  border: none;
   border-radius: 50%;
   transition:
     background 0.2s,
     color 0.2s;
 
   &:hover {
-    background: $color-gray-light;
     color: $color-primary;
+    background: $color-gray-light;
   }
 }
 
@@ -191,11 +191,11 @@ watch(
 }
 
 .auth-modal__error {
-  margin-bottom: 16px;
   padding: 12px;
-  background: #fef2f2;
-  color: #b91c1c;
+  margin-bottom: 16px;
   font-size: 0.875rem;
+  color: #b91c1c;
+  background: #fef2f2;
   border-radius: 8px;
 }
 
@@ -207,18 +207,18 @@ watch(
 
 .auth-modal__google {
   display: flex;
+  gap: 12px;
   align-items: center;
   justify-content: center;
-  gap: 12px;
   width: 100%;
   padding: 12px 20px;
-  border: 1px solid #dadce0;
-  border-radius: 8px;
-  background: #fff;
   font-family: $font-family-en;
   font-size: 1rem;
   color: #3c4043;
   cursor: pointer;
+  background: #fff;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
   transition:
     background 0.2s,
     border-color 0.2s;
@@ -229,8 +229,8 @@ watch(
   }
 
   &:disabled {
-    opacity: 0.7;
     cursor: not-allowed;
+    opacity: 0.7;
   }
 }
 
@@ -242,8 +242,8 @@ watch(
 .auth-modal__loading {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 12px;
+  align-items: center;
   padding: 24px 0;
 
   p {

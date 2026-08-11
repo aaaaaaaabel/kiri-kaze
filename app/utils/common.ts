@@ -23,36 +23,36 @@
  * @returns 視窗寬度（px）
  */
 export const GetWindowWidth = (): number => {
-    if (typeof window === 'undefined') return 0
+    if (typeof window === 'undefined') return 0;
     if (window.innerWidth) {
-        return window.innerWidth
+        return window.innerWidth;
     }
     if (document.documentElement && document.documentElement.clientWidth) {
-        return document.documentElement.clientWidth
+        return document.documentElement.clientWidth;
     }
     if (document.body) {
-        return document.body.clientWidth
+        return document.body.clientWidth;
     }
-    return 0
-}
+    return 0;
+};
 
 /**
  * 取得視窗高度
  * @returns 視窗高度（px）
  */
 export const GetWindowHeight = (): number => {
-    if (typeof window === 'undefined') return 0
+    if (typeof window === 'undefined') return 0;
     if (window.innerHeight) {
-        return window.innerHeight
+        return window.innerHeight;
     }
     if (document.documentElement && document.documentElement.clientHeight) {
-        return document.documentElement.clientHeight
+        return document.documentElement.clientHeight;
     }
     if (document.body) {
-        return document.body.clientHeight
+        return document.body.clientHeight;
     }
-    return 0
-}
+    return 0;
+};
 //#endregion
 
 //#region HTML 狀態管理
@@ -62,20 +62,20 @@ export const GetWindowHeight = (): number => {
  */
 export const setHtmlReady = (): void => {
     if (import.meta.client) {
-        const html = document.documentElement
-        html?.classList.add('is-ready')
+        const html = document.documentElement;
+        html?.classList.add('is-ready');
     }
-}
+};
 
 /**
  * 移除 HTML ready 狀態（移除 is-ready class）
  */
 export const removeHtmlReady = (): void => {
     if (import.meta.client) {
-        const html = document.documentElement
-        html?.classList.remove('is-ready')
+        const html = document.documentElement;
+        html?.classList.remove('is-ready');
     }
-}
+};
 //#endregion
 
 //#region Hash 相關
@@ -87,14 +87,14 @@ export const removeHtmlReady = (): void => {
 export const hasHashElement = (hash: string): boolean => {
     if (import.meta.client && hash) {
         try {
-            const hashElem = document.querySelector(hash)
-            return !!hashElem
-        } catch (error) {
-            return false
+            const hashElem = document.querySelector(hash);
+            return !!hashElem;
+        } catch (_error) {
+            return false;
         }
     }
-    return false
-}
+    return false;
+};
 //#endregion
 
 //#region 隨機數相關
@@ -105,8 +105,8 @@ export const hasHashElement = (hash: string): boolean => {
  * @returns 隨機數
  */
 export const jsRandom = (min: number, max: number): number => {
-    return Math.random() * (max - min) + min
-}
+    return Math.random() * (max - min) + min;
+};
 
 /**
  * 產生指定範圍的隨機整數（向下取整）
@@ -115,8 +115,8 @@ export const jsRandom = (min: number, max: number): number => {
  * @returns 隨機整數
  */
 export const jsRandomFloor = (min: number, max: number): number => {
-    return Math.floor(Math.random() * (max - min) + min)
-}
+    return Math.floor(Math.random() * (max - min) + min);
+};
 //#endregion
 
 //#region 數字驗證與格式化
@@ -126,9 +126,9 @@ export const jsRandomFloor = (min: number, max: number): number => {
  */
 export const onlyNumber = (event: KeyboardEvent): void => {
     if (!/\d/.test(event.key)) {
-        event.preventDefault()
+        event.preventDefault();
     }
-}
+};
 
 /**
  * 判斷字串是否只包含數字
@@ -136,8 +136,8 @@ export const onlyNumber = (event: KeyboardEvent): void => {
  * @returns 是否只包含數字
  */
 export const isInt = (value: string | number): boolean => {
-    return /^[0-9]+$/.test(String(value))
-}
+    return /^[0-9]+$/.test(String(value));
+};
 
 /**
  * 數字格式化（千位數逗號）
@@ -156,8 +156,8 @@ export const numberFormat = ({
     options?: Intl.NumberFormatOptions
     value: number
 }): string => {
-    return Number(value).toLocaleString(locales, options)
-}
+    return Number(value).toLocaleString(locales, options);
+};
 
 /**
  * 限制輸入只能為數字（用於 keypress 事件）
@@ -165,19 +165,19 @@ export const numberFormat = ({
  */
 export const keypressOnlyNumber = (event: KeyboardEvent): void => {
     if (!/\d/.test(event.key)) {
-        event.preventDefault()
+        event.preventDefault();
     }
-}
+};
 
 /**
  * 限制輸入只能為數字和加號（用於 keypress 事件）
  * @param event - KeyboardEvent
  */
 export const keypressOnlyNumberPlus = (event: KeyboardEvent): void => {
-    if (!/[\d\+]/.test(event.key)) {
-        event.preventDefault()
+    if (!/[\d+]/.test(event.key)) {
+        event.preventDefault();
     }
-}
+};
 //#endregion
 
 //#region 物件操作
@@ -188,87 +188,87 @@ export const keypressOnlyNumberPlus = (event: KeyboardEvent): void => {
  * @param sourceObj - 來源物件
  * @returns 普通物件
  */
-export const deepToRaw = <T extends Record<string, any>>(sourceObj: T): T => {
-    const objectIterator = (input: any): any => {
+export const deepToRaw = <T extends Record<string, unknown>>(sourceObj: T): T => {
+    const objectIterator = (input: unknown): unknown => {
         if (input instanceof Date) {
-            return new Date(input)
+            return new Date(input);
         }
         if (Array.isArray(input)) {
-            return input.map((item) => objectIterator(item))
+            return input.map((item) => objectIterator(item));
         }
         if (isRef(input) || isReactive(input) || isProxy(input)) {
-            return objectIterator(toRaw(input))
+            return objectIterator(toRaw(input));
         }
         if (input && typeof input === 'object') {
-            return Object.keys(input).reduce((acc, key) => {
-                acc[key as keyof typeof acc] = objectIterator(input[key])
-                return acc
-            }, {} as T)
+            return Object.entries(input as Record<string, unknown>).reduce((acc, [key, value]) => {
+                acc[key] = objectIterator(value);
+                return acc;
+            }, {} as Record<string, unknown>);
         }
-        return input
-    }
+        return input;
+    };
 
-    return objectIterator(sourceObj)
-}
+    return objectIterator(sourceObj) as T;
+};
 
 /**
  * 刪除物件內指定的 keys
  * @param obj - 來源物件
  * @param keys - 要刪除的 key 陣列
  */
-export const deleteObjectKeys = <T extends Record<string, any>>(obj: T, keys: string[]): void => {
+export const deleteObjectKeys = <T extends Record<string, unknown>>(obj: T, keys: string[]): void => {
     keys.forEach((key) => {
-        delete obj[key]
-    })
-}
+        Reflect.deleteProperty(obj, key);
+    });
+};
 
 /**
  * 清理物件中的空值
  * 移除 undefined、null、空字串、空陣列
- * 
+ *
  * @param obj - 來源物件
  * @returns 清理後的物件或 undefined
  */
-export const cleanEmpty = <T extends Record<string, any>>(obj: T): T | undefined => {
-    const isEmpty = (v: any): boolean => v === '' || v === null || v === undefined
+export const cleanEmpty = <T extends Record<string, unknown>>(obj: T): T | undefined => {
+    const isEmpty = (v: unknown): boolean => v === '' || v === null || v === undefined;
 
-    const _clean = (value: any): any => {
+    const _clean = (value: unknown): unknown => {
         // Array
         if (Array.isArray(value)) {
-            const arr = value.map((v) => _clean(v)).filter((v) => v !== undefined)
-            return arr.length > 0 ? arr : []
+            const arr = value.map((v) => _clean(v)).filter((v) => v !== undefined);
+            return arr.length > 0 ? arr : [];
         }
 
         // Object
         if (value !== null && typeof value === 'object') {
-            const result: any = {}
+            const result: Record<string, unknown> = {};
 
             Object.entries(value).forEach(([k, v]) => {
-                const cleaned = _clean(v)
+                const cleaned = _clean(v);
                 if (cleaned !== undefined && cleaned !== '') {
-                    result[k] = cleaned
+                    result[k] = cleaned;
                 }
-            })
+            });
 
-            return Object.keys(result).length > 0 ? result : undefined
+            return Object.keys(result).length > 0 ? result : undefined;
         }
 
-        return isEmpty(value) ? undefined : value
-    }
+        return isEmpty(value) ? undefined : value;
+    };
 
-    const cleaned = _clean(obj)
+    const cleaned = _clean(obj);
 
-    if (cleaned === undefined) return undefined
+    if (cleaned === undefined) return undefined;
 
     // 第一層空 array → 刪掉
-    Object.entries(cleaned).forEach(([key, val]) => {
+    Object.entries(cleaned as Record<string, unknown>).forEach(([key, val]) => {
         if (Array.isArray(val) && val.length === 0) {
-            delete (cleaned as any)[key]
+            Reflect.deleteProperty(cleaned as Record<string, unknown>, key);
         }
-    })
+    });
 
-    return cleaned as T
-}
+    return cleaned as T;
+};
 //#endregion
 
 //#region API 相關
@@ -278,8 +278,8 @@ export const cleanEmpty = <T extends Record<string, any>>(obj: T): T | undefined
  * @returns 是否為取消錯誤
  */
 export const isApiCancel = (cause?: string): boolean => {
-    return !cause ? false : cause.indexOf('AbortError') > -1
-}
+    return !cause ? false : cause.indexOf('AbortError') > -1;
+};
 //#endregion
 
 //#region 圖片相關
@@ -291,27 +291,27 @@ export const isApiCancel = (cause?: string): boolean => {
 export const imageLoad = (img_src?: string): Promise<string> => {
     return new Promise((resolve) => {
         if (!img_src) {
-            resolve('')
-            return
+            resolve('');
+            return;
         }
         if (typeof img_src === 'string') {
-            const img = new Image()
+            const img = new Image();
             img.onload = () => {
                 if (img.height <= 1) {
-                    resolve('')
+                    resolve('');
                 } else {
-                    resolve(img_src)
+                    resolve(img_src);
                 }
-            }
+            };
             img.onerror = () => {
-                resolve('')
-            }
-            img.src = img_src
+                resolve('');
+            };
+            img.src = img_src;
         } else {
-            resolve('')
+            resolve('');
         }
-    })
-}
+    });
+};
 
 /**
  * 檢查 CMS 編輯器中的圖片是否損壞
@@ -320,15 +320,15 @@ export const imageLoad = (img_src?: string): Promise<string> => {
 export const checkCmsEditorImage = (el?: HTMLElement | null): void => {
     if (el) {
         el.querySelectorAll('img').forEach((img) => {
-            const n_image = new Image()
+            const n_image = new Image();
             n_image.onerror = () => {
-                img.classList.add('image--broken')
-                img.src = '/images/transparent0.png' // 使用專案中的透明圖片
-            }
-            n_image.src = img.src
-        })
+                img.classList.add('image--broken');
+                img.src = '/images/transparent0.png'; // 使用專案中的透明圖片
+            };
+            n_image.src = img.src;
+        });
     }
-}
+};
 //#endregion
 
 //#region 日期相關（基本功能）
@@ -338,8 +338,8 @@ export const checkCmsEditorImage = (el?: HTMLElement | null): void => {
  * @returns 處理後的日期字串
  */
 export const cleanDateStr = (s?: string): string => {
-    return s?.replace(/^\+/, '') || ''
-}
+    return s?.replace(/^\+/, '') || '';
+};
 
 /**
  * 取得兩個日期之間的所有日期
@@ -348,16 +348,16 @@ export const cleanDateStr = (s?: string): string => {
  * @returns 日期陣列
  */
 export const getDatesBetween = (startDate: Date, endDate: Date): Date[] => {
-    const dates: Date[] = []
-    let currentDate = new Date(startDate)
+    const dates: Date[] = [];
+    const currentDate = new Date(startDate);
 
     while (currentDate <= endDate) {
-        dates.push(new Date(currentDate))
-        currentDate.setDate(currentDate.getDate() + 1)
+        dates.push(new Date(currentDate));
+        currentDate.setDate(currentDate.getDate() + 1);
     }
 
-    return dates
-}
+    return dates;
+};
 //#endregion
 
 //#region DOM 相關
@@ -367,10 +367,10 @@ export const getDatesBetween = (startDate: Date, endDate: Date): Date[] => {
  */
 export const getHeaderElement = (): HTMLElement | undefined => {
     if (typeof document !== 'undefined') {
-        return document.querySelector('header') || undefined
+        return document.querySelector('header') || undefined;
     }
-    return undefined
-}
+    return undefined;
+};
 
 /**
  * 偵測 window scroll 是否已經超過某個 section 元素的頂端
@@ -381,30 +381,30 @@ export const getHeaderElement = (): HTMLElement | undefined => {
  *   - window.scrollY → 已經超過元素頂端，回傳目前 scrollY
  */
 export const isOverSection = (element?: HTMLElement | string | null): number | boolean => {
-    if (import.meta.server) return false
+    if (import.meta.server) return false;
 
-    let _element: HTMLElement | null = null
+    let _element: HTMLElement | null;
     switch (true) {
         case typeof element === 'string':
-            _element = document.querySelector(element)
-            break
+            _element = document.querySelector(element);
+            break;
         case element instanceof HTMLElement:
-            _element = element
-            break
+            _element = element;
+            break;
         case element === null || element === undefined:
         default:
-            return false
+            return false;
     }
 
     if (_element) {
-        const c_rect = _element.getBoundingClientRect()
+        const c_rect = _element.getBoundingClientRect();
         if (c_rect.top > 0) {
-            return false
+            return false;
         }
     }
 
-    return window.scrollY
-}
+    return window.scrollY;
+};
 
 /**
  * 將頁面滾動到指定元素的頂端
@@ -431,20 +431,20 @@ export const ScrollToSectionTop = async ({
         immediate?: boolean
     }
 }): Promise<boolean> => {
-    const nuxtApp = useNuxtApp()
-    await nextTick()
+    const nuxtApp = useNuxtApp();
+    await nextTick();
 
-    let _element: HTMLElement | null = null
+    let _element: HTMLElement | null = null;
     switch (true) {
         case typeof element === 'string':
-            _element = document.querySelector(element)
-            break
+            _element = document.querySelector(element);
+            break;
         case element instanceof HTMLElement:
-            _element = element
-            break
+            _element = element;
+            break;
     }
 
-    return new Promise(async (resolve) => {
+    return new Promise((resolve) => {
         if (import.meta.client && nuxtApp.$scrollToElement) {
             nuxtApp.$scrollToElement({
                 params: {
@@ -452,13 +452,13 @@ export const ScrollToSectionTop = async ({
                     options,
                 },
             }).finally(() => {
-                resolve(true)
-            })
+                resolve(true);
+            });
         } else {
-            resolve(true)
+            resolve(true);
         }
-    })
-}
+    });
+};
 //#endregion
 
 //#region URL 相關
@@ -468,10 +468,10 @@ export const ScrollToSectionTop = async ({
  * @returns 是否為外部連結
  */
 export const isExternalURL = (url?: string | null): boolean => {
-    if (!url) return false
-    const regex = /^(https|http):\/\/(.*)$/
-    return regex.test(url)
-}
+    if (!url) return false;
+    const regex = /^(https|http):\/\/(.*)$/;
+    return regex.test(url);
+};
 
 /**
  * 判斷 URL 是否為影片
@@ -479,12 +479,12 @@ export const isExternalURL = (url?: string | null): boolean => {
  * @returns 是否為影片
  */
 export const isVideo = (input?: string): boolean => {
-    if (!input) return false
+    if (!input) return false;
 
-    const videoExtensions = ['.mp4', '.mov', '.m4v', '.webm', '.avi', '.mkv', '.wmv', '.flv']
-    const lower = input.toLowerCase()
-    return videoExtensions.some((ext) => lower.endsWith(ext))
-}
+    const videoExtensions = ['.mp4', '.mov', '.m4v', '.webm', '.avi', '.mkv', '.wmv', '.flv'];
+    const lower = input.toLowerCase();
+    return videoExtensions.some((ext) => lower.endsWith(ext));
+};
 //#endregion
 
 //#region 字串處理
@@ -494,8 +494,8 @@ export const isVideo = (input?: string): boolean => {
  * @returns 格式化後的電話號碼
  */
 export const formatPhone = (num: string | number): string => {
-    const s = String(num)
-    return s.slice(0, -4) + ' ' + s.slice(-4)
-}
+    const s = String(num);
+    return s.slice(0, -4) + ' ' + s.slice(-4);
+};
 //#endregion
 

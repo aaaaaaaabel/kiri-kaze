@@ -44,7 +44,9 @@ export function useFavorites() {
     };
   }
 
-  const user = useCurrentUser();
+  const { public: { isMockDataEnabled } } = useRuntimeConfig();
+  // mock 模式：Firebase Auth 連不上，忽略任何殘留的舊登入狀態，一律走 localStorage
+  const user = isMockDataEnabled ? ref<{ uid: string } | null>(null) : useCurrentUser();
   const db = useFirestore();
 
   // 只初始化一次：watch user.uid，登入/登出時切換資料來源

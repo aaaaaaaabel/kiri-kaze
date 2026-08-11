@@ -21,20 +21,20 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: "Kiri Kaze",
-      titleTemplate: "%s | Kiri Kaze",
+      title: "Lacunae",
+      titleTemplate: "%s | Lacunae",
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         {
           name: "description",
-          content: "Kiri Kaze Studio — Web Fossil Excavator",
+          content: "Lacunae Studio — Web Fossil Excavator",
         },
         { property: "og:type", content: "website" },
-        { property: "og:site_name", content: "Kiri Kaze" },
+        { property: "og:site_name", content: "Lacunae" },
         {
           property: "og:description",
-          content: "Kiri Kaze Studio — Web Fossil Excavator",
+          content: "Lacunae Studio — Web Fossil Excavator",
         },
         { property: "og:image", content: "/og-image.png" },
       ],
@@ -45,9 +45,16 @@ export default defineNuxtConfig({
   modules: [
     "nuxt-vuefire",
     "@pinia/nuxt", // 狀態管理（用於 route 和 transition 系統）
+    "@nuxthub/core",
+    "@nuxt/eslint",
   ],
 
-  css: ["~/assets/styles/main.scss"],
+  hub: {
+    db: "sqlite",
+    blob: true,
+  },
+
+  css: ["~/assets/fonts/index.ts", "~/assets/styles/main.scss"],
 
   vuefire: {
     config: {
@@ -73,6 +80,8 @@ export default defineNuxtConfig({
       emailjsTemplateConfirmation: process.env.NUXT_PUBLIC_EMAILJS_TEMPLATE_CONFIRMATION,
       emailjsTemplateNotification: process.env.NUXT_PUBLIC_EMAILJS_TEMPLATE_NOTIFICATION,
       emailjsPublicKey: process.env.NUXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+      // Firebase 尚未接回新的雲端資料庫前，先讀本機 data/mock/*.json；接回後設為 false 即可切換
+      isMockDataEnabled: true,
     },
   },
 

@@ -5,7 +5,7 @@
   >
     <div class="loading_inner">
       <p class="loading_text" :class="{ 'loading_text--visible': isLoading }">
-        KiriKazeFossil
+        Lacunae
       </p>
     </div>
   </div>
@@ -25,60 +25,60 @@ defineProps<Props>();
 @use "~/assets/styles/mixins" as *;
 
 .loading {
-  width: 100%;
-  height: 100%;
   position: fixed;
   inset: 0;
-  user-select: none;
-  cursor: default;
-  pointer-events: auto;
   z-index: 200;
-  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  cursor: default;
+  user-select: none;
+  background-color: transparent;
 
   &--on {
-    background-color: #000;
     z-index: 400;
+    background-color: #000;
   }
 
   &--off {
-    animation: loadingFadeOut 1s ease-out forwards;
+    animation: loading-fade-out 1s ease-out forwards;
   }
 }
 
-@keyframes loadingFadeOut {
+@keyframes loading-fade-out {
   to {
     opacity: 0;
   }
 }
 
 .loading_inner {
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .loading_text {
   margin: 0;
+  font-family: $font-family-logo;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-style: italic;
+  font-weight: 900;
   color: #fff;
-  font-family: Georgia, "Times New Roman", "Noto Serif", "Noto Serif TC", serif;
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
-  font-weight: 400;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   opacity: 0;
   transform: scale(0.98);
 
   .loading--on & {
-    animation: loadingTextFlash 0.55s ease-out 0.15s forwards;
+    animation: loading-text-flash 0.55s ease-out 0.15s forwards;
   }
 }
 
-@keyframes loadingTextFlash {
+@keyframes loading-text-flash {
   to {
     opacity: 1;
     transform: scale(1);

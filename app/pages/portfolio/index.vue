@@ -1,5 +1,5 @@
 <template>
-  <div class="portfolio-page" :class="viewModeClass" id="home">
+  <div id="home" class="portfolio-page" :class="viewModeClass">
     <!-- Nuxt 4 auto-import: components/portfolio/FixSwitch.vue 會自動導入為 PortfolioFixSwitch -->
     <PortfolioFixSwitch />
     <div id="top" class="contents">
@@ -59,8 +59,8 @@ useSeoMeta({
 // 使用 useProjects composable
 const { fetchProjects } = useProjects();
 
-const projects = ref<IProject[]>([])
-const pending = ref(true)
+const projects = ref<IProject[]>([]);
+const pending = ref(true);
 
 // Portfolio view mode for button styling
 const { viewMode } = usePortfolioView();
@@ -84,21 +84,21 @@ const runLazyImages = async () => {
 
 const markPageReady = () => {
   // 通知 route plugin：頁面內容已就緒，可以結束 transition/loading
-  const { toggleWidgetsBlockComplete } = useWidgetsBlocksEvents()
-  toggleWidgetsBlockComplete(true)
-}
+  const { toggleWidgetsBlockComplete } = useWidgetsBlocksEvents();
+  toggleWidgetsBlockComplete(true);
+};
 
 onMounted(async () => {
   try {
-    const result = await fetchProjects({ publicOnly: true })
-    projects.value = result
+    const result = await fetchProjects({ publicOnly: true });
+    projects.value = result;
   } catch (e) {
-    if (import.meta.dev) console.error('[portfolio] fetchProjects error', e)
-    projects.value = []
+    if (import.meta.dev) console.error('[portfolio] fetchProjects error', e);
+    projects.value = [];
   } finally {
-    pending.value = false
-    await runLazyImages()
-    markPageReady()
+    pending.value = false;
+    await runLazyImages();
+    markPageReady();
   }
 });
 </script>
@@ -142,22 +142,19 @@ onMounted(async () => {
 }
 
 .contents_block {
+  position: relative;
   width: 100%;
   padding-top: 75px;
   padding-bottom: 75px;
-  position: relative;
 
   @include tb {
-    padding-left: 60px;
     padding-right: 60px;
     padding-bottom: 60px;
+    padding-left: 60px;
   }
 
   @include sp {
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 45px;
-    padding-bottom: 45px;
+    padding: 45px 30px;
   }
 }
 
@@ -181,26 +178,26 @@ onMounted(async () => {
 }
 
 .portfolio-empty {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #333;
-  padding: 2rem;
-  text-align: center;
-  min-height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 120px;
+  padding: 2rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+  text-align: center;
 }
 
 // #grid 特殊樣式
 #grid {
   padding-top: 0;
-  padding-left: 40px;
   padding-right: 40px;
+  padding-left: 40px;
 
   @include sp {
-    padding-left: 15px;
     padding-right: 15px;
+    padding-left: 15px;
   }
 }
 </style>

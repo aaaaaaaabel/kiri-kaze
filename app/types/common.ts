@@ -3,7 +3,7 @@
  */
 
 /** 排序方向 */
-export type SortDirection = 'asc' | 'desc'
+export type SortDirection = 'asc' | 'desc';
 
 /** 分頁選項 */
 export interface IPaginationOptions {

@@ -24,8 +24,17 @@
           <div v-if="success" class="booking-modal__success">
             <div class="booking-modal__success-icon" aria-hidden="true">
               <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle class="booking-modal__success-circle" cx="26" cy="26" r="24" />
-                <path class="booking-modal__success-check" d="M14 27l8 8 16-18" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <circle
+class="booking-modal__success-circle"
+cx="26"
+cy="26"
+r="24" />
+                <path
+class="booking-modal__success-check"
+d="M14 27l8 8 16-18"
+stroke-width="3"
+stroke-linecap="round"
+stroke-linejoin="round" />
               </svg>
             </div>
             <h3 class="booking-modal__success-title">Thank you for your registration</h3>
@@ -51,7 +60,7 @@
                 type="text"
                 required
                 placeholder="Your name"
-              />
+              >
             </div>
             <div class="booking-modal__field">
               <label for="booking-email">Email *</label>
@@ -61,7 +70,7 @@
                 type="email"
                 required
                 placeholder="your@email.com"
-              />
+              >
             </div>
             <div class="booking-modal__field">
               <label for="booking-phone">Phone *</label>
@@ -71,7 +80,7 @@
                 type="tel"
                 required
                 placeholder="Your phone"
-              />
+              >
             </div>
             <div class="booking-modal__field">
               <label for="booking-notes">Notes (optional)</label>
@@ -107,8 +116,7 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: "close"): void;
-  (e: "registered"): void;
+  (e: "close" | "registered"): void;
 }>();
 
 const config = useRuntimeConfig();
@@ -225,6 +233,7 @@ async function handleSubmit() {
 <style scoped lang="scss">
 @use "~/assets/styles/variables" as *;
 @use "~/assets/styles/mixins" as *;
+@use "sass:color";
 
 .booking-modal__backdrop {
   position: fixed;
@@ -234,7 +243,7 @@ async function handleSubmit() {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgb(0 0 0 / 50%);
   backdrop-filter: blur(4px);
 }
 
@@ -243,34 +252,34 @@ async function handleSubmit() {
   width: 100%;
   max-width: 380px;
   max-height: 90vh;
-  overflow-y: auto;
   padding: 32px 28px;
+  overflow-y: auto;
   background: $color-bg;
   border-radius: 12px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 40px rgb(0 0 0 / 15%);
 }
 
 .booking-modal__close {
   position: absolute;
   top: 16px;
   right: 16px;
-  width: 32px;
-  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  background: transparent;
-  color: #666;
+  width: 32px;
+  height: 32px;
   font-size: 1.25rem;
   line-height: 1;
+  color: #666;
   cursor: pointer;
+  background: transparent;
+  border: none;
   border-radius: 50%;
   transition: background 0.2s, color 0.2s;
 
   &:hover {
-    background: $color-gray-light;
     color: $color-primary;
+    background: $color-gray-light;
   }
 }
 
@@ -289,11 +298,11 @@ async function handleSubmit() {
 }
 
 .booking-modal__error {
-  margin-bottom: 16px;
   padding: 12px;
-  background: #fef2f2;
-  color: #b91c1c;
+  margin-bottom: 16px;
   font-size: 0.875rem;
+  color: #b91c1c;
+  background: #fef2f2;
   border-radius: 8px;
 }
 
@@ -317,10 +326,10 @@ async function handleSubmit() {
   input,
   textarea {
     padding: 10px 12px;
+    font-family: inherit;
+    font-size: 1rem;
     border: 1px solid #ddd;
     border-radius: 8px;
-    font-size: 1rem;
-    font-family: inherit;
 
     &:focus {
       outline: none;
@@ -329,40 +338,40 @@ async function handleSubmit() {
   }
 
   textarea {
-    resize: vertical;
     min-height: 72px;
+    resize: vertical;
   }
 }
 
 .booking-modal__submit {
   display: flex;
+  gap: 8px;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-top: 8px;
   padding: 12px 20px;
-  background: $color-primary;
+  margin-top: 8px;
+  font-size: 1rem;
   color: #fff;
+  cursor: pointer;
+  background: $color-primary;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
   transition: background 0.2s;
 
   &:hover:not(:disabled) {
-    background: darken($color-primary, 8%);
+    background: color.adjust($color-primary, $lightness: -8%);
   }
 
   &:disabled {
-    opacity: 0.7;
     cursor: not-allowed;
+    opacity: 0.7;
   }
 }
 
 .booking-modal__spinner {
   width: 18px;
   height: 18px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  border: 2px solid rgb(255 255 255 / 40%);
   border-top-color: #fff;
   border-radius: 50%;
   animation: booking-modal-spin 0.7s linear infinite;
@@ -378,8 +387,8 @@ async function handleSubmit() {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   padding: 16px 0 8px;
+  text-align: center;
 }
 
 .booking-modal__success-icon {
@@ -388,24 +397,24 @@ async function handleSubmit() {
   margin-bottom: 24px;
 
   svg {
+    display: block;
     width: 100%;
     height: 100%;
-    display: block;
   }
 }
 
 .booking-modal__success-circle {
+  fill: none;
   stroke: #15803d;
   stroke-width: 2;
-  fill: none;
   stroke-dasharray: 151;
   stroke-dashoffset: 151;
   animation: booking-modal-success-circle 0.5s ease-out forwards;
 }
 
 .booking-modal__success-check {
-  stroke: #15803d;
   fill: none;
+  stroke: #15803d;
   stroke-dasharray: 50;
   stroke-dashoffset: 50;
   animation: booking-modal-success-check 0.4s ease-out 0.25s forwards;
@@ -428,34 +437,34 @@ async function handleSubmit() {
   font-family: $font-family-en;
   font-size: 1.25rem;
   font-weight: 600;
-  color: $color-primary;
   line-height: 1.4;
+  color: $color-primary;
 }
 
 .booking-modal__success-desc {
   margin: 0 0 28px;
   font-size: 0.95rem;
-  color: #666;
   line-height: 1.6;
+  color: #666;
 
   strong {
-    color: $color-primary;
     font-weight: 600;
+    color: $color-primary;
   }
 }
 
 .booking-modal__btn-close {
   padding: 10px 20px;
-  background: $color-primary;
+  font-size: 1rem;
   color: #fff;
+  cursor: pointer;
+  background: $color-primary;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
   transition: background 0.2s;
 
   &:hover {
-    background: darken($color-primary, 8%);
+    background: color.adjust($color-primary, $lightness: -8%);
   }
 }
 

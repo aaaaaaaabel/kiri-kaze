@@ -1,10 +1,8 @@
 <template>
     <div class="app-transition">
-        <div class="app-transition__overlay"></div>
+        <div class="app-transition__overlay"/>
     </div>
 </template>
-
-<script lang="ts" setup></script>
 
 <style scoped lang="scss">
 /**
@@ -16,26 +14,26 @@
  */
 
 .app-transition {
-    --duration_open: 0.6s;
-    --duration_close: 0.6s;
+    --duration-open: 0.6s;
+    --duration-close: 0.6s;
 
     position: fixed;
     top: 0;
-    left: 0;
     bottom: 0;
-    width: 100vw;
+    left: 0;
     z-index: 9200;
-    opacity: 0;
     visibility: hidden;
+    width: 100vw;
     pointer-events: none;
+    opacity: 0;
 
     /**
      * 動畫啟動狀態
      */
     &.is-active {
-        opacity: 1;
         visibility: visible;
         pointer-events: auto;
+        opacity: 1;
     }
 
     /**
@@ -43,7 +41,7 @@
      */
     &.is-hide-active {
         opacity: 0;
-        transition: opacity var(--duration_close) ease-in-out;
+        transition: opacity var(--duration-close) ease-in-out;
     }
 
     /**
@@ -51,14 +49,14 @@
      */
     &__overlay {
         position: absolute;
-        left: 0;
         top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(255, 255, 255, 1);
+        background-color: rgb(255 255 255 / 100%);
         transform: scaleY(0);
         transform-origin: bottom;
-        transition: transform var(--duration_open) ease-in-out;
+        transition: transform var(--duration-open) ease-in-out;
 
         .is-active & {
             transform: scaleY(1);

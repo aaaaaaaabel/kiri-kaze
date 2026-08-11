@@ -3,18 +3,18 @@
  * 用於個人作品集專案的資料結構
  */
 
-import type { IProjectImage } from './image'
-import type { Timestamp } from 'firebase/firestore'
+import type { IProjectImage } from './image';
+import type { Timestamp } from 'firebase/firestore';
 
 /**
  * 專案分類型別
  */
-export type ProjectCategory = 'work' | 'personal' | 'side-project'
+export type ProjectCategory = 'work' | 'personal' | 'side-project';
 
 /**
  * 技術分類型別
  */
-export type TechnologyCategory = 'frontend' | 'backend' | 'database' | 'tools' | 'design' | 'other'
+export type TechnologyCategory = 'frontend' | 'backend' | 'database' | 'tools' | 'design' | 'other';
 
 /**
  * 技術標籤介面
@@ -106,7 +106,7 @@ export const PROJECT_CATEGORY_LABELS: Record<ProjectCategory, { zh: string; en: 
     work: { zh: '公司專案', en: 'Work Project' },
     personal: { zh: '個人專案', en: 'Personal Project' },
     'side-project': { zh: '副業專案', en: 'Side Project' },
-}
+};
 
 /**
  * 技術分類的中英文對照
@@ -118,5 +118,5 @@ export const TECHNOLOGY_CATEGORY_LABELS: Record<TechnologyCategory, { zh: string
     tools: { zh: '工具', en: 'Tools' },
     design: { zh: '設計', en: 'Design' },
     other: { zh: '其他', en: 'Other' },
-}
+};
 

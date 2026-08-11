@@ -8,7 +8,7 @@
             src="/images/index-txt.png"
             alt="化石圖鑑"
             class="fossils-page__title-image"
-          />
+          >
         </div>
 
         <FossilGrid
@@ -135,45 +135,45 @@ useGalleryInView(galleryRef);
 .fossils-page--collection {
   width: 100%;
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 .fossils-page__body {
-  width: 100%;
   position: relative;
+  width: 100%;
 }
 
 .fossils-page__gallery {
-  width: 100%;
   position: relative;
-  background-color: #ffffff;
   z-index: 1;
+  width: 100%;
   padding-top: 0;
+  background-color: #fff;
 }
 
 .fossils-page__header {
-  width: 100%;
-  padding: 40px;
-  text-align: center;
-  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  padding: 40px;
+  margin-bottom: 20px;
+  text-align: center;
 
   @include sp {
+    padding: 30px 20px 0;
     margin-top: 68px;
     margin-bottom: 0;
-    padding: 30px 20px 0;
   }
 }
 
 .fossils-page__title-image {
-  max-width: 1000px;
-  width: 100%;
-  height: auto;
   display: block;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
   padding: 20px;
+  margin: 0 auto;
 
   @include sp {
     max-width: 90%;
@@ -184,15 +184,15 @@ useGalleryInView(galleryRef);
 .collection-page__link {
   display: inline-block;
   padding: 10px 20px;
-  border: 1px solid $color-primary;
-  border-radius: 999px;
+  font-size: 0.9rem;
   color: $color-primary;
   text-decoration: none;
-  font-size: 0.9rem;
+  border: 1px solid $color-primary;
+  border-radius: 999px;
 
   &:hover {
-    background: $color-primary;
     color: #fff;
+    background: $color-primary;
   }
 }
 </style>

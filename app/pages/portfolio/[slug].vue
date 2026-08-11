@@ -1,5 +1,5 @@
 <template>
-    <div class="project-detail-page" id="project-detail">
+    <div id="project-detail" class="project-detail-page">
         <div class="contents">
             <div class="contents_inner">
                 <!-- Loading State -->
@@ -53,7 +53,7 @@
 
                             <!-- 主視覺圖 -->
                             <div class="project-hero__image">
-                                <img :src="thumbnailUrl" :alt="project.title" loading="eager" />
+                                <img :src="thumbnailUrl" :alt="project.title" loading="eager" >
                             </div>
                         </div>
                     </section>
@@ -128,7 +128,7 @@
                                         :src="getImageUrl(image.url)" 
                                         :alt="image.alt || `${project.title} 截圖 ${index + 1}`" 
                                         loading="lazy" 
-                                    />
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -174,7 +174,7 @@
                                 <span class="project-nav-item__label">← 上一個專案</span>
                                 <span class="project-nav-item__title">{{ previousProject.title }}</span>
                             </NuxtLink>
-                            <div v-else class="project-nav-item project-nav-item--placeholder"></div>
+                            <div v-else class="project-nav-item project-nav-item--placeholder"/>
 
                             <NuxtLink
                                 v-if="nextProject"
@@ -184,7 +184,7 @@
                                 <span class="project-nav-item__label">下一個專案 →</span>
                                 <span class="project-nav-item__title">{{ nextProject.title }}</span>
                             </NuxtLink>
-                            <div v-else class="project-nav-item project-nav-item--placeholder"></div>
+                            <div v-else class="project-nav-item project-nav-item--placeholder"/>
                         </div>
                     </section>
                 </template>
@@ -194,46 +194,44 @@
 </template>
 
 <script setup lang="ts">
-import type { IProject, TechnologyCategory, ITechnology } from '~/types/portfolio'
-import { PROJECT_CATEGORY_LABELS, TECHNOLOGY_CATEGORY_LABELS } from '~/types/portfolio'
-import { useProjects } from '~/composables/useProjects'
-import { ref, computed, watch, onMounted, nextTick } from 'vue'
-import { useWidgetsBlocksEvents } from '~/composables/useWidgetsBlocksEvents'
-import { useStorage } from '~/composables/useStorage'
-import LoadingSpinner from '~/components/ui/LoadingSpinner.vue'
-import { getStorageUrl } from '~/utils/storage'
+import { PROJECT_CATEGORY_LABELS, TECHNOLOGY_CATEGORY_LABELS, type IProject, type TechnologyCategory, type ITechnology } from '~/types/portfolio';
+import { useProjects } from '~/composables/useProjects';
+import { ref, computed, watch, onMounted, nextTick } from 'vue';
+import { useWidgetsBlocksEvents } from '~/composables/useWidgetsBlocksEvents';
+import LoadingSpinner from '~/components/ui/LoadingSpinner.vue';
+import { getStorageUrl } from '~/utils/storage';
 
 // 獲取路由參數
-const route = useRoute()
+const route = useRoute();
 const slug = computed(() => {
-    const p = route.params.slug
+    const p = route.params.slug;
     // 防呆：某些情況下 params 可能是陣列（雖然 [slug].vue 理論上是 string）
-    if (Array.isArray(p)) return p.join('/')
-    if (typeof p === 'string') return p
-    return ''
-})
+    if (Array.isArray(p)) return p.join('/');
+    if (typeof p === 'string') return p;
+    return '';
+});
 
 // 使用 composable
-const { fetchProjectBySlug, fetchProjects } = useProjects()
+const { fetchProjectBySlug, fetchProjects } = useProjects();
 
-const project = ref<IProject | null>(null)
-const pending = ref(true)
-const error = ref<Error | null>(null)
+const project = ref<IProject | null>(null);
+const pending = ref(true);
+const error = ref<Error | null>(null);
 
 // 所有專案（用於上一個/下一個導航）
-const allProjects = ref<IProject[]>([])
+const allProjects = ref<IProject[]>([]);
 
 // Storage URL 轉換
-const { storageBucket } = useFirebaseConfig()
-const convertUrl = (url: string) => storageBucket ? getStorageUrl(url, storageBucket) : url
+const { storageBucket } = useFirebaseConfig();
+const convertUrl = (url: string) => storageBucket ? getStorageUrl(url, storageBucket) : url;
 
 const thumbnailUrl = computed(() => {
-    return project.value?.thumbnail ? convertUrl(project.value.thumbnail) : ''
-})
+    return project.value?.thumbnail ? convertUrl(project.value.thumbnail) : '';
+});
 
 const getImageUrl = (url: string | undefined): string => {
-    return url ? convertUrl(url) : ''
-}
+    return url ? convertUrl(url) : '';
+};
 
 // SEO Meta
 useSeoMeta({
@@ -242,72 +240,72 @@ useSeoMeta({
     ogTitle: computed(() => project.value?.title || ''),
     ogDescription: computed(() => project.value?.description || ''),
     ogImage: computed(() => thumbnailUrl.value || ''),
-})
+});
 
 // 分類標籤
 const categoryLabel = computed(() => {
-    if (!project.value) return ''
-    const category = project.value.category
+    if (!project.value) return '';
+    const category = project.value.category;
     // 防呆：檢查 category 是否存在且為有效的 ProjectCategory
     if (!category || !PROJECT_CATEGORY_LABELS[category]) {
-        console.warn('⚠️ [slug] 專案分類無效或不存在:', category)
-        return '未分類'
+        console.warn('⚠️ [slug] 專案分類無效或不存在:', category);
+        return '未分類';
     }
-    return PROJECT_CATEGORY_LABELS[category].zh
-})
+    return PROJECT_CATEGORY_LABELS[category].zh;
+});
 
 const groupedTechnologies = computed(() => {
     if (!project.value?.technologies || !Array.isArray(project.value.technologies)) {
-        return {}
+        return {};
     }
     
-    const groups: Record<string, ITechnology[]> = {}
+    const groups: Record<string, ITechnology[]> = {};
     project.value.technologies.forEach((tech) => {
         if (tech?.category) {
-            const category = tech.category
+            const category = tech.category;
             if (!groups[category]) {
-                groups[category] = []
+                groups[category] = [];
             }
-            groups[category]!.push(tech)
+            groups[category]!.push(tech);
         }
-    })
-    return groups
-})
+    });
+    return groups;
+});
 
 const getCategoryLabel = (category: TechnologyCategory) => {
-    return TECHNOLOGY_CATEGORY_LABELS[category]?.zh || '其他'
-}
+    return TECHNOLOGY_CATEGORY_LABELS[category]?.zh || '其他';
+};
 
 // 上一個/下一個專案改用 allProjects
 const currentIndex = computed(() => {
-    return allProjects.value.findIndex((p) => p.slug === slug.value)
-})
+    return allProjects.value.findIndex((p) => p.slug === slug.value);
+});
 
 const previousProject = computed(() => {
-    if (currentIndex.value <= 0) return null
-    return allProjects.value[currentIndex.value - 1] ?? null
-})
+    if (currentIndex.value <= 0) return null;
+    return allProjects.value[currentIndex.value - 1] ?? null;
+});
 
 const nextProject = computed(() => {
-    if (currentIndex.value < 0 || currentIndex.value >= allProjects.value.length - 1) return null
-    return allProjects.value[currentIndex.value + 1] ?? null
-})
+    if (currentIndex.value < 0 || currentIndex.value >= allProjects.value.length - 1) return null;
+    return allProjects.value[currentIndex.value + 1] ?? null;
+});
 
 // 參考 LRC：等資料載入 + DOM 完成後再執行 lazy load，並標記頁面完成
 const runLazyImages = async () => {
-    await nextTick()
-    await new Promise((resolve) => setTimeout(resolve, 100))
+    await nextTick();
+    await new Promise((resolve) => setTimeout(resolve, 100));
 
     if (import.meta.client) {
-        const nuxtApp = useNuxtApp()
-        nuxtApp.$lazyLoadImage?.()
+        const nuxtApp = useNuxtApp();
+        nuxtApp.$lazyLoadImage?.();
     }
-}
+};
 
 const markPageReady = () => {
-    const { toggleWidgetsBlockComplete } = useWidgetsBlocksEvents()
-    toggleWidgetsBlockComplete(true)
-}
+    const { toggleWidgetsBlockComplete } = useWidgetsBlocksEvents();
+    toggleWidgetsBlockComplete(true);
+};
 
 onMounted(async () => {
     try {
@@ -315,38 +313,38 @@ onMounted(async () => {
         const [projectResult, allResult] = await Promise.all([
             fetchProjectBySlug(slug.value),
             fetchProjects({ publicOnly: true }),
-        ])
-        project.value = projectResult
-        allProjects.value = allResult
+        ]);
+        project.value = projectResult;
+        allProjects.value = allResult;
     } catch (e) {
-        if (import.meta.dev) console.error('[portfolio/slug] fetch error', e)
-        error.value = e as Error
+        if (import.meta.dev) console.error('[portfolio/slug] fetch error', e);
+        error.value = e as Error;
     } finally {
-        pending.value = false
-        await runLazyImages()
-        markPageReady()
+        pending.value = false;
+        await runLazyImages();
+        markPageReady();
     }
-})
+});
 
 // 監聽 slug 變化（client 端導航時重新 fetch）
 watch(slug, async (newSlug, oldSlug) => {
-    if (!newSlug || newSlug === oldSlug || !import.meta.client) return
-    pending.value = true
+    if (!newSlug || newSlug === oldSlug || !import.meta.client) return;
+    pending.value = true;
     try {
         const [projectResult, allResult] = await Promise.all([
             fetchProjectBySlug(newSlug),
             fetchProjects({ publicOnly: true }),
-        ])
-        project.value = projectResult
-        allProjects.value = allResult
+        ]);
+        project.value = projectResult;
+        allProjects.value = allResult;
     } catch (e) {
-        error.value = e as Error
+        error.value = e as Error;
     } finally {
-        pending.value = false
-        await runLazyImages()
-        markPageReady()
+        pending.value = false;
+        await runLazyImages();
+        markPageReady();
     }
-})
+});
 </script>
 
 <style scoped lang="scss">
@@ -354,24 +352,24 @@ watch(slug, async (newSlug, oldSlug) => {
 @use '~/assets/styles/mixins' as *;
 
 .project-detail-page {
+    box-sizing: border-box;
     width: 100%;
     min-width: 0;
     max-width: 100%;
     min-height: 100vh;
-    margin: 0 auto;
     padding: 0;
-    background-color: #fff;
+    margin: 0 auto;
     overflow-x: hidden;
-    box-sizing: border-box;
+    background-color: #fff;
 }
 
 .contents {
+    box-sizing: border-box;
     width: 100%;
     min-width: 0;
     max-width: 100%;
-    margin: 0 auto;
     padding-top: 100px;
-    box-sizing: border-box;
+    margin: 0 auto;
     overflow-x: hidden;
 
     @include tb {
@@ -384,27 +382,27 @@ watch(slug, async (newSlug, oldSlug) => {
 }
 
 .contents_inner {
+    box-sizing: border-box;
     width: 100%;
     min-width: 0;
     max-width: 100%;
     margin: 0 auto;
-    box-sizing: border-box;
     overflow-x: hidden;
 }
 
 // Loading & Error States
 .project-error {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    min-height: 60vh;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    min-height: 60vh;
     padding: 60px 40px;
     text-align: center;
-    box-sizing: border-box;
 
     @include tb {
         padding: 48px 24px;
@@ -415,13 +413,13 @@ watch(slug, async (newSlug, oldSlug) => {
     }
 
     h2 {
+        margin-bottom: 24px;
         font-size: 1.5rem;
         color: $color-primary;
-        margin-bottom: 24px;
 
         @include sp {
-            font-size: 1.25rem;
             margin-bottom: 20px;
+            font-size: 1.25rem;
         }
     }
 }
@@ -430,11 +428,11 @@ watch(slug, async (newSlug, oldSlug) => {
 // Hero Section
 // ==========================================
 .project-hero {
+    box-sizing: border-box;
     width: 100%;
     max-width: 100%;
     padding: 60px 40px;
     background-color: $color-gray-light;
-    box-sizing: border-box;
 
     @include tb {
         padding: 48px 24px;
@@ -445,11 +443,11 @@ watch(slug, async (newSlug, oldSlug) => {
     }
 
     &__inner {
+        box-sizing: border-box;
         width: 100%;
         max-width: 1200px;
-        margin: 0 auto;
         padding: 0;
-        box-sizing: border-box;
+        margin: 0 auto;
     }
 
     &__header {
@@ -466,11 +464,11 @@ watch(slug, async (newSlug, oldSlug) => {
     }
 
     &__title {
+        margin-bottom: 12px;
         font-size: 2.5rem;
         font-weight: 700;
-        color: $color-primary;
-        margin-bottom: 12px;
         line-height: 1.3;
+        color: $color-primary;
 
         @include sp {
             font-size: 1.75rem;
@@ -479,8 +477,8 @@ watch(slug, async (newSlug, oldSlug) => {
 
     &__title-en {
         font-size: 1.25rem;
-        color: #666;
         font-weight: 400;
+        color: #666;
 
         @include sp {
             font-size: 1rem;
@@ -512,21 +510,21 @@ watch(slug, async (newSlug, oldSlug) => {
     }
 
     &__meta-label {
-        font-size: 0.875rem;
-        color: #999;
         margin-bottom: 8px;
+        font-size: 0.875rem;
         font-weight: 500;
+        color: #999;
 
         @include sp {
-            font-size: 0.8125rem;
             margin-bottom: 4px;
+            font-size: 0.8125rem;
         }
     }
 
     &__meta-value {
         font-size: 1rem;
-        color: $color-primary;
         font-weight: 600;
+        color: $color-primary;
 
         @include sp {
             font-size: 0.9375rem;
@@ -534,24 +532,24 @@ watch(slug, async (newSlug, oldSlug) => {
     }
 
     &__image {
+        box-sizing: border-box;
         width: 100%;
         max-width: min(1000px, 100%);
         margin: 0 auto;
-        border-radius: 8px;
         overflow: hidden;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-        box-sizing: border-box;
+        border-radius: 8px;
+        box-shadow: 0 8px 24px rgb(0 0 0 / 10%);
 
         @include sp {
             border-radius: 6px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 16px rgb(0 0 0 / 8%);
         }
 
         img {
-            max-width: 100%;
-            width: 100%;
-            height: auto;
             display: block;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
             vertical-align: top;
         }
     }
@@ -562,17 +560,17 @@ watch(slug, async (newSlug, oldSlug) => {
 // ==========================================
 .back-button {
     display: inline-flex;
-    align-items: center;
     gap: 8px;
+    align-items: center;
     padding: 12px 20px;
     margin-bottom: 40px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $color-primary;
+    text-decoration: none;
     background-color: #fff;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    text-decoration: none;
-    color: $color-primary;
-    font-size: 0.875rem;
-    font-weight: 500;
     transition: all 0.25s ease-in-out;
 
     @include tb {
@@ -587,8 +585,8 @@ watch(slug, async (newSlug, oldSlug) => {
     }
 
     &:hover {
-        background-color: $color-accent;
         color: #fff;
+        background-color: $color-accent;
         border-color: $color-accent;
         transform: translateX(-4px);
     }
@@ -606,10 +604,10 @@ watch(slug, async (newSlug, oldSlug) => {
 // Project Sections
 // ==========================================
 .project-section {
+    box-sizing: border-box;
     width: 100%;
     max-width: 100%;
     padding: 60px 40px;
-    box-sizing: border-box;
 
     @include tb {
         padding: 48px 24px;
@@ -624,19 +622,19 @@ watch(slug, async (newSlug, oldSlug) => {
     }
 
     &__inner {
+        box-sizing: border-box;
         width: 100%;
         max-width: 900px;
-        margin: 0 auto;
         padding: 0;
-        box-sizing: border-box;
+        margin: 0 auto;
     }
 
     &__title {
+        padding-bottom: 16px;
+        margin-bottom: 24px;
         font-size: 1.75rem;
         font-weight: 600;
         color: $color-primary;
-        margin-bottom: 24px;
-        padding-bottom: 16px;
         border-bottom: 2px solid $color-accent;
 
         @include sp {
@@ -651,8 +649,8 @@ watch(slug, async (newSlug, oldSlug) => {
 
 .project-description {
     font-size: 1rem;
-    color: #333;
     line-height: 1.8;
+    color: #333;
     white-space: pre-wrap;
 
     @include sp {
@@ -675,14 +673,14 @@ watch(slug, async (newSlug, oldSlug) => {
     }
 
     &__title {
+        margin-bottom: 12px;
         font-size: 1rem;
         font-weight: 600;
         color: #666;
-        margin-bottom: 12px;
 
         @include sp {
-            font-size: 0.9375rem;
             margin-bottom: 10px;
+            font-size: 0.9375rem;
         }
     }
 
@@ -699,12 +697,12 @@ watch(slug, async (newSlug, oldSlug) => {
 
 .tech-tag {
     padding: 8px 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $color-primary;
     background-color: $color-gray-light;
     border: 1px solid #e0e0e0;
     border-radius: 20px;
-    font-size: 0.875rem;
-    color: $color-primary;
-    font-weight: 500;
     transition: all 0.25s ease-in-out;
 
     @include sp {
@@ -714,8 +712,8 @@ watch(slug, async (newSlug, oldSlug) => {
     }
 
     &:hover {
-        background-color: $color-accent;
         color: #fff;
+        background-color: $color-accent;
         border-color: $color-accent;
     }
 }
@@ -728,8 +726,8 @@ watch(slug, async (newSlug, oldSlug) => {
     grid-template-columns: 1fr;
     gap: 40px;
     width: 100%;
-    max-width: 100%;
     min-width: 0;
+    max-width: 100%;
 
     @include tb {
         gap: 32px;
@@ -743,19 +741,19 @@ watch(slug, async (newSlug, oldSlug) => {
         width: 100%;
         min-width: 0;
         max-width: 100%;
-        border-radius: 8px;
         overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
 
         @include sp {
             border-radius: 6px;
         }
 
         img {
-            max-width: 100%;
-            width: 100%;
-            height: auto;
             display: block;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
             vertical-align: top;
         }
     }
@@ -776,31 +774,31 @@ watch(slug, async (newSlug, oldSlug) => {
 
 .project-link {
     display: inline-flex;
-    align-items: center;
     gap: 12px;
+    align-items: center;
     padding: 16px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: $color-primary;
+    text-decoration: none;
     background-color: $color-gray-light;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    text-decoration: none;
-    color: $color-primary;
-    font-size: 1rem;
-    font-weight: 500;
     transition: all 0.25s ease-in-out;
 
     @include sp {
+        gap: 8px;
         padding: 12px 18px;
         font-size: 0.9375rem;
-        gap: 8px;
         border-radius: 6px;
     }
 
     &:hover {
-        background-color: $color-accent;
         color: #fff;
+        background-color: $color-accent;
         border-color: $color-accent;
+        box-shadow: 0 4px 12px rgb(164 138 86 / 30%);
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(164, 138, 86, 0.3);
     }
 
     &__icon {
@@ -816,11 +814,11 @@ watch(slug, async (newSlug, oldSlug) => {
 // Navigation
 // ==========================================
 .project-navigation {
+    box-sizing: border-box;
     width: 100%;
     max-width: 100%;
     padding: 60px 40px;
     background-color: $color-gray-light;
-    box-sizing: border-box;
 
     @include tb {
         padding: 48px 24px;
@@ -831,14 +829,14 @@ watch(slug, async (newSlug, oldSlug) => {
     }
 
     &__inner {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0;
+        box-sizing: border-box;
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 40px;
-        box-sizing: border-box;
+        width: 100%;
+        max-width: 1200px;
+        padding: 0;
+        margin: 0 auto;
 
         @include tb {
             gap: 24px;
@@ -855,11 +853,11 @@ watch(slug, async (newSlug, oldSlug) => {
     display: flex;
     flex-direction: column;
     padding: 24px;
+    color: $color-primary;
+    text-decoration: none;
     background-color: #fff;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    text-decoration: none;
-    color: $color-primary;
     transition: all 0.25s ease-in-out;
 
     @include sp {
@@ -868,11 +866,11 @@ watch(slug, async (newSlug, oldSlug) => {
     }
 
     &:hover {
-        background-color: $color-accent;
         color: #fff;
+        background-color: $color-accent;
         border-color: $color-accent;
+        box-shadow: 0 8px 24px rgb(164 138 86 / 20%);
         transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(164, 138, 86, 0.2);
     }
 
     &--prev {
@@ -890,14 +888,14 @@ watch(slug, async (newSlug, oldSlug) => {
     }
 
     &__label {
+        margin-bottom: 8px;
         font-size: 0.875rem;
         font-weight: 500;
         opacity: 0.7;
-        margin-bottom: 8px;
 
         @include sp {
-            font-size: 0.8125rem;
             margin-bottom: 6px;
+            font-size: 0.8125rem;
         }
     }
 

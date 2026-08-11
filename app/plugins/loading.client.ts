@@ -8,12 +8,12 @@
  * - 與現有的 route plugin 整合
  */
 
-import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 
 export default defineNuxtPlugin((nuxtApp) => {
   // 只在客戶端執行
-  if (import.meta.server) return
+  if (import.meta.server) return;
 
   // 設定 NProgress
   NProgress.configure({
@@ -22,23 +22,23 @@ export default defineNuxtPlugin((nuxtApp) => {
     minimum: 0.1,        // 最小百分比
     easing: 'ease',      // 動畫效果
     speed: 400,          // 動畫速度
-  })
+  });
 
   // 監聽路由變化
   nuxtApp.hook('page:start', () => {
-    console.log('🔄 路由開始切換 - 顯示 Loading')
-    NProgress.start()
-  })
+    if (import.meta.dev) console.warn('🔄 路由開始切換 - 顯示 Loading');
+    NProgress.start();
+  });
 
   nuxtApp.hook('page:finish', () => {
-    console.log('✅ 路由切換完成 - 隱藏 Loading')
-    NProgress.done()
-  })
+    if (import.meta.dev) console.warn('✅ 路由切換完成 - 隱藏 Loading');
+    NProgress.done();
+  });
 
   // 應用程式錯誤時也要隱藏 Loading
   nuxtApp.hook('app:error', () => {
-    console.log('❌ 應用程式錯誤 - 隱藏 Loading')
-    NProgress.done()
-  })
-})
+    if (import.meta.dev) console.warn('❌ 應用程式錯誤 - 隱藏 Loading');
+    NProgress.done();
+  });
+});
 

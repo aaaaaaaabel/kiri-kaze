@@ -4,6 +4,20 @@ import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
 
 export function useAuth() {
+  const { public: { isMockDataEnabled } } = useRuntimeConfig();
+  // mock 模式：Firebase 連不上，登入功能暫停，收藏改走 useFavorites 的 localStorage 路徑
+  if (isMockDataEnabled) {
+    const user = ref<unknown>(null);
+    return {
+      user,
+      isLoggedIn: computed(() => false),
+      loginWithGoogle: async () => {
+        throw new Error("資料庫維護中，登入功能暫停使用，請稍後再試");
+      },
+      logout: async () => {},
+    };
+  }
+
   // SSR 時 Firebase 未初始化，回傳 stub 避免 500
   if (import.meta.server) {
     const user = ref<unknown>(null);

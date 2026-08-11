@@ -2,7 +2,7 @@
     <NuxtLink :to="`/portfolio/${project.slug}`" class="project-card">
         <!-- 縮圖區 -->
         <div class="project-card__thumbnail">
-            <img :src="project.thumbnail" :alt="project.title" class="project-card__image" />
+            <img :src="project.thumbnail" :alt="project.title" class="project-card__image" >
             <!-- 公司標籤 -->
             <span v-if="project.company" class="project-card__company-badge">
                 {{ project.company }}
@@ -49,60 +49,59 @@
 </template>
 
 <script setup lang="ts">
-import type { IProject } from '~/types/portfolio'
-import { PROJECT_CATEGORY_LABELS } from '~/types/portfolio'
-import { computed } from 'vue'
+import { PROJECT_CATEGORY_LABELS, type IProject } from '~/types/portfolio';
+import { computed } from 'vue';
 
 // Props
 const props = defineProps<{
     project: IProject
-}>()
+}>();
 
 // 最多顯示的技術標籤數量
-const MAX_TECH_DISPLAY = 4
+const MAX_TECH_DISPLAY = 4;
 
 // 截斷描述（最多 2-3 行）
 const truncatedDescription = computed(() => {
-    const maxLength = 120
+    const maxLength = 120;
     if (props.project.description.length <= maxLength) {
-        return props.project.description
+        return props.project.description;
     }
-    return props.project.description.substring(0, maxLength) + '...'
-})
+    return props.project.description.substring(0, maxLength) + '...';
+});
 
 // 顯示的技術標籤
 const displayedTechnologies = computed(() => {
-    return props.project.technologies.slice(0, MAX_TECH_DISPLAY)
-})
+    return props.project.technologies.slice(0, MAX_TECH_DISPLAY);
+});
 
 // 剩餘技術數量
 const remainingTechCount = computed(() => {
-    const total = props.project.technologies.length
-    return total > MAX_TECH_DISPLAY ? total - MAX_TECH_DISPLAY : 0
-})
+    const total = props.project.technologies.length;
+    return total > MAX_TECH_DISPLAY ? total - MAX_TECH_DISPLAY : 0;
+});
 
 // 分類標籤文字
 const categoryLabel = computed(() => {
-    return PROJECT_CATEGORY_LABELS[props.project.category].zh
-})
+    return PROJECT_CATEGORY_LABELS[props.project.category].zh;
+});
 </script>
 
 <style scoped lang="scss">
 .project-card {
     display: block;
-    background-color: #fff;
-    border-radius: 8px;
     overflow: hidden;
-    border: 1px solid #e0e0e0;
-    transition: all 0.25s ease-in-out;
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
     cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    transition: all 0.25s ease-in-out;
 
     &:hover {
+        border-color: rgb(164 138 86);
+        box-shadow: 0 8px 24px rgb(164 138 86 / 20%);
         transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(164, 138, 86, 0.2);
-        border-color: rgb(164, 138, 86);
     }
 
     &__thumbnail {
@@ -128,23 +127,23 @@ const categoryLabel = computed(() => {
         position: absolute;
         top: 12px;
         right: 12px;
+        z-index: 10;
         padding: 0.375rem 0.75rem;
-        background-color: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border-radius: 4px;
         font-size: 0.75rem;
         font-weight: 600;
-        color: rgb(164, 138, 86);
-        z-index: 10;
+        color: rgb(164 138 86);
+        background-color: rgb(255 255 255 / 95%);
+        border-radius: 4px;
+        backdrop-filter: blur(10px);
     }
 
     &__featured-badge {
         position: absolute;
         top: 12px;
         left: 12px;
-        font-size: 1.25rem;
         z-index: 10;
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        font-size: 1.25rem;
+        filter: drop-shadow(0 2px 4px rgb(0 0 0 / 20%));
     }
 
     &__content {
@@ -152,30 +151,30 @@ const categoryLabel = computed(() => {
     }
 
     &__title {
+        margin-bottom: 0.5rem;
         font-size: 1.25rem;
         font-weight: 600;
-        color: #000;
-        margin-bottom: 0.5rem;
         line-height: 1.4;
+        color: #000;
     }
 
     &__meta {
-        font-size: 0.875rem;
-        color: #666;
         margin-bottom: 0.75rem;
+        font-size: 0.875rem;
         line-height: 1.5;
+        color: #666;
     }
 
     &__description {
-        font-size: 0.875rem;
-        color: #666;
-        line-height: 1.6;
-        margin-bottom: 1rem;
         display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
+        margin-bottom: 1rem;
         overflow: hidden;
         text-overflow: ellipsis;
+        -webkit-line-clamp: 3;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        color: #666;
+        -webkit-box-orient: vertical;
     }
 
     &__technologies {
@@ -187,20 +186,20 @@ const categoryLabel = computed(() => {
 
     &__tech-tag {
         padding: 0.25rem 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: #333;
         background-color: #f5f5f5;
         border-radius: 4px;
-        font-size: 0.75rem;
-        color: #333;
-        font-weight: 500;
     }
 
     &__tech-more {
         padding: 0.25rem 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: #666;
         background-color: #e0e0e0;
         border-radius: 4px;
-        font-size: 0.75rem;
-        color: #666;
-        font-weight: 500;
     }
 
     &__category {
@@ -210,33 +209,33 @@ const categoryLabel = computed(() => {
 
     &__category-badge {
         padding: 0.375rem 0.875rem;
-        border-radius: 4px;
         font-size: 0.75rem;
         font-weight: 500;
-        border: 1px solid rgb(164, 138, 86);
+        color: rgb(164 138 86);
         background-color: #fff;
-        color: rgb(164, 138, 86);
+        border: 1px solid rgb(164 138 86);
+        border-radius: 4px;
         transition: all 0.25s ease-in-out;
 
         &--work {
-            border-color: rgb(164, 138, 86);
-            color: rgb(164, 138, 86);
+            color: rgb(164 138 86);
+            border-color: rgb(164 138 86);
         }
 
         &--personal {
-            border-color: #666;
             color: #666;
+            border-color: #666;
         }
 
         &--side-project {
-            border-color: rgb(164, 138, 86);
-            color: rgb(164, 138, 86);
+            color: rgb(164 138 86);
+            border-color: rgb(164 138 86);
         }
     }
 
     &:hover &__category-badge {
-        background-color: rgb(164, 138, 86);
         color: #fff;
+        background-color: rgb(164 138 86);
     }
 }
 </style>

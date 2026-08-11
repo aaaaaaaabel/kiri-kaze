@@ -1,6 +1,5 @@
 /**
  * Layout 樣式
- * 參考 kiri 專案的 layout 設定
  */
 
 @use './variables' as *;
@@ -8,27 +7,27 @@
 
 // Wrap
 .wrap {
+    position: relative;
+    box-sizing: border-box;
     width: 100%;
     max-width: 100%;
-    margin: 0;
     padding: 0;
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: auto;
+    margin: 0;
+    overflow: hidden auto;
     background-color: $color-bg;
-    box-sizing: border-box;
 }
 
 // Loading 動畫對 contents 和 footer 的影響
 .loading_on .contents,
 .loading_on .footer {
-    animation: loadingOn1 0.5s ease-in forwards;
+    animation: loading-on-1 0.5s ease-in forwards;
 }
 
-@keyframes loadingOn1 {
+@keyframes loading-on-1 {
     0% {
         transform: translateY(0);
     }
+
     100% {
         transform: translateY(-30px);
     }
@@ -36,13 +35,14 @@
 
 .loading_off .contents,
 .loading_off .footer {
-    animation: loadingOff1 0.5s ease-out forwards;
+    animation: loading-off-1 0.5s ease-out forwards;
 }
 
-@keyframes loadingOff1 {
+@keyframes loading-off-1 {
     0% {
         transform: translateY(30px);
     }
+
     100% {
         transform: translateY(0);
     }
@@ -50,36 +50,36 @@
 
 // Contents
 .contents {
-    width: 100%;
     position: relative;
+    width: 100%;
 }
 
 .contents_inner {
-    width: 100%;
     position: relative;
+    width: 100%;
 }
 
 .contents_detail {
-    width: 100%;
     position: relative;
+    width: 100%;
 }
 
 .contents_detail_inner {
-    width: 100%;
     position: relative;
+    width: 100%;
 }
 
 .contents_block {
-    width: 100%;
     position: relative;
+    width: 100%;
 }
 
 .contents_block_inner {
+    position: relative;
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
     padding: 0 60px;
-    position: relative;
+    margin: 0 auto;
 
     @include tb {
         padding: 0 30px;
@@ -116,15 +116,15 @@
 }
 
 .grid_link {
+    position: relative;
     display: block;
     width: 100%;
-    position: relative;
     padding: $spacing-sm;
 }
 
 .grid_img {
-    width: 100%;
     position: relative;
+    width: 100%;
     padding-top: 100%; // 1:1 aspect ratio
     overflow: hidden;
 
@@ -138,30 +138,30 @@
     }
 
     > div {
-        width: 100%;
-        height: 100%;
         position: absolute;
         top: 0;
         left: 0;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
 
         > div {
-            width: 100%;
-            height: 100%;
             position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
             font-size: 0;
             line-height: 0;
 
             img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
                 overflow: hidden;
-                backface-visibility: hidden;
-                -webkit-backface-visibility: hidden;
                 pointer-events: auto;
+                object-fit: cover;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
             }
         }
     }
@@ -175,25 +175,25 @@
     pointer-events: none;
 
     span {
-        display: block;
-        height: 40px;
         position: absolute;
         top: 50%;
         left: 50%;
+        display: block;
+        height: 40px;
         margin-top: -20px;
         background-color: $color-accent;
-        transform: rotate(0) scale(0);
         border-radius: 50%;
+        transform: rotate(0) scale(0);
     }
 
     p {
-        font-size: 0.75rem;
-        line-height: 1;
-        color: $color-primary;
-        font-weight: 400;
-        margin: 0;
         position: relative;
         z-index: 1;
+        margin: 0;
+        font-size: 0.75rem;
+        font-weight: 400;
+        line-height: 1;
+        color: $color-primary;
     }
 
     @include sp {

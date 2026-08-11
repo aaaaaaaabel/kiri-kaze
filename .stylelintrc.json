@@ -1,0 +1,52 @@
+{
+  "ignoreFiles": [
+    "node_modules/**",
+    "build/**",
+    ".nuxt/**",
+    ".output/**",
+    "dist/**"
+  ],
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-standard-vue/scss",
+    "stylelint-config-recess-order"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.{css,scss,vue}"],
+      "rules": {
+        "max-nesting-depth": 5,
+        "selector-max-id": 1,
+        "selector-max-compound-selectors": 5,
+        "selector-no-qualifying-type": null,
+        "selector-class-pattern": null,
+        "selector-pseudo-element-no-unknown": [true, {
+          "ignorePseudoElements": ["deep", "slotted", "global"]
+        }],
+        "selector-pseudo-class-no-unknown": [true, {
+          "ignorePseudoClasses": ["global", "local", "deep"]
+        }],
+        "property-no-vendor-prefix": null
+      }
+    },
+    {
+      "files": ["**/*.{scss,vue}"],
+      "rules": {
+        "scss/no-global-function-names": null,
+        "scss/dollar-variable-pattern": null,
+        "value-keyword-case": null,
+        "scss/dollar-variable-empty-line-before": null,
+        "color-hex-length": "short",
+        "property-no-deprecated": null,
+        "at-rule-empty-line-before": null,
+        "media-feature-range-notation": null
+      }
+    },
+    {
+      "files": ["app/components/portfolio/PortfolioItem.vue"],
+      "rules": {
+        "selector-max-compound-selectors": 6
+      }
+    }
+  ]
+}

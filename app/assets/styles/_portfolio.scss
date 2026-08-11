@@ -1,6 +1,5 @@
 /**
  * Portfolio 專用樣式
- * 參考 kiri 專案的 portfolio grid 設定
  */
 
 @use './variables' as *;
@@ -15,8 +14,8 @@
 }
 
 .portfolio-grid {
-    width: 100%;
     display: block;
+    width: 100%;
     font-size: 0;
     line-height: 0;
 }

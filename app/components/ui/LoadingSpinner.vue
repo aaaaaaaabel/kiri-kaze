@@ -7,7 +7,7 @@
       { 'loading-spinner--full-height': fullHeight },
     ]"
   >
-    <div class="loading-spinner__spinner"></div>
+    <div class="loading-spinner__spinner"/>
     <p v-if="message" class="loading-spinner__message">{{ message }}</p>
   </div>
 </template>
@@ -37,8 +37,8 @@ withDefaults(defineProps<Props>(), {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px;
   width: 100%;
+  padding: 40px;
 
   &--centered {
     min-height: 400px;
@@ -67,8 +67,8 @@ withDefaults(defineProps<Props>(), {
     }
 
     .loading-spinner__message {
-      font-size: 0.875rem;
       margin-top: 12px;
+      font-size: 0.875rem;
     }
   }
 
@@ -82,8 +82,8 @@ withDefaults(defineProps<Props>(), {
     }
 
     .loading-spinner__message {
-      font-size: 1.125rem;
       margin-top: 20px;
+      font-size: 1.125rem;
     }
   }
 
@@ -99,6 +99,7 @@ withDefaults(defineProps<Props>(), {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }

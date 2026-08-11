@@ -26,7 +26,8 @@
         <button
           v-for="country in countryTabs"
           :key="country"
-          :class="['country-tab-btn', { active: activeCountry === country }]"
+          class="country-tab-btn"
+          :class="[{ active: activeCountry === country }]"
           @click="switchCountry(country)"
         >
           {{ country }}
@@ -42,7 +43,7 @@
               v-if="currentImage?.url"
               :src="currentImage.url"
               :alt="currentImage.caption || species?.name?.zh || '化石圖片'"
-            />
+            >
             <div v-else class="no-image-placeholder">
               <p>暫無圖片</p>
             </div>
@@ -53,13 +54,13 @@
             <button
               v-for="(img, index) in allImages"
               :key="index"
+              class="thumbnail-btn"
               :class="[
-                'thumbnail-btn',
                 { active: currentImageIndex === index },
               ]"
               @click="currentImageIndex = index"
             >
-              <img :src="img.url" :alt="img.caption" />
+              <img :src="img.url" :alt="img.caption" >
             </button>
           </div>
         </div>
@@ -72,17 +73,17 @@
             class="location-tabs"
           >
             <button
-              v-for="(specimens, locationKey) in groupedByLocation"
+              v-for="(locationSpecimens, locationKey) in groupedByLocation"
               :key="locationKey"
+              class="location-tab-btn"
               :class="[
-                'location-tab-btn',
                 { active: activeLocation === locationKey },
               ]"
               @click="switchLocation(locationKey)"
             >
               {{ getLocationDisplayName(locationKey) }}
               <span class="specimen-count">
-                ({{ specimens?.length || 0 }})
+                ({{ locationSpecimens?.length || 0 }})
               </span>
             </button>
           </div>
@@ -244,7 +245,8 @@
           <div class="tabs">
             <!-- 概述 Tab -->
             <button
-              :class="['tab-btn', { active: activeTab === 'overview' }]"
+              class="tab-btn"
+              :class="[{ active: activeTab === 'overview' }]"
               @click="switchTab('overview')"
             >
               概述
@@ -263,9 +265,8 @@
                 <button
                   v-for="specimen in group"
                   :key="specimen.id"
+                  class="tab-btn tab-btn--specimen"
                   :class="[
-                    'tab-btn',
-                    'tab-btn--specimen',
                     { active: activeTab === specimen.id },
                   ]"
                   @click="switchTab(specimen.id)"
@@ -295,7 +296,7 @@ const router = useRouter();
 
 // Firebase composables
 const { fetchSpeciesBySlug, fetchSpeciesByCode } = useSpecies();
-const { fetchFossilsBySpeciesSlug, fetchFossilBySlug, fetchFossilByCode } =
+const { fetchFossilsBySpeciesSlug, fetchFossilByCode } =
   useFossils();
 const { toStorageUrl } = useStorage();
 
@@ -487,8 +488,7 @@ watch(
         activeTab.value = foundSpecimen.id || foundSpecimen.slug;
         currentImageIndex.value = 0;
       }
-    } else if (specimenId) {
-    } else {
+    } else if (!specimenId) {
       activeTab.value = "overview";
     }
   },
@@ -910,26 +910,27 @@ useHead(() => ({
 <style scoped lang="scss">
 @use "~/assets/styles/variables" as *;
 @use "~/assets/styles/mixins" as *;
+@use "sass:color";
 
 .species-page {
   min-height: 100vh;
-  background: #f5f5f5;
   padding-top: 80px;
+  background: #f5f5f5;
 
   &__error {
-    min-height: 60vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 60vh;
     padding: 40px;
     text-align: center;
   }
 
   &__content {
     max-width: 1200px;
-    margin: 0 auto;
     padding: 0 20px 40px;
+    margin: 0 auto;
   }
 }
 
@@ -940,9 +941,9 @@ useHead(() => ({
   .back-link {
     display: inline-block;
     margin-bottom: 20px;
+    font-size: 14px;
     color: $color-primary;
     text-decoration: none;
-    font-size: 14px;
 
     &:hover {
       text-decoration: underline;
@@ -950,25 +951,25 @@ useHead(() => ({
   }
 
   .species-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    font-style: italic;
     margin: 0 0 8px;
+    font-size: 2.5rem;
+    font-style: italic;
+    font-weight: 700;
     color: #333;
   }
 }
 
 // 國家 Tabs 樣式（參考圖片設計）
 .country-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  background-color: #1a1a1a; // 深色背景
   padding: 20px 0;
   margin-bottom: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
+  background-color: #1a1a1a; // 深色背景
 
   @include tb {
     gap: 30px;
@@ -981,16 +982,16 @@ useHead(() => ({
   }
 
   .country-tab-btn {
-    background: transparent;
-    border: none;
-    color: #999; // 灰色文字（未選中）
+    position: relative;
+    padding: 8px 0;
+    font-family: $font-family-en;
     font-size: 1rem;
     font-weight: 400;
+    color: #999; // 灰色文字（未選中）
     cursor: pointer;
-    padding: 8px 0;
-    position: relative;
+    background: transparent;
+    border: none;
     transition: color 0.3s ease;
-    font-family: $font-family-en;
 
     @include tb {
       font-size: 0.95rem;
@@ -1009,13 +1010,13 @@ useHead(() => ({
 
       // 綠色底線
       &::after {
-        content: "";
         position: absolute;
+        right: 0;
         bottom: 0;
         left: 0;
-        right: 0;
         height: 2px;
-        background-color: rgb(164, 138, 86);
+        content: "";
+        background-color: rgb(164 138 86);
       }
     }
   }
@@ -1040,26 +1041,26 @@ useHead(() => ({
 // 左側: 大圖 + 輪播
 .species-main {
   .main-image {
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin: 0 auto 20px;
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    margin: 0 auto 20px;
+    overflow: hidden;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
 
     img {
+      display: block;
       width: 100%;
       height: auto;
-      display: block;
     }
 
     .no-image-placeholder {
       padding: 60px 20px;
-      text-align: center;
       color: #999;
+      text-align: center;
 
       p {
         margin: 0;
@@ -1070,22 +1071,22 @@ useHead(() => ({
 
   .thumbnail-carousel {
     display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    padding: 8px 0;
-    justify-content: flex-start;
     flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    padding: 8px 0;
+    overflow-x: auto;
 
     .thumbnail-btn {
       flex-shrink: 0;
       width: 120px;
       height: 120px;
-      border: 2px solid transparent;
-      border-radius: 4px;
+      padding: 0;
       overflow: hidden;
       cursor: pointer;
       background: white;
-      padding: 0;
+      border: 2px solid transparent;
+      border-radius: 4px;
       transition: all 0.2s;
 
       &:hover {
@@ -1110,27 +1111,27 @@ useHead(() => ({
 .species-sidebar {
   // 產區 Tabs 樣式
   .location-tabs {
-    background: white;
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
 
     .location-tab-btn {
+      display: flex;
+      gap: 6px;
+      align-items: center;
       padding: 10px 16px;
-      border: 1px solid #e0e0e0;
-      border-radius: 4px;
-      background: transparent;
-      cursor: pointer;
       font-size: 0.9rem;
       color: #666;
+      cursor: pointer;
+      background: transparent;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
       transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 6px;
 
       &:hover {
         background: #f5f5f5;
@@ -1138,10 +1139,10 @@ useHead(() => ({
       }
 
       &.active {
-        background: $color-primary;
-        color: white;
-        border-color: $color-primary;
         font-weight: 600;
+        color: white;
+        background: $color-primary;
+        border-color: $color-primary;
       }
 
       .specimen-count {
@@ -1152,33 +1153,32 @@ useHead(() => ({
   }
 
   .tabs {
+    padding: 16px;
     background: white;
     border-radius: 8px;
-    padding: 16px;
-
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
 
     .tab-btn {
       width: 100%;
-      text-align: left;
       padding: 12px 16px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
+      margin-bottom: 4px;
       font-size: 0.95rem;
       color: #666;
+      text-align: left;
+      cursor: pointer;
+      background: transparent;
+      border: none;
       border-radius: 4px;
       transition: all 0.2s;
-      margin-bottom: 4px;
 
       &:hover {
         background: #f5f5f5;
       }
 
       &.active {
-        background: $color-primary;
-        color: white;
         font-weight: 600;
+        color: white;
+        background: $color-primary;
       }
 
       &--specimen {
@@ -1202,11 +1202,12 @@ useHead(() => ({
   }
 
   .content {
+    padding: 24px;
+    margin-bottom: 20px;
     background: white;
     border-radius: 8px;
-    padding: 24px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+
     .content-section {
       margin-bottom: 32px;
 
@@ -1215,16 +1216,16 @@ useHead(() => ({
       }
 
       h2 {
+        margin: 0 0 16px;
         font-size: 1.25rem;
         font-weight: 600;
-        margin: 0 0 16px;
         color: #333;
       }
 
       p {
+        margin: 0;
         line-height: 1.8;
         color: #666;
-        margin: 0;
       }
 
       .info-table {
@@ -1233,13 +1234,13 @@ useHead(() => ({
 
         td {
           padding: 10px 12px;
-          border-bottom: 1px solid #eee;
           font-size: 0.95rem;
+          border-bottom: 1px solid #eee;
 
           &:first-child {
+            width: 100px;
             font-weight: 600;
             color: #999;
-            width: 100px;
           }
 
           &:last-child {
@@ -1258,15 +1259,15 @@ useHead(() => ({
 .back-button {
   display: inline-block;
   padding: 12px 24px;
-  background: $color-primary;
+  margin-top: 20px;
   color: white;
   text-decoration: none;
+  background: $color-primary;
   border-radius: 4px;
-  margin-top: 20px;
   transition: background 0.2s;
 
   &:hover {
-    background: darken($color-primary, 10%);
+    background: color.adjust($color-primary, $lightness: -10%);
   }
 }
 </style>

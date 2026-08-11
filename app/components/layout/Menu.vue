@@ -1,20 +1,20 @@
 <template>
   <div class="menu">
     <div class="menu_inner">
-      <div class="menu_back"><div class="menu_circle"></div></div>
+      <div class="menu_back"><div class="menu_circle"/></div>
       <div class="menu_contents">
         <Transition name="menu-view" mode="out-in">
           <!-- Menu view: 導航列表 + 底部 Sign in / Profile -->
-          <div v-if="overlayView === 'menu'" class="menu_contents__main" key="menu">
+          <div v-if="overlayView === 'menu'" key="menu" class="menu_contents__main">
             <div class="menu_element">
               <div>
-                <img src="/images/element01.svg" alt="" />
+                <img src="/images/element01.svg" alt="" >
               </div>
               <div>
-                <img src="/images/element11.svg" alt="" />
+                <img src="/images/element11.svg" alt="" >
               </div>
               <div>
-                <img src="/images/element11.svg" alt="" />
+                <img src="/images/element11.svg" alt="" >
               </div>
             </div>
             <div class="menu_area">
@@ -22,44 +22,44 @@
                 <div class="menu_list menu_list3">
                   <NuxtLink to="/about" class="link" @click="closeMenu">
                     <div class="menu_number">
-                      <span></span>
-                      <p class="kiri en0">1</p>
+                      <span/>
+                      <p class="tracking en0">1</p>
                     </div>
                     <div class="menu_title">
-                      <p class="kiri ja0">About kiri</p>
+                      <p class="tracking ja0">About Lacunae</p>
                     </div>
                   </NuxtLink>
                 </div>
                 <div class="menu_list menu_list2">
                   <NuxtLink to="/portfolio" class="link" @click="closeMenu">
                     <div class="menu_number">
-                      <span></span>
-                      <p class="kiri en0">2</p>
+                      <span/>
+                      <p class="tracking en0">2</p>
                     </div>
                     <div class="menu_title">
-                      <p class="kiri ja0">Portfolio</p>
+                      <p class="tracking ja0">Portfolio</p>
                     </div>
                   </NuxtLink>
                 </div>
                 <div class="menu_list menu_list2">
                   <NuxtLink to="/collection" class="link" @click="closeMenu">
                     <div class="menu_number">
-                      <span></span>
-                      <p class="kiri en0">3</p>
+                      <span/>
+                      <p class="tracking en0">3</p>
                     </div>
                     <div class="menu_title">
-                      <p class="kiri ja0">Collection</p>
+                      <p class="tracking ja0">Collection</p>
                     </div>
                   </NuxtLink>
                 </div>
                 <div class="menu_list menu_list2">
                   <NuxtLink to="/events" class="link" @click="closeMenu">
                     <div class="menu_number">
-                      <span></span>
-                      <p class="kiri en0">4</p>
+                      <span/>
+                      <p class="tracking en0">4</p>
                     </div>
                     <div class="menu_title">
-                      <p class="kiri ja0">Events</p>
+                      <p class="tracking ja0">Events</p>
                     </div>
                   </NuxtLink>
                 </div>
@@ -84,26 +84,26 @@
                 </button>
               </div>
             </div>
-            <div class="menu_filter"><span></span><span></span></div>
+            <div class="menu_filter"><span/><span/></div>
 
             <div class="menu_button">
               <div class="round_button round_button_bt">
                 <a href="https://line.me/ti/p/By5dhWxd1m" target="_blank" rel="noopener noreferrer">
-                  <p class="kiri ja0">聯絡詢問服務</p>
+                  <p class="tracking ja0">聯絡詢問服務</p>
                 </a>
               </div>
             </div>
           </div>
 
           <!-- Login view: Google 登入 + Back -->
-          <div v-else-if="overlayView === 'login'" class="menu_contents__auth" key="login">
+          <div v-else-if="overlayView === 'login'" key="login" class="menu_contents__auth">
             <button type="button" class="menu_overlay_back" @click="emit('update:overlayView', 'menu')">
               ← Back
             </button>
             <h2 class="menu_overlay_title">Sign in</h2>
             <div v-if="loginError" class="menu_overlay_error">{{ loginError }}</div>
             <div v-if="loginLoading" class="menu_overlay_loading">
-              <div class="menu_overlay_spinner"></div>
+              <div class="menu_overlay_spinner"/>
               <p>Signing in...</p>
             </div>
             <template v-else>
@@ -126,7 +126,7 @@
           </div>
 
           <!-- Profile view: 使用者名稱 + Sign out + Back -->
-          <div v-else-if="overlayView === 'profile'" class="menu_contents__profile" key="profile">
+          <div v-else-if="overlayView === 'profile'" key="profile" class="menu_contents__profile">
             <button type="button" class="menu_overlay_back" @click="emit('update:overlayView', 'menu')">
               ← Back
             </button>
@@ -137,7 +137,7 @@
           </div>
         </Transition>
       </div>
-      <div class="menu_front"><div class="menu_circle"></div></div>
+      <div class="menu_front"><div class="menu_circle"/></div>
     </div>
   </div>
 </template>
@@ -150,9 +150,8 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: "close"): void;
+  (e: "close" | "loginSuccess"): void;
   (e: "update:overlayView", value: "menu" | "login" | "profile"): void;
-  (e: "loginSuccess"): void;
 }>();
 
 const { loginWithGoogle, logout } = useAuth();
@@ -219,11 +218,11 @@ function closeMenu() {
 @use "~/assets/styles/mixins" as *;
 
 .menu_contents__main {
-  width: 100%;
-  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* menu_area 改為 flex，讓 menu_block 與 menu_auth_section 上下分散 */
@@ -235,27 +234,27 @@ function closeMenu() {
 
 /* Sign in / Profile：與 menu_list 同區，無 padding-left；trigger 寬度 10% */
 .menu_auth_section {
+  box-sizing: border-box;
+  flex-shrink: 0;
   width: 100%;
   padding-top: 24px;
   margin-top: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.6);
-  flex-shrink: 0;
-  box-sizing: border-box;
+  border-top: 1px solid rgb(255 255 255 / 60%);
 }
 
 .menu_auth_section .menu_auth_trigger {
   display: block;
   width: 100%;
   padding: 12px 0 12px 5%;
-  border: none;
-  background: none;
-  cursor: pointer;
-  text-align: left;
   font-family: $font-family-en;
   font-size: 28px;
-  line-height: 1.3;
   font-weight: 500;
-  color: rgb(255, 255, 255);
+  line-height: 1.3;
+  color: rgb(255 255 255);
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
   transition: opacity 0.2s;
 
   &:hover {
@@ -273,30 +272,33 @@ function closeMenu() {
 
 .menu_contents__auth,
 .menu_contents__profile {
-  width: 100%;
-  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
   padding: 120px 60px 60px;
   overflow: auto;
+
   @include tb {
     padding: 80px 40px 40px;
   }
+
   @include sp {
     padding: 60px 24px 24px;
   }
 }
 
 .menu_overlay_back {
-  margin-bottom: 32px;
   padding: 8px 0;
-  border: none;
-  background: none;
+  margin-bottom: 32px;
   font-family: $font-family-en;
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgb(255 255 255 / 90%);
   cursor: pointer;
+  background: none;
+  border: none;
+
   &:hover {
     color: #fff;
   }
@@ -318,43 +320,45 @@ function closeMenu() {
 }
 
 .menu_overlay_error {
-  margin-bottom: 16px;
   padding: 12px;
-  background: rgba(0, 0, 0, 0.2);
-  color: #fca5a5;
+  margin-bottom: 16px;
   font-size: 0.875rem;
+  color: #fca5a5;
+  background: rgb(0 0 0 / 20%);
   border-radius: 8px;
 }
 
 .menu_overlay_hint {
   margin: 0 0 20px;
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgb(255 255 255 / 85%);
 }
 
 .menu_overlay_google {
   display: flex;
+  gap: 12px;
   align-items: center;
   justify-content: center;
-  gap: 12px;
   width: 100%;
   max-width: 320px;
   padding: 12px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 8px;
-  background: #fff;
   font-family: $font-family-en;
   font-size: 1rem;
   color: #3c4043;
   cursor: pointer;
+  background: #fff;
+  border: 1px solid rgb(255 255 255 / 50%);
+  border-radius: 8px;
   transition: background 0.2s, border-color 0.2s;
+
   &:hover:not(:disabled) {
     background: $color-gray-light;
     border-color: #ccc;
   }
+
   &:disabled {
-    opacity: 0.7;
     cursor: not-allowed;
+    opacity: 0.7;
   }
 }
 
@@ -366,20 +370,21 @@ function closeMenu() {
 .menu_overlay_loading {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 12px;
+  align-items: center;
   padding: 24px 0;
+
   p {
     margin: 0;
     font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgb(255 255 255 / 90%);
   }
 }
 
 .menu_overlay_spinner {
   width: 32px;
   height: 32px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
+  border: 3px solid rgb(255 255 255 / 30%);
   border-top-color: #fff;
   border-radius: 50%;
   animation: menu-overlay-spin 0.8s linear infinite;
@@ -394,16 +399,17 @@ function closeMenu() {
 .menu_overlay_logout {
   display: block;
   padding: 12px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 999px;
-  background: transparent;
   font-family: $font-family-en;
   font-size: 1rem;
   color: #fff;
   cursor: pointer;
+  background: transparent;
+  border: 1px solid rgb(255 255 255 / 60%);
+  border-radius: 999px;
   transition: background 0.2s, border-color 0.2s;
+
   &:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgb(255 255 255 / 15%);
     border-color: #fff;
   }
 }
@@ -412,6 +418,7 @@ function closeMenu() {
 .menu-view-leave-active {
   transition: opacity 0.2s ease;
 }
+
 .menu-view-enter-from,
 .menu-view-leave-to {
   opacity: 0;

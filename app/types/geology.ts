@@ -6,17 +6,17 @@
 /**
  * 地質年代階層等級
  */
-export type GeologicalRank = 'eon' | 'era' | 'period' | 'epoch'
+export type GeologicalRank = 'eon' | 'era' | 'period' | 'epoch';
 
 /**
  * 宙 Eon (最長的地質時間單位)
  */
-export type GeologicalEon = 'phanerozoic' | 'proterozoic' | 'archean' | 'hadean'
+export type GeologicalEon = 'phanerozoic' | 'proterozoic' | 'archean' | 'hadean';
 
 /**
  * 代 Era (宙下的次級單位)
  */
-export type GeologicalEra = 'paleozoic' | 'mesozoic' | 'cenozoic' | 'neoproterozoic' | 'mesoproterozoic' | 'paleoproterozoic'
+export type GeologicalEra = 'paleozoic' | 'mesozoic' | 'cenozoic' | 'neoproterozoic' | 'mesoproterozoic' | 'paleoproterozoic';
 
 /**
  * 紀 Period (代下的次級單位)
@@ -33,7 +33,7 @@ export type GeologicalPeriod =
     | 'cretaceous'
     | 'paleogene'
     | 'neogene'
-    | 'quaternary'
+    | 'quaternary';
 
 /**
  * 世 Epoch (紀下的次級單位)
@@ -52,7 +52,7 @@ export type GeologicalEpoch =
     | 'miocene'
     | 'pliocene'
     | 'pleistocene'
-    | 'holocene'
+    | 'holocene';
 
 /**
  * 地質年代階層資訊
@@ -93,12 +93,12 @@ export const GEOLOGICAL_RANK_LABELS: Record<GeologicalRank, { zh: string; en: st
     era: { zh: '代', en: 'Era' },
     period: { zh: '紀', en: 'Period' },
     epoch: { zh: '世', en: 'Epoch' },
-}
+};
 
 /**
  * 地質年代階層順序 (從大到小)
  */
-export const GEOLOGICAL_RANK_ORDER: GeologicalRank[] = ['eon', 'era', 'period', 'epoch']
+export const GEOLOGICAL_RANK_ORDER: GeologicalRank[] = ['eon', 'era', 'period', 'epoch'];
 
 /**
  * 常見地質年代的對照表
@@ -108,7 +108,7 @@ export const GEOLOGICAL_EON_LABELS: Record<GeologicalEon, { zh: string; en: stri
     proterozoic: { zh: '元古宙', en: 'Proterozoic' },
     archean: { zh: '太古宙', en: 'Archean' },
     hadean: { zh: '冥古宙', en: 'Hadean' },
-}
+};
 
 export const GEOLOGICAL_ERA_LABELS: Record<GeologicalEra, { zh: string; en: string }> = {
     paleozoic: { zh: '古生代', en: 'Paleozoic' },
@@ -117,7 +117,7 @@ export const GEOLOGICAL_ERA_LABELS: Record<GeologicalEra, { zh: string; en: stri
     neoproterozoic: { zh: '新元古代', en: 'Neoproterozoic' },
     mesoproterozoic: { zh: '中元古代', en: 'Mesoproterozoic' },
     paleoproterozoic: { zh: '古元古代', en: 'Paleoproterozoic' },
-}
+};
 
 export const GEOLOGICAL_PERIOD_LABELS: Record<GeologicalPeriod, { zh: string; en: string }> = {
     cambrian: { zh: '寒武紀', en: 'Cambrian' },
@@ -132,5 +132,5 @@ export const GEOLOGICAL_PERIOD_LABELS: Record<GeologicalPeriod, { zh: string; en
     paleogene: { zh: '古近紀', en: 'Paleogene' },
     neogene: { zh: '新近紀', en: 'Neogene' },
     quaternary: { zh: '第四紀', en: 'Quaternary' },
-}
+};
 

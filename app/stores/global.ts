@@ -6,8 +6,8 @@
  * 已移除業務相關功能（會員、認證等）
  */
 
-import { defineStore } from 'pinia'
-import { action as actionIndex } from '../constants/store/actions'
+import { defineStore } from 'pinia';
+import { action as actionIndex } from '../constants/store/actions';
 
 /**
  * 預設狀態
@@ -32,7 +32,7 @@ const defaultState = {
     // 其他狀態
     isPageFocus: true,
     localeChanged: false,
-}
+};
 
 /**
  * 預設 Getters
@@ -42,16 +42,16 @@ const defaultGetters = {
      * 頁面載入結束 && 開場動畫結束
      */
     isPageOpenDoneAfter: (state: typeof defaultState) => {
-        return state.isPageTransitionFinished && state.isOpenTransitionFinished
+        return state.isPageTransitionFinished && state.isOpenTransitionFinished;
     },
     
     /**
      * 頁面載入進行中（開場動畫完成但過場未完成）
      */
     isPageOpenDoneInProgress: (state: typeof defaultState) => {
-        return state.isPageTransitionFinished && state.isSiteOpenAnimationDone
+        return state.isPageTransitionFinished && state.isSiteOpenAnimationDone;
     },
-}
+};
 
 /**
  * 全域狀態 Store
@@ -70,13 +70,13 @@ export const useGlobalStore = defineStore('global', {
          * 設定頁面重新整理狀態
          */
         [actionIndex.SET_PAGE_REFRESHING](value: boolean): void {
-            this.pageLoading = value
+            this.pageLoading = value;
             if (typeof window !== 'undefined') {
-                const className = 'page-refreshing' // CLASSNAME_PAGE_REFRESHING
+                const className = 'page-refreshing'; // CLASSNAME_PAGE_REFRESHING
                 if (value) {
-                    document.body.classList.add(className)
+                    document.body.classList.add(className);
                 } else {
-                    document.body.classList.remove(className)
+                    document.body.classList.remove(className);
                 }
             }
         },
@@ -85,36 +85,36 @@ export const useGlobalStore = defineStore('global', {
          * 設定頁面載入完成（過場動畫開始前）
          */
         [actionIndex.SET_PAGE_FINISHED_BEFROE_END](value: boolean): void {
-            this.isPageFinishedBeforeEnd = value
+            this.isPageFinishedBeforeEnd = value;
         },
         
         /**
          * 設定頁面過場動畫完成
          */
         [actionIndex.SET_PAGE_TRANSITION_FINISHED](value: boolean): void {
-            this.isPageTransitionFinished = value
+            this.isPageTransitionFinished = value;
         },
         
         /**
          * 設定開場動畫完成
          */
         [actionIndex.SET_SITE_OPEN_ANIMATION_DONE](value: boolean): void {
-            this.isSiteOpenAnimationDone = value
+            this.isSiteOpenAnimationDone = value;
         },
         
         /**
          * 設定開場過場動畫完成
          */
         [actionIndex.SET_OPEN_TRANSITION_FINISHED](value: boolean): void {
-            this.isOpenTransitionFinished = value
+            this.isOpenTransitionFinished = value;
         },
         
         /**
          * 設定 Locomotive Scroll 載入完成
          */
         [actionIndex.SET_LOCOMOTIVESCROLL_DONE](value: boolean): void {
-            this.isLocomotiveScrollDone = value
+            this.isLocomotiveScrollDone = value;
         },
     },
-})
+});
 

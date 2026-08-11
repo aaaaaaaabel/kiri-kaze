@@ -3,7 +3,20 @@
  * 定義 Custom Hooks 和 Plugin 方法
  */
 
-import type { RuntimeNuxtHooks } from '#app'
+/**
+ * Locomotive Scroll / Lenis 實例的最小形狀
+ * 只列出目前程式碼實際存取的欄位（duck typing，非官方型別）
+ */
+export interface LocomotiveScrollInstance {
+    start?: () => void
+    stop?: () => void
+    scrollTo?: (target: Element | string | number, options?: Record<string, unknown>) => void
+    lenisInstance?: {
+        isSmooth?: boolean
+        limit?: number
+        scroll?: number
+    }
+}
 
 /**
  * 擴展 Nuxt Runtime Hooks
@@ -49,9 +62,9 @@ declare module '#app' {
          * 取得 Locomotive Scroll 實例
          * （可選，如果專案有使用 Locomotive Scroll）
          */
-        $getWindowLoco?: (key: string) => any
+        $getWindowLoco?: (key: string) => LocomotiveScrollInstance | null
     }
 }
 
-export {}
+export {};
 

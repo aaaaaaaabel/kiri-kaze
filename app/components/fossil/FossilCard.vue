@@ -1,5 +1,5 @@
 <template>
-  <div class="fossil-card" @click="handleClick" v-if="!imageError">
+  <div v-if="!imageError" class="fossil-card" @click="handleClick">
     <div class="fossil-card__image-wrapper">
       <img
         :src="thumbnailUrl"
@@ -7,7 +7,7 @@
         class="fossil-card__image"
         @error="handleImageError"
         @load="handleImageLoad"
-      />
+      >
       <div class="fossil-card__overlay">
         <div class="fossil-card__like" @click.stop="handleFavorite">
           <Heart
@@ -150,7 +150,7 @@ const handleImageError = (event: Event) => {
 const handleImageLoad = (event: Event) => {
   if (process.env.NODE_ENV === "development") {
     const img = event.target as HTMLImageElement;
-    console.log("✅ 圖片載入成功:", img.src);
+    console.warn("✅ 圖片載入成功:", img.src);
   }
 };
 </script>
@@ -161,15 +161,17 @@ const handleImageLoad = (event: Event) => {
 
 .fossil-card {
   width: 100%;
-  cursor: pointer;
-  border-radius: 20px;
   overflow: hidden;
-  background-color: #00000000;
-  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  background-color: #0000;
+  border-radius: 20px;
+  box-shadow: 0 2px 3px rgb(0 0 0 / 30%);
   transition: all 0.3s ease-in-out;
+
   &:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 50%);
     transform: translateY(-2px);
+
     .fossil-card__overlay {
       opacity: 1;
     }
@@ -182,9 +184,9 @@ const handleImageLoad = (event: Event) => {
   }
 
   &__image {
+    display: block;
     width: 100%;
     height: auto;
-    display: block;
     object-fit: cover;
   }
 
@@ -192,17 +194,17 @@ const handleImageLoad = (event: Event) => {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.7) 100%
-    );
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    width: 100%;
+    height: 100%;
     padding: 16px;
+    background: linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0%) 0%,
+      rgb(0 0 0 / 70%) 100%
+    );
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
@@ -211,16 +213,16 @@ const handleImageLoad = (event: Event) => {
     position: absolute;
     top: 12px;
     right: 12px;
-    width: 40px;
-    height: 40px;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
+    background-color: rgb(255 255 255 / 90%);
+    border-radius: 50%;
     transition: all 0.2s ease-in-out;
-    z-index: 2;
 
     &:hover {
       background-color: #fff;
@@ -230,13 +232,13 @@ const handleImageLoad = (event: Event) => {
 
   &__like-icon {
     flex-shrink: 0;
-    stroke: rgba(0, 0, 0, 0.35);
     fill: none;
+    stroke: rgb(0 0 0 / 35%);
     transition: stroke 0.2s ease-in-out, fill 0.2s ease-in-out;
 
     &.liked {
-      stroke: $color-accent;
       fill: $color-accent;
+      stroke: $color-accent;
     }
   }
 
@@ -245,28 +247,28 @@ const handleImageLoad = (event: Event) => {
   }
 
   &__title {
+    margin: 0 0 4px;
     font-size: 1.125rem;
     font-weight: 600;
-    margin: 0 0 4px 0;
     line-height: 1.4;
     color: #fff;
   }
 
   &__period {
-    font-size: 0.875rem;
     margin: 0;
-    opacity: 0.9;
+    font-size: 0.875rem;
     line-height: 1.4;
     color: #fff;
+    opacity: 0.9;
   }
 
   &__specimen {
+    margin: 4px 0 0;
     font-size: 0.75rem;
-    margin: 4px 0 0 0;
-    opacity: 0.8;
+    font-style: italic;
     line-height: 1.4;
     color: #fff;
-    font-style: italic;
+    opacity: 0.8;
   }
 }
 </style>

@@ -14,7 +14,7 @@
               v-if="event.image"
               :src="event.image"
               :alt="event.title"
-            />
+            >
             <div v-else class="events-page__item-image-placeholder">No image</div>
           </div>
           <div class="events-page__item-content">
@@ -129,6 +129,7 @@ useHead({
 <style scoped lang="scss">
 @use "~/assets/styles/variables" as *;
 @use "~/assets/styles/mixins" as *;
+@use "sass:color";
 
 .events-page {
   min-height: 100vh;
@@ -149,19 +150,19 @@ useHead({
   }
 
   &__title {
+    margin-bottom: 60px;
     font-size: 48px;
     font-weight: 400;
-    margin-bottom: 60px;
     color: $color-primary;
 
     @include tb {
-      font-size: 36px;
       margin-bottom: 40px;
+      font-size: 36px;
     }
 
     @include sp {
-      font-size: 28px;
       margin-bottom: 30px;
+      font-size: 28px;
     }
   }
 
@@ -205,35 +206,35 @@ useHead({
     }
 
     img {
+      display: block;
       width: 100%;
       height: auto;
       object-fit: cover;
-      display: block;
     }
   }
 
   &__item-image-placeholder {
-    width: 100%;
-    aspect-ratio: 16 / 10;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #999;
+    width: 100%;
+    aspect-ratio: 16 / 10;
     font-size: 0.9rem;
+    color: #999;
   }
 
   &__item-content {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 15px;
   }
 
   &__item-title {
+    margin: 0;
     font-size: 32px;
     font-weight: 400;
     color: $color-primary;
-    margin: 0;
 
     @include tb {
       font-size: 28px;
@@ -255,30 +256,30 @@ useHead({
   }
 
   &__item-meta {
+    margin: 0;
     font-size: 14px;
     color: #666;
-    margin: 0;
   }
 
   &__item-spots {
+    margin: 0;
     font-size: 14px;
     color: $color-accent;
-    margin: 0;
   }
 
   &__item-cta {
     display: inline-block;
-    margin-top: auto;
+    align-self: flex-start;
     padding: 12px 24px;
-    background: $color-primary;
-    color: #fff;
+    margin-top: auto;
     font-size: 1rem;
+    color: #fff;
     text-decoration: none;
+    cursor: pointer;
+    background: $color-primary;
     border: none;
     border-radius: 8px;
     transition: background 0.2s, opacity 0.2s;
-    align-self: flex-start;
-    cursor: pointer;
 
     @include sp {
       align-self: center;
@@ -286,20 +287,20 @@ useHead({
     }
 
     &:hover {
-      background: darken($color-primary, 8%);
+      background: color.adjust($color-primary, $lightness: -8%);
     }
 
     &--disabled {
-      background: #ccc;
-      cursor: not-allowed;
       pointer-events: none;
+      cursor: not-allowed;
+      background: #ccc;
     }
   }
 
   &__empty {
+    margin: 0;
     font-size: 1rem;
     color: #666;
-    margin: 0;
   }
 }
 </style>

@@ -3,37 +3,37 @@
  * 參考 LRC 的型別定義方式
  */
 
-import type { Timestamp } from 'firebase/firestore'
+import type { Timestamp } from 'firebase/firestore';
 
 /**
  * 化石分類
  */
-export type FossilCategory = 'trilobite' | 'ammonite' | 'dinosaur' | 'plant' | 'fish' | 'mammal' | 'other'
+export type FossilCategory = 'trilobite' | 'ammonite' | 'echinoid' | 'crinoid' | 'dinosaur' | 'plant' | 'fish' | 'mammal' | 'other';
 
 /**
  * 地質年代 - 代
  */
-export type GeologicalEra = 'paleozoic' | 'mesozoic' | 'cenozoic' | 'precambrian'
+export type GeologicalEra = 'paleozoic' | 'mesozoic' | 'cenozoic' | 'precambrian';
 
 /**
  * 圖片類型
  */
-export type FossilImageType = 'main' | 'detail' | 'fossil' | 'reconstruction' | 'microscope' | 'diagram'
+export type FossilImageType = 'main' | 'detail' | 'fossil' | 'reconstruction' | 'microscope' | 'diagram';
 
 /**
  * 標本類型
  */
-export type SpecimenType = 'complete-skeleton' | 'partial-skeleton' | 'isolated-element' | 'trace'
+export type SpecimenType = 'complete-skeleton' | 'partial-skeleton' | 'isolated-element' | 'trace';
 
 /**
  * 標本部位類別
  */
-export type BodyPartCategory = 'skull' | 'limb' | 'vertebra' | 'rib' | 'tail' | 'tooth' | 'claw' | 'other'
+export type BodyPartCategory = 'skull' | 'limb' | 'vertebra' | 'rib' | 'tail' | 'tooth' | 'claw' | 'other';
 
 /**
  * 保存狀態
  */
-export type SpecimenCondition = 'excellent' | 'good' | 'fair' | 'poor'
+export type SpecimenCondition = 'excellent' | 'good' | 'fair' | 'poor';
 
 /**
  * 化石圖片介面

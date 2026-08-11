@@ -1,15 +1,14 @@
 /**
  * Round Button 樣式
- * 參考 kiri 的 round_button 設計
  */
 
 @use './variables' as *;
 @use './mixins' as *;
 
 .round_button {
+    display: inline-block;
     width: 200px;
     height: 50px;
-    display: inline-block;
     vertical-align: middle;
 
     @include sp {
@@ -19,12 +18,12 @@
 
     a,
     div {
+        position: relative;
+        box-sizing: border-box;
         display: block;
         width: 100%;
         height: 100%;
-        position: relative;
         border-radius: 25px;
-        box-sizing: border-box;
         @include transition(background-color, $transition-normal);
         @include transition(color, $transition-normal);
 
@@ -35,17 +34,17 @@
 
     a p,
     div p {
+        margin: 0;
         font-size: 16px;
         line-height: 48px;
         text-align: center;
         letter-spacing: 1px;
-        margin: 0;
         @include transition(color, $transition-normal);
 
         @include sp {
+            padding: 0 0 2px;
             font-size: 14px;
             line-height: 36px;
-            padding: 0 0 2px 0;
         }
     }
 }
@@ -53,15 +52,15 @@
 // 白色按鈕（白底黑字）
 .round_button_w {
     a {
-        background-color: rgba(255, 255, 255, 1);
-        border: 1px solid $color-accent;
         color: $color-accent;
+        background-color: rgb(255 255 255 / 100%);
+        border: 1px solid $color-accent;
     }
 
     @include pc {
         a:hover {
-            background-color: $color-accent;
             color: $color-secondary;
+            background-color: $color-accent;
 
             p {
                 color: $color-secondary;
@@ -73,9 +72,9 @@
 // 棕色按鈕（棕底白字）
 .round_button_b {
     a {
+        color: $color-secondary;
         background-color: $color-accent;
         border: 1px solid $color-accent;
-        color: $color-secondary;
 
         p {
             color: #fff;
@@ -84,8 +83,8 @@
 
     @include pc {
         a:hover {
-            background-color: $color-secondary;
             color: $color-accent;
+            background-color: $color-secondary;
 
             p {
                 color: $color-accent;
@@ -97,15 +96,15 @@
 // 白色按鈕（白底棕字，用於 menu）
 .round_button_bt {
     a {
+        color: $color-accent;
         background-color: $color-secondary;
         border: 1px solid $color-secondary;
-        color: $color-accent;
     }
 
     @include pc {
         a:hover {
-            background-color: $color-accent;
             color: $color-secondary;
+            background-color: $color-accent;
 
             p {
                 color: $color-secondary;

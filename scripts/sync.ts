@@ -17,8 +17,7 @@
  */
 
 import { initializeApp, cert, getApps } from "firebase-admin/app";
-import { getFirestore, Timestamp } from "firebase-admin/firestore";
-import type { DocumentReference } from "firebase-admin/firestore";
+import { getFirestore, Timestamp, type DocumentReference } from "firebase-admin/firestore";
 import { getStorage } from "firebase-admin/storage";
 import { createRequire } from "module";
 import * as fs from "fs";
@@ -98,11 +97,6 @@ interface FossilDiff {
   action: DiffAction;
   slug: string;
   reason?: string; // UPDATE 時說明哪些欄位改變
-}
-
-interface SpeciesDiff {
-  action: DiffAction;
-  slug: string;
 }
 
 // ============================================================
@@ -420,11 +414,7 @@ async function computeDiff(
   remoteSnapshot: Map<string, any>,
 ) {
   const fossilDiffs: FossilDiff[] = [];
-  const speciesDiffs: SpeciesDiff[] = [];
   const localFossilSlugs = new Set<string>();
-
-  // 建構本機端的物種 slug set（供後續使用）
-  const localSpeciesSlugs = new Set(processed.map((p) => p.speciesSlug));
 
   // 逐筆標本計算 diff
   for (const p of processed) {

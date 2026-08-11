@@ -6,24 +6,24 @@
           <template v-if="isHomePage">
             <img
               src="/images/logo.svg"
-              alt="Fossil Index"
+              alt="Lacunae"
               class="header_logo-img header_logo-img--white"
               :style="{ opacity: 1 - logoScrollProgress }"
-            />
+            >
             <img
               src="/images/logo.svg"
               alt=""
               class="header_logo-img header_logo-img--black"
               :style="{ opacity: logoScrollProgress }"
               aria-hidden="true"
-            />
+            >
           </template>
           <img
             v-else
             src="/images/logo.svg"
-            alt="Fossil Index"
+            alt="Lacunae"
             class="header_logo-img header_logo-img--default"
-          />
+          >
         </NuxtLink>
       </div>
       <!-- ClientOnly 避免 SSR 時 textPath 未套用導致「文字滿版」閃現 -->
@@ -61,9 +61,9 @@
             :class="{ 'menu_link--active': isButtonActive }"
             @click="toggleMenu"
           >
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
+            <div><span/></div>
+            <div><span/></div>
+            <div><span/></div>
           </div>
         </div>
       </div>
@@ -90,9 +90,7 @@ import Menu from "./Menu.vue";
 
 const authStore = useAuthStore();
 const {
-  isReady: authIsReady,
   isLoggedIn: authIsLoggedIn,
-  photoURL: authPhotoURL,
   displayName: authDisplayName,
 } = storeToRefs(authStore);
 
@@ -298,11 +296,11 @@ onMounted(() => {
 @use "~/assets/styles/mixins" as *;
 
 .header {
-  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: $z-index-header;
+  width: 100%;
   background: transparent; // ⭐ 確保 header 背景透明，讓混合模式生效
 
   @include tb {
@@ -315,10 +313,10 @@ onMounted(() => {
 }
 
 .header_inner {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   padding: 60px 60px 0;
 
   @include tb {
@@ -331,8 +329,8 @@ onMounted(() => {
 }
 
 .header_logo {
-  height: 30px;
   flex-shrink: 0;
+  height: 30px;
   transition: opacity 0.5s ease-in-out;
 
   @include tb {
@@ -344,11 +342,11 @@ onMounted(() => {
   }
 
   a {
+    position: relative;
+    z-index: 1;
     display: block;
     height: 70px;
-    position: relative;
     cursor: pointer;
-    z-index: 1;
 
     @include tb {
       height: 50px;
@@ -386,8 +384,8 @@ onMounted(() => {
 
 .header_right {
   display: flex;
-  align-items: center;
   gap: 24px;
+  align-items: center;
 
   @include tb {
     gap: 20px;
@@ -401,35 +399,38 @@ onMounted(() => {
 // Portfolio 圓形文字轉圈按鈕樣式（首頁預設隱藏，進入 gallery 區才 fade-in）
 .portfolio-circle-button {
   position: fixed;
-  bottom: 60px;
   right: 60px;
+  bottom: 60px;
   z-index: 100;
-  border: none;
+  display: inline-block;
+  padding: 0;
   margin: 0;
   font-family: $font-family-en;
   font-size: inherit;
-  display: inline-block;
-  opacity: 0;
+  color: inherit;
+  text-decoration: none;
   pointer-events: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  opacity: 0;
+  clip-path: circle(40% at 50% 50%);
   transition:
     opacity 0.5s ease-in-out,
     visibility 0.5s ease-in-out;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  background: none;
-  padding: 0;
-  clip-path: circle(40% at 50% 50%);
 
   &--fallback {
+    visibility: hidden;
+
     /* ClientOnly fallback：佔位避免 layout 跳動，不顯示內容 */
     width: 200px;
     height: 200px;
-    visibility: hidden;
+
     @include tb {
       width: 160px;
       height: 160px;
     }
+
     @include sp {
       width: 120px;
       height: 120px;
@@ -437,13 +438,13 @@ onMounted(() => {
   }
 
   @include tb {
-    bottom: 40px;
     right: 40px;
+    bottom: 40px;
   }
 
   @include sp {
-    bottom: 30px;
     right: 30px;
+    bottom: 30px;
   }
 
   &__textcircle {
@@ -451,8 +452,9 @@ onMounted(() => {
     display: block;
     width: 200px;
     height: 200px;
-    animation: portfolio-rotate 7s linear infinite;
     color: white;
+    animation: portfolio-rotate 7s linear infinite;
+
     @include tb {
       width: 160px;
       height: 160px;
@@ -464,12 +466,12 @@ onMounted(() => {
     }
 
     text {
-      font-size: 32px;
-      text-transform: uppercase;
-      fill: $color-primary;
-      font-weight: 400;
-      letter-spacing: 17px;
       font-family: $font-family-en;
+      font-size: 32px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 17px;
+      fill: $color-primary;
 
       @include tb {
         font-size: 26px;
@@ -505,10 +507,11 @@ onMounted(() => {
     font-family: $font-family-en;
     font-size: 36px;
     font-weight: 400;
-    color: $color-primary;
     line-height: 1;
-    user-select: none;
+    color: $color-primary;
     letter-spacing: 5px;
+    user-select: none;
+
     @include tb {
       font-size: 48px;
     }
@@ -537,9 +540,9 @@ onMounted(() => {
 }
 
 .header_button {
+  flex-shrink: 0;
   width: 50px;
   height: 50px;
-  flex-shrink: 0;
 
   @include tb {
     width: 40px;
@@ -554,27 +557,27 @@ onMounted(() => {
   .menu_link,
   a,
   button {
+    position: relative;
     display: block;
     width: 100%;
     height: 100%;
-    position: relative;
-    border-radius: 50%;
-    border: 1px solid $color-primary;
-    background-color: $color-primary;
-    cursor: pointer;
     padding: 0;
     margin: 0;
     text-decoration: none;
+    cursor: pointer;
+    background-color: $color-primary;
+    border: 1px solid $color-primary;
+    border-radius: 50%;
 
     div {
-      width: 24px;
-      height: 1px;
       position: absolute;
       top: 50%;
       left: 50%;
+      width: 24px;
+      height: 1px;
       margin-left: -12px;
-      transform: translateY(-1px);
       overflow: hidden;
+      transform: translateY(-1px);
 
       @include tb {
         width: 20px;
@@ -591,6 +594,7 @@ onMounted(() => {
         width: 100%;
         height: 100%;
         background-color: $color-secondary;
+
         @include transition(all, $transition-normal);
       }
     }
@@ -626,12 +630,12 @@ onMounted(() => {
 <!-- 抵達 footer 時 fadeout、離開 footer 時 fadein（由 Footer 設定 body.footer-in-view），桌機手機皆適用 -->
 <style lang="scss">
 body.gallery-in-view .portfolio-circle-button {
-  opacity: 1;
   pointer-events: auto;
+  opacity: 1;
 }
 
 body.footer-in-view .portfolio-circle-button {
-  opacity: 0;
   pointer-events: none;
+  opacity: 0;
 }
 </style>

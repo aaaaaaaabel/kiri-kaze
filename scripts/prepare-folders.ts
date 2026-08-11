@@ -12,17 +12,6 @@
 import * as fs from "fs";
 import * as path from "path";
 
-// 生成短碼（基於 slug hash，固定不變）
-function generateShortCode(slug: string): string {
-  let hash = 0;
-  for (let i = 0; i < slug.length; i++) {
-    const char = slug.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash = hash & hash;
-  }
-  return Math.abs(hash).toString().slice(0, 11).padStart(11, "0");
-}
-
 // 將學名轉換為 slug
 function scientificToSlug(scientific: string): string {
   return scientific
@@ -245,8 +234,9 @@ async function prepareFolders() {
           fs.rmSync(folderPath, { recursive: true, force: true });
           console.log(`✅ 已刪除: ${folder}`);
           deletedCount++;
-        } catch (error: any) {
-          console.error(`❌ 刪除失敗: ${folder} - ${error.message}`);
+        } catch (error) {
+          const message = error instanceof Error ? error.message : String(error);
+          console.error(`❌ 刪除失敗: ${folder} - ${message}`);
         }
       });
       console.log(`\n📊 已刪除: ${deletedCount} 個資料夾\n`);

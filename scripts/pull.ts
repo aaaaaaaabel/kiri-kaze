@@ -58,12 +58,6 @@ interface InputData {
 // 工具函數
 // ============================================================
 
-// 從 Firestore 路徑提取檔案名稱
-function extractFileName(storagePath: string): string {
-  const parts = storagePath.split("/");
-  return parts[parts.length - 1] || "";
-}
-
 // 從 Firestore 資料轉換為 input.json 格式
 function fossilToInputSpecimen(fossilData: any): InputSpecimen {
   const location = fossilData.specimen?.location || {};
@@ -178,9 +172,8 @@ async function pullFromFirebase() {
 
   // Phase 3：預覽變更
   console.log("📋 Phase 3：預覽變更...");
-  let existingInputData: InputData | null = null;
   if (fs.existsSync(inputPath)) {
-    existingInputData = JSON.parse(fs.readFileSync(inputPath, "utf-8"));
+    const existingInputData: InputData = JSON.parse(fs.readFileSync(inputPath, "utf-8"));
     console.log(`   → 現有 input.json 有 ${existingInputData.specimens.length} 筆標本`);
   } else {
     console.log(`   → input.json 不存在，將建立新檔案`);
@@ -327,7 +320,6 @@ async function pullFromFirebase() {
         }
       } else if (entry.isDirectory()) {
         // 檢查資料夾是否在 Firebase 中
-        const folderRelative = `images/fossils/${currentRelative}`;
         const isInFirebase = Array.from(firebaseFolders).some(folder => {
           return folder === currentRelative || 
                  folder.startsWith(currentRelative + "/") ||

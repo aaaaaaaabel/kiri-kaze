@@ -3,12 +3,12 @@
  * 參考 LRC 的型別定義方式
  */
 
-import type { Timestamp } from 'firebase/firestore'
+import type { Timestamp } from 'firebase/firestore';
 
 /**
  * 使用者角色
  */
-export type UserRole = 'user' | 'admin'
+export type UserRole = 'user' | 'admin';
 
 /**
  * 使用者偏好設定

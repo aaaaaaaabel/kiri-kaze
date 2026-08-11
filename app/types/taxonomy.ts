@@ -6,7 +6,7 @@
 /**
  * 分類學階層等級
  */
-export type TaxonomyRank = 'kingdom' | 'phylum' | 'class' | 'order' | 'family' | 'genus' | 'species'
+export type TaxonomyRank = 'kingdom' | 'phylum' | 'class' | 'order' | 'family' | 'genus' | 'species';
 
 /**
  * 分類學階層資訊
@@ -54,7 +54,7 @@ export const TAXONOMY_RANK_LABELS: Record<TaxonomyRank, { zh: string; en: string
     family: { zh: '科', en: 'Family' },
     genus: { zh: '屬', en: 'Genus' },
     species: { zh: '種', en: 'Species' },
-}
+};
 
 /**
  * 分類學階層順序 (從大到小)
@@ -67,5 +67,5 @@ export const TAXONOMY_RANK_ORDER: TaxonomyRank[] = [
     'family',
     'genus',
     'species',
-]
+];
 

@@ -20,12 +20,19 @@
  * - 目前使用原生 window.scrollTo 作為替代
  */
 
-// CSS 類別名稱常數（簡化版）
-const CLASSNAME_NUXT_LAZY_LOADED = 'nuxt-lazy-isLoaded'
-const CLASSNAME_NUXT_LAZY_IN_PROGRESS = 'nuxt-lazy-inProgress'
-const CLASSNAME_NUXT_LAZY_FAIL = 'nuxt-lazy-fail'
+import type { RouteLocationNormalized } from 'vue-router';
+import type { LocomotiveScrollInstance } from '~/types/nuxt';
 
-export default defineNuxtPlugin((nuxtApp) => {
+// CSS 類別名稱常數（簡化版）
+const CLASSNAME_NUXT_LAZY_LOADED = 'nuxt-lazy-isLoaded';
+const CLASSNAME_NUXT_LAZY_IN_PROGRESS = 'nuxt-lazy-inProgress';
+const CLASSNAME_NUXT_LAZY_FAIL = 'nuxt-lazy-fail';
+
+/** window 上以動態 key 掛載的 Locomotive Scroll 實例（外部套件塞進去的全域物件，無官方型別） */
+const getWindowLocoByKey = (key: string): LocomotiveScrollInstance | undefined =>
+    (window as unknown as Record<string, LocomotiveScrollInstance | undefined>)[key];
+
+export default defineNuxtPlugin((_nuxtApp) => {
     //#region 裝置判斷
     /**
      * 簡單的裝置判斷（不需要安裝 @nuxtjs/device）
@@ -37,16 +44,16 @@ export default defineNuxtPlugin((nuxtApp) => {
      * 並使用: const device = useDevice()
      */
     const isPc = computed(() => {
-        if (import.meta.server) return true // SSR 預設為 PC
-        if (typeof window === 'undefined') return true
+        if (import.meta.server) return true; // SSR 預設為 PC
+        if (typeof window === 'undefined') return true;
         // 使用視窗寬度判斷（768px 為分界點，可自行調整）
-        return window.innerWidth >= 768
-    })
+        return window.innerWidth >= 768;
+    });
 
     /**
      * 判斷是否為行動版
      */
-    const isMobile = computed(() => !isPc.value)
+    const isMobile = computed(() => !isPc.value);
     //#endregion
 
     //#region 路由工具函數
@@ -56,9 +63,9 @@ export default defineNuxtPlugin((nuxtApp) => {
      * @returns 處理後的路徑
      */
     const getToRealPath = (toPath: string): string => {
-        if (toPath !== '/') return toPath.replace(/\/$/, '')
-        return toPath
-    }
+        if (toPath !== '/') return toPath.replace(/\/$/, '');
+        return toPath;
+    };
 
     /**
      * 判斷兩個路由是否為相同路徑（排除 slug）
@@ -66,35 +73,35 @@ export default defineNuxtPlugin((nuxtApp) => {
      * @param from - 來源路由
      * @returns 是否為相同路徑
      */
-    const isSamePathExcludeLocale = (to: any, from: any): boolean => {
-        const slugPathKey: string = 'slug'
+    const isSamePathExcludeLocale = (to: RouteLocationNormalized, from: RouteLocationNormalized): boolean => {
+        const slugPathKey: string = 'slug';
 
-        if (!from.name || !to.name) return false
-        const fromName = from.name.split('___')[0]
-        const toName = to.name.split('___')[0]
-        let r = false
-        if (fromName === toName) r = true
+        if (!from.name || !to.name) return false;
+        const fromName = String(from.name).split('___')[0] ?? '';
+        const toName = String(to.name).split('___')[0] ?? '';
+        let r = false;
+        if (fromName === toName) r = true;
 
-        const from_params_slug = from.params[slugPathKey]
-        const to_params_slug = to.params[slugPathKey]
+        const from_params_slug = from.params[slugPathKey];
+        const to_params_slug = to.params[slugPathKey];
 
         if (typeof from_params_slug !== 'undefined' && typeof to_params_slug !== 'undefined') {
-            let from_slug_str = ''
-            let to_slug_str = ''
-            if (typeof from_params_slug === 'object') from_slug_str = from_params_slug?.join('/')
-            if (typeof to_params_slug === 'object') to_slug_str = to_params_slug?.join('/')
+            let from_slug_str = '';
+            let to_slug_str = '';
+            if (typeof from_params_slug === 'object') from_slug_str = from_params_slug?.join('/');
+            if (typeof to_params_slug === 'object') to_slug_str = to_params_slug?.join('/');
             if (typeof from_params_slug === 'string') {
-                const start = fromName.lastIndexOf(slugPathKey)
-                from_slug_str = `${fromName.substring(0, start)}${from_params_slug}`
+                const start = fromName.lastIndexOf(slugPathKey);
+                from_slug_str = `${fromName.substring(0, start)}${from_params_slug}`;
             }
             if (typeof to_params_slug === 'string') {
-                const start = toName.lastIndexOf(slugPathKey)
-                to_slug_str = `${toName.substring(0, start)}${to_params_slug}`
+                const start = toName.lastIndexOf(slugPathKey);
+                to_slug_str = `${toName.substring(0, start)}${to_params_slug}`;
             }
-            r = from_slug_str === to_slug_str
+            r = from_slug_str === to_slug_str;
         }
-        return r
-    }
+        return r;
+    };
     //#endregion
 
     //#region API 請求取消
@@ -102,7 +109,7 @@ export default defineNuxtPlugin((nuxtApp) => {
      * API 請求取消控制器
      * 用於取消正在進行的 API 請求
      */
-    let cancelRequests: AbortController[] = []
+    let cancelRequests: AbortController[] = [];
 
     const useAbort = {
         /**
@@ -110,10 +117,10 @@ export default defineNuxtPlugin((nuxtApp) => {
          * @returns AbortSignal
          */
         signal: (): AbortSignal => {
-            const controller = new AbortController()
-            const signal = controller.signal
-            cancelRequests.push(controller)
-            return signal
+            const controller = new AbortController();
+            const signal = controller.signal;
+            cancelRequests.push(controller);
+            return signal;
         },
 
         /**
@@ -122,12 +129,12 @@ export default defineNuxtPlugin((nuxtApp) => {
         abort: (): void => {
             cancelRequests.forEach((controller) => {
                 if (controller && typeof controller.abort === 'function') {
-                    controller.abort()
+                    controller.abort();
                 }
-            })
-            cancelRequests = []
+            });
+            cancelRequests = [];
         },
-    }
+    };
     //#endregion
 
     //#region 滾動相關
@@ -142,7 +149,7 @@ export default defineNuxtPlugin((nuxtApp) => {
      */
     const scrollToElement = ({ 
         key = 'locomotive-layout', 
-        params 
+        params, 
     }: {
         key?: string
         params: {
@@ -156,10 +163,10 @@ export default defineNuxtPlugin((nuxtApp) => {
         }
     }): Promise<boolean> => {
         return new Promise((resolve) => {
-            const { target, options } = params
+            const { target, options } = params;
 
             // 行動版或沒有 Locomotive Scroll 時使用原生滾動
-            if (isMobile.value || !(window as any)[key]) {
+            if (isMobile.value || !getWindowLocoByKey(key)) {
                 // 如果安裝了 gsap，可以使用以下程式碼：
                 // const duration = typeof options?.duration === 'number' ? options.duration : 0.5
                 // gsap.to(window, {
@@ -180,76 +187,75 @@ export default defineNuxtPlugin((nuxtApp) => {
                     ? document.querySelector(target) 
                     : target instanceof Element 
                         ? target 
-                        : null
+                        : null;
 
                 if (targetElement) {
-                    const offset = options?.offset ?? 0
-                    const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY
-                    const offsetPosition = elementPosition - offset
+                    const offset = options?.offset ?? 0;
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                    const offsetPosition = elementPosition - offset;
 
                     window.scrollTo({
                         top: offsetPosition,
                         behavior: options?.immediate ? 'auto' : 'smooth',
-                    })
+                    });
 
                     // 簡單的完成回調（原生滾動無法精確計算時間）
                     setTimeout(() => {
-                        options?.onComplete?.()
-                        resolve(true)
-                    }, 300)
+                        options?.onComplete?.();
+                        resolve(true);
+                    }, 300);
                 } else if (typeof target === 'number') {
                     window.scrollTo({
                         top: target,
                         behavior: options?.immediate ? 'auto' : 'smooth',
-                    })
+                    });
                     setTimeout(() => {
-                        options?.onComplete?.()
-                        resolve(true)
-                    }, 300)
+                        options?.onComplete?.();
+                        resolve(true);
+                    }, 300);
                 } else {
-                    resolve(true)
+                    resolve(true);
                 }
             } else {
                 // 使用 Locomotive Scroll
-                const winLoco = (window as any)[key]
+                const winLoco = getWindowLocoByKey(key);
                 if (winLoco) {
                     if (window.scrollY <= 0) {
-                        resolve(true)
+                        resolve(true);
                     } else {
-                        winLoco.scrollTo(target, {
+                        winLoco.scrollTo?.(target, {
                             ...options,
                             onComplete: () => {
-                                options?.onComplete?.()
-                                resolve(true)
+                                options?.onComplete?.();
+                                resolve(true);
                             },
-                        })
+                        });
                     }
                 } else {
-                    resolve(true)
+                    resolve(true);
                 }
             }
-        })
-    }
+        });
+    };
 
     /**
      * 取得 Locomotive Scroll 實例
      * @param key - Locomotive Scroll 的 key
      * @returns Locomotive Scroll 實例或 null
      */
-    const getWindowLoco = (key: string): any => {
-        if (import.meta.server || typeof window === 'undefined') return null
-        const winLoco = (window as any)[`locomotive-${key}`]
-        return winLoco || null
-    }
+    const getWindowLoco = (key: string): LocomotiveScrollInstance | null => {
+        if (import.meta.server || typeof window === 'undefined') return null;
+        return getWindowLocoByKey(`locomotive-${key}`) ?? null;
+    };
 
     /**
      * 判斷是否使用 Locomotive Scroll 平滑滾動
      * @returns 是否使用平滑滾動
      */
     const isLocoSmooth = (): boolean => {
-        const winLoco = getWindowLoco('layout')
-        return winLoco ? winLoco.lenisInstance?.isSmooth : false
-    }
+        const winLoco = getWindowLoco('layout');
+        return winLoco ? (winLoco.lenisInstance?.isSmooth ?? false) : false;
+    };
 
     /**
      * 滾動到頁面頂部
@@ -258,22 +264,20 @@ export default defineNuxtPlugin((nuxtApp) => {
      * @param _speed - 自訂滾動速度（可選）
      */
     const goTop = (_speed?: number): void => {
-        const winLoco = getWindowLoco('layout')
-        const isSmooth = isLocoSmooth()
+        const winLoco = getWindowLoco('layout');
+        const isSmooth = isLocoSmooth();
 
-        const containerRect = document.body?.getBoundingClientRect()
-        const defaultDuration = 1.2
-        let speed = 0
+        const containerRect = document.body?.getBoundingClientRect();
+        const defaultDuration = 1.2;
 
-        const bodyHeight = isSmooth ? winLoco.lenisInstance.limit : containerRect?.height || 0
-        const windowScrollY = isSmooth ? winLoco.lenisInstance.scroll : window.scrollY
+        const bodyHeight = isSmooth ? (winLoco?.lenisInstance?.limit ?? 0) : containerRect?.height || 0;
+        const windowScrollY = isSmooth ? (winLoco?.lenisInstance?.scroll ?? 0) : window.scrollY;
 
-        // 計算速度（根據滾動距離）
-        speed = (windowScrollY / bodyHeight) * defaultDuration
-        speed = Math.max(speed, 0.7) // 最小速度 0.7 秒
+        // 計算速度（根據滾動距離），最小速度 0.7 秒
+        const speed = Math.max((windowScrollY / bodyHeight) * defaultDuration, 0.7);
 
-        const finalSpeed = _speed ?? speed
-        const immediate = typeof finalSpeed !== 'undefined' && finalSpeed <= 0
+        const finalSpeed = _speed ?? speed;
+        const immediate = typeof finalSpeed !== 'undefined' && finalSpeed <= 0;
 
         scrollToElement({
             params: {
@@ -283,8 +287,8 @@ export default defineNuxtPlugin((nuxtApp) => {
                     immediate,
                 },
             },
-        })
-    }
+        });
+    };
     //#endregion
 
     //#region 圖片 Lazy Loading
@@ -302,128 +306,128 @@ export default defineNuxtPlugin((nuxtApp) => {
      * 3. 批次載入：呼叫 nuxtApp.$lazyLoadImage(15) 立即載入前 15 張
      */
     const lazyLoadImage = (immediateLoadCount: number = 0): void => {
-        if (import.meta.server) return
+        if (import.meta.server) return;
 
         enum StatusEnum {
             Success = 'success',
             Fail = 'fail',
             InProgress = 'in-progress',
         }
-        type Status = StatusEnum.Success | StatusEnum.Fail | StatusEnum.InProgress
-        const loadedClass = CLASSNAME_NUXT_LAZY_LOADED
+        type Status = StatusEnum.Success | StatusEnum.Fail | StatusEnum.InProgress;
+        const loadedClass = CLASSNAME_NUXT_LAZY_LOADED;
 
         /** First we get all the non-loaded image elements **/
-        const lazyImages = [].slice.call(document.querySelectorAll(`img[data-manual-lazy]:not(.${loadedClass})`))
-        const lazyBackgroundImages = [].slice.call(document.querySelectorAll(`[data-manual-lazy-background]:not(.${loadedClass})`))
+        const lazyImages = Array.from(document.querySelectorAll<HTMLImageElement>(`img[data-manual-lazy]:not(.${loadedClass})`));
+        const lazyBackgroundImages = Array.from(document.querySelectorAll<HTMLElement>(`[data-manual-lazy-background]:not(.${loadedClass})`));
 
-        const imgLoaded = (image: any, status: Status) => {
-            image.classList.add(loadedClass)
-            image.classList.remove(CLASSNAME_NUXT_LAZY_IN_PROGRESS)
+        const imgLoaded = (image: HTMLElement, status: Status) => {
+            image.classList.add(loadedClass);
+            image.classList.remove(CLASSNAME_NUXT_LAZY_IN_PROGRESS);
 
-            const parentDiv = image.parentNode
-            parentDiv?.classList.add(loadedClass)
+            const parentDiv = image.parentElement;
+            parentDiv?.classList.add(loadedClass);
 
             switch (status) {
                 case StatusEnum.Success:
-                    break
+                    break;
                 case StatusEnum.Fail:
-                    image.classList.add(CLASSNAME_NUXT_LAZY_FAIL)
-                    break
+                    image.classList.add(CLASSNAME_NUXT_LAZY_FAIL);
+                    break;
                 default:
-                    break
+                    break;
             }
-        }
+        };
 
         /**
          * 載入單張圖片
          */
-        const loadImage = (lazyImage: any) => {
+        const loadImage = (lazyImage: HTMLImageElement) => {
             // 如果已經載入或正在載入，跳過
-            if (lazyImage.classList.contains(loadedClass) || 
+            if (lazyImage.classList.contains(loadedClass) ||
                 lazyImage.classList.contains(CLASSNAME_NUXT_LAZY_IN_PROGRESS)) {
-                return
+                return;
             }
 
-            lazyImage.classList.add(CLASSNAME_NUXT_LAZY_IN_PROGRESS)
+            lazyImage.classList.add(CLASSNAME_NUXT_LAZY_IN_PROGRESS);
             if (lazyImage.dataset.src && lazyImage.dataset.src !== 'undefined') {
-                const img = new Image()
-                img.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
                     if (img.height <= 1) {
-                        imgLoaded(lazyImage, StatusEnum.Fail)
+                        imgLoaded(lazyImage, StatusEnum.Fail);
                     } else {
-                        lazyImage.src = lazyImage.dataset.src
-                        imgLoaded(lazyImage, StatusEnum.Success)
+                        lazyImage.src = lazyImage.dataset.src as string;
+                        imgLoaded(lazyImage, StatusEnum.Success);
                     }
-                }
+                };
                 img.onerror = () => {
-                    imgLoaded(lazyImage, StatusEnum.Fail)
-                }
-                img.src = lazyImage.dataset.src
+                    imgLoaded(lazyImage, StatusEnum.Fail);
+                };
+                img.src = lazyImage.dataset.src;
             } else {
-                imgLoaded(lazyImage, StatusEnum.Fail)
+                imgLoaded(lazyImage, StatusEnum.Fail);
             }
-        }
+        };
 
         // ⭐ 批次載入：如果指定了 immediateLoadCount，立即載入前 N 張圖片
         // 這確保初始可見的圖片會立即載入（解決 CSS Columns 佈局計算時機問題）
         if (immediateLoadCount > 0) {
-            const imagesToLoadImmediately = lazyImages.slice(0, immediateLoadCount)
+            const imagesToLoadImmediately = lazyImages.slice(0, immediateLoadCount);
             imagesToLoadImmediately.forEach(function (lazyImage) {
-                loadImage(lazyImage)
-            })
+                loadImage(lazyImage);
+            });
         }
 
         /** Then we set up a intersection observer watching over those images and whenever any of those becomes visible on the view then replace the placeholder image with actual one, remove the non-loaded class and then unobserve for that element **/
-        let lazyBackgroundImageObserver = new IntersectionObserver(function (entries, observer) {
+        const lazyBackgroundImageObserver = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                    let lazyImage = entry.target as any
-                    lazyImage.classList.add(CLASSNAME_NUXT_LAZY_IN_PROGRESS)
+                    const lazyImage = entry.target as HTMLElement;
+                    lazyImage.classList.add(CLASSNAME_NUXT_LAZY_IN_PROGRESS);
                     if (lazyImage.dataset.src && lazyImage.dataset.src !== 'undefined') {
-                        const img = new Image()
-                        img.onload = (e) => {
+                        const img = new Image();
+                        img.onload = () => {
                             if (img.height <= 1) {
-                                imgLoaded(lazyImage, StatusEnum.Fail)
+                                imgLoaded(lazyImage, StatusEnum.Fail);
                             } else {
-                                lazyImage.style.backgroundImage = `url(${lazyImage.dataset.src})`
-                                imgLoaded(lazyImage, StatusEnum.Success)
+                                lazyImage.style.backgroundImage = `url(${lazyImage.dataset.src})`;
+                                imgLoaded(lazyImage, StatusEnum.Success);
                             }
-                        }
+                        };
                         img.onerror = () => {
-                            imgLoaded(lazyImage, StatusEnum.Fail)
-                        }
-                        img.src = lazyImage.dataset.src
+                            imgLoaded(lazyImage, StatusEnum.Fail);
+                        };
+                        img.src = lazyImage.dataset.src;
                     }
-                    lazyBackgroundImageObserver.unobserve(lazyImage)
+                    lazyBackgroundImageObserver.unobserve(lazyImage);
                 }
-            })
-        })
+            });
+        });
 
-        let lazyImageObserver = new IntersectionObserver(function (entries, observer) {
+        const lazyImageObserver = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                    let lazyImage = entry.target as any
-                    lazyImageObserver.unobserve(lazyImage) // 先 unobserve，避免重複觸發
-                    loadImage(lazyImage)
+                    const lazyImage = entry.target as HTMLImageElement;
+                    lazyImageObserver.unobserve(lazyImage); // 先 unobserve，避免重複觸發
+                    loadImage(lazyImage);
                 }
-            })
-        })
+            });
+        });
 
         /** Now observe all the non-loaded images using the observer we have setup above **/
-        lazyImages.forEach(function (lazyImage: any) {
+        lazyImages.forEach(function (lazyImage) {
             // 只觀察尚未載入的圖片（排除已立即載入的）
-            if (!lazyImage.classList.contains(loadedClass) && 
+            if (!lazyImage.classList.contains(loadedClass) &&
                 !lazyImage.classList.contains(CLASSNAME_NUXT_LAZY_IN_PROGRESS)) {
-                lazyImageObserver.observe(lazyImage)
+                lazyImageObserver.observe(lazyImage);
             }
-        })
-        lazyBackgroundImages.forEach(function (lazyImage: any) {
-            if (!lazyImage.classList.contains(loadedClass) && 
+        });
+        lazyBackgroundImages.forEach(function (lazyImage) {
+            if (!lazyImage.classList.contains(loadedClass) &&
                 !lazyImage.classList.contains(CLASSNAME_NUXT_LAZY_IN_PROGRESS)) {
-                lazyBackgroundImageObserver.observe(lazyImage)
+                lazyBackgroundImageObserver.observe(lazyImage);
             }
-        })
-    }
+        });
+    };
     //#endregion
 
     //#region 通用工具函數
@@ -433,10 +437,10 @@ export default defineNuxtPlugin((nuxtApp) => {
      * @returns 是否為外部連結
      */
     const isExternalURL = (url?: string | null): boolean => {
-        if (!url) return false
-        const regex = /^(https|http):\/\/(.*)$/
-        return regex.test(url)
-    }
+        if (!url) return false;
+        const regex = /^(https|http):\/\/(.*)$/;
+        return regex.test(url);
+    };
     //#endregion
 
     return {
@@ -479,6 +483,6 @@ export default defineNuxtPlugin((nuxtApp) => {
                // const scroll = new LocomotiveScroll({ el: document.querySelector('.locomotive-layout') })
            },
        },
-   }
-})
+   };
+});
 

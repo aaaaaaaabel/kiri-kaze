@@ -23,19 +23,31 @@ interface AppTransitionOptions {
 }
 
 /**
+ * close() 回傳物件的型別：eventCallback 會回傳自己，故需要自我參照
+ */
+export interface AppTransitionCloseHandle {
+    restart: () => Promise<void>
+    play: () => Promise<void>
+    isActive: () => boolean
+    totalDuration: () => number
+    progress: () => number
+    eventCallback: (event: string, callback: () => void) => AppTransitionCloseHandle
+}
+
+/**
  * 簡化的過場動畫類別
  * 使用 CSS transition 替代 GSAP
  */
 class AppTransition {
-    private appTransitionClass = 'app-transition'
-    private activeClass = 'is-active'
-    private hideActiveClass = 'is-hide-active'
-    durationOpen = 0.6
-    durationClose = 0.6
+    private appTransitionClass = 'app-transition';
+    private activeClass = 'is-active';
+    private hideActiveClass = 'is-hide-active';
+    durationOpen = 0.6;
+    durationClose = 0.6;
 
     constructor(options?: AppTransitionOptions) {
         if (options) {
-            Object.assign(this, options)
+            Object.assign(this, options);
         }
     }
 
@@ -43,7 +55,7 @@ class AppTransition {
      * 取得動畫容器元素
      */
     private get container(): HTMLElement | null {
-        return document.querySelector(`.${this.appTransitionClass}`) as HTMLElement | null
+        return document.querySelector(`.${this.appTransitionClass}`) as HTMLElement | null;
     }
 
     /**
@@ -51,12 +63,12 @@ class AppTransition {
      * 設定 CSS 變數
      */
     public init = (): void => {
-        const el = this.container
+        const el = this.container;
         if (el) {
-            el.style.setProperty('--duration_open', `${this.durationOpen}s`)
-            el.style.setProperty('--duration_close', `${this.durationClose}s`)
+            el.style.setProperty('--duration-open', `${this.durationOpen}s`);
+            el.style.setProperty('--duration-close', `${this.durationClose}s`);
         }
-    }
+    };
 
     /**
      * 開啟過場動畫（簡化版）
@@ -70,8 +82,8 @@ class AppTransition {
         isActive: () => boolean
         totalDuration: () => number
     } => {
-        const el = this.container
-        let isActive = false
+        const el = this.container;
+        let isActive = false;
 
         return {
             /**
@@ -80,25 +92,25 @@ class AppTransition {
             restart: (): Promise<void> => {
                 return new Promise((resolve) => {
                     if (!el) {
-                        resolve()
-                        return
+                        resolve();
+                        return;
                     }
 
-                    isActive = true
-                    el.classList.add(this.activeClass)
+                    isActive = true;
+                    el.classList.add(this.activeClass);
 
                     // 使用 CSS transition 實現動畫
                     setTimeout(() => {
-                        isActive = false
-                        resolve()
-                    }, this.durationOpen * 1000)
-                })
+                        isActive = false;
+                        resolve();
+                    }, this.durationOpen * 1000);
+                });
             },
 
             /**
              * 設定動畫進度（簡化版，僅用於相容性）
              */
-            progress: (value: number): void => {
+            progress: (_value: number): void => {
                 // 簡化版不支援進度控制
                 // 如需完整功能，請安裝 gsap
             },
@@ -107,17 +119,17 @@ class AppTransition {
              * 判斷動畫是否正在執行
              */
             isActive: (): boolean => {
-                return isActive
+                return isActive;
             },
 
             /**
              * 取得動畫總時長
              */
             totalDuration: (): number => {
-                return this.durationOpen
+                return this.durationOpen;
             },
-        }
-    }
+        };
+    };
 
     /**
      * 關閉過場動畫（簡化版）
@@ -125,19 +137,12 @@ class AppTransition {
      * 
      * @returns Promise-like 物件，模擬 GSAP Timeline
      */
-    public close = (): {
-        restart: () => Promise<void>
-        play: () => Promise<void>
-        isActive: () => boolean
-        totalDuration: () => number
-        progress: () => number
-        eventCallback: (event: string, callback: () => void) => any
-    } => {
-        const el = this.container
-        const durationClose = this.durationClose // ⭐ 存儲 durationClose 用於返回物件
-        let isActive = false
-        let onUpdateCallback: (() => void) | null = null
-        let currentProgress = 0 // ⭐ 追蹤當前進度
+    public close = (): AppTransitionCloseHandle => {
+        const el = this.container;
+        const durationClose = this.durationClose; // ⭐ 存儲 durationClose 用於返回物件
+        let isActive = false;
+        let onUpdateCallback: (() => void) | null = null;
+        let currentProgress = 0; // ⭐ 追蹤當前進度
 
         /**
          * 重新開始動畫的實作
@@ -145,52 +150,42 @@ class AppTransition {
         const restartImpl = (): Promise<void> => {
             return new Promise((resolve) => {
                 if (!el) {
-                    resolve()
-                    return
+                    resolve();
+                    return;
                 }
 
-                isActive = true
-                currentProgress = 0 // ⭐ 重置進度
-                el.classList.add(this.hideActiveClass)
+                isActive = true;
+                currentProgress = 0; // ⭐ 重置進度
+                el.classList.add(this.hideActiveClass);
 
                 // 使用 CSS transition 實現動畫
-                const startTime = Date.now()
+                const startTime = Date.now();
                 const checkProgress = () => {
-                    const elapsed = (Date.now() - startTime) / 1000
-                    currentProgress = Math.min(elapsed / durationClose, 1) // ⭐ 更新進度
+                    const elapsed = (Date.now() - startTime) / 1000;
+                    currentProgress = Math.min(elapsed / durationClose, 1); // ⭐ 更新進度
 
                     // ⭐ 呼叫 onUpdate callback（模擬 GSAP 的 onUpdate）
                     if (onUpdateCallback) {
-                        onUpdateCallback()
+                        onUpdateCallback();
                     }
 
                     if (currentProgress < 1) {
-                        requestAnimationFrame(checkProgress)
+                        requestAnimationFrame(checkProgress);
                     } else {
-                        el.classList.remove(this.hideActiveClass)
-                        el.classList.remove(this.activeClass)
-                        isActive = false
-                        currentProgress = 1
-                        resolve()
+                        el.classList.remove(this.hideActiveClass);
+                        el.classList.remove(this.activeClass);
+                        isActive = false;
+                        currentProgress = 1;
+                        resolve();
                     }
-                }
+                };
 
-                requestAnimationFrame(checkProgress)
-            })
-        }
-
-        // ⭐ 定義返回類型，避免循環引用
-        type ReturnType = {
-            restart: () => Promise<void>
-            play: () => Promise<void>
-            isActive: () => boolean
-            totalDuration: () => number
-            progress: () => number
-            eventCallback: (event: string, callback: () => void) => ReturnType
-        }
+                requestAnimationFrame(checkProgress);
+            });
+        };
 
         // ⭐ 建立返回物件，用於綁定 this 上下文
-        const returnObj: ReturnType = {
+        const returnObj: AppTransitionCloseHandle = {
             /**
              * 重新開始動畫
              */
@@ -205,14 +200,14 @@ class AppTransition {
              * 判斷動畫是否正在執行
              */
             isActive: (): boolean => {
-                return isActive
+                return isActive;
             },
 
             /**
              * 取得動畫總時長
              */
             totalDuration: (): number => {
-                return durationClose
+                return durationClose;
             },
 
             /**
@@ -220,26 +215,26 @@ class AppTransition {
              * ⭐ 新增：用於在 onUpdate callback 中檢查進度
              */
             progress: (): number => {
-                return currentProgress
+                return currentProgress;
             },
 
             /**
              * 設定事件回調（用於相容 route.ts）
              * ⭐ 綁定正確的 this 上下文，讓 callback 中的 this 指向 returnObj
              */
-            eventCallback: (event: string, callback: () => void): ReturnType => {
+            eventCallback: (event: string, callback: () => void): AppTransitionCloseHandle => {
                 if (event === 'onUpdate') {
                     // ⭐ 綁定正確的 this 上下文
                     onUpdateCallback = () => {
-                        callback.call(returnObj)
-                    }
+                        callback.call(returnObj);
+                    };
                 }
-                return returnObj
+                return returnObj;
             },
-        }
+        };
 
-        return returnObj
-    }
+        return returnObj;
+    };
 }
 
 /**
@@ -249,9 +244,9 @@ class AppTransition {
  * @returns 過場動畫實例
  */
 export const useAppTransition = (options?: AppTransitionOptions) => {
-    const appTransition = new AppTransition(options)
+    const appTransition = new AppTransition(options);
     return {
         ...appTransition,
-    }
-}
+    };
+};
 

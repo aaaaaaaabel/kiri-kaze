@@ -1,6 +1,5 @@
 /**
  * 全域樣式與 Typography
- * 參考 kiri 專案的 typography 設定
  */
 
 @use './variables' as *;
@@ -8,23 +7,23 @@
 
 // 全域重置
 html {
-    -webkit-text-size-adjust: none;
-    -webkit-print-color-adjust: exact;
-    margin: 0;
-    padding: 0;
-    width: 100%;
     box-sizing: border-box;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    -webkit-print-color-adjust: exact;
+    -webkit-text-size-adjust: none;
 }
 
 body {
     width: 100%;
-    margin: 0;
     padding: 0;
-    -webkit-text-size-adjust: none;
-    text-rendering: optimizeLegibility;
+    margin: 0;
     font-family: $font-family-main;
     line-height: 1.5;
     color: $color-primary;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: none;
 }
 
 body,
@@ -44,15 +43,15 @@ h6,
 input,
 textarea,
 select {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 a {
-    text-decoration: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     color: $color-primary;
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
 
     &:focus {
         outline: 0;
@@ -60,8 +59,8 @@ a {
 }
 
 p {
-    letter-spacing: 1px;
     color: $color-primary;
+    letter-spacing: 1px;
 
     @include sp {
         letter-spacing: 0.5px;
@@ -70,28 +69,27 @@ p {
 
 img {
     width: 100%;
-    border-style: none;
+    vertical-align: bottom;
+    pointer-events: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+    border-style: none;
     -webkit-user-drag: none;
-    user-drag: none;
-    pointer-events: none;
-    vertical-align: bottom;
 }
 
 // 工具類別
-.kiri {
-    @include kiri;
+.tracking {
+    @include tracking;
 }
 
 .clear {
-    clear: both !important;
     float: none !important;
+    clear: both !important;
     width: 0 !important;
     height: 0 !important;
-    margin: 0 !important;
     padding: 0 !important;
+    margin: 0 !important;
     font-size: 0 !important;
     line-height: 0 !important;
 }

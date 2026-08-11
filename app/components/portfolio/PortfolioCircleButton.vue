@@ -11,13 +11,13 @@
             </text>
         </svg>
         <div class="portfolio-circle-button__content">
-            <img :src="imageSrc" alt="Portfolio" />
+            <img :src="imageSrc" alt="Portfolio" >
         </div>
     </NuxtLink>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from 'vue';
 
 // Props
 interface Props {
@@ -28,10 +28,10 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
     circleText: 'Portfolio · Portfolio · Portfolio · Portfolio · ',
     imageIndex: 0,
-})
+});
 
 // 圖片路徑（使用 footer 的圖片）
-const imageSrc = computed(() => `/images/case/branding/point${props.imageIndex}.svg`)
+const imageSrc = computed(() => `/images/case/branding/point${props.imageIndex}.svg`);
 </script>
 
 <style scoped lang="scss">
@@ -40,31 +40,31 @@ const imageSrc = computed(() => `/images/case/branding/point${props.imageIndex}.
 
 .portfolio-circle-button {
     position: fixed;
-    bottom: 60px;
     right: 60px;
+    bottom: 60px;
     z-index: 100;
-    border: none;
+    display: inline-block;
+    padding: 0;
     margin: 0;
     font-family: inherit;
     font-size: inherit;
-    display: inline-block;
-    transition: 0.25s ease-in-out;
+    color: inherit;
+    text-decoration: none;
     pointer-events: auto;
     cursor: pointer;
-    text-decoration: none;
-    color: inherit;
     background: none;
-    padding: 0;
+    border: none;
     clip-path: circle(40% at 50% 50%);
+    transition: 0.25s ease-in-out;
 
     @include tb {
-        bottom: 40px;
         right: 40px;
+        bottom: 40px;
     }
 
     @include sp {
-        bottom: 30px;
         right: 30px;
+        bottom: 30px;
     }
 
     &__textcircle {
@@ -86,10 +86,10 @@ const imageSrc = computed(() => `/images/case/branding/point${props.imageIndex}.
 
         text {
             font-size: 32px;
-            text-transform: uppercase;
-            fill: $color-primary;
             font-weight: 500;
+            text-transform: uppercase;
             letter-spacing: 17px;
+            fill: $color-primary;
 
             @include tb {
                 font-size: 26px;
@@ -121,11 +121,11 @@ const imageSrc = computed(() => `/images/case/branding/point${props.imageIndex}.
         }
 
         img {
+            width: 80px;
             max-width: 100%;
             height: auto;
-            vertical-align: top;
-            width: 80px;
             height: 80px;
+            vertical-align: top;
 
             @include tb {
                 width: 60px;

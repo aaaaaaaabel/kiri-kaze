@@ -7,8 +7,8 @@
       :style="youAreHereBgStyle"
     >
       <div class="you-are-here-content">
-        <p ref="youAreHereText" class="you-are-here-text kiri en0">
-          About Kiri Kaze
+        <p ref="youAreHereText" class="you-are-here-text tracking en0">
+          About Lacunae
         </p>
       </div>
     </section>
@@ -17,16 +17,16 @@
     <section ref="storiesSection" class="about-section about-section--stories">
       <div class="stories-content">
         <div class="stories-header">
-          <h2 class="stories-title kiri en0">THE STORIES</h2>
+          <h2 class="stories-title tracking en0">THE STORIES</h2>
           <div class="stories-subtitle-wrapper">
-            <div class="stories-subtitle-line"></div>
-            <p class="stories-subtitle kiri en0">
+            <div class="stories-subtitle-line"/>
+            <p class="stories-subtitle tracking en0">
               Here's what makes my heart beat.
             </p>
           </div>
         </div>
         <div v-if="storiesImage" class="stories-image">
-          <img :src="storiesImage" alt="Fossil" />
+          <img :src="storiesImage" alt="Fossil" >
         </div>
       </div>
     </section>
@@ -37,30 +37,30 @@
       class="about-section about-section--services"
     >
       <div class="services-content">
-        <h2 class="services-title kiri en0">
+        <h2 class="services-title tracking en0">
           Services / 67. they're gonna say we're right
         </h2>
         <div ref="servicesText" class="services-text">
-          <p class="kiri en0">
-            Kiri Kaze is a digital encyclopedia project dedicated to building a
+          <p class="tracking en0">
+            Lacunae is a digital encyclopedia project dedicated to building a
             structured, scalable fossil knowledge platform. Rather than
             presenting fossils as isolated images, the project focuses on data
             modeling, taxonomy systems, geological timelines, and content
             pipelines that support long-term growth.
           </p>
-          <p class="kiri en0">
+          <p class="tracking en0">
             The platform is developed with a product mindset: separating
             development, staging, and production environments; designing
             schema-first data structures; and establishing workflows for expert
             collaboration, review, and publication.
           </p>
-          <p class="kiri en0">
+          <p class="tracking en0">
             By working with experienced collectors and domain specialists,
             Fossil-Index aims to create a trustworthy reference library where
             every specimen is accompanied by provenance, stratigraphic context,
             and image credits.
           </p>
-          <p class="kiri en0">
+          <p class="tracking en0">
             This project represents an exploration of how modern web engineering
             can support scientific communication, digital archiving, and open
             education.
@@ -72,61 +72,61 @@
     <div class="marquee-bands">
       <div class="marquee-band marquee-band--1">
         <div class="marquee-band__track">
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
         </div>
       </div>
       <div class="marquee-band marquee-band--2">
         <div class="marquee-band__track">
-          <span class="marquee-band__text">KIRI KAZE KIRI KAZE</span>
-          <span class="marquee-band__text">KIRI KAZE KIRI KAZE</span>
-          <span class="marquee-band__text">KIRI KAZE KIRI KAZE</span>
-          <span class="marquee-band__text">KIRI KAZE KIRI KAZE</span>
-          <span class="marquee-band__text">KIRI KAZE KIRI KAZE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
         </div>
       </div>
       <div class="marquee-band marquee-band--3">
         <div class="marquee-band__track">
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
         </div>
       </div>
     </div>
-    <!-- Kiri Kaze Studio Section -->
+    <!-- Lacunae Studio Section -->
     <section ref="studioSection" class="about-section about-section--studio">
       <div class="studio-card">
-        <p ref="studioLead" class="studio-lead kiri en0">
-          Kiri Kaze Studio aims to transform fossil and geological records into
+        <p ref="studioLead" class="studio-lead tracking en0">
+          Lacunae Studio aims to transform fossil and geological records into
           a structured, verifiable, and sustainable digital knowledge system.
         </p>
-        <p ref="studioSubtitle" class="studio-subtitle kiri en0">
+        <p ref="studioSubtitle" class="studio-subtitle tracking en0">
           We are committed to:
         </p>
         <ul ref="studioList" class="studio-list">
-          <li class="kiri en0">
+          <li class="tracking en0">
             Building rigorous taxonomic and stratigraphic frameworks that
             support scientific clarity and comparability.
           </li>
-          <li class="kiri en0">
+          <li class="tracking en0">
             Preserving provenance, image credits, and licensing information for
             every specimen.
           </li>
-          <li class="kiri en0">
+          <li class="tracking en0">
             Collaborating with domain specialists and experienced collectors
             through review-based publication workflows.
           </li>
-          <li class="kiri en0">
+          <li class="tracking en0">
             Applying modern web engineering and product design principles to
             create a platform designed for long-term growth.
           </li>
         </ul>
-        <p ref="studioQuote" class="studio-quote kiri en0">
+        <p ref="studioQuote" class="studio-quote tracking en0">
           We believe that understanding deep time should not be limited to
           specialists. Through an open and reliable digital platform, we hope to
           make Earth's prehistoric history accessible to a wider audience.
@@ -136,7 +136,7 @@
     <section ref="heroSection" class="about-hero" :style="heroBgStyle">
       <div class="hero-content">
         <div v-if="heroImage" class="hero-image">
-          <img :src="heroImage" alt="Kiri Kaze" />
+          <img :src="heroImage" alt="Lacunae" >
         </div>
         <div class="hero-name">
           <h3>Founder</h3>
@@ -148,29 +148,29 @@
     <div class="marquee-bands">
       <div class="marquee-band marquee-band--1">
         <div class="marquee-band__track">
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
         </div>
       </div>
       <div class="marquee-band marquee-band--2">
         <div class="marquee-band__track">
-          <span class="marquee-band__text">KIRI KAZE KIRI KAZE</span>
-          <span class="marquee-band__text">KIRI KAZE KIRI KAZE</span>
-          <span class="marquee-band__text">KIRI KAZE KIRI KAZE</span>
-          <span class="marquee-band__text">KIRI KAZE KIRI KAZE</span>
-          <span class="marquee-band__text">KIRI KAZE KIRI KAZE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
         </div>
       </div>
       <div class="marquee-band marquee-band--3">
         <div class="marquee-band__track">
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
-          <span class="marquee-band__text">KAZE KIRI KAZE KIRI</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
+          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
         </div>
       </div>
     </div>
@@ -210,7 +210,7 @@ onMounted(() => {
       { ref: storiesImage, path: "/images/about/stories-fossil.jpg" },
     ];
 
-    images.forEach(({ ref, path }) => {
+    images.forEach(({ ref, path: _path }) => {
       if (ref.value) {
         const img = new Image();
         img.onerror = () => {
@@ -359,7 +359,7 @@ useHead({
     {
       name: "description",
       content:
-        "Kiri Kaze Studio - A digital encyclopedia project dedicated to building a structured, scalable fossil knowledge platform.",
+        "Lacunae Studio - A digital encyclopedia project dedicated to building a structured, scalable fossil knowledge platform.",
     },
   ],
 });
@@ -370,24 +370,24 @@ useHead({
 @use "~/assets/styles/mixins" as *;
 
 .about-page {
+  position: relative;
   width: 100%;
   min-height: 100vh;
-  background-color: $color-bg;
-  position: relative;
   overflow-x: hidden;
   font-family: $font-family-en;
+  background-color: $color-bg;
 }
 
 // ==========================================
 // Hero Section
 // ==========================================
 .about-hero {
-  width: 100%;
-  min-height: 100vh;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  min-height: 100vh;
   overflow: visible; // 改為 visible 讓圖片可以破版
 
   @include sp {
@@ -395,26 +395,26 @@ useHead({
   }
 
   &::before {
-    content: "";
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 1;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 1;
+    content: "";
+    background: rgb(0 0 0 / 80%);
   }
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  text-align: center;
-  padding: 10px 40px 10px; // 增加底部 padding 讓 hero-name 有空間
+  box-sizing: border-box;
   width: 100%;
   max-width: 1000px;
+  padding: 10px 40px; // 增加底部 padding 讓 hero-name 有空間
   margin: 0 auto;
-  box-sizing: border-box;
+  text-align: center;
 
   @include tb {
     padding: 80px 30px 160px;
@@ -426,76 +426,76 @@ useHead({
 }
 
 .hero-title {
+  margin-bottom: 30px;
+  font-family: $font-family-en;
   font-size: 16px;
   font-weight: 400;
-  font-family: $font-family-en;
   color: $color-secondary;
-  margin-bottom: 30px;
-  letter-spacing: 2px;
   text-transform: uppercase;
+  letter-spacing: 2px;
 
   @include tb {
-    font-size: 14px;
     margin-bottom: 24px;
+    font-size: 14px;
   }
 
   @include sp {
-    font-size: 12px;
     margin-bottom: 20px;
+    font-size: 12px;
   }
 }
 
 .hero-name {
-  font-size: 20px;
-  font-weight: 400;
-  font-family: $font-family-en;
-  color: $color-secondary;
-  margin: 0;
-  letter-spacing: 0.35em; // 35%
-  line-height: 1.1;
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
   z-index: 3;
-  text-align: center;
+  box-sizing: border-box;
   width: 100%;
   padding: 0 16px;
-  box-sizing: border-box;
+  margin: 0;
+  font-family: $font-family-en;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: $color-secondary;
+  text-align: center;
+  letter-spacing: 0.35em; // 35%
+  transform: translateX(-50%);
 
   h3 {
+    margin-bottom: 10px;
     font-size: 12px;
     text-decoration: line-through;
-    margin-bottom: 10px;
 
     @include sp {
-      font-size: 11px;
       margin-bottom: 6px;
+      font-size: 11px;
     }
   }
 
   @include tb {
-    font-size: 56px;
     bottom: 60px;
     padding: 0 24px;
+    font-size: 56px;
   }
 
   @include sp {
-    font-size: 32px;
     bottom: 32px;
+    font-size: 32px;
     letter-spacing: 0.2em;
   }
 }
 
 .hero-image {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  border-radius: 8px;
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
   margin-bottom: 120px;
+  overflow: hidden;
+  border-radius: 8px;
   transform: translateY(60px);
 
   @include tb {
@@ -506,15 +506,15 @@ useHead({
 
   @include sp {
     max-width: 100%;
-    border-radius: 6px;
     margin-bottom: 80px;
+    border-radius: 6px;
     transform: translateY(40px);
   }
 
   img {
+    display: block;
     width: 100%;
     height: auto;
-    display: block;
   }
 }
 
@@ -522,39 +522,39 @@ useHead({
 // Marquee - 三條黑色橫帶（稍微傾斜）
 // ==========================================
 .marquee-bands {
-  width: 100%;
-  max-width: 100vw;
   position: relative;
   z-index: 2;
-  margin: 40px 0;
-  padding-top: 50px;
-  overflow: hidden;
-  margin-top: -100px;
   box-sizing: border-box;
+  width: 100%;
+  max-width: 100vw;
+  padding-top: 50px;
+  margin: 40px 0;
+  margin-top: -100px;
+  overflow: hidden;
 
   @include tb {
-    margin: 30px 0;
     padding-top: 40px;
+    margin: 30px 0;
     margin-top: -80px;
   }
 
   @include sp {
-    margin: 20px 0;
     padding-top: 24px;
+    margin: 20px 0;
     margin-top: -48px;
   }
 }
 
 .marquee-band {
+  position: relative;
+  box-sizing: border-box;
   width: 100%;
   max-width: 100vw;
   height: 80px;
-  background-color: $color-primary;
-  overflow: hidden;
-  position: relative;
-  transform: rotate(1deg);
   margin-bottom: 12px;
-  box-sizing: border-box;
+  overflow: hidden;
+  background-color: $color-primary;
+  transform: rotate(1deg);
 
   @include tb {
     height: 70px;
@@ -598,10 +598,11 @@ useHead({
   &__track {
     display: inline-flex;
     gap: 80px;
-    will-change: transform;
-    white-space: nowrap;
-    height: 100%;
     align-items: center;
+    height: 100%;
+    white-space: nowrap;
+    animation: marquee-scroll 20s linear infinite;
+    will-change: transform;
 
     @include tb {
       gap: 60px;
@@ -610,13 +611,11 @@ useHead({
     @include sp {
       gap: 16px;
     }
-
-    animation: marquee-scroll 20s linear infinite;
   }
 
   &--2 &__track {
-    animation-direction: reverse;
     animation-duration: 22s;
+    animation-direction: reverse;
   }
 
   &--3 &__track {
@@ -625,17 +624,17 @@ useHead({
 }
 
 .marquee-band__text {
+  display: inline-block;
+  font-family: $font-family-en;
   font-size: 96px;
   font-weight: 400;
-  font-family: $font-family-en;
-  color: $color-secondary;
   line-height: 1;
-  letter-spacing: 4px;
+  color: $color-secondary;
   text-transform: uppercase;
-  display: inline-block;
-  user-select: none;
-  pointer-events: none;
+  letter-spacing: 4px;
   white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
 
   @include tb {
     font-size: 72px;
@@ -652,6 +651,7 @@ useHead({
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -661,10 +661,10 @@ useHead({
 // About Sections
 // ==========================================
 .about-section {
-  width: 100%;
-  padding: 0px 0 0 80px;
   position: relative;
   box-sizing: border-box;
+  width: 100%;
+  padding: 0 0 0 80px;
 
   @include tb {
     padding: 60px 40px;
@@ -675,8 +675,8 @@ useHead({
   }
 
   &--stories {
-    background-color: $color-bg;
     padding: 0;
+    background-color: $color-bg;
 
     @include tb {
       padding: 50px 40px;
@@ -688,8 +688,8 @@ useHead({
   }
 
   &--services {
-    background-color: $color-bg;
     padding: 60px 0;
+    background-color: $color-bg;
 
     @include tb {
       padding: 50px 40px;
@@ -701,23 +701,23 @@ useHead({
   }
 
   &--you-are-here {
-    min-height: 250px;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
+    min-height: 250px;
     padding: 80px 0;
+    overflow: hidden;
 
     &::before {
-      content: "";
       position: absolute;
       top: 0;
       left: 0;
+      z-index: 1;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.2);
-      z-index: 1;
+      content: "";
+      background: rgb(0 0 0 / 20%);
     }
 
     @include tb {
@@ -732,8 +732,8 @@ useHead({
   }
 
   &--studio {
-    background-color: $color-bg;
     padding: 60px 0;
+    background-color: $color-bg;
 
     @include tb {
       padding: 50px 40px;
@@ -749,11 +749,11 @@ useHead({
 // THE STORIES Section
 // ==========================================
 .stories-content {
+  box-sizing: border-box;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
   padding: 0 60px;
-  box-sizing: border-box;
+  margin: 0 auto;
 
   @include tb {
     padding: 0 24px;
@@ -777,31 +777,31 @@ useHead({
 }
 
 .stories-title {
-  font-size: 24px;
-  font-weight: 400;
-  font-family: $font-family-en;
-  color: $color-primary;
   margin: 0;
   margin-top: 60px;
+  font-family: $font-family-en;
+  font-size: 24px;
+  font-weight: 400;
+  color: $color-primary;
   letter-spacing: 2px;
 
   @include tb {
-    font-size: 28px;
     margin-top: 40px;
     margin-bottom: 16px;
+    font-size: 28px;
   }
 
   @include sp {
-    font-size: 22px;
     margin-top: 24px;
     margin-bottom: 12px;
+    font-size: 22px;
   }
 }
 
 .stories-subtitle-wrapper {
   display: flex;
-  align-items: center;
   gap: 20px;
+  align-items: center;
 
   @include tb {
     gap: 16px;
@@ -813,10 +813,10 @@ useHead({
 }
 
 .stories-subtitle-line {
+  flex-shrink: 0;
   width: 70%;
   height: 1px;
   background-color: $color-primary;
-  flex-shrink: 0;
 
   @include tb {
     width: 50px;
@@ -828,11 +828,11 @@ useHead({
 }
 
 .stories-subtitle {
+  margin: 0;
+  font-family: $font-family-en;
   font-size: 16px;
   font-weight: 400;
-  font-family: $font-family-en;
   color: rgba($color-primary, 0.6);
-  margin: 0;
 
   @include tb {
     font-size: 14px;
@@ -845,12 +845,10 @@ useHead({
 
 .stories-image {
   position: relative;
-
   padding: 12px;
-  border-radius: 24px;
   overflow: hidden;
-
   border: 1px solid #000;
+  border-radius: 24px;
 
   @include tb {
     border-radius: 20px;
@@ -861,9 +859,9 @@ useHead({
   }
 
   img {
+    display: block;
     width: 100%;
     height: auto;
-    display: block;
     border-radius: 22px;
 
     @include tb {
@@ -880,13 +878,13 @@ useHead({
 // Services Section
 // ==========================================
 .services-content {
+  box-sizing: border-box;
   width: 100%;
   max-width: 900px;
-  margin: 0 auto;
   padding: 0 60px;
-  letter-spacing: 3px;
+  margin: 0 auto;
   margin-bottom: 40px;
-  box-sizing: border-box;
+  letter-spacing: 3px;
 
   @include tb {
     padding: 0 24px;
@@ -900,21 +898,21 @@ useHead({
 }
 
 .services-title {
+  margin-bottom: 40px;
+  font-family: $font-family-en;
   font-size: 20px;
   font-weight: 400;
-  font-family: $font-family-en;
   color: $color-primary;
-  margin-bottom: 40px;
   text-align: center;
 
   @include tb {
-    font-size: 18px;
     margin-bottom: 32px;
+    font-size: 18px;
   }
 
   @include sp {
-    font-size: 16px;
     margin-bottom: 24px;
+    font-size: 16px;
   }
 }
 
@@ -922,24 +920,23 @@ useHead({
   letter-spacing: 3px;
 
   p {
-    letter-spacing: 3px;
-
+    margin-bottom: 24px;
+    font-family: $font-family-en;
     font-size: 16px;
     line-height: 1.2;
-    font-family: $font-family-en;
     color: $color-primary;
-    margin-bottom: 24px;
+    letter-spacing: 3px;
 
     @include tb {
+      margin-bottom: 20px;
       font-size: 15px;
       line-height: 1.7;
-      margin-bottom: 20px;
     }
 
     @include sp {
+      margin-bottom: 18px;
       font-size: 14px;
       line-height: 1.6;
-      margin-bottom: 18px;
     }
 
     &:last-child {
@@ -955,11 +952,11 @@ useHead({
 .you-are-here-content {
   position: relative;
   z-index: 2;
-  text-align: center;
-  padding: 0 40px;
   width: 100%;
   max-width: 1200px;
+  padding: 0 40px;
   margin: 0 auto;
+  text-align: center;
 
   @include tb {
     padding: 0 24px;
@@ -971,13 +968,13 @@ useHead({
 }
 
 .you-are-here-text {
+  margin: 0;
+  font-family: $font-family-en;
   font-size: 18px;
   font-weight: 300;
-  letter-spacing: 2px;
-  font-family: $font-family-en;
-  color: $color-secondary;
   line-height: 1.3;
-  margin: 0;
+  color: $color-secondary;
+  letter-spacing: 2px;
 
   @include tb {
     font-size: 42px;
@@ -992,14 +989,14 @@ useHead({
 // Studio Section
 // ==========================================
 .studio-card {
+  box-sizing: border-box;
   width: 100%;
   max-width: 900px;
-  margin: 0 auto;
   padding: 60px;
-  background-color: #1e1e1e;
+  margin: 0 auto;
   color: white;
+  background-color: #1e1e1e;
   border-radius: 8px;
-  box-sizing: border-box;
 
   @include tb {
     padding: 50px 40px;
@@ -1014,47 +1011,47 @@ useHead({
 }
 
 .studio-lead {
+  margin-bottom: 40px;
+  font-family: $font-family-en;
   font-size: 18px;
   font-weight: 400;
-  font-family: $font-family-en;
   line-height: 1.6;
-  margin-bottom: 40px;
   color: white;
 
   @include tb {
-    font-size: 16px;
     margin-bottom: 32px;
+    font-size: 16px;
   }
 
   @include sp {
-    font-size: 15px;
     margin-bottom: 24px;
+    font-size: 15px;
   }
 }
 
 .studio-subtitle {
+  margin-bottom: 24px;
+  font-family: $font-family-en;
   font-size: 16px;
   font-weight: 400;
-  font-family: $font-family-en;
-  margin-bottom: 24px;
   color: white;
 
   @include tb {
-    font-size: 15px;
     margin-bottom: 20px;
+    font-size: 15px;
   }
 
   @include sp {
-    font-size: 14px;
     margin-bottom: 16px;
+    font-size: 14px;
   }
 }
 
 .studio-list {
-  list-style: none;
   padding: 0;
-  margin: 0 0 40px 0;
+  margin: 0 0 40px;
   letter-spacing: 2px;
+  list-style: none;
 
   @include tb {
     margin-bottom: 32px;
@@ -1065,33 +1062,34 @@ useHead({
   }
 
   li {
-    font-size: 16px;
-    line-height: 1.8;
-    font-family: $font-family-en;
-    margin-bottom: 16px;
-    padding-left: 20px;
     position: relative;
-    color: white;
+    padding-left: 20px;
+    margin-bottom: 16px;
+    font-family: $font-family-en;
+    font-size: 16px;
     font-weight: normal;
+    line-height: 1.8;
+    color: white;
     letter-spacing: 2px;
+
     @include tb {
-      font-size: 15px;
       margin-bottom: 14px;
+      font-size: 15px;
     }
 
     @include sp {
-      font-size: 14px;
-      margin-bottom: 12px;
       padding-left: 18px;
+      margin-bottom: 12px;
+      font-size: 14px;
     }
 
     &::before {
-      content: "•";
       position: absolute;
       left: 0;
-      color: white;
       font-size: 18px;
       line-height: 1;
+      color: white;
+      content: "•";
     }
 
     &:last-child {
@@ -1101,13 +1099,13 @@ useHead({
 }
 
 .studio-quote {
+  margin: 0;
+  font-family: $font-family-en;
   font-size: 16px;
   font-style: italic;
-  font-family: $font-family-en;
   line-height: 1.7;
-  opacity: 0.9;
-  margin: 0;
   color: white;
+  opacity: 0.9;
 
   @include tb {
     font-size: 15px;

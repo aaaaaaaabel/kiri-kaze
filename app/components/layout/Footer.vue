@@ -8,15 +8,15 @@
             <img
               :src="`/images/case/branding/point${currentLabelIndex}.svg`"
               alt=""
-            />
+            >
           </a>
         </div>
         <div class="footer_copy">
-          <p class="kiri en0">
-            A web developer who<br class="sp_disp" />
+          <p class="tracking en0">
+            A web developer who<br class="sp_disp" >
             loves paleontology
           </p>
-          <p class="kiri en0">KIRI KAZE is the sound of a trilobite crawling</p>
+          <p class="tracking en0">LACUNAE is the sound of a trilobite crawling</p>
         </div>
       </div>
 
@@ -25,7 +25,7 @@
         <div class="footer_button">
           <div class="round_button round_button_w">
             <a href="#" class="link">
-              <p class="kiri ja0">化石修復室(籌備中)</p>
+              <p class="tracking ja0">化石修復室(籌備中)</p>
             </a>
           </div>
           <div class="round_button round_button_b">
@@ -34,14 +34,14 @@
               target="_blank"
               class="_blank"
             >
-              <p class="kiri ja0">聯絡詢問服務</p>
+              <p class="tracking ja0">聯絡詢問服務</p>
             </a>
           </div>
         </div>
         <div class="footer_company">
-          <p class="kiri en0">KIRI KAZE Studio</p>
-          <p class="kiri en0">
-            Taipei, Taiwan<br />
+          <p class="tracking en0">LACUNAE Studio</p>
+          <p class="tracking en0">
+            Taipei, Taiwan<br >
             <a href="tel:0972-022-301">Tel / 0972-022-301</a>
             <a href="mailto:mumucoco67@gmail.com"
               >Mail / mumucoco67@gmail.com</a
@@ -52,7 +52,7 @@
 
       <!-- Footer Copyright -->
       <div class="footer_copyright scroll_element" :class="scrollClass">
-        <p class="kiri en0">© {{ currentYear }} KIRI-studio Co.,Ltd.</p>
+        <p class="tracking en0">© {{ currentYear }} Lacunae Studio Co.,Ltd.</p>
       </div>
 
       <!-- Footer Disclaimer (獨立、置中) -->
@@ -159,66 +159,65 @@ onUnmounted(() => {
 }
 
 .footer_inner {
-  width: 100%;
-  min-height: 600px;
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  min-height: 600px;
 
   @include tb {
     height: auto !important;
     min-height: auto;
-    padding: 0 60px 0 60px;
+    padding: 0 60px;
   }
 
   @include sp {
-    height: auto !important;
-    min-height: auto;
-    padding: 0 30px 0 30px;
     display: flex;
     flex-direction: column;
+    height: auto !important;
+    min-height: auto;
+    padding: 0 30px;
   }
 }
 
 .footer_top {
-  width: 100%;
-  margin: -85px 0 0 0;
   position: absolute;
   top: 50%;
   left: 0;
-  transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
+  width: 100%;
+  margin: -85px 0 0;
   font-size: 0;
   line-height: 0;
   text-align: center;
+  transform: translateY(-50%);
 
   @include tb {
-    margin: 0;
     position: relative;
     top: auto;
     left: auto;
+    padding: 60px 0 0;
+    margin: 0;
     transform: none;
-    padding: 60px 0 0 0;
   }
 
   @include sp {
-    margin: 0;
     position: relative;
     top: auto;
     left: auto;
-    transform: none;
-    padding: 60px 0 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 60px 0 0;
+    margin: 0;
+    transform: none;
   }
 }
 
 .footer_label {
   display: inline-block;
-  vertical-align: middle;
   width: 150px;
   height: 150px;
+  vertical-align: middle;
 
   @include tb {
     width: 120px;
@@ -239,13 +238,13 @@ onUnmounted(() => {
     width: 100%;
     height: auto;
     overflow: hidden;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
     pointer-events: auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 }
 
-// Label scale 設定（參考 kiri）
+// Label scale 設定
 .footer_label0 a,
 .footer_label1 a,
 .footer_label2 a,
@@ -255,20 +254,20 @@ onUnmounted(() => {
 
 .footer_copy {
   display: inline-block;
+  margin: 0 0 0 40px;
   vertical-align: middle;
   text-align: left;
-  margin: 0 0 0 40px;
 
   @include tb {
+    padding: 40px 0 0;
     margin: 0;
     text-align: center;
-    padding: 40px 0 0 0;
   }
 
   @include sp {
+    padding: 30px 0 0;
     margin: 0;
     text-align: center;
-    padding: 30px 0 0 0;
   }
 
   p {
@@ -290,82 +289,81 @@ onUnmounted(() => {
   }
 
   > p:nth-child(2) {
+    margin: 20px 0 0;
     font-size: 16px;
     line-height: 16px;
-    margin: 20px 0 0 0;
 
     @include sp {
+      margin: 15px 0 0;
       font-size: 14px;
       line-height: 18px;
-      margin: 15px 0 0 0;
     }
   }
 }
 
 .footer_bottom {
-  width: 75%;
-  max-width: 1000px;
-  margin: 115px 0 0 0;
-  padding: 0 500px 0 0;
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 75%;
+  max-width: 1000px;
+  padding: 0 500px 0 0;
+  margin: 115px 0 0;
   transform: translateY(-50%) translateX(-50%);
-  -webkit-transform: translateY(-50%) translateX(-50%);
 
   @include tb {
-    width: 100%;
-    margin: 0;
-    padding: 0;
     position: relative;
     top: auto;
     left: auto;
+    width: 100%;
+    padding: 0;
+    padding: 60px 0 0;
+    margin: 0;
     transform: none;
-    padding: 60px 0 0 0;
   }
 
   @include sp {
-    width: 100%;
-    margin: 0;
-    padding: 0;
     position: relative;
     top: auto;
     left: auto;
-    transform: none;
-    padding: 40px 0 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    padding: 0;
+    padding: 40px 0 0;
+    margin: 0;
+    transform: none;
   }
 }
 
 .footer_button {
-  width: 100%;
   position: absolute;
-  bottom: 0;
   right: 0;
+  bottom: 0;
+  width: 100%;
   font-size: 0;
   line-height: 0;
   text-align: right;
 
   @include tb {
     position: relative;
-    bottom: auto;
     right: auto;
+    bottom: auto;
+    padding: 0 0 40px;
     text-align: center;
-    padding: 0 0 40px 0;
   }
 
   @include sp {
     position: relative;
-    bottom: auto;
     right: auto;
-    text-align: center;
-    padding: 0 0 30px 0;
+    bottom: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 12px;
+    align-items: center;
+    padding: 0 0 30px;
+    text-align: center;
   }
 
   .round_button {
@@ -389,10 +387,10 @@ onUnmounted(() => {
   }
 
   @include sp {
-    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 
   p {
@@ -428,41 +426,41 @@ onUnmounted(() => {
   }
 
   > p:nth-child(2) {
+    margin: 15px 0 0;
     font-size: 12px;
     line-height: 24px;
-    margin: 15px 0 0 0;
 
     @include sp {
+      margin: 12px 0 0;
       font-size: 11px;
       line-height: 20px;
-      margin: 12px 0 0 0;
     }
   }
 }
 
 .footer_copyright {
   position: absolute;
-  bottom: 60px;
   right: 60px;
+  bottom: 60px;
   text-align: right;
 
   @include tb {
     position: relative;
-    bottom: auto;
     right: auto;
+    bottom: auto;
+    padding: 40px 0 0;
     text-align: center;
-    padding: 40px 0 0 0;
   }
 
   @include sp {
     position: relative;
-    bottom: auto;
     right: auto;
-    text-align: center;
-    padding: 30px 0 0 0;
+    bottom: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 30px 0 0;
+    text-align: center;
   }
 
   p {
@@ -477,14 +475,14 @@ onUnmounted(() => {
 }
 
 .footer_disclaimer {
-  width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 24px 24px 24px;
+  justify-content: center;
+  width: 100%;
+  padding: 24px;
+  margin-top: auto;
   font-size: 11px;
   line-height: 1.4;
-  margin-top: auto;
 
   @include sp {
     padding: 20px 16px 24px;
@@ -499,44 +497,50 @@ onUnmounted(() => {
 
 // Scroll 動畫
 .scroll_on .footer_label {
-  animation: footerOn0 0.5s ease-in-out forwards;
+  animation: footer-on-0 0.5s ease-in-out forwards;
 }
 
-@keyframes footerOn0 {
+@keyframes footer-on-0 {
   0% {
     transform: scale(0.5) rotate(0);
   }
+
   100% {
     transform: scale(1) rotate(-15deg);
   }
 }
 
 .scroll_on .footer_label img {
-  animation: footerOn1 2s ease-in-out forwards;
+  animation: footer-on-1 2s ease-in-out forwards;
 }
 
-@keyframes footerOn1 {
+@keyframes footer-on-1 {
   0%,
   100% {
     transform: rotate(0);
     transform-origin: left bottom;
   }
+
   22% {
     transform: rotate(1.5deg);
     transform-origin: right bottom;
   }
+
   44% {
     transform: rotate(-1.5deg);
     transform-origin: left bottom;
   }
+
   66% {
     transform: rotate(0.75deg);
     transform-origin: right bottom;
   }
+
   77% {
     transform: rotate(-0.375deg);
     transform-origin: left bottom;
   }
+
   88% {
     transform: rotate(0.1875deg);
     transform-origin: right bottom;
@@ -544,44 +548,50 @@ onUnmounted(() => {
 }
 
 .scroll_off .footer_label {
-  animation: footerOff0 0.5s ease-in-out forwards;
+  animation: footer-off-0 0.5s ease-in-out forwards;
 }
 
-@keyframes footerOff0 {
+@keyframes footer-off-0 {
   0% {
     transform: scale(1) rotate(-15deg);
   }
+
   100% {
     transform: scale(0.5) rotate(0);
   }
 }
 
 .scroll_off .footer_label img {
-  animation: footerOff1 2s ease-in-out forwards;
+  animation: footer-off-1 2s ease-in-out forwards;
 }
 
-@keyframes footerOff1 {
+@keyframes footer-off-1 {
   0%,
   100% {
     transform: rotate(0);
     transform-origin: left bottom;
   }
+
   22% {
     transform: rotate(1.5deg);
     transform-origin: right bottom;
   }
+
   44% {
     transform: rotate(-1.5deg);
     transform-origin: left bottom;
   }
+
   66% {
     transform: rotate(0.75deg);
     transform-origin: right bottom;
   }
+
   77% {
     transform: rotate(-0.375deg);
     transform-origin: left bottom;
   }
+
   88% {
     transform: rotate(0.1875deg);
     transform-origin: right bottom;
@@ -589,26 +599,28 @@ onUnmounted(() => {
 }
 
 .scroll_on0 {
-  animation: scrollOn0 0.5s ease-in-out forwards;
+  animation: scroll-on-0 0.5s ease-in-out forwards;
 }
 
-@keyframes scrollOn0 {
+@keyframes scroll-on-0 {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
 
 .scroll_off0 {
-  animation: scrollOff0 0.5s ease-in-out forwards;
+  animation: scroll-off-0 0.5s ease-in-out forwards;
 }
 
-@keyframes scrollOff0 {
+@keyframes scroll-off-0 {
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }

@@ -2,7 +2,7 @@
  * 從 VueFire 的 Firebase App 取得設定（單一來源，避免與 runtimeConfig 重複）。
  * 僅在 client 有值；SSR 時回傳 undefined。
  */
-import { getApp } from 'firebase/app'
+import { getApp } from 'firebase/app';
 
 export interface FirebaseConfig {
   apiKey: string | undefined;
