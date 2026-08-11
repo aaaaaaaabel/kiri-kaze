@@ -1,10 +1,17 @@
 // stores/auth.ts
 import { defineStore } from "pinia";
-import type { User } from "firebase/auth";
+
+/** Local auth user shape while first-party session auth is not ready. */
+export interface AuthUser {
+  uid: string;
+  email: string | null;
+  displayName: string | null;
+  photoURL: string | null;
+}
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
-    user: null as User | null,
+    user: null as AuthUser | null,
     isReady: false, // Auth 狀態是否已初始化完成
     authModalOpen: false, // 供各頁面開啟登入 modal（例如收藏時未登入）
   }),
@@ -18,7 +25,7 @@ export const useAuthStore = defineStore("auth", {
   },
 
   actions: {
-    setUser(user: User | null) {
+    setUser(user: AuthUser | null) {
       this.user = user;
       this.isReady = true;
     },

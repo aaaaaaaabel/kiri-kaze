@@ -89,30 +89,12 @@ async function handleGoogleLogin() {
     await loginWithGoogle();
     emit("close");
   } catch (err: unknown) {
-    const e = err as { code?: string; message?: string };
-    const code = e?.code ?? "";
-    const errorMap: Record<string, string> = {
-      "auth/not-ready": "Sign-in service is not ready. Please refresh the page and try again.",
-      "auth/popup-closed-by-user": "Sign-in window was closed. Please try again.",
-      "auth/cancelled-popup-request": "Sign-in was cancelled.",
-      "auth/network-request-failed": "Network error. Please check your connection.",
-      "auth/unauthorized-domain": "This domain is not authorized for Firebase. Add it in Firebase Console > Authentication > Authorized domains (e.g. localhost).",
-      "auth/operation-not-allowed": "Google sign-in is not enabled. Enable it in Firebase Console > Build > Authentication > Sign-in method.",
-      "auth/popup-blocked": "Pop-up was blocked by your browser. Please allow pop-ups and try again.",
-      "auth/invalid-api-key": "Firebase API key is invalid. Copy the correct apiKey from Firebase Console > Project settings > General > Your apps to NUXT_PUBLIC_FIREBASE_API_KEY in .env",
-      "auth/api-key-not-valid.-please-pass-a-valid-api-key.": "Firebase API key is invalid. Copy the correct apiKey from Firebase Console > Project settings > General > Your apps to NUXT_PUBLIC_FIREBASE_API_KEY in .env",
-      "auth/configuration-not-found": "Firebase auth configuration is missing. Please check project settings.",
-      "auth/tenant-id-mismatch": "Firebase tenant configuration mismatch.",
-    };
-    const msg = errorMap[code] ?? e?.message ?? "Sign-in failed. Please try again.";
-    // 開發時在 console 印出完整錯誤；若為未知錯誤碼，訊息後附上 code 方便排查
+    const e = err as { message?: string };
+    const msg = e?.message ?? "Sign-in failed. Please try again.";
     if (import.meta.dev) {
-      console.error("[Auth] Google 登入錯誤:", code, e?.message ?? err);
-      if (!errorMap[code]) errorMessage.value = `${msg} (code: ${code || "none"})`;
-      else errorMessage.value = msg;
-    } else {
-      errorMessage.value = msg;
+      console.error("[Auth] Google 登入錯誤:", err);
     }
+    errorMessage.value = msg;
   } finally {
     loading.value = false;
   }

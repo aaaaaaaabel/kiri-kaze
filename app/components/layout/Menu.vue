@@ -166,28 +166,12 @@ async function handleGoogleLogin() {
     await loginWithGoogle();
     emit("loginSuccess");
   } catch (err: unknown) {
-    const e = err as { code?: string; message?: string };
-    const code = e?.code ?? "";
-    const errorMap: Record<string, string> = {
-      "auth/not-ready": "Sign-in service is not ready. Please refresh the page and try again.",
-      "auth/popup-closed-by-user": "Sign-in window was closed. Please try again.",
-      "auth/cancelled-popup-request": "Sign-in was cancelled.",
-      "auth/network-request-failed": "Network error. Please check your connection.",
-      "auth/unauthorized-domain": "This domain is not authorized for Firebase.",
-      "auth/operation-not-allowed": "Google sign-in is not enabled.",
-      "auth/popup-blocked": "Pop-up was blocked. Please allow pop-ups and try again.",
-      "auth/invalid-api-key": "Firebase API key is invalid.",
-      "auth/api-key-not-valid.-please-pass-a-valid-api-key.": "Firebase API key is invalid.",
-      "auth/configuration-not-found": "Firebase auth configuration is missing.",
-      "auth/tenant-id-mismatch": "Firebase tenant configuration mismatch.",
-    };
-    const msg = errorMap[code] ?? e?.message ?? "Sign-in failed. Please try again.";
-    if (import.meta.dev && !errorMap[code]) {
-      console.error("[Auth] Google 登入錯誤:", code, e?.message ?? err);
-      loginError.value = `${msg} (code: ${code || "none"})`;
-    } else {
-      loginError.value = msg;
+    const e = err as { message?: string };
+    const msg = e?.message ?? "Sign-in failed. Please try again.";
+    if (import.meta.dev) {
+      console.error("[Auth] Google 登入錯誤:", err);
     }
+    loginError.value = msg;
   } finally {
     loginLoading.value = false;
   }
