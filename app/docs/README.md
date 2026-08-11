@@ -17,7 +17,7 @@
 | [composables-reference.md](./composables-reference.md) | `app/composables/` 底下每個 composable 的用途、資料來源、對外方法 | 要在頁面/元件裡呼叫資料，不確定該用哪個 composable |
 | [branding-and-fonts.md](./branding-and-fonts.md) | Lacunae 品牌字（Bodoni Moda）怎麼設定的、之後買到正版字體要怎麼換 | 要調整字標樣式，或買到 Bodoni Poster Std 授權後要接上 |
 | [scripts-reference.md](./scripts-reference.md) | `scripts/`、`data/` 底下每個維護腳本的用途與指令 | 要新增化石標本、重新產生 mock 資料、同步舊版 Firebase 工具 |
-| [handoff.md](./handoff.md) | 給下一個接手 session 看的現況跟未完成事項（資料夾改名、安全掃描發現的問題、下一步方向） | 接手這個專案、想知道上次做到哪、還欠什麼 |
+| [handoff.md](./handoff.md) | 給下一個接手 session 看的現況跟未完成事項（安全掃描還沒確認的 7 個問題、下一步方向） | 接手這個專案、想知道上次做到哪、還欠什麼 |
 
 ## 快速上手
 
