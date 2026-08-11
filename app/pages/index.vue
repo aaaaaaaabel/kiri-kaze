@@ -62,7 +62,7 @@ const { y: scrollY } = useWindowScroll();
 const BLACK_TO_WHITE_THRESHOLD = 200;
 
 const heroQuoteParentBg = computed(() => {
-  if (import.meta.server) return "rgb(10, 10, 10)";
+  if (import.meta.server) return "rgb(10,10,10)";
   const y = scrollY.value ?? 0;
   const p = Math.min(1, Math.max(0, y / BLACK_TO_WHITE_THRESHOLD));
   const r = Math.round(10 + (255 - 10) * p);

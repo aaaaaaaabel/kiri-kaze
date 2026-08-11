@@ -235,15 +235,25 @@ onMounted(() => {
         font-size: 12px;
         line-height: 12px;
         color: $color-primary;
+        text-shadow:
+            -1px -1px 0 rgb(255 255 255 / 90%),
+            1px -1px 0 rgb(255 255 255 / 90%),
+            -1px 1px 0 rgb(255 255 255 / 90%),
+            1px 1px 0 rgb(255 255 255 / 90%);
 
         @include transition(color, 0.25s);
         @include transition(transform, 0.25s);
     }
 }
 
-// grid_image 模式的數字顏色
+// grid_image 模式的數字顏色（淺色縮圖背景下也要可讀，改用深色描邊）
 .grid_image .grid_number p {
     color: rgb(255 255 255 / 100%);
+    text-shadow:
+        -1px -1px 0 rgb(0 0 0 / 90%),
+        1px -1px 0 rgb(0 0 0 / 90%),
+        -1px 1px 0 rgb(0 0 0 / 90%),
+        1px 1px 0 rgb(0 0 0 / 90%);
 }
 
 // Grid number span 尺寸根據 grid_list class
@@ -370,6 +380,11 @@ onMounted(() => {
 
     .grid_list_on .grid_number p {
         color: rgb(255 255 255 / 100%);
+        text-shadow:
+            -1px -1px 0 rgb(0 0 0 / 90%),
+            1px -1px 0 rgb(0 0 0 / 90%),
+            -1px 1px 0 rgb(0 0 0 / 90%),
+            1px 1px 0 rgb(0 0 0 / 90%);
         transform: rotate(-15deg);
     }
 
@@ -404,6 +419,11 @@ onMounted(() => {
     .grid_list4.grid_list_on .grid_number p,
     .grid_list5.grid_list_on .grid_number p {
         color: rgb(0 0 0 / 100%);
+        text-shadow:
+            -1px -1px 0 rgb(255 255 255 / 90%),
+            1px -1px 0 rgb(255 255 255 / 90%),
+            -1px 1px 0 rgb(255 255 255 / 90%),
+            1px 1px 0 rgb(255 255 255 / 90%);
     }
 
     .grid_list4.grid_list_on .grid_img > div > div {
