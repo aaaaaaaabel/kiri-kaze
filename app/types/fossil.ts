@@ -3,8 +3,6 @@
  * 參考 LRC 的型別定義方式
  */
 
-import type { Timestamp } from 'firebase/firestore';
-
 /**
  * 化石分類
  */
@@ -39,7 +37,7 @@ export type SpecimenCondition = 'excellent' | 'good' | 'fair' | 'poor';
  * 化石圖片介面
  */
 export interface IFossilImage {
-  /** Firebase Storage 相對路徑 */
+  /** 媒體相對路徑或 URL */
   url: string
   /** 圖片寬度 (px) - 瀑布流佈局需要 */
   width: number
@@ -110,7 +108,7 @@ export interface IFossilName {
  * 代表一個生物物種，包含多個標本
  */
 export interface ISpecies {
-  /** Firestore 自動生成的 ID */
+  /** Document ID */
     id: string
   /** URL 友善的唯一識別碼 */
   slug: string
@@ -149,8 +147,8 @@ export interface ISpecies {
   category: FossilCategory
 
   /** 時間戳記 */
-  createdAt: Timestamp | Date
-  updatedAt: Timestamp | Date
+  createdAt: Date | string
+  updatedAt: Date | string
 }
 
 /**
@@ -158,7 +156,7 @@ export interface ISpecies {
  * 代表一個具體的化石標本，屬於某個物種
  */
 export interface IFossil {
-  /** Firestore 自動生成的 ID */
+  /** Document ID */
   id: string
   /** URL 友善的唯一識別碼 */
   slug: string
@@ -253,8 +251,8 @@ export interface IFossil {
   featured: boolean
 
   /** 時間戳記 */
-  createdAt: Timestamp | Date
-  updatedAt: Timestamp | Date
+  createdAt: Date | string
+  updatedAt: Date | string
 }
 
 /**

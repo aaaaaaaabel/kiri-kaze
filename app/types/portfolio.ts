@@ -4,7 +4,6 @@
  */
 
 import type { IProjectImage } from './image';
-import type { Timestamp } from 'firebase/firestore';
 
 /**
  * 專案分類型別
@@ -32,7 +31,7 @@ export interface ITechnology {
  * 作品集專案主介面
  */
 export interface IProject {
-    /** Firebase Document ID */
+    /** Document ID */
     id: string
 
     /** URL 友善的 ID (如 'lrc-member-system') */
@@ -93,10 +92,10 @@ export interface IProject {
     isPublic?: boolean
 
     /** 建立時間 */
-    createdAt: Date | string | Timestamp
+    createdAt: Date | string
 
     /** 更新時間 */
-    updatedAt: Date | string | Timestamp
+    updatedAt: Date | string
 }
 
 /**
