@@ -165,13 +165,19 @@ curl http://localhost:3000/cdn/images/fossils/crotalocephalus-gibba/morocco-alni
 
 ### `POST /api/_dev/seed`
 
-清空並重新從 `data/mock/*.json` 灌資料（species、fossils、projects、events），見 [database.md](./database.md#重新灌入-mock-資料seed)。**這個端點沒有身分驗證，正式環境不應該讓外部存取。**
+清空並重新從 `data/mock/*.json` 灌資料（species、fossils、projects、events），見 [database.md](./database.md#重新灌入-mock-資料seed)。**僅本機 `npm run dev` 可用**（`assertDevOnly()` / `import.meta.dev`）；正式環境回 404。
+
+```bash
+npm run dev
+curl -X POST http://localhost:3000/api/_dev/seed
+```
 
 ### `POST /api/_dev/migrate-images` {#dev-migrate-images}
 
-一次性把 `public/images/fossils/`、`public/images/case/` 底下的圖片上傳進 blob 儲存，並更新資料庫裡對應的路徑欄位（`thumbnail`/`cover`/`images[].url`/`representativeImage`），詳見 [images-and-blob.md](./images-and-blob.md)。可重複執行，已經是新路徑的欄位不會重複處理。**同樣沒有身分驗證，正式環境不應該讓外部存取。**
+一次性把 `public/images/fossils/`、`public/images/case/` 底下的圖片上傳進 blob 儲存，並更新資料庫裡對應的路徑欄位（`thumbnail`/`cover`/`images[].url`/`representativeImage`），詳見 [images-and-blob.md](./images-and-blob.md)。可重複執行，已經是新路徑的欄位不會重複處理。**同樣僅本機 `npm run dev` 可用**；正式環境回 404。
 
 ```bash
+npm run dev
 curl -X POST http://localhost:3000/api/_dev/migrate-images
 # { "filesUploaded": 200, "updatedFossils": 31, "updatedSpecies": 0, "updatedProjects": 15, "updatedEvents": 0 }
 ```

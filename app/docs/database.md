@@ -72,7 +72,7 @@
 
 ## 重新灌入 mock 資料（seed）
 
-`server/api/_dev/seed.post.ts` 會清空 `fossils`、`species`、`bookings`、`events`、`projects` 五張表，重新從 `data/mock/*.json` 灌入。**這是開發用端點，正式環境不會用到，也沒有做任何權限保護，不要把 `_dev/` 部署到正式環境會被外部呼叫的地方。**
+`server/api/_dev/seed.post.ts` 會清空 `fossils`、`species`、`bookings`、`events`、`projects` 五張表，重新從 `data/mock/*.json` 灌入。這是開發用端點：handler 開頭會呼叫 `assertDevOnly()`（依 Nuxt/Nitro 的 `import.meta.dev` 判斷），**只有 `npm run dev` 時可用**；正式環境（含 production build / preview）會直接回 **404**，不會執行清空或灌入。
 
 ```bash
 npm run dev

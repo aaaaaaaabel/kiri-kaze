@@ -16,11 +16,11 @@
 
 ## 還沒做完，需要接手的事
 
-### 1. 上次的自動安全掃描發現 9 個問題，還有 7 個沒確認
+### 1. 上次的自動安全掃描發現 9 個問題，還有 6 個沒確認
 
 Commit `479f722` 之後跑的背景安全掃描回報 9 個問題，摘要只列出前 3 個 + 「+6 more」，完整清單沒有留存，**下一個 session 需要重新跑一次安全掃描或找到完整報告**。已經手動確認的部分：
 
-- **`server/api/_dev/seed.post.ts` 缺身分驗證**：這是已知、文件裡記錄過的風險（見 [database.md](./database.md#重新灌入-mock-資料seed)），`_dev/*` 端點本來就設計成「本機開發用、正式環境不該對外」，不是這次遷移新增的問題，但目前**沒有任何機制阻止正式環境誤外露這個路徑**，如果部署設定沒有特別排除 `/api/_dev/*`，這是真的風險。**還沒修。**
+- **`server/api/_dev/*` 缺保護**：已修——`seed.post.ts` / `migrate-images.post.ts` 開頭呼叫 `assertDevOnly()`（`server/utils/assert-dev-only.ts`，依 `import.meta.dev`），正式環境回 404；本機仍用 `npm run dev` + `curl -X POST ...`。見 [database.md](./database.md#重新灌入-mock-資料seed)、[api-reference.md](./api-reference.md)。
 - **`fossils`/`projects` 單筆查詢端點的 broken-access-control**：已確認是真的問題（不是掃描誤報），**已修好並 commit（`670ca94`）**。受影響的 5 個 route（`fossils/[id].get.ts`、`fossils/slug/[slug].get.ts`、`fossils/code/[code].get.ts`、`projects/[id].get.ts`、`projects/slug/[slug].get.ts`）查出資料後都補上 `if (!row || !row.isPublic) throw 404`，效果等同列表端點的 `publicOnly` 篩選。`npm run typecheck`、`npm run lint:script` 都過。
   - `species/[slug].get.ts`、`species/code/[code].get.ts` **不需要修**：確認 `server/db/schema.ts` 的 `species` 資料表根本沒有 `isPublic` 欄位（只有 `fossils`/`projects` 有），也沒有 `species/index.get.ts` 這種列表端點會做 `publicOnly` 篩選——物種本身是分類參考資料，設計上就是全部公開，「私有」的概念只存在於個別標本（fossil）跟作品集專案上。`species/code/[code].get.ts` 會先查一筆 `fossil`（不論其 `isPublic`）取得 `speciesId` 再查物種，但回傳的只有物種資料，不含該標本任何欄位，頂多洩漏「這個 shortCode 存在且對應到某物種」，跟其他端點洩漏完整私有物件內容不是同一等級的問題，這次先不動。
 - 其餘 6 個問題內容未知，需要重新掃描或詢問使用者是否還留著原始報告。
