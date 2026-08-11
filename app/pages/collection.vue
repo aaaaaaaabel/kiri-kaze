@@ -11,19 +11,24 @@
           >
         </div>
 
-        <FossilGrid
-        :fossils="fossilList"
-        :loading="loading"
-        :loading-more="false"
-        :has-more="false"
-        loading-message="載入收藏中..."
-        @fossil-click="handleFossilClick"
-      >
-        <template #empty>
-          <p>尚未收藏任何化石</p>
-          <NuxtLink to="/" class="collection-page__link">前往圖鑑</NuxtLink>
-        </template>
-      </FossilGrid>
+        <ClientOnly>
+          <FossilGrid
+            :fossils="fossilList"
+            :loading="loading"
+            :loading-more="false"
+            :has-more="false"
+            loading-message="載入收藏中..."
+            @fossil-click="handleFossilClick"
+          >
+            <template #empty>
+              <p>尚未收藏任何化石</p>
+              <NuxtLink to="/" class="collection-page__link">前往圖鑑</NuxtLink>
+            </template>
+          </FossilGrid>
+          <template #fallback>
+            <p class="collection-page__hydrating">載入收藏中...</p>
+          </template>
+        </ClientOnly>
       </div>
     </div>
   </div>
@@ -181,6 +186,13 @@ useGalleryInView(galleryRef);
 }
 
 /* 與 FossilGrid 內 .fossil-grid__empty 一致，僅自訂內容樣式 */
+.collection-page__hydrating {
+  padding: 40px 20px;
+  font-size: 0.95rem;
+  color: #666;
+  text-align: center;
+}
+
 .collection-page__link {
   display: inline-block;
   padding: 10px 20px;

@@ -25,7 +25,7 @@
 2. ~~Menu 關閉 timeout 殘留導致打開後閃退~~ → **已修**
 3. ~~`menu_stop` 長時間吞點~~ → **已縮短／關閉可強制**
 4. 首頁 scroll 節奏（hero 空轉、無限載入延遲）→ 未修
-5. ~~`/events` capacity~~ → **已修**；`/collection` hydration → 未修
+5. ~~`/events` capacity~~ → **已修**；~~`/collection` hydration~~ → **已修**
 
 ---
 
@@ -77,11 +77,16 @@
 - 原因：`registeredCount >= capacity` 在 `capacity: 0` 時永遠為真；mock／schema 預設也是 0
 - 修法：mock／產生腳本／schema 預設改為 20；`capacity <= 0` 不擋報名；登入停用時直接開表單並允許 guest（`uid: null`）
 
-### F2. `/collection` hydration mismatch（Medium）
+### F2. `/collection` hydration mismatch（Medium）— Fixed
 
-- localStorage 有收藏時 SSR／client 不一致
+- 原因：SSR 收藏為空、client 從 localStorage 讀出，導致 grid 內容不一致
+- 修法：`FossilGrid` 包在 `<ClientOnly>`，fallback 顯示載入文案，避免 hydration mismatch
 
 ---
+
+## 功能／資料問題（未修）
+
+（目前無）
 
 ## 已確認正常的流程
 
@@ -103,6 +108,6 @@
 - [x] Menu 連點不再被 1–2 秒靜默忽略
 - [ ] 首頁捲動節奏可接受
 - [x] `/events` 可走報名 UI（或明確關閉）
-- [ ] `/collection` 無 hydration mismatch
+- [x] `/collection` 無 hydration mismatch
 
 以上未勾項都完成後，刪除本檔並從 [README.md](./README.md) 移除連結。
