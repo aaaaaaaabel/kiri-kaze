@@ -1,9 +1,8 @@
 /**
  * 收藏化石 Composable（singleton）
  * - 全站共用同一份 favorites 狀態，collection 與 FossilCard 同步
- * - 未登入：收藏存在 localStorage (key: fossil_favorites)
- * - 登入後：收藏存在 Firestore users/{uid}/favorites
- * - 登入瞬間：mergeFavorites() 合併 localStorage → Firestore，去重後清空 localStorage
+ * - 目前一律存在 localStorage（key: fossil_favorites）
+ * - mergeFavorites() 保留空實作，等第一方登入 session 接上後再接雲端合併
  */
 
 const STORAGE_KEY = "fossil_favorites";
@@ -44,35 +43,9 @@ export function useFavorites() {
     };
   }
 
-  const { public: { isMockDataEnabled } } = useRuntimeConfig();
-  // mock 模式：Firebase Auth 連不上，忽略任何殘留的舊登入狀態，一律走 localStorage
-  const user = isMockDataEnabled ? ref<{ uid: string } | null>(null) : useCurrentUser();
-  const db = useFirestore();
-
-  // 只初始化一次：watch user.uid，登入/登出時切換資料來源
   if (!initialized) {
     initialized = true;
-    async function fetchFirestoreFavorites(): Promise<string[]> {
-      const uid = user.value?.uid;
-      if (!uid || !db) return [];
-      const { doc, getDoc } = await import("firebase/firestore");
-      const userRef = doc(db, "users", uid);
-      const snap = await getDoc(userRef);
-      const data = snap.data();
-      const list = data?.favorites;
-      return Array.isArray(list) ? list.filter((x): x is string => typeof x === "string") : [];
-    }
-    watch(
-      () => user.value?.uid,
-      async (uid) => {
-        if (uid) {
-          favorites.value = await fetchFirestoreFavorites();
-        } else {
-          favorites.value = loadFromLocalStorage();
-        }
-      },
-      { immediate: true },
-    );
+    favorites.value = loadFromLocalStorage();
   }
 
   function isFavorited(fossilId: string): boolean {
@@ -80,68 +53,24 @@ export function useFavorites() {
   }
 
   /**
-   * 切換收藏狀態。
-   * 未登入：寫入 localStorage 並更新 favorites，回傳 false（可讓父層開登入 modal）。
-   * 登入：寫入 Firestore，回傳 true。
+   * 切換收藏狀態，寫入 localStorage。
+   * 回傳 false（登入未就緒時可讓父層開登入 modal；目前登入停用，行為維持相容）。
    */
   async function toggleFavorite(fossilId: string): Promise<boolean> {
-    const uid = user.value?.uid;
-    if (!fossilId?.trim()) return !!uid;
+    if (!fossilId?.trim()) return false;
 
-    if (!uid) {
-      const current = loadFromLocalStorage();
-      const set = new Set(current);
-      if (set.has(fossilId)) set.delete(fossilId);
-      else set.add(fossilId);
-      const next = Array.from(set);
-      saveToLocalStorage(next);
-      favorites.value = next;
-      return false;
-    }
-
-    if (!db) return true;
-    const { doc, updateDoc, arrayUnion, arrayRemove } = await import("firebase/firestore");
-    const userRef = doc(db, "users", uid);
-    const isCurrently = favorites.value.includes(fossilId);
-    try {
-      if (isCurrently) {
-        await updateDoc(userRef, { favorites: arrayRemove(fossilId) });
-        favorites.value = favorites.value.filter((id) => id !== fossilId);
-      } else {
-        await updateDoc(userRef, { favorites: arrayUnion(fossilId) });
-        favorites.value = [...favorites.value, fossilId];
-      }
-      return true;
-    } catch (e) {
-      if (import.meta.dev) console.error("[useFavorites] toggleFavorite Firestore error", e);
-      return true;
-    }
+    const current = loadFromLocalStorage();
+    const set = new Set(current);
+    if (set.has(fossilId)) set.delete(fossilId);
+    else set.add(fossilId);
+    const next = Array.from(set);
+    saveToLocalStorage(next);
+    favorites.value = next;
+    return false;
   }
 
-  /**
-   * 登入後呼叫：把 localStorage 的收藏合併進 Firestore，去重後清空 localStorage。
-   */
-  async function mergeFavorites(): Promise<void> {
-    const uid = user.value?.uid;
-    if (!uid || !db) return;
-
-    const localIds = loadFromLocalStorage();
-    const { doc, getDoc, updateDoc } = await import("firebase/firestore");
-    const userRef = doc(db, "users", uid);
-    const snap = await getDoc(userRef);
-    const existing: string[] = Array.isArray(snap.data()?.favorites)
-      ? snap.data()!.favorites.filter((x: unknown): x is string => typeof x === "string")
-      : [];
-
-    const merged = Array.from(new Set<string>([...existing, ...localIds]));
-    await updateDoc(userRef, { favorites: merged });
-    favorites.value = merged;
-    try {
-      localStorage.removeItem(STORAGE_KEY);
-    } catch {
-      // ignore
-    }
-  }
+  /** Placeholder until first-party auth can sync favorites to the server. */
+  async function mergeFavorites(): Promise<void> {}
 
   return {
     favorites: readonly(favorites),
