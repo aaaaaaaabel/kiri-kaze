@@ -1,6 +1,6 @@
 /**
- * 化石標本命名邏輯（從 scripts/sync.ts / scripts/prepare-folders.ts 移植）
- * 僅供 scripts/generate-mock-data.ts 使用，不影響既有的 Firebase 同步腳本。
+ * 化石標本命名邏輯
+ * 僅供 scripts/generate-mock-data.ts 使用，集中 slug / shortCode 產生規則。
  */
 
 /** 學名轉 slug，例如 "Barrandeops sp." → "barrandeops-sp" */
@@ -40,7 +40,7 @@ export function buildLocationId(country: string, state: string): string {
   return `${countryToCode(country)}-${stateToCode(state)}`;
 }
 
-/** 11 位數 shortCode（基於 slug 的固定 hash，與 sync.ts 完全一致） */
+/** 11 位數 shortCode（基於 slug 的固定 hash） */
 export function generateShortCode(slug: string): string {
   let hash = 0;
   for (let i = 0; i < slug.length; i++) {
@@ -68,8 +68,8 @@ export interface INamingResult {
 
 /**
  * 對一批標本計算 speciesSlug / locationId / 標本編號 / fossilSlug / shortCode。
- * 與 scripts/sync.ts 的兩階段演算法一致：先算出每個物種的產區集合大小（決定 slug 格式），
- * 再依 input.json 出現順序、以「物種+產區」分組計算標本編號。
+ * 先算出每個物種的產區集合大小（決定 slug 格式），再依 input.json 出現順序、
+ * 以「物種+產區」分組計算標本編號。
  * @param inputs 標本清單（依 input.json 原始順序）
  * @returns 與 inputs 一一對應的命名結果陣列
  */

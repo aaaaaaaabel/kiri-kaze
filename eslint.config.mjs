@@ -76,10 +76,4 @@ export default withNuxt(
     files: ["scripts/**/*.ts"],
     rules: { "no-console": "off" },
   },
-  {
-    // pull.ts / sync.ts / sync-event-counts.ts 是已停用的 Firebase 同步工具。
-    // Firebase 專案本身已經連不上，這些檔案不會被日常流程呼叫，也不再依賴 firebase-admin。
-    // 之後若要重新啟用歷史同步，需另裝 firebase-admin 並補型別。
-    ignores: ["scripts/pull.ts", "scripts/sync.ts", "scripts/sync-event-counts.ts"],
-  },
 );

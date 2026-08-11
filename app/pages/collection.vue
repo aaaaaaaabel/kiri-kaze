@@ -46,7 +46,7 @@ useHead({
 
 const { favorites } = useFavorites();
 const { fetchFossilById } = useFossils();
-const { toStorageUrl } = useStorage();
+const { toMediaUrl } = useMedia();
 
 const fossilList = ref<IFossil[]>([]);
 const loading = ref(true);
@@ -57,14 +57,14 @@ function toDisplayFossil(raw: IFossil): IFossil {
     thumb?.startsWith("http") || thumb?.startsWith("/")
       ? thumb
       : thumb
-        ? toStorageUrl(thumb)
+        ? toMediaUrl(thumb)
         : "";
   const images = raw.images?.map((img) => ({
     ...img,
     url:
       img.url?.startsWith("http") || img.url?.startsWith("/")
         ? img.url
-        : toStorageUrl(img.url || ""),
+        : toMediaUrl(img.url || ""),
   }));
   return {
     ...raw,

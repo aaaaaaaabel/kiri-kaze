@@ -1,7 +1,7 @@
 /**
  * 產生本機 mock 資料（species / fossils / projects / events）
- * 用途：Firebase（Firestore + Storage）目前整個連不上，暫時用本機 public/images
- * 底下已存在的圖片 + data/input.json 現有欄位，組出可以直接餵給前端的 JSON。
+ * 用途：用本機 public/images 底下已存在的圖片 + data/input.json 現有欄位，
+ * 組出可以直接餵給 seed 流程的 JSON。
  *
  * 使用方式：
  *   npx tsx scripts/generate-mock-data.ts
@@ -36,7 +36,7 @@ const MOCK_DIR = path.join(ROOT, "data", "mock");
 let sizeOf: (buffer: Buffer) => { width?: number; height?: number };
 
 // ============================================================
-// input.json 型別（與 scripts/sync.ts 對齊）
+// input.json 型別
 // ============================================================
 
 interface IInputSpecimen {

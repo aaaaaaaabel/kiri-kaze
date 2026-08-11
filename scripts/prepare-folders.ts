@@ -55,7 +55,7 @@ async function prepareFolders() {
   const inputData = JSON.parse(fs.readFileSync(inputPath, "utf-8"));
 
   console.log("🚀 開始建立圖片資料夾...\n");
-  console.log("📝 只參照本機端 input.json 資料，不查詢 Firestore\n");
+  console.log("📝 只參照本機端 input.json 資料，不查詢資料庫\n");
 
   // 確保 fossils 資料夾存在
   if (!fs.existsSync(fossilsDir)) {
@@ -153,7 +153,7 @@ async function prepareFolders() {
     }
   }
 
-  // 只基於 input.json 的資料夾，不查詢 Firestore
+  // 只基於 input.json 的資料夾，不查詢資料庫
   const allRequiredFolders = requiredFolders;
 
   console.log(
@@ -253,7 +253,7 @@ async function prepareFolders() {
         "   ⚠️  注意：--clean 會直接刪除這些資料夾，請確認後再執行！",
       );
       console.log(
-        "   📝 注意：prepare-folders.ts 只參照 input.json，不查詢 Firestore",
+        "   📝 注意：prepare-folders.ts 只參照 input.json，不查詢資料庫",
       );
     }
   }

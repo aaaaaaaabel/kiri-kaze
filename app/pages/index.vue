@@ -49,7 +49,7 @@ import FloatingCardsHero from "~/components/ui/FloatingCardsHero.vue";
 import { useWidgetsBlocksEvents } from "~/composables/useWidgetsBlocksEvents";
 import { useInfiniteScroll } from "~/composables/useInfiniteScroll";
 import { useGalleryInView } from "~/composables/useGalleryInView";
-import { useStorage } from "~/composables/useStorage";
+import { useMedia } from "~/composables/useMedia";
 import { useFossils } from "~/composables/useFossils";
 import {
   promiseTimeout,
@@ -124,9 +124,9 @@ useHead({
   ],
 });
 
-// ⭐ 使用 Firebase 資料
+// 使用 server API 資料
 const { fetchFossils } = useFossils();
-const { toStorageUrl } = useStorage();
+const { toMediaUrl } = useMedia();
 
 // ⭐ 分頁載入狀態（參考 Magazine 10）
 const displayedFossils = ref<IFossil[]>([]);
@@ -148,7 +148,7 @@ const hasMore = computed(
   () => displayedFossils.value.length < allFossils.value.length,
 );
 
-// ⭐ 初始化 Firebase 資料快取（只執行一次）
+// 初始化 server API 資料快取（只執行一次）
 // ⭐ 優化：在資料載入時就轉換好 URL（參考 LRC Magazine 10 做法）
 const initFossilsCache = async (): Promise<void> => {
   // 如果已經有快取，直接返回
@@ -188,15 +188,15 @@ const initFossilsCache = async (): Promise<void> => {
       }
 
       try {
-        const storageUrl = toStorageUrl(fossil.thumbnail);
+        const mediaUrl = toMediaUrl(fossil.thumbnail);
 
-        if (!storageUrl || storageUrl === fossil.thumbnail) {
+        if (!mediaUrl || mediaUrl === fossil.thumbnail) {
           return fossil;
         }
 
         return {
           ...fossil,
-          thumbnail: storageUrl,
+          thumbnail: mediaUrl,
         };
       } catch {
         return fossil;

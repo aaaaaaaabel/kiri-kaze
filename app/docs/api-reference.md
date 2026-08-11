@@ -51,7 +51,7 @@ curl "http://localhost:3000/api/fossils?pageSize=3&sortDirection=asc"
 
 ### `GET /api/fossils/slug/:slug`
 
-依 `slug` 取得單一標本。跟 `/api/fossils/:id` 效果相同（`id === slug`），保留兩個路徑是為了對齊舊版 Firestore 版本 `useFossils` 的方法命名（`fetchFossilById` / `fetchFossilBySlug`）。
+依 `slug` 取得單一標本。跟 `/api/fossils/:id` 效果相同（`id === slug`），保留兩個路徑是為了讓呼叫端能明確表達查詢意圖（`fetchFossilById` / `fetchFossilBySlug`）。
 
 ### `GET /api/fossils/code/:code`
 
@@ -155,7 +155,7 @@ curl "http://localhost:3000/api/bookings/check?eventId=placeholder-event&email=a
 
 ### `GET /cdn/:pathname`
 
-服務存在 blob 儲存（NuxtHub blob / R2）裡的圖片，`pathname` 是上傳時的 key（例如 `images/fossils/crotalocephalus-gibba/morocco-alnif/001/thumbnail.jpg`）。這不是 `server/api/` 底下的 API，是 `server/routes/cdn/`，回傳的是圖片本身（bytes），不是 JSON。詳見 [images-and-blob.md](./images-and-blob.md)。
+服務存在 blob 儲存裡的圖片，`pathname` 是上傳時的 key（例如 `images/fossils/crotalocephalus-gibba/morocco-alnif/001/thumbnail.jpg`）。這不是 `server/api/` 底下的 API，是 `server/routes/cdn/`，回傳的是圖片本身（bytes），不是 JSON。詳見 [images-and-blob.md](./images-and-blob.md)。
 
 ```bash
 curl http://localhost:3000/cdn/images/fossils/crotalocephalus-gibba/morocco-alnif/001/thumbnail.jpg
@@ -186,4 +186,4 @@ curl -X POST http://localhost:3000/api/_dev/migrate-images
 
 - `server/utils/fossil-mapper.ts` 的 `attachSpeciesRef(fossilRow)`：查出 `fossilRow.speciesId` 對應的物種，組成 `{ ...fossil, speciesRef: { id, slug, name: { zh, scientific } } }`，找不到物種回傳 `null`。單筆查詢類的 route（`[id]`、`slug/[slug]`、`code/[code]`）都靠這個函式組裝回傳值。
 - 列表類 route（`fossils/index.get.ts`、`fossils/by-species/[speciesSlug].get.ts`）因為要處理多筆，改成先撈出所有涉及的 `speciesId`，一次查完 `species` 表建 `Map`，避免對每一筆標本各查一次物種（N+1 查詢）。
-- `bookings` 沒有對應的 `useMockBookings`——mock 模式下的報名資料原本是寫在（已刪除的）`useMockEvents.ts` 裡用 `localStorage` 模擬的，遷移到 D1 後這部分邏輯整個被 `server/api/bookings/*` 取代。
+- `bookings` 沒有對應的 mock composable。報名流程由 `server/api/bookings/*` 處理。

@@ -87,7 +87,7 @@ function handleRegister(event: IEvent) {
 function closeBookingModal() {
   bookingModalOpen.value = false;
   bookingEvent.value = null;
-  // 關閉時重新拉取列表，確保人數與 Firestore 一致（例如後台刪除報名後）
+  // 關閉時重新拉取列表，確保人數與資料庫一致（例如後台刪除報名後）
   fetchEvents().then((list) => {
     events.value = list;
   }).catch((e) => {

@@ -287,18 +287,18 @@ import { nextTick } from "vue";
 import type { ISpecies, IFossil } from "~/types/fossil";
 import { useSpecies } from "~/composables/useSpecies";
 import { useFossils } from "~/composables/useFossils";
-import { useStorage } from "~/composables/useStorage";
+import { useMedia } from "~/composables/useMedia";
 import { useWidgetsBlocksEvents } from "~/composables/useWidgetsBlocksEvents";
 import LoadingSpinner from "~/components/ui/LoadingSpinner.vue";
 
 const route = useRoute();
 const router = useRouter();
 
-// Firebase composables
+// Server API composables
 const { fetchSpeciesBySlug, fetchSpeciesByCode } = useSpecies();
 const { fetchFossilsBySpeciesSlug, fetchFossilByCode } =
   useFossils();
-const { toStorageUrl } = useStorage();
+const { toMediaUrl } = useMedia();
 
 // 狀態
 const species = ref<ISpecies | null>(null);
@@ -373,7 +373,7 @@ const loadData = async (slug: string) => {
 
     species.value = foundSpecies;
 
-    // 查詢該物種的所有標本（從 Firebase）
+    // 查詢該物種的所有標本（從 server API）
     const foundSpecimens = await fetchFossilsBySpeciesSlug(speciesSlug);
 
     // ⭐ 防呆：允許沒有標本的情況（顯示空狀態）
@@ -392,13 +392,13 @@ const loadData = async (slug: string) => {
         specimen.thumbnail?.startsWith("http") ||
         specimen.thumbnail?.startsWith("/")
           ? specimen.thumbnail
-          : toStorageUrl(specimen.thumbnail || ""),
+          : toMediaUrl(specimen.thumbnail || ""),
       images: specimen.images?.map((img) => ({
         ...img,
         url:
           img.url?.startsWith("http") || img.url?.startsWith("/")
             ? img.url
-            : toStorageUrl(img.url || ""),
+            : toMediaUrl(img.url || ""),
       })),
     }));
 

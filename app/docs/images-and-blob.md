@@ -1,4 +1,4 @@
-# 圖片儲存：NuxtHub Blob（正式環境是 Vercel Blob）
+# 圖片儲存與 `/cdn/` 路由
 
 ## 為什麼要從 `public/images/` 搬走
 
@@ -7,7 +7,7 @@
 1. Repo 會塞滿大量二進位圖檔，clone/部署變慢
 2. 後台不可能叫操作的人去下終端機指令、git commit——上傳圖片必須是「打 API、直接進儲存空間」的流程
 
-所以把圖片搬進 **NuxtHub 的 blob 儲存**（本機開發時是檔案系統模擬，正式環境是 Vercel Blob），資料庫只存一個路徑字串，跟資料庫遷移的思路一致。
+所以把資料驅動圖片搬進 blob 儲存。本機開發時由 NuxtHub 以檔案系統模擬，正式環境使用 Vercel Blob。資料庫只存一個路徑字串，跟資料庫遷移的思路一致。
 
 ## 心智模型：路徑字串怎麼寫，圖就從哪裡來
 
@@ -46,7 +46,7 @@ export default defineEventHandler(async (event) => {
 });
 ```
 
-任何打到 `/cdn/{key}` 的請求都會去 blob 儲存找對應 key 的檔案並回傳，`blob.serve()` 會自動處理正確的 `Content-Type`、快取標頭等細節。
+任何打到 `/cdn/{key}` 的請求都會去 blob 儲存找對應 key 的檔案並回傳。`blob.serve()` 會處理 `Content-Type` 與快取標頭。
 
 ### 搬遷歷史資料：`POST /api/_dev/migrate-images`
 
@@ -63,9 +63,9 @@ export default defineEventHandler(async (event) => {
 
 ## 部署到正式環境時要做的事（本機開發不需要）
 
-網站實際部署在 **Vercel**，正式環境的 blob 儲存會是 **Vercel Blob**，不是 Cloudflare R2。設定方式：
+網站部署在 **Vercel** 時，正式環境的 blob 儲存使用 **Vercel Blob**。設定方式：
 
 1. Vercel Dashboard → Storage → 建立 **Blob** store，會拿到 `BLOB_READ_WRITE_TOKEN` 環境變數
 2. `nuxt.config.ts` 的 `hub.blob` **完全不用改**——`blob: true` 這行本來就是通用寫法，NuxtHub 會自動偵測到 `BLOB_READ_WRITE_TOKEN` 存在就切換成 Vercel Blob，`/cdn/` route、搬遷腳本、`blob.put()`/`blob.serve()` 呼叫方式都完全一樣，不需要改任何程式碼
 
-跟 [database.md](./database.md#部署到正式環境時要做的事本機開發不需要) 的 Turso 設定一樣，這是 NuxtHub 的多雲端抽象層帶來的好處——底層供應商換了，只有環境變數/dashboard 設定要處理，程式碼不用動。
+跟 [database.md](./database.md#部署到正式環境時要做的事本機開發不需要) 的 Turso 設定一樣，底層供應商透過環境變數切換，程式碼不用動。

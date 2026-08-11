@@ -9,7 +9,7 @@ Lacunae 目前已經進入可維護狀態。內容資料、圖片、API 錯誤�
 | 內容資料 | 可維護 | `species`、`fossils`、`projects`、`events`、`bookings` 已走 server API 與 SQLite/Turso 相容 schema。 |
 | 圖片 | 可維護 | 資料驅動圖片走 `/cdn/...` 與 blob 儲存；少量靜態視覺素材保留在 `public/images/`。 |
 | API | 可維護但可再標準化 | `app/api/client.ts` 統一 `$fetch` 錯誤格式；目前仍是簡單 Promise API，不是 `nuxt-standard` 的 `useFetch` module pattern。 |
-| Auth / Favorites | 暫停登入 | 登入停用（`useAuth` stub）；收藏走 localStorage。Firebase runtime 已移除；之後用第一方 session（Phase 4）。 |
+| Auth / Favorites | 暫停登入 | 登入停用（`useAuth` stub）；收藏走 localStorage。之後用第一方 session（Phase 4）。 |
 | 文件 | 已收斂 | 正式文件保留架構、資料、API、圖片、腳本與品牌字體；一次性交接紀錄已移除。 |
 
 ## 從 `nuxt-standard` 可借用的做法
@@ -28,7 +28,7 @@ Lacunae 目前已經進入可維護狀態。內容資料、圖片、API 錯誤�
 
 ### Session store
 
-`nuxt-standard` 使用 `useCookie()` 保存 session token，比 localStorage 更適合 SSR 與登入狀態同步。Lacunae 之後要恢復登入時，應優先設計自己的 `users` / `favorites` 資料表與 session store，不建議再接回 Firebase Auth 作為長期方案。
+`nuxt-standard` 使用 `useCookie()` 保存 session token，比 localStorage 更適合 SSR 與登入狀態同步。Lacunae 之後要恢復登入時，應優先設計自己的 `users` / `favorites` 資料表與 session store。
 
 ### Route and middleware conventions
 

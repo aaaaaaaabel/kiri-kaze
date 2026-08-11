@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import type { IFossil } from "~/types/fossil";
 import { Heart } from "lucide-vue-next";
-import { useStorage } from "~/composables/useStorage";
+import { useMedia } from "~/composables/useMedia";
 
 interface Props {
   fossil: IFossil;
@@ -48,7 +48,7 @@ const emit = defineEmits<{
   favorite: [fossilId: string];
 }>();
 
-// 圖片 URL（已經在資料載入時轉換過，這裡直接使用）
+// 圖片 URL（已經在資料載入時正規化過，這裡直接使用）
 const thumbnailUrl = computed(() => {
   if (!props.fossil.thumbnail) {
     console.warn(
@@ -70,26 +70,26 @@ const thumbnailUrl = computed(() => {
     return finalUrl;
   }
 
-  // 否則嘗試轉換（但理論上應該已經轉換過了）
-  // 只在客戶端執行轉換
+  // 否則嘗試正規化（但理論上應該已經處理過了）
+  // 只在客戶端執行正規化
   if (import.meta.client) {
     try {
-      const { toStorageUrl } = useStorage();
-      finalUrl = toStorageUrl(finalUrl);
+      const { toMediaUrl } = useMedia();
+      finalUrl = toMediaUrl(finalUrl);
 
       // 調試：記錄轉換結果
       if (
         process.env.NODE_ENV === "development" &&
         !finalUrl.startsWith("http")
       ) {
-        console.warn("⚠️ URL 轉換可能失敗:", {
+        console.warn("⚠️ URL 正規化可能失敗:", {
           original: props.fossil.thumbnail,
           converted: finalUrl,
           fossilId: props.fossil.id || props.fossil.slug,
         });
       }
     } catch (err) {
-      console.error("❌ URL 轉換錯誤:", err, {
+      console.error("❌ URL 正規化錯誤:", err, {
         thumbnail: props.fossil.thumbnail,
         fossilId: props.fossil.id || props.fossil.slug,
       });

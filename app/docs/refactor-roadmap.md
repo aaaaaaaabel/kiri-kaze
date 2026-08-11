@@ -6,7 +6,7 @@ This roadmap defines the next structural refactor for Lacunae. The goal is to ma
 
 | Goal | Result |
 | --- | --- |
-| Reduce Firebase coupling | The public site no longer ships Firebase runtime code when auth is disabled. |
+| Remove legacy data-provider coupling | The public site ships only the current NuxtHub/server API runtime. |
 | Separate API contracts from page state | Endpoint definitions live in API modules; composables manage state and workflows. |
 | Harden server behavior | Server routes validate access, publication status, capacity, and duplicate writes. |
 | Prepare for admin features | Auth, roles, layouts, and upload flow have clear contracts before UI work starts. |
@@ -76,18 +76,18 @@ Consolidate only when at least two of these are true:
 
 Do not consolidate when the code appears once, the shape is still exploratory, or the abstraction needs many options to describe one local use case.
 
-## Phase 1: Remove Firebase from the active runtime
+## Phase 1: Remove the legacy runtime
 
-Status: **done** (2026-08-11). The public app no longer ships VueFire / Firebase Auth / Firestore client code. Historical sync scripts under `scripts/pull.ts`, `scripts/sync.ts`, and `scripts/sync-event-counts.ts` remain as archived tooling and stay out of normal lint.
+Status: **done** (2026-08-11). The public app now ships only the current NuxtHub/server API runtime. Obsolete provider-specific scripts and documents have been removed.
 
 ### Tasks
 
 1. Replace `useAuth()` with a local disabled-auth implementation while admin auth is not ready. ✅
 2. Replace `useFavorites()` with a localStorage-only implementation. ✅
-3. Remove `nuxt-vuefire` from `nuxt.config.ts`. ✅
-4. Remove `firebase` and `firebase-admin` dependencies after imports are gone. ✅
-5. Replace Firebase `Timestamp` type references with local serializable date types. ✅
-6. Keep historical Firebase scripts excluded from normal lint, or move them under an explicit archive folder. ✅ (`eslint.config.mjs` ignores)
+3. Remove obsolete provider modules from `nuxt.config.ts`. ✅
+4. Remove obsolete provider dependencies after imports are gone. ✅
+5. Replace provider-specific timestamp type references with local serializable date types. ✅
+6. Delete obsolete provider-specific maintenance scripts and documents. ✅
 
 ### Acceptance checks
 
@@ -98,7 +98,7 @@ npm run lint:style
 npm run build
 ```
 
-The production build should no longer warn that Firebase is included in the client bundle.
+The production build should no longer warn that an obsolete data-provider SDK is included in the client bundle.
 
 ## Phase 2: Split API modules from composable state
 
@@ -145,7 +145,7 @@ Do not start admin UI before defining the auth contract. The UI will be easier t
 ### Tasks
 
 1. Add a `users` table and decide role fields, such as `role: "admin" | "editor"`.
-2. Choose the auth implementation. Prefer a first-party database-backed session over Firebase fallback.
+2. Choose the auth implementation. Prefer a first-party database-backed session.
 3. Add `app/stores/session.ts` using cookie-backed session state.
 4. Add `app/middleware/auth.ts` and `app/middleware/admin.ts`.
 5. Add `app/layouts/admin.vue`.
@@ -224,7 +224,7 @@ Add test commands to this list once they exist.
 Use small commits grouped by behavior. Follow the `eip_fe` rule: one problem, one branch, one PR when the change is large enough to review independently.
 
 ```text
-refactor(auth): remove firebase runtime fallback
+refactor(auth): remove obsolete runtime fallback
 refactor(api): add domain api modules
 fix(bookings): enforce server-side registration rules
 feat(admin): add session and admin route foundation

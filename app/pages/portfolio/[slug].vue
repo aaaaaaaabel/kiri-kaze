@@ -199,7 +199,7 @@ import { useProjects } from '~/composables/useProjects';
 import { ref, computed, watch, onMounted, nextTick } from 'vue';
 import { useWidgetsBlocksEvents } from '~/composables/useWidgetsBlocksEvents';
 import LoadingSpinner from '~/components/ui/LoadingSpinner.vue';
-import { getStorageUrl } from '~/utils/storage';
+import { getMediaUrl } from '~/utils/media';
 
 // 獲取路由參數
 const route = useRoute();
@@ -221,8 +221,8 @@ const error = ref<Error | null>(null);
 // 所有專案（用於上一個/下一個導航）
 const allProjects = ref<IProject[]>([]);
 
-// Storage URL 轉換
-const convertUrl = (url: string) => getStorageUrl(url);
+// Media URL 轉換
+const convertUrl = (url: string) => getMediaUrl(url);
 
 const thumbnailUrl = computed(() => {
     return project.value?.thumbnail ? convertUrl(project.value.thumbnail) : '';

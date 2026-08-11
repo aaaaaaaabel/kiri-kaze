@@ -65,9 +65,9 @@ const isHoveredOff = ref(false);
 // Portfolio view mode
 const { viewMode } = usePortfolioView();
 
-// Storage URL 轉換
-const { getStorageUrl } = await import("~/utils/storage");
-const convertUrl = (url: string) => getStorageUrl(url);
+// Media URL 轉換
+const { getMediaUrl } = await import("~/utils/media");
+const convertUrl = (url: string) => getMediaUrl(url);
 
 const thumbnailUrl = computed(() => convertUrl(props.project.thumbnail || ''));
 const coverUrl = computed(() => {

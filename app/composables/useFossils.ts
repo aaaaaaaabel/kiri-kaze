@@ -1,6 +1,6 @@
 /**
  * 化石資料操作 Composable
- * 資料來源：NuxtHub（Cloudflare D1）server API，取代原本的 Firestore 實作
+ * 資料來源：NuxtHub server API
  */
 
 import type { IFossil } from "~/types/fossil";

@@ -13,5 +13,4 @@
 - `/images/about/founder.jpg`
 - `/images/about/其他圖片.jpg`
 
-這些圖片會直接從 `public` 資料夾提供，不需要上傳到 Firebase Storage。
-
+這些圖片會直接從 `public` 資料夾提供，不需要進入 blob 圖片流程。

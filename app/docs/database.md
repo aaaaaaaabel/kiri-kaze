@@ -36,7 +36,7 @@
 | `id` | text, PK | 等同 `slug` |
 | `slug` | text, unique | |
 | `shortCode` | text | 11 位數短碼，見 [scripts-reference.md](./scripts-reference.md) |
-| `speciesId` | text, FK → `species.id` | **真正的外鍵**——這是跟舊版 Firestore 資料最大的差異，Firestore 版本是手動維護一份反正規化的 `speciesRef` 快照 |
+| `speciesId` | text, FK → `species.id` | **真正的外鍵**，用來連回 `species` 表；API 回傳時再組出頁面需要的 `speciesRef` |
 | `specimen` | JSON | `{ type, bodyPart?, completeness, condition, catalogNumber?, collectionDate?, location?, measurements? }` |
 | `images` | JSON array | `{ url, width, height, type, order }[]` |
 | `thumbnail` | text | |
