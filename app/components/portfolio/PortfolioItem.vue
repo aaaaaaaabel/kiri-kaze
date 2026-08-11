@@ -66,12 +66,8 @@ const isHoveredOff = ref(false);
 const { viewMode } = usePortfolioView();
 
 // Storage URL 轉換
-const { storageBucket } = useFirebaseConfig();
-const { getStorageUrl } = await import('~/utils/storage');
-const convertUrl = (url: string) => {
-    if (!url || url.startsWith('http://') || url.startsWith('https://')) return url;
-    return storageBucket ? getStorageUrl(url, storageBucket) : url;
-};
+const { getStorageUrl } = await import("~/utils/storage");
+const convertUrl = (url: string) => getStorageUrl(url);
 
 const thumbnailUrl = computed(() => convertUrl(props.project.thumbnail || ''));
 const coverUrl = computed(() => {

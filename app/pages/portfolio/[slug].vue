@@ -222,8 +222,7 @@ const error = ref<Error | null>(null);
 const allProjects = ref<IProject[]>([]);
 
 // Storage URL 轉換
-const { storageBucket } = useFirebaseConfig();
-const convertUrl = (url: string) => storageBucket ? getStorageUrl(url, storageBucket) : url;
+const convertUrl = (url: string) => getStorageUrl(url);
 
 const thumbnailUrl = computed(() => {
     return project.value?.thumbnail ? convertUrl(project.value.thumbnail) : '';
