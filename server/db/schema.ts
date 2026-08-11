@@ -85,7 +85,7 @@ export const events = sqliteTable("events", {
   time: text().notNull(),
   location: text().notNull(),
   image: text().notNull(),
-  capacity: integer().notNull().default(0),
+  capacity: integer().notNull().default(20),
   registeredCount: integer().notNull().default(0),
   isPublished: integer({ mode: "boolean" }).notNull().default(false),
   createdAt: integer({ mode: "timestamp" }).notNull(),

@@ -121,7 +121,7 @@ const emit = defineEmits<{
 
 const config = useRuntimeConfig();
 const authStore = useAuthStore();
-const { checkBookingByUser, createBooking } = useEvents();
+const { checkBookingByUser, checkBookingExists, createBooking } = useEvents();
 
 const form = reactive({
   name: "",
@@ -152,8 +152,7 @@ watch(
 
 async function handleSubmit() {
   const ev = props.event;
-  const uid = authStore.uid;
-  if (!ev || !uid) return;
+  if (!ev) return;
 
   const name = form.name.trim();
   const email = form.email.trim().toLowerCase();
@@ -163,14 +162,24 @@ async function handleSubmit() {
     return;
   }
 
+  // 登入停用時允許 guest 報名（uid 可為 null）
+  const uid = authStore.uid || null;
+
   formError.value = "";
   submitting.value = true;
   try {
-    const already = await checkBookingByUser(ev.id, uid);
-    if (already) {
-      formError.value = "You have already registered for this event.";
-      submitting.value = false;
-      return;
+    if (uid) {
+      const already = await checkBookingByUser(ev.id, uid);
+      if (already) {
+        formError.value = "You have already registered for this event.";
+        return;
+      }
+    } else {
+      const already = await checkBookingExists(ev.id, email);
+      if (already) {
+        formError.value = "You have already registered for this event.";
+        return;
+      }
     }
 
     await createBooking({

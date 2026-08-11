@@ -63,7 +63,6 @@ import type { IEvent } from "~/composables/useEvents";
 import LoadingSpinner from "~/components/ui/LoadingSpinner.vue";
 import BookingModal from "~/components/ui/BookingModal.vue";
 
-const authStore = useAuthStore();
 const { fetchEvents } = useEvents();
 const events = ref<IEvent[]>([]);
 const loading = ref(true);
@@ -71,15 +70,14 @@ const bookingModalOpen = ref(false);
 const bookingEvent = ref<IEvent | null>(null);
 
 function isFull(event: IEvent): boolean {
+  // capacity <= 0 視為未設定名額，不擋報名（避免 0 >= 0 永遠額滿）
+  if (event.capacity <= 0) return false;
   return event.registeredCount >= event.capacity;
 }
 
 function handleRegister(event: IEvent) {
   if (isFull(event)) return;
-  if (!authStore.isLoggedIn) {
-    authStore.setAuthModalOpen(true);
-    return;
-  }
+  // 登入目前停用：直接開報名表單（guest 可不帶 uid）
   bookingEvent.value = event;
   bookingModalOpen.value = true;
 }

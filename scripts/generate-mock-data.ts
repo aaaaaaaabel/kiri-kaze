@@ -343,7 +343,7 @@ function buildEvents() {
       time: "",
       location: "",
       image: "/images/events/workshop_bn.jpg",
-      capacity: 0,
+      capacity: 20,
       registeredCount: 0,
       isPublished: true,
       createdAt: new Date().toISOString(),
