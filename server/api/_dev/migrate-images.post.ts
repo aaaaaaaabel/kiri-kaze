@@ -6,6 +6,7 @@
  *
  * 使用方式：npm run dev 起服務後 `curl -X POST localhost:3000/api/_dev/migrate-images`
  * 可重複執行（blob key 固定、資料庫路徑已經是新的就不會再變），適合分批補跑。
+ * 正式環境（非 import.meta.dev）會回 404，見 assertDevOnly。
  */
 
 import * as fs from "node:fs";
@@ -34,6 +35,8 @@ function contentTypeFor(file: string): string {
 }
 
 export default defineEventHandler(async () => {
+  assertDevOnly();
+
   const publicDir = path.join(process.cwd(), "public");
   const targetDirs = [path.join(publicDir, "images", "fossils"), path.join(publicDir, "images", "case")];
   const files = targetDirs.flatMap((dir) => listImageFiles(dir));

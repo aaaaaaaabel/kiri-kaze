@@ -2,6 +2,7 @@
  * 開發用一次性 seed 端點：把 data/mock/*.json 灌進本機 D1。
  * 使用方式：npm run dev 起服務後 `curl -X POST localhost:3000/api/_dev/seed`
  * 重複呼叫會先清空對應表再重新灌入（避免 unique constraint 衝突）。
+ * 正式環境（非 import.meta.dev）會回 404，見 assertDevOnly。
  */
 
 import speciesData from "~~/data/mock/species.json";
@@ -10,6 +11,8 @@ import projectsData from "~~/data/mock/projects.json";
 import eventsData from "~~/data/mock/events.json";
 
 export default defineEventHandler(async () => {
+  assertDevOnly();
+
   await db.delete(schema.fossils);
   await db.delete(schema.species);
   await db.delete(schema.bookings);
