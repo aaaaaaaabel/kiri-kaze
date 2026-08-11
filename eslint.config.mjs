@@ -77,11 +77,9 @@ export default withNuxt(
     rules: { "no-console": "off" },
   },
   {
-    // pull.ts / sync.ts 是已停用的 Firebase 同步工具（見 app/docs/README.md「相關但沒有
-    // 寫進這份文件的東西」）——Firebase 專案本身已經連不上，這兩個檔案不會被日常流程呼叫。
-    // 裡面幾十個 any 幾乎都是 Firestore document/snapshot 的鬆散型別，在無法連線驗證的情況下
-    // 逐一補型別風險（可能悄悄改變行為卻沒有辦法測試）大於好處，整份排除在 lint 之外，
-    // 之後真的要重新啟用 Firebase 同步流程時再一併處理。
-    ignores: ["scripts/pull.ts", "scripts/sync.ts"],
+    // pull.ts / sync.ts / sync-event-counts.ts 是已停用的 Firebase 同步工具。
+    // Firebase 專案本身已經連不上，這些檔案不會被日常流程呼叫，也不再依賴 firebase-admin。
+    // 之後若要重新啟用歷史同步，需另裝 firebase-admin 並補型別。
+    ignores: ["scripts/pull.ts", "scripts/sync.ts", "scripts/sync-event-counts.ts"],
   },
 );

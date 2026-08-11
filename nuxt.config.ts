@@ -1,14 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import path from "node:path";
-
-// VueFire SSR + auth 會讀此變數，若未設則用專案根目錄的 serviceAccountKey.json
-if (!process.env.GOOGLE_APPLICATION_CREDENTIALS) {
-  process.env.GOOGLE_APPLICATION_CREDENTIALS = path.resolve(
-    process.cwd(),
-    "serviceAccountKey.json",
-  );
-}
-
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
 
@@ -43,7 +33,6 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    "nuxt-vuefire",
     "@pinia/nuxt", // 狀態管理（用於 route 和 transition 系統）
     "@nuxthub/core",
     "@nuxt/eslint",
@@ -56,32 +45,12 @@ export default defineNuxtConfig({
 
   css: ["~/assets/fonts/index.ts", "~/assets/styles/main.scss"],
 
-  vuefire: {
-    config: {
-      apiKey: process.env.NUXT_PUBLIC_FIREBASE_API_KEY,
-      authDomain: process.env.NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-      projectId: process.env.NUXT_PUBLIC_FIREBASE_PROJECT_ID,
-      storageBucket: process.env.NUXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-      messagingSenderId: process.env.NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-      appId: process.env.NUXT_PUBLIC_FIREBASE_APP_ID,
-    },
-    auth: {
-      enabled: true,
-    },
-    admin: {
-      // 使用絕對路徑；或設環境變數 GOOGLE_APPLICATION_CREDENTIALS=serviceAccountKey.json
-      serviceAccount: path.resolve(process.cwd(), "serviceAccountKey.json"),
-    },
-  },
-
   runtimeConfig: {
     public: {
       emailjsServiceId: process.env.NUXT_PUBLIC_EMAILJS_SERVICE_ID,
       emailjsTemplateConfirmation: process.env.NUXT_PUBLIC_EMAILJS_TEMPLATE_CONFIRMATION,
       emailjsTemplateNotification: process.env.NUXT_PUBLIC_EMAILJS_TEMPLATE_NOTIFICATION,
       emailjsPublicKey: process.env.NUXT_PUBLIC_EMAILJS_PUBLIC_KEY,
-      // Firebase 尚未接回新的雲端資料庫前，先讀本機 data/mock/*.json；接回後設為 false 即可切換
-      isMockDataEnabled: true,
     },
   },
 
