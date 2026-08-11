@@ -181,7 +181,7 @@ async function handleGoogleLogin() {
       "auth/configuration-not-found": "Firebase auth configuration is missing.",
       "auth/tenant-id-mismatch": "Firebase tenant configuration mismatch.",
     };
-    const msg = errorMap[code] ?? "Sign-in failed. Please try again.";
+    const msg = errorMap[code] ?? e?.message ?? "Sign-in failed. Please try again.";
     if (import.meta.dev && !errorMap[code]) {
       console.error("[Auth] Google 登入錯誤:", code, e?.message ?? err);
       loginError.value = `${msg} (code: ${code || "none"})`;
