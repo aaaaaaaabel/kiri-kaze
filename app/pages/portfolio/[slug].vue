@@ -347,8 +347,7 @@ watch(slug, async (newSlug, oldSlug) => {
 </script>
 
 <style scoped lang="scss">
-@use '~/assets/styles/variables' as *;
-@use '~/assets/styles/mixins' as *;
+@use "~/assets/styles/abstracts" as *;
 
 .project-detail-page {
     box-sizing: border-box;
@@ -359,7 +358,7 @@ watch(slug, async (newSlug, oldSlug) => {
     padding: 0;
     margin: 0 auto;
     overflow-x: hidden;
-    background-color: #fff;
+    background-color: var(--lc-color-white);
 }
 
 .contents {
@@ -391,30 +390,12 @@ watch(slug, async (newSlug, oldSlug) => {
 
 // Loading & Error States
 .project-error {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-    min-height: 60vh;
-    padding: 60px 40px;
-    text-align: center;
-
-    @include tb {
-        padding: 48px 24px;
-    }
-
-    @include sp {
-        padding: 40px 20px;
-    }
+    @include state-panel(60vh);
 
     h2 {
         margin-bottom: 24px;
         font-size: 1.5rem;
-        color: $color-primary;
+        color: $lc-color-black;
 
         @include sp {
             margin-bottom: 20px;
@@ -430,16 +411,9 @@ watch(slug, async (newSlug, oldSlug) => {
     box-sizing: border-box;
     width: 100%;
     max-width: 100%;
-    padding: 60px 40px;
-    background-color: $color-gray-light;
+    @include section-padding-responsive;
 
-    @include tb {
-        padding: 48px 24px;
-    }
-
-    @include sp {
-        padding: 32px 16px;
-    }
+    background-color: var(--lc-color-gray-light);
 
     &__inner {
         box-sizing: border-box;
@@ -467,7 +441,7 @@ watch(slug, async (newSlug, oldSlug) => {
         font-size: 2.5rem;
         font-weight: 700;
         line-height: 1.3;
-        color: $color-primary;
+        color: $lc-color-black;
 
         @include sp {
             font-size: 1.75rem;
@@ -477,7 +451,7 @@ watch(slug, async (newSlug, oldSlug) => {
     &__title-en {
         font-size: 1.25rem;
         font-weight: 400;
-        color: #666;
+        color: var(--lc-color-text-muted);
 
         @include sp {
             font-size: 1rem;
@@ -512,7 +486,7 @@ watch(slug, async (newSlug, oldSlug) => {
         margin-bottom: 8px;
         font-size: 0.875rem;
         font-weight: 500;
-        color: #999;
+        color: var(--lc-color-text-subtle);
 
         @include sp {
             margin-bottom: 4px;
@@ -523,7 +497,7 @@ watch(slug, async (newSlug, oldSlug) => {
     &__meta-value {
         font-size: 1rem;
         font-weight: 600;
-        color: $color-primary;
+        color: $lc-color-black;
 
         @include sp {
             font-size: 0.9375rem;
@@ -536,11 +510,11 @@ watch(slug, async (newSlug, oldSlug) => {
         max-width: min(1000px, 100%);
         margin: 0 auto;
         overflow: hidden;
-        border-radius: 8px;
+        @include radius-sm-responsive;
+
         box-shadow: 0 8px 24px rgb(0 0 0 / 10%);
 
         @include sp {
-            border-radius: 6px;
             box-shadow: 0 4px 16px rgb(0 0 0 / 8%);
         }
 
@@ -565,12 +539,13 @@ watch(slug, async (newSlug, oldSlug) => {
     margin-bottom: 40px;
     font-size: 0.875rem;
     font-weight: 500;
-    color: $color-primary;
+    color: $lc-color-black;
     text-decoration: none;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    transition: all 0.25s ease-in-out;
+    background-color: var(--lc-color-white);
+    border: 1px solid var(--lc-color-border-light);
+    @include radius-sm-responsive;
+
+    transition: all $lc-transition-fast ease-in-out;
 
     @include tb {
         margin-bottom: 32px;
@@ -580,13 +555,11 @@ watch(slug, async (newSlug, oldSlug) => {
         padding: 10px 16px;
         margin-bottom: 24px;
         font-size: 0.8125rem;
-        border-radius: 6px;
     }
 
+    @include hover-accent-fill;
+
     &:hover {
-        color: #fff;
-        background-color: $color-accent;
-        border-color: $color-accent;
         transform: translateX(-4px);
     }
 
@@ -606,18 +579,10 @@ watch(slug, async (newSlug, oldSlug) => {
     box-sizing: border-box;
     width: 100%;
     max-width: 100%;
-    padding: 60px 40px;
-
-    @include tb {
-        padding: 48px 24px;
-    }
-
-    @include sp {
-        padding: 32px 16px;
-    }
+    @include section-padding-responsive;
 
     &--alt {
-        background-color: $color-gray-light;
+        background-color: var(--lc-color-gray-light);
     }
 
     &__inner {
@@ -633,8 +598,8 @@ watch(slug, async (newSlug, oldSlug) => {
         margin-bottom: 24px;
         font-size: 1.75rem;
         font-weight: 600;
-        color: $color-primary;
-        border-bottom: 2px solid $color-accent;
+        color: $lc-color-black;
+        border-bottom: 2px solid $lc-color-accent;
 
         @include sp {
             font-size: 1.5rem;
@@ -649,7 +614,7 @@ watch(slug, async (newSlug, oldSlug) => {
 .project-description {
     font-size: 1rem;
     line-height: 1.8;
-    color: #333;
+    color: var(--lc-color-text-soft);
     white-space: pre-wrap;
 
     @include sp {
@@ -675,7 +640,7 @@ watch(slug, async (newSlug, oldSlug) => {
         margin-bottom: 12px;
         font-size: 1rem;
         font-weight: 600;
-        color: #666;
+        color: var(--lc-color-text-muted);
 
         @include sp {
             margin-bottom: 10px;
@@ -698,11 +663,11 @@ watch(slug, async (newSlug, oldSlug) => {
     padding: 8px 16px;
     font-size: 0.875rem;
     font-weight: 500;
-    color: $color-primary;
-    background-color: $color-gray-light;
-    border: 1px solid #e0e0e0;
+    color: $lc-color-black;
+    background-color: var(--lc-color-gray-light);
+    border: 1px solid var(--lc-color-border-light);
     border-radius: 20px;
-    transition: all 0.25s ease-in-out;
+    transition: all $lc-transition-fast ease-in-out;
 
     @include sp {
         padding: 6px 12px;
@@ -710,11 +675,7 @@ watch(slug, async (newSlug, oldSlug) => {
         border-radius: 16px;
     }
 
-    &:hover {
-        color: #fff;
-        background-color: $color-accent;
-        border-color: $color-accent;
-    }
+    @include hover-accent-fill;
 }
 
 // ==========================================
@@ -741,12 +702,9 @@ watch(slug, async (newSlug, oldSlug) => {
         min-width: 0;
         max-width: 100%;
         overflow: hidden;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
+        @include radius-sm-responsive;
 
-        @include sp {
-            border-radius: 6px;
-        }
+        box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
 
         img {
             display: block;
@@ -778,24 +736,23 @@ watch(slug, async (newSlug, oldSlug) => {
     padding: 16px 24px;
     font-size: 1rem;
     font-weight: 500;
-    color: $color-primary;
+    color: $lc-color-black;
     text-decoration: none;
-    background-color: $color-gray-light;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    transition: all 0.25s ease-in-out;
+    background-color: var(--lc-color-gray-light);
+    border: 1px solid var(--lc-color-border-light);
+    @include radius-sm-responsive;
+
+    transition: all $lc-transition-fast ease-in-out;
 
     @include sp {
         gap: 8px;
         padding: 12px 18px;
         font-size: 0.9375rem;
-        border-radius: 6px;
     }
 
+    @include hover-accent-fill;
+
     &:hover {
-        color: #fff;
-        background-color: $color-accent;
-        border-color: $color-accent;
         box-shadow: 0 4px 12px rgb(164 138 86 / 30%);
         transform: translateY(-2px);
     }
@@ -816,16 +773,9 @@ watch(slug, async (newSlug, oldSlug) => {
     box-sizing: border-box;
     width: 100%;
     max-width: 100%;
-    padding: 60px 40px;
-    background-color: $color-gray-light;
+    @include section-padding-responsive;
 
-    @include tb {
-        padding: 48px 24px;
-    }
-
-    @include sp {
-        padding: 32px 16px;
-    }
+    background-color: var(--lc-color-gray-light);
 
     &__inner {
         box-sizing: border-box;
@@ -852,22 +802,21 @@ watch(slug, async (newSlug, oldSlug) => {
     display: flex;
     flex-direction: column;
     padding: 24px;
-    color: $color-primary;
+    color: $lc-color-black;
     text-decoration: none;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    transition: all 0.25s ease-in-out;
+    background-color: var(--lc-color-white);
+    border: 1px solid var(--lc-color-border-light);
+    @include radius-sm-responsive;
+
+    transition: all $lc-transition-fast ease-in-out;
 
     @include sp {
         padding: 18px 16px;
-        border-radius: 6px;
     }
 
+    @include hover-accent-fill;
+
     &:hover {
-        color: #fff;
-        background-color: $color-accent;
-        border-color: $color-accent;
         box-shadow: 0 8px 24px rgb(164 138 86 / 20%);
         transform: translateY(-4px);
     }

@@ -1,0 +1,10 @@
+/**
+ * Components 入口
+ * button、portfolio 是新結構下的檔案；menu 保持在原本的
+ * app/assets/styles/_menu.scss，這裡只是把它接進新的載入順序，
+ * 內容跟位置都不動（見 SCSS 系統遷移說明）。
+ */
+
+@use "button";
+@use "portfolio";
+@use "../menu";

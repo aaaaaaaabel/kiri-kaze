@@ -1,47 +1,48 @@
 /**
- * SCSS 變數定義
+ * 相容層 — 請不要在新程式碼裡使用這個檔案。
+ *
+ * 這個檔案原本是 SCSS 變數定義的唯一來源，新的 token 系統已經搬到
+ * app/assets/styles/abstracts/_variables.scss（$lc- 開頭）。
+ * 這裡留著只是因為 _mixins.scss、_menu.scss 用相對路徑 `@use './variables'`
+ * 指向這個檔案，這兩個檔案這一輪遷移刻意不動，所以這裡繼續轉出一樣的
+ * 舊變數名稱，數值全部來自 abstracts/_variables.scss，不會有兩份數字。
+ *
+ * 新檔案請直接 `@use "~/assets/styles/abstracts" as *;` 取用 $lc- 變數。
  */
 
-// 顏色
-$color-primary: rgb(0 0 0);
-$color-secondary: rgb(255 255 255);
-$color-accent: rgb(164 138 86);
-$color-bg: rgb(255 255 255);
-$color-gray-light: #f5f5f5;
+@use "abstracts/variables" as lc;
 
-// 字體
-$font-family-ja: "Helvetica Neue", "Noto Sans JP", "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
-$font-family-en: "Futura", "Futura PT", "Futura Std", "Helvetica Neue", Arial, sans-serif;
-$font-family-main: "Arial", sans-serif;
+$color-primary: lc.$lc-color-black;
+$color-secondary: lc.$lc-color-white;
+$color-accent: lc.$lc-color-accent;
+$color-bg: lc.$lc-color-bg;
+$color-gray-light: lc.$lc-color-gray-light;
 
-// 品牌字標（Lacunae wordmark）專用，暫用 Bodoni Moda，待購入 Bodoni Poster Std Italic 網頁授權後替換
-$font-family-logo: "Bodoni Moda", Georgia, "Times New Roman", serif;
+$font-family-ja: lc.$lc-font-sans;
+$font-family-en: lc.$lc-font-en;
+$font-family-main: lc.$lc-font-main;
+$font-family-logo: lc.$lc-font-logo;
+$font-family-zh-serif: lc.$lc-font-serif-tc;
 
-// 斷點
-$breakpoint-pc: 1000px;
-$breakpoint-tb: 560px;
-$breakpoint-sp: 559px;
+$breakpoint-pc: lc.$lc-breakpoint-pc;
+$breakpoint-tb: lc.$lc-breakpoint-tb;
+$breakpoint-sp: lc.$lc-breakpoint-sp;
 
-// 間距
-$spacing-xs: 10px;
-$spacing-sm: 20px;
-$spacing-md: 30px;
-$spacing-lg: 40px;
-$spacing-xl: 60px;
+$spacing-xs: lc.$lc-space-xs;
+$spacing-sm: lc.$lc-space-sm;
+$spacing-md: lc.$lc-space-md;
+$spacing-lg: lc.$lc-space-lg;
+$spacing-xl: lc.$lc-space-xl;
 
-// Z-index
-$z-index-header: 300;
-$z-index-menu: 200;
-$z-index-grid-number: 30;
+$z-index-header: lc.$lc-z-header;
+$z-index-menu: lc.$lc-z-menu;
+$z-index-grid-number: lc.$lc-z-grid-number;
 
-// 動畫時間
-$transition-fast: 0.25s;
-$transition-normal: 0.5s;
-$transition-slow: 1s;
+$transition-fast: lc.$lc-transition-fast;
+$transition-normal: lc.$lc-transition-normal;
+$transition-slow: lc.$lc-transition-slow;
 
-// Grid
-$grid-columns-pc: 6;
-$grid-columns-tb: 4;
-$grid-columns-tablet: 3;
-$grid-columns-mobile: 2;
-
+$grid-columns-pc: lc.$lc-grid-columns-pc;
+$grid-columns-tb: lc.$lc-grid-columns-tb;
+$grid-columns-tablet: lc.$lc-grid-columns-tablet;
+$grid-columns-mobile: lc.$lc-grid-columns-mobile;

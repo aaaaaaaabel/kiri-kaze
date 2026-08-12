@@ -1,9 +1,9 @@
 /**
  * Round Button 樣式
+ * 從舊版 _buttons.scss 移過來，顏色/圓角/動畫時間改用 abstracts token。
  */
 
-@use './variables' as *;
-@use './mixins' as *;
+@use "../abstracts" as *;
 
 .round_button {
     display: inline-block;
@@ -23,13 +23,9 @@
         display: block;
         width: 100%;
         height: 100%;
-        border-radius: 25px;
-        @include transition(background-color, $transition-normal);
-        @include transition(color, $transition-normal);
-
-        @include sp {
-            border-radius: 20px;
-        }
+        border-radius: $lc-radius-pill;
+        @include transition(background-color, $lc-transition-normal);
+        @include transition(color, $lc-transition-normal);
     }
 
     a p,
@@ -39,7 +35,7 @@
         line-height: 48px;
         text-align: center;
         letter-spacing: 1px;
-        @include transition(color, $transition-normal);
+        @include transition(color, $lc-transition-normal);
 
         @include sp {
             padding: 0 0 2px;
@@ -52,18 +48,18 @@
 // 白色按鈕（白底黑字）
 .round_button_w {
     a {
-        color: $color-accent;
-        background-color: rgb(255 255 255 / 100%);
-        border: 1px solid $color-accent;
+        color: $lc-color-accent;
+        background-color: $lc-color-white;
+        border: 1px solid $lc-color-accent;
     }
 
     @include pc {
         a:hover {
-            color: $color-secondary;
-            background-color: $color-accent;
+            color: $lc-color-white;
+            background-color: $lc-color-accent;
 
             p {
-                color: $color-secondary;
+                color: $lc-color-white;
             }
         }
     }
@@ -72,22 +68,22 @@
 // 棕色按鈕（棕底白字）
 .round_button_b {
     a {
-        color: $color-secondary;
-        background-color: $color-accent;
-        border: 1px solid $color-accent;
+        color: $lc-color-white;
+        background-color: $lc-color-accent;
+        border: 1px solid $lc-color-accent;
 
         p {
-            color: #fff;
+            color: $lc-color-white;
         }
     }
 
     @include pc {
         a:hover {
-            color: $color-accent;
-            background-color: $color-secondary;
+            color: $lc-color-accent;
+            background-color: $lc-color-white;
 
             p {
-                color: $color-accent;
+                color: $lc-color-accent;
             }
         }
     }
@@ -96,29 +92,19 @@
 // 白色按鈕（白底棕字，用於 menu）
 .round_button_bt {
     a {
-        color: $color-accent;
-        background-color: $color-secondary;
-        border: 1px solid $color-secondary;
+        color: $lc-color-accent;
+        background-color: $lc-color-white;
+        border: 1px solid $lc-color-white;
     }
 
     @include pc {
         a:hover {
-            color: $color-secondary;
-            background-color: $color-accent;
+            color: $lc-color-white;
+            background-color: $lc-color-accent;
 
             p {
-                color: $color-secondary;
+                color: $lc-color-white;
             }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-

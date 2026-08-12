@@ -1,0 +1,12 @@
+/**
+ * :root CSS 變數輸出
+ * 把 abstracts/_tokens.scss 的 $lc-base-tokens 轉成瀏覽器可讀的 --lc-xxx。
+ */
+
+@use "../abstracts/tokens" as tokens;
+
+:root {
+  @each $name, $value in tokens.$lc-base-tokens {
+    --lc-#{$name}: #{$value};
+  }
+}

@@ -1,0 +1,34 @@
+/* stylelint-disable at-rule-disallowed-list */
+
+// [自訂] 覆蓋 Bootstrap 預設變數，對齊 Lacunae 自己的 token
+// 第一階段只接 functions/variables/maps/mixins/root/reboot/containers/grid/utilities，
+// 這裡只覆蓋這些層真的會用到的變數，不搬 Bootstrap 完整的元件變數表。
+
+@use "../../../abstracts/variables" as *;
+
+// :root CSS 變數前綴，避免跟自己的 --lc- 變數混在一起
+$prefix: bs-;
+
+// 間距（Bootstrap utilities 的 spacer 尺度，對齊 $lc-space-*）
+$spacer: $lc-space-sm;
+$spacers: (
+  0: 0,
+  1: $lc-space-xs,
+  2: $lc-space-sm,
+  3: $lc-space-md,
+  4: $lc-space-lg,
+  5: $lc-space-xl,
+);
+
+// 圓角
+$border-radius: $lc-radius-sm;
+$border-radius-sm: $lc-radius-sm;
+$border-radius-lg: $lc-radius-md;
+$border-radius-pill: $lc-radius-pill;
+
+// 字體、body 底色與文字色，對齊 base/_typography.scss 現有設定
+// （避免 Bootstrap reboot 先套用預設值，跟後面載入的 base 層打架）
+$font-family-sans-serif: $lc-font-main;
+$body-bg: $lc-color-bg;
+$body-color: $lc-color-black;
+$link-color: $lc-color-black;

@@ -125,20 +125,19 @@ useHead({
 </script>
 
 <style scoped lang="scss">
-@use "~/assets/styles/variables" as *;
-@use "~/assets/styles/mixins" as *;
+@use "~/assets/styles/abstracts" as *;
 @use "sass:color";
 
 .events-page {
   min-height: 100vh;
-  padding: 120px 60px 60px;
+  padding: 120px var(--lc-space-xl) var(--lc-space-xl);
 
   @include tb {
-    padding: 100px 40px 40px;
+    padding: 100px var(--lc-space-lg) var(--lc-space-lg);
   }
 
   @include sp {
-    padding: 80px 20px 20px;
+    padding: 80px var(--lc-space-sm) var(--lc-space-sm);
   }
 
   &__container {
@@ -148,18 +147,18 @@ useHead({
   }
 
   &__title {
-    margin-bottom: 60px;
+    margin-bottom: var(--lc-space-xl);
     font-size: 48px;
     font-weight: 400;
-    color: $color-primary;
+    color: $lc-color-black;
 
     @include tb {
-      margin-bottom: 40px;
+      margin-bottom: var(--lc-space-lg);
       font-size: 36px;
     }
 
     @include sp {
-      margin-bottom: 30px;
+      margin-bottom: var(--lc-space-md);
       font-size: 28px;
     }
   }
@@ -167,36 +166,36 @@ useHead({
   &__list {
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: var(--lc-space-xl);
 
     @include tb {
-      gap: 40px;
+      gap: var(--lc-space-lg);
     }
 
     @include sp {
-      gap: 30px;
+      gap: var(--lc-space-md);
     }
   }
 
   &__item {
     display: flex;
-    gap: 40px;
+    gap: var(--lc-space-lg);
     align-items: flex-start;
 
     @include tb {
-      gap: 30px;
+      gap: var(--lc-space-md);
     }
 
     @include sp {
       flex-direction: column;
-      gap: 20px;
+      gap: var(--lc-space-sm);
     }
   }
 
   &__item-image {
     flex: 0 0 40%;
     width: 40%;
-    background: $color-gray-light;
+    background: var(--lc-color-gray-light);
 
     @include sp {
       flex: 1;
@@ -218,7 +217,7 @@ useHead({
     width: 100%;
     aspect-ratio: 16 / 10;
     font-size: 0.9rem;
-    color: #999;
+    color: var(--lc-color-text-subtle);
   }
 
   &__item-content {
@@ -232,7 +231,7 @@ useHead({
     margin: 0;
     font-size: 32px;
     font-weight: 400;
-    color: $color-primary;
+    color: $lc-color-black;
 
     @include tb {
       font-size: 28px;
@@ -246,7 +245,7 @@ useHead({
   &__item-description {
     font-size: 16px;
     line-height: 1.8;
-    color: $color-primary;
+    color: $lc-color-black;
 
     @include sp {
       font-size: 14px;
@@ -256,13 +255,13 @@ useHead({
   &__item-meta {
     margin: 0;
     font-size: 14px;
-    color: #666;
+    color: var(--lc-color-text-muted);
   }
 
   &__item-spots {
     margin: 0;
     font-size: 14px;
-    color: $color-accent;
+    color: $lc-color-accent;
   }
 
   &__item-cta {
@@ -271,34 +270,34 @@ useHead({
     padding: 12px 24px;
     margin-top: auto;
     font-size: 1rem;
-    color: #fff;
+    color: var(--lc-color-white);
     text-decoration: none;
     cursor: pointer;
-    background: $color-primary;
+    background: $lc-color-black;
     border: none;
-    border-radius: 8px;
-    transition: background 0.2s, opacity 0.2s;
+    border-radius: var(--lc-radius-sm);
+    transition: background var(--lc-transition-quick), opacity var(--lc-transition-quick);
 
     @include sp {
       align-self: center;
-      margin-top: 20px;
+      margin-top: var(--lc-space-sm);
     }
 
     &:hover {
-      background: color.adjust($color-primary, $lightness: -8%);
+      background: color.adjust($lc-color-black, $lightness: -8%);
     }
 
     &--disabled {
       pointer-events: none;
       cursor: not-allowed;
-      background: #ccc;
+      background: var(--lc-color-gray-mid);
     }
   }
 
   &__empty {
     margin: 0;
     font-size: 1rem;
-    color: #666;
+    color: var(--lc-color-text-muted);
   }
 }
 </style>

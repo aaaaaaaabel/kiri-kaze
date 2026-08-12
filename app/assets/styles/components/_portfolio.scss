@@ -1,16 +1,16 @@
 /**
  * Portfolio 專用樣式
+ * 從舊版 _portfolio.scss 移過來，顏色改用 abstracts token。
  */
 
-@use './variables' as *;
-@use './mixins' as *;
-@use './layout';
+@use "../abstracts" as *;
+@use "../layouts/layout";
 
 .portfolio-page {
     width: 100%;
     min-height: 100vh;
     padding: 0;
-    background-color: $color-bg;
+    background-color: $lc-color-bg;
 }
 
 .portfolio-grid {

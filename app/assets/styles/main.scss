@@ -1,15 +1,15 @@
-/**
- * 主樣式檔案
- * 匯入所有 SCSS 模組
- * 使用 @use 和 @forward 替代 @import（Sass 新語法）
- */
+// 載入順序不可任意調整
+// 1. 第三方套件整合：Bootstrap 變數覆蓋與基礎層
+@use "vendors";
 
-@forward './variables';
-@use './variables' as *;
-@use './mixins' as *;
-@use './typography';
-@use './layout';
-@use './buttons';
-@use './portfolio';
-@use './menu';
-@use './nprogress-custom';
+// 2. 全域基礎樣式：reset、root CSS 變數、typography
+@use "base";
+
+// 3. 專案共用元件樣式：button、portfolio、menu
+@use "components";
+
+// 4. 全域版面樣式：grid 等版面輔助工具
+@use "layouts";
+
+// 5. 第三方套件 CSS 覆蓋
+@use "overrides";

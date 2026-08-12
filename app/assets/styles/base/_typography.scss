@@ -1,55 +1,23 @@
 /**
- * 全域樣式與 Typography
+ * 全域 Typography
+ * 從舊版 _typography.scss 移過來，顏色/字體改用 abstracts token。
  */
 
-@use './variables' as *;
-@use './mixins' as *;
-
-// 全域重置
-html {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    -webkit-print-color-adjust: exact;
-    -webkit-text-size-adjust: none;
-}
+@use "../abstracts" as *;
 
 body {
     width: 100%;
     padding: 0;
     margin: 0;
-    font-family: $font-family-main;
+    font-family: $lc-font-main;
     line-height: 1.5;
-    color: $color-primary;
+    color: $lc-color-black;
     text-rendering: optimizeLegibility;
     -webkit-text-size-adjust: none;
 }
 
-body,
-div,
-span,
-a,
-p,
-img,
-ul,
-li,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-input,
-textarea,
-select {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-
 a {
-    color: $color-primary;
+    color: $lc-color-black;
     text-decoration: none;
     -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
 
@@ -59,23 +27,12 @@ a {
 }
 
 p {
-    color: $color-primary;
+    color: $lc-color-black;
     letter-spacing: 1px;
 
     @include sp {
         letter-spacing: 0.5px;
     }
-}
-
-img {
-    width: 100%;
-    vertical-align: bottom;
-    pointer-events: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    border-style: none;
-    -webkit-user-drag: none;
 }
 
 // 工具類別

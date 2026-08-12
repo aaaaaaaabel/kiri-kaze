@@ -326,21 +326,21 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 60px 60px 0;
+  padding: var(--lc-space-xl) var(--lc-space-xl) 0;
 
   @include tb {
-    padding: 30px 30px 0;
+    padding: var(--lc-space-md) var(--lc-space-md) 0;
   }
 
   @include sp {
-    padding: 25px 20px 0;
+    padding: 25px var(--lc-space-sm) 0;
   }
 }
 
 .header_logo {
   flex-shrink: 0;
   height: 30px;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity var(--lc-transition-normal) ease-in-out;
 
   @include tb {
     height: 24px;
@@ -373,7 +373,7 @@ onUnmounted(() => {
       height: 100%;
       pointer-events: none;
       user-select: none;
-      transition: opacity 0.2s ease-out;
+      transition: opacity var(--lc-transition-quick) ease-out;
     }
 
     .header_logo-img--white {
@@ -397,7 +397,7 @@ onUnmounted(() => {
   align-items: center;
 
   @include tb {
-    gap: 20px;
+    gap: var(--lc-space-sm);
   }
 
   @include sp {
@@ -408,9 +408,9 @@ onUnmounted(() => {
 // Portfolio 圓形文字轉圈按鈕樣式（首頁預設隱藏，進入 gallery 區才 fade-in）
 .portfolio-circle-button {
   position: fixed;
-  right: 60px;
-  bottom: 60px;
-  z-index: 100;
+  right: var(--lc-space-xl);
+  bottom: var(--lc-space-xl);
+  z-index: var(--lc-z-portfolio-button);
   display: inline-block;
   padding: 0;
   margin: 0;
@@ -425,8 +425,8 @@ onUnmounted(() => {
   opacity: 0;
   clip-path: circle(40% at 50% 50%);
   transition:
-    opacity 0.5s ease-in-out,
-    visibility 0.5s ease-in-out;
+    opacity var(--lc-transition-normal) ease-in-out,
+    visibility var(--lc-transition-normal) ease-in-out;
 
   &--fallback {
     visibility: hidden;
@@ -447,13 +447,13 @@ onUnmounted(() => {
   }
 
   @include tb {
-    right: 40px;
-    bottom: 40px;
+    right: var(--lc-space-lg);
+    bottom: var(--lc-space-lg);
   }
 
   @include sp {
-    right: 30px;
-    bottom: 30px;
+    right: var(--lc-space-md);
+    bottom: var(--lc-space-md);
   }
 
   &__textcircle {

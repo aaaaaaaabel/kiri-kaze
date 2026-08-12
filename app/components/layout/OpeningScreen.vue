@@ -53,18 +53,18 @@ onMounted(() => {
 .opening-screen {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: var(--lc-z-overlay);
   display: flex;
   align-items: center;
   justify-content: center;
 
   // 純視覺開場：不攔截 header／Menu 點擊，避免「第一次點失效」
   pointer-events: none;
-  background: #000;
+  background: var(--lc-color-black);
 
   &--off {
     pointer-events: none;
-    animation: opening-fade-out 1s ease-out forwards;
+    animation: opening-fade-out var(--lc-transition-slow) ease-out forwards;
   }
 }
 
@@ -88,7 +88,7 @@ onMounted(() => {
   font-size: clamp(2.5rem, 8vw, 5rem);
   font-style: italic;
   font-weight: 900;
-  color: #fff;
+  color: var(--lc-color-white);
   letter-spacing: 0;
   opacity: 0; /* 初始 0，由 Web Animations API 淡入 */
 }

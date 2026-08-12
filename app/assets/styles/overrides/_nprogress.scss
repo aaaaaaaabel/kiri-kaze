@@ -1,0 +1,42 @@
+/**
+ * 客製化 NProgress 樣式
+ * 從舊版 nprogress-custom.scss 移過來，顏色/z-index 改用 abstracts token。
+ * 漸層色跟品牌 accent 色無關，是 nprogress 專用的獨立 token。
+ */
+
+@use "../abstracts" as *;
+
+#nprogress {
+  pointer-events: none;
+
+  .bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: $lc-z-overlay;
+    width: 100%;
+    height: 3px; // Loading Bar 高度
+    background: linear-gradient(90deg, $lc-color-nprogress-start 0%, $lc-color-nprogress-end 100%);
+
+    // 發光效果
+    box-shadow: 0 0 10px rgba($lc-color-nprogress-start, 50%),
+                0 0 20px rgba($lc-color-nprogress-start, 30%);
+  }
+
+  .peg {
+    position: absolute;
+    right: 0;
+    display: block;
+    width: 100px;
+    height: 100%;
+    box-shadow: 0 0 10px rgba($lc-color-nprogress-start, 80%),
+                0 0 5px rgba($lc-color-nprogress-start, 80%);
+    opacity: 1;
+    transform: rotate(3deg) translate(0, -4px);
+  }
+}
+
+// Loading 時鎖定滾動 (可選)
+.nprogress-busy {
+  cursor: wait;
+}

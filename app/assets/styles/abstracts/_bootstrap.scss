@@ -1,0 +1,11 @@
+/**
+ * Bootstrap 整合入口（僅作文件說明用，不在這裡輸出任何 CSS）
+ *
+ * Bootstrap 的實際載入（functions → 變數覆蓋 → maps → mixins → root →
+ * reboot → containers → grid → utilities）統一放在 vendors/bootstrap/_index.scss，
+ * 並且只從 vendors/_index.scss 載入「一次」。
+ *
+ * 這裡刻意不重複 @import Bootstrap 的任何檔案：Bootstrap 5 內部仍使用舊版
+ * @import 語法，沒有模組快取，同一個檔案在兩個地方各 @import 一次會讓
+ * reboot / grid / utilities 的 CSS 被輸出兩次。
+ */

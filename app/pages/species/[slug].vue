@@ -908,14 +908,13 @@ useHead(() => ({
 </script>
 
 <style scoped lang="scss">
-@use "~/assets/styles/variables" as *;
-@use "~/assets/styles/mixins" as *;
+@use "~/assets/styles/abstracts" as *;
 @use "sass:color";
 
 .species-page {
   min-height: 100vh;
   padding-top: 80px;
-  background: #f5f5f5;
+  background: var(--lc-color-gray-light);
 
   &__error {
     display: flex;
@@ -923,26 +922,26 @@ useHead(() => ({
     align-items: center;
     justify-content: center;
     min-height: 60vh;
-    padding: 40px;
+    padding: var(--lc-space-lg);
     text-align: center;
   }
 
   &__content {
     max-width: 1200px;
-    padding: 0 20px 40px;
+    padding: 0 var(--lc-space-sm) var(--lc-space-lg);
     margin: 0 auto;
   }
 }
 
 .species-header {
-  padding: 20px 0 40px;
+  padding: var(--lc-space-sm) 0 var(--lc-space-lg);
   text-align: center;
 
   .back-link {
     display: inline-block;
-    margin-bottom: 20px;
+    margin-bottom: var(--lc-space-sm);
     font-size: 14px;
-    color: $color-primary;
+    color: $lc-color-black;
     text-decoration: none;
 
     &:hover {
@@ -955,7 +954,7 @@ useHead(() => ({
     font-size: 2.5rem;
     font-style: italic;
     font-weight: 700;
-    color: #333;
+    color: var(--lc-color-text-soft);
   }
 }
 
@@ -963,31 +962,31 @@ useHead(() => ({
 .country-tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: var(--lc-space-lg);
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 20px 0;
-  margin-bottom: 40px;
-  background-color: #1a1a1a; // 深色背景
+  padding: var(--lc-space-sm) 0;
+  margin-bottom: var(--lc-space-lg);
+  background-color: #1a1a1a; // 深色背景，跟品牌黑色不同色階，保留原樣
 
   @include tb {
-    gap: 30px;
+    gap: var(--lc-space-md);
     padding: 16px 0;
   }
 
   @include sp {
-    gap: 20px;
+    gap: var(--lc-space-sm);
     padding: 12px 0;
   }
 
   .country-tab-btn {
     position: relative;
     padding: 8px 0;
-    font-family: $font-family-en;
+    font-family: $lc-font-en;
     font-size: 1rem;
     font-weight: 400;
-    color: #999; // 灰色文字（未選中）
+    color: var(--lc-color-text-subtle); // 灰色文字（未選中）
     cursor: pointer;
     background: transparent;
     border: none;
@@ -1002,11 +1001,11 @@ useHead(() => ({
     }
 
     &:hover {
-      color: #ccc;
+      color: var(--lc-color-gray-mid);
     }
 
     &.active {
-      color: #fff; // 白色文字（選中）
+      color: var(--lc-color-white); // 白色文字（選中）
 
       // 綠色底線
       &::after {
@@ -1016,7 +1015,7 @@ useHead(() => ({
         left: 0;
         height: 2px;
         content: "";
-        background-color: rgb(164 138 86);
+        background-color: $lc-color-accent;
       }
     }
   }
@@ -1025,11 +1024,11 @@ useHead(() => ({
 .species-layout {
   display: grid;
   grid-template-columns: 1fr 460px;
-  gap: 40px;
+  gap: var(--lc-space-lg);
 
   @include tb {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: var(--lc-space-md);
   }
 
   @include sp {
@@ -1045,11 +1044,9 @@ useHead(() => ({
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin: 0 auto 20px;
+    margin: 0 auto var(--lc-space-sm);
     overflow: hidden;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+    @include white-card;
 
     img {
       display: block;
@@ -1058,8 +1055,8 @@ useHead(() => ({
     }
 
     .no-image-placeholder {
-      padding: 60px 20px;
-      color: #999;
+      padding: 60px var(--lc-space-sm);
+      color: var(--lc-color-text-subtle);
       text-align: center;
 
       p {
@@ -1084,18 +1081,18 @@ useHead(() => ({
       padding: 0;
       overflow: hidden;
       cursor: pointer;
-      background: white;
+      background: var(--lc-color-white);
       border: 2px solid transparent;
-      border-radius: 4px;
-      transition: all 0.2s;
+      border-radius: $lc-radius-xs;
+      transition: all var(--lc-transition-quick);
 
       &:hover {
-        border-color: #ccc;
+        border-color: var(--lc-color-gray-mid);
       }
 
       &.active {
-        border-color: $color-primary;
-        box-shadow: 0 0 0 2px rgba($color-primary, 0.2);
+        border-color: $lc-color-black;
+        box-shadow: 0 0 0 2px rgba($lc-color-black, 0.2);
       }
 
       img {
@@ -1115,10 +1112,8 @@ useHead(() => ({
     flex-wrap: wrap;
     gap: 8px;
     padding: 16px;
-    margin-bottom: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+    margin-bottom: var(--lc-space-sm);
+    @include white-card;
 
     .location-tab-btn {
       display: flex;
@@ -1126,23 +1121,23 @@ useHead(() => ({
       align-items: center;
       padding: 10px 16px;
       font-size: 0.9rem;
-      color: #666;
+      color: var(--lc-color-text-muted);
       cursor: pointer;
       background: transparent;
-      border: 1px solid #e0e0e0;
-      border-radius: 4px;
-      transition: all 0.2s;
+      border: 1px solid var(--lc-color-border-light);
+      border-radius: $lc-radius-xs;
+      transition: all var(--lc-transition-quick);
 
       &:hover {
-        background: #f5f5f5;
-        border-color: #ccc;
+        background: var(--lc-color-gray-light);
+        border-color: var(--lc-color-gray-mid);
       }
 
       &.active {
         font-weight: 600;
-        color: white;
-        background: $color-primary;
-        border-color: $color-primary;
+        color: var(--lc-color-white);
+        background: $lc-color-black;
+        border-color: $lc-color-black;
       }
 
       .specimen-count {
@@ -1154,31 +1149,29 @@ useHead(() => ({
 
   .tabs {
     padding: 16px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+    @include white-card;
 
     .tab-btn {
       width: 100%;
       padding: 12px 16px;
       margin-bottom: 4px;
       font-size: 0.95rem;
-      color: #666;
+      color: var(--lc-color-text-muted);
       text-align: left;
       cursor: pointer;
       background: transparent;
       border: none;
-      border-radius: 4px;
-      transition: all 0.2s;
+      border-radius: $lc-radius-xs;
+      transition: all var(--lc-transition-quick);
 
       &:hover {
-        background: #f5f5f5;
+        background: var(--lc-color-gray-light);
       }
 
       &.active {
         font-weight: 600;
-        color: white;
-        background: $color-primary;
+        color: var(--lc-color-white);
+        background: $lc-color-black;
       }
 
       &--specimen {
@@ -1194,7 +1187,7 @@ useHead(() => ({
         padding: 8px 16px;
         font-size: 0.85rem;
         font-weight: 600;
-        color: #999;
+        color: var(--lc-color-text-subtle);
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
@@ -1203,10 +1196,8 @@ useHead(() => ({
 
   .content {
     padding: 24px;
-    margin-bottom: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+    margin-bottom: var(--lc-space-sm);
+    @include white-card;
 
     .content-section {
       margin-bottom: 32px;
@@ -1219,13 +1210,13 @@ useHead(() => ({
         margin: 0 0 16px;
         font-size: 1.25rem;
         font-weight: 600;
-        color: #333;
+        color: var(--lc-color-text-soft);
       }
 
       p {
         margin: 0;
         line-height: 1.8;
-        color: #666;
+        color: var(--lc-color-text-muted);
       }
 
       .info-table {
@@ -1240,11 +1231,11 @@ useHead(() => ({
           &:first-child {
             width: 100px;
             font-weight: 600;
-            color: #999;
+            color: var(--lc-color-text-subtle);
           }
 
           &:last-child {
-            color: #333;
+            color: var(--lc-color-text-soft);
           }
         }
 
@@ -1259,15 +1250,15 @@ useHead(() => ({
 .back-button {
   display: inline-block;
   padding: 12px 24px;
-  margin-top: 20px;
-  color: white;
+  margin-top: var(--lc-space-sm);
+  color: var(--lc-color-white);
   text-decoration: none;
-  background: $color-primary;
-  border-radius: 4px;
-  transition: background 0.2s;
+  background: $lc-color-black;
+  border-radius: $lc-radius-xs;
+  transition: background var(--lc-transition-quick);
 
   &:hover {
-    background: color.adjust($color-primary, $lightness: -10%);
+    background: color.adjust($lc-color-black, $lightness: -10%);
   }
 }
 </style>

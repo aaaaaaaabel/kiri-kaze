@@ -1,0 +1,8 @@
+/**
+ * Mixins 入口
+ * app/assets/styles/_mixins.scss 依需求保持不動（見 SCSS 系統遷移說明），
+ * 這裡只是把它轉出到新的 abstracts 命名空間下，方便新檔案統一從 abstracts 取用。
+ */
+
+@forward "../../mixins";
+@forward "patterns";

@@ -3,13 +3,7 @@
     <!-- 與圖鑑頁相同結構：外層 wrapper + gallery，讓版型與圖鑑一致 -->
     <div class="fossils-page__body">
       <div ref="galleryRef" class="fossils-page__gallery">
-        <div class="fossils-page__header">
-          <img
-            src="/images/index-txt.png"
-            alt="化石圖鑑"
-            class="fossils-page__title-image"
-          >
-        </div>
+        <GalleryHeader />
 
         <ClientOnly>
           <FossilGrid
@@ -37,6 +31,7 @@
 <script setup lang="ts">
 import type { IFossil } from "~/types/fossil";
 import FossilGrid from "~/components/fossil/FossilGrid.vue";
+import GalleryHeader from "~/components/ui/GalleryHeader.vue";
 import { useGalleryInView } from "~/composables/useGalleryInView";
 
 useHead({
@@ -133,14 +128,14 @@ useGalleryInView(galleryRef);
 </script>
 
 <style scoped lang="scss">
-@use "~/assets/styles/variables" as *;
-@use "~/assets/styles/mixins" as *;
+@use "~/assets/styles/abstracts" as *;
 
-// 與圖鑑頁相同版型（結構與 index.vue 的 .hero-quote-parent + __gallery 一致）
+// 與圖鑑頁相同版型（結構與 index.vue 的 .hero-quote-parent + __gallery 一致，
+// 標頭區塊已抽成共用元件 <GalleryHeader />，兩頁共用同一份 CSS）
 .fossils-page--collection {
   width: 100%;
   min-height: 100vh;
-  background-color: #fff;
+  background-color: var(--lc-color-white);
 }
 
 .fossils-page__body {
@@ -153,58 +148,29 @@ useGalleryInView(galleryRef);
   z-index: 1;
   width: 100%;
   padding-top: 0;
-  background-color: #fff;
-}
-
-.fossils-page__header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 40px;
-  margin-bottom: 20px;
-  text-align: center;
-
-  @include sp {
-    padding: 30px 20px 0;
-    margin-top: 68px;
-    margin-bottom: 0;
-  }
-}
-
-.fossils-page__title-image {
-  display: block;
-  width: 100%;
-  max-width: 1000px;
-  height: auto;
-  padding: 20px;
-  margin: 0 auto;
-
-  @include sp {
-    max-width: 90%;
-  }
+  background-color: var(--lc-color-white);
 }
 
 /* 與 FossilGrid 內 .fossil-grid__empty 一致，僅自訂內容樣式 */
 .collection-page__hydrating {
-  padding: 40px 20px;
+  padding: var(--lc-space-lg) var(--lc-space-sm);
   font-size: 0.95rem;
-  color: #666;
+  color: var(--lc-color-text-muted);
   text-align: center;
 }
 
 .collection-page__link {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 10px var(--lc-space-sm);
   font-size: 0.9rem;
-  color: $color-primary;
+  color: $lc-color-black;
   text-decoration: none;
-  border: 1px solid $color-primary;
-  border-radius: 999px;
+  border: 1px solid $lc-color-black;
+  border-radius: var(--lc-radius-pill);
 
   &:hover {
-    color: #fff;
-    background: $color-primary;
+    color: var(--lc-color-white);
+    background: $lc-color-black;
   }
 }
 </style>

@@ -1,0 +1,53 @@
+/**
+ * Token Map
+ * 把 _variables.scss 的 SCSS 變數收成一個 map，供 base/_root.scss
+ * 用 @each 輸出成瀏覽器可讀的 CSS 變數（--lc-xxx）。
+ */
+
+@use "variables" as variables;
+
+$lc-base-tokens: (
+  "color-black": variables.$lc-color-black,
+  "color-white": variables.$lc-color-white,
+  "color-accent": variables.$lc-color-accent,
+  "color-bg": variables.$lc-color-bg,
+  "color-gray-light": variables.$lc-color-gray-light,
+  "color-text-muted": variables.$lc-color-text-muted,
+  "color-text-subtle": variables.$lc-color-text-subtle,
+  "color-text-soft": variables.$lc-color-text-soft,
+  "color-border-light": variables.$lc-color-border-light,
+  "color-gray-mid": variables.$lc-color-gray-mid,
+  "color-nprogress-start": variables.$lc-color-nprogress-start,
+  "color-nprogress-end": variables.$lc-color-nprogress-end,
+
+  "font-sans": variables.$lc-font-sans,
+  "font-en": variables.$lc-font-en,
+  "font-main": variables.$lc-font-main,
+  "font-logo": variables.$lc-font-logo,
+  "font-serif-tc": variables.$lc-font-serif-tc,
+
+  "space-xs": variables.$lc-space-xs,
+  "space-sm": variables.$lc-space-sm,
+  "space-md": variables.$lc-space-md,
+  "space-lg": variables.$lc-space-lg,
+  "space-xl": variables.$lc-space-xl,
+
+  "radius-xs": variables.$lc-radius-xs,
+  "radius-sm": variables.$lc-radius-sm,
+  "radius-md": variables.$lc-radius-md,
+  "radius-pill": variables.$lc-radius-pill,
+
+  "z-grid-number": variables.$lc-z-grid-number,
+  "z-portfolio-button": variables.$lc-z-portfolio-button,
+  "z-menu": variables.$lc-z-menu,
+  "z-header": variables.$lc-z-header,
+  "z-fix-switch": variables.$lc-z-fix-switch,
+  "z-loading": variables.$lc-z-loading,
+  "z-transition": variables.$lc-z-transition,
+  "z-overlay": variables.$lc-z-overlay,
+
+  "transition-quick": variables.$lc-transition-quick,
+  "transition-fast": variables.$lc-transition-fast,
+  "transition-normal": variables.$lc-transition-normal,
+  "transition-slow": variables.$lc-transition-slow,
+);

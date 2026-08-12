@@ -69,35 +69,7 @@
       </div>
     </section>
     <!-- Marquee - 三條黑色橫帶 -->
-    <div class="marquee-bands">
-      <div class="marquee-band marquee-band--1">
-        <div class="marquee-band__track">
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-        </div>
-      </div>
-      <div class="marquee-band marquee-band--2">
-        <div class="marquee-band__track">
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-        </div>
-      </div>
-      <div class="marquee-band marquee-band--3">
-        <div class="marquee-band__track">
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-        </div>
-      </div>
-    </div>
+    <MarqueeBands />
     <!-- Lacunae Studio Section -->
     <section ref="studioSection" class="about-section about-section--studio">
       <div class="studio-card">
@@ -145,41 +117,14 @@
       </div>
     </section>
     <!-- Marquee - 三條黑色橫帶 -->
-    <div class="marquee-bands">
-      <div class="marquee-band marquee-band--1">
-        <div class="marquee-band__track">
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-        </div>
-      </div>
-      <div class="marquee-band marquee-band--2">
-        <div class="marquee-band__track">
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-        </div>
-      </div>
-      <div class="marquee-band marquee-band--3">
-        <div class="marquee-band__track">
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-          <span class="marquee-band__text">LACUNAE LACUNAE LACUNAE</span>
-        </div>
-      </div>
-    </div>
+    <MarqueeBands />
   </div>
 </template>
 
 <script setup lang="ts">
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import MarqueeBands from "~/components/ui/MarqueeBands.vue";
 
 // 圖片路徑
 const heroBg = "/images/about/hero_bn.jpg";
@@ -366,16 +311,15 @@ useHead({
 </script>
 
 <style scoped lang="scss">
-@use "~/assets/styles/variables" as *;
-@use "~/assets/styles/mixins" as *;
+@use "~/assets/styles/abstracts" as *;
 
 .about-page {
   position: relative;
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  font-family: $font-family-en;
-  background-color: $color-bg;
+  font-family: $lc-font-en;
+  background-color: var(--lc-color-bg);
 }
 
 // ==========================================
@@ -427,10 +371,10 @@ useHead({
 
 .hero-title {
   margin-bottom: 30px;
-  font-family: $font-family-en;
+  font-family: $lc-font-en;
   font-size: 16px;
   font-weight: 400;
-  color: $color-secondary;
+  color: var(--lc-color-white);
   text-transform: uppercase;
   letter-spacing: 2px;
 
@@ -454,11 +398,11 @@ useHead({
   width: 100%;
   padding: 0 16px;
   margin: 0;
-  font-family: $font-family-en;
+  font-family: $lc-font-en;
   font-size: 20px;
   font-weight: 400;
   line-height: 1.1;
-  color: $color-secondary;
+  color: var(--lc-color-white);
   text-align: center;
   letter-spacing: 0.35em; // 35%
   transform: translateX(-50%);
@@ -495,7 +439,8 @@ useHead({
   margin: 0 auto;
   margin-bottom: 120px;
   overflow: hidden;
-  border-radius: 8px;
+  @include radius-sm-responsive;
+
   transform: translateY(60px);
 
   @include tb {
@@ -507,7 +452,6 @@ useHead({
   @include sp {
     max-width: 100%;
     margin-bottom: 80px;
-    border-radius: 6px;
     transform: translateY(40px);
   }
 
@@ -518,144 +462,7 @@ useHead({
   }
 }
 
-// ==========================================
-// Marquee - 三條黑色橫帶（稍微傾斜）
-// ==========================================
-.marquee-bands {
-  position: relative;
-  z-index: 2;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 100vw;
-  padding-top: 50px;
-  margin: 40px 0;
-  margin-top: -100px;
-  overflow: hidden;
-
-  @include tb {
-    padding-top: 40px;
-    margin: 30px 0;
-    margin-top: -80px;
-  }
-
-  @include sp {
-    padding-top: 24px;
-    margin: 20px 0;
-    margin-top: -48px;
-  }
-}
-
-.marquee-band {
-  position: relative;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 100vw;
-  height: 80px;
-  margin-bottom: 12px;
-  overflow: hidden;
-  background-color: $color-primary;
-  transform: rotate(1deg);
-
-  @include tb {
-    height: 70px;
-    margin-bottom: 10px;
-  }
-
-  @include sp {
-    height: 44px;
-    margin-bottom: 6px;
-    transform: rotate(0.5deg);
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  &--1 {
-    transform: rotate(1deg);
-
-    @include sp {
-      transform: rotate(0.5deg);
-    }
-  }
-
-  &--2 {
-    transform: rotate(1.2deg);
-
-    @include sp {
-      transform: rotate(0.6deg);
-    }
-  }
-
-  &--3 {
-    transform: rotate(0.8deg);
-
-    @include sp {
-      transform: rotate(0.4deg);
-    }
-  }
-
-  &__track {
-    display: inline-flex;
-    gap: 80px;
-    align-items: center;
-    height: 100%;
-    white-space: nowrap;
-    animation: marquee-scroll 20s linear infinite;
-    will-change: transform;
-
-    @include tb {
-      gap: 60px;
-    }
-
-    @include sp {
-      gap: 16px;
-    }
-  }
-
-  &--2 &__track {
-    animation-duration: 22s;
-    animation-direction: reverse;
-  }
-
-  &--3 &__track {
-    animation-duration: 18s;
-  }
-}
-
-.marquee-band__text {
-  display: inline-block;
-  font-family: $font-family-en;
-  font-size: 96px;
-  font-weight: 400;
-  line-height: 1;
-  color: $color-secondary;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-
-  @include tb {
-    font-size: 72px;
-    letter-spacing: 3px;
-  }
-
-  @include sp {
-    font-size: 24px;
-    letter-spacing: 1px;
-  }
-}
-
-@keyframes marquee-scroll {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-}
+// Marquee 橫帶已經抽成 <MarqueeBands /> 元件（app/components/ui/MarqueeBands.vue）
 
 // ==========================================
 // About Sections
@@ -667,36 +474,36 @@ useHead({
   padding: 0 0 0 80px;
 
   @include tb {
-    padding: 60px 40px;
+    padding: var(--lc-space-xl) var(--lc-space-lg);
   }
 
   @include sp {
-    padding: 40px 20px;
+    padding: var(--lc-space-lg) var(--lc-space-sm);
   }
 
   &--stories {
     padding: 0;
-    background-color: $color-bg;
+    background-color: var(--lc-color-bg);
 
     @include tb {
-      padding: 50px 40px;
+      padding: 50px var(--lc-space-lg);
     }
 
     @include sp {
-      padding: 40px 20px;
+      padding: var(--lc-space-lg) var(--lc-space-sm);
     }
   }
 
   &--services {
-    padding: 60px 0;
-    background-color: $color-bg;
+    padding: var(--lc-space-xl) 0;
+    background-color: var(--lc-color-bg);
 
     @include tb {
-      padding: 50px 40px;
+      padding: 50px var(--lc-space-lg);
     }
 
     @include sp {
-      padding: 40px 20px;
+      padding: var(--lc-space-lg) var(--lc-space-sm);
     }
   }
 
@@ -722,25 +529,25 @@ useHead({
 
     @include tb {
       min-height: 400px;
-      padding: 60px 40px;
+      padding: var(--lc-space-xl) var(--lc-space-lg);
     }
 
     @include sp {
       min-height: 180px;
-      padding: 28px 20px;
+      padding: 28px var(--lc-space-sm);
     }
   }
 
   &--studio {
-    padding: 60px 0;
-    background-color: $color-bg;
+    padding: var(--lc-space-xl) 0;
+    background-color: var(--lc-color-bg);
 
     @include tb {
-      padding: 50px 40px;
+      padding: 50px var(--lc-space-lg);
     }
 
     @include sp {
-      padding: 40px 20px;
+      padding: var(--lc-space-lg) var(--lc-space-sm);
     }
   }
 }
@@ -778,11 +585,11 @@ useHead({
 
 .stories-title {
   margin: 0;
-  margin-top: 60px;
-  font-family: $font-family-en;
+  margin-top: var(--lc-space-xl);
+  font-family: $lc-font-en;
   font-size: 24px;
   font-weight: 400;
-  color: $color-primary;
+  color: $lc-color-black;
   letter-spacing: 2px;
 
   @include tb {
@@ -800,7 +607,7 @@ useHead({
 
 .stories-subtitle-wrapper {
   display: flex;
-  gap: 20px;
+  gap: var(--lc-space-sm);
   align-items: center;
 
   @include tb {
@@ -816,7 +623,7 @@ useHead({
   flex-shrink: 0;
   width: 70%;
   height: 1px;
-  background-color: $color-primary;
+  background-color: $lc-color-black;
 
   @include tb {
     width: 50px;
@@ -829,10 +636,10 @@ useHead({
 
 .stories-subtitle {
   margin: 0;
-  font-family: $font-family-en;
+  font-family: $lc-font-en;
   font-size: 16px;
   font-weight: 400;
-  color: rgba($color-primary, 0.6);
+  color: rgba($lc-color-black, 0.6);
 
   @include tb {
     font-size: 14px;
@@ -847,7 +654,7 @@ useHead({
   position: relative;
   padding: 12px;
   overflow: hidden;
-  border: 1px solid #000;
+  border: 1px solid $lc-color-black;
   border-radius: 24px;
 
   @include tb {
@@ -881,9 +688,9 @@ useHead({
   box-sizing: border-box;
   width: 100%;
   max-width: 900px;
-  padding: 0 60px;
+  padding: 0 var(--lc-space-xl);
   margin: 0 auto;
-  margin-bottom: 40px;
+  margin-bottom: var(--lc-space-lg);
   letter-spacing: 3px;
 
   @include tb {
@@ -893,16 +700,16 @@ useHead({
 
   @include sp {
     padding: 0 12px;
-    margin-bottom: 24px;
+    margin-bottom: var(--lc-space-md);
   }
 }
 
 .services-title {
-  margin-bottom: 40px;
-  font-family: $font-family-en;
+  margin-bottom: var(--lc-space-lg);
+  font-family: $lc-font-en;
   font-size: 20px;
   font-weight: 400;
-  color: $color-primary;
+  color: $lc-color-black;
   text-align: center;
 
   @include tb {
@@ -911,7 +718,7 @@ useHead({
   }
 
   @include sp {
-    margin-bottom: 24px;
+    margin-bottom: var(--lc-space-md);
     font-size: 16px;
   }
 }
@@ -920,11 +727,11 @@ useHead({
   letter-spacing: 3px;
 
   p {
-    margin-bottom: 24px;
-    font-family: $font-family-en;
+    margin-bottom: var(--lc-space-md);
+    font-family: $lc-font-en;
     font-size: 16px;
     line-height: 1.2;
-    color: $color-primary;
+    color: $lc-color-black;
     letter-spacing: 3px;
 
     @include tb {
@@ -954,7 +761,7 @@ useHead({
   z-index: 2;
   width: 100%;
   max-width: 1200px;
-  padding: 0 40px;
+  padding: 0 var(--lc-space-lg);
   margin: 0 auto;
   text-align: center;
 
@@ -969,11 +776,11 @@ useHead({
 
 .you-are-here-text {
   margin: 0;
-  font-family: $font-family-en;
+  font-family: $lc-font-en;
   font-size: 18px;
   font-weight: 300;
   line-height: 1.3;
-  color: $color-secondary;
+  color: var(--lc-color-white);
   letter-spacing: 2px;
 
   @include tb {
@@ -994,9 +801,9 @@ useHead({
   max-width: 900px;
   padding: 60px;
   margin: 0 auto;
-  color: white;
+  color: var(--lc-color-white);
   background-color: #1e1e1e;
-  border-radius: 8px;
+  @include radius-sm-responsive;
 
   @include tb {
     padding: 50px 40px;
@@ -1006,17 +813,16 @@ useHead({
   @include sp {
     padding: 32px 16px;
     margin: 0 auto;
-    border-radius: 6px;
   }
 }
 
 .studio-lead {
-  margin-bottom: 40px;
-  font-family: $font-family-en;
+  margin-bottom: var(--lc-space-lg);
+  font-family: $lc-font-en;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.6;
-  color: white;
+  color: var(--lc-color-white);
 
   @include tb {
     margin-bottom: 32px;
@@ -1024,17 +830,17 @@ useHead({
   }
 
   @include sp {
-    margin-bottom: 24px;
+    margin-bottom: var(--lc-space-md);
     font-size: 15px;
   }
 }
 
 .studio-subtitle {
-  margin-bottom: 24px;
-  font-family: $font-family-en;
+  margin-bottom: var(--lc-space-md);
+  font-family: $lc-font-en;
   font-size: 16px;
   font-weight: 400;
-  color: white;
+  color: var(--lc-color-white);
 
   @include tb {
     margin-bottom: 20px;
@@ -1049,7 +855,7 @@ useHead({
 
 .studio-list {
   padding: 0;
-  margin: 0 0 40px;
+  margin: 0 0 var(--lc-space-lg);
   letter-spacing: 2px;
   list-style: none;
 
@@ -1058,18 +864,18 @@ useHead({
   }
 
   @include sp {
-    margin-bottom: 24px;
+    margin-bottom: var(--lc-space-md);
   }
 
   li {
     position: relative;
-    padding-left: 20px;
+    padding-left: var(--lc-space-sm);
     margin-bottom: 16px;
-    font-family: $font-family-en;
+    font-family: $lc-font-en;
     font-size: 16px;
     font-weight: normal;
     line-height: 1.8;
-    color: white;
+    color: var(--lc-color-white);
     letter-spacing: 2px;
 
     @include tb {
@@ -1088,7 +894,7 @@ useHead({
       left: 0;
       font-size: 18px;
       line-height: 1;
-      color: white;
+      color: var(--lc-color-white);
       content: "•";
     }
 
@@ -1100,11 +906,11 @@ useHead({
 
 .studio-quote {
   margin: 0;
-  font-family: $font-family-en;
+  font-family: $lc-font-en;
   font-size: 16px;
   font-style: italic;
   line-height: 1.7;
-  color: white;
+  color: var(--lc-color-white);
   opacity: 0.9;
 
   @include tb {

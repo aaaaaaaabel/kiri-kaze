@@ -43,7 +43,19 @@ export default defineNuxtConfig({
     blob: true,
   },
 
-  css: ["~/assets/fonts/index.ts", "~/assets/styles/main.scss"],
+  css: ["~/assets/fonts/index.scss", "~/assets/styles/main.scss"],
+
+  // Bootstrap 5 內部還是用舊版 Sass 語法（@import、全域 color function 等），
+  // 升級 Bootstrap 或改用 Dart Sass 3 之前都會噴這些棄用警告，先靜音避免洗版
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          silenceDeprecations: ["import", "global-builtin", "color-functions", "if-function"],
+        },
+      },
+    },
+  },
 
   runtimeConfig: {
     public: {

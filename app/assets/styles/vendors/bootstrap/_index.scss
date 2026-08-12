@@ -1,0 +1,36 @@
+/* stylelint-disable at-rule-disallowed-list */
+
+// Bootstrap SCSS 基礎層。第一階段只接 functions / variables / maps / mixins /
+// root / reboot / containers / grid / utilities，不引入 buttons / forms / modal /
+// dropdown / navbar / card 等元件層——Lacunae 自己的 Menu、BookingModal、
+// FossilCard、Portfolio、hero 視覺已經有一套，貿然疊上 Bootstrap 元件
+// 容易造成 selector 衝突與視覺跑掉。
+
+// [必需] functions（顏色、SVG、calc 等函式）
+@import "bootstrap/scss/functions";
+
+// [自訂] 覆蓋 Bootstrap 預設變數（需在 bootstrap/scss/variables 之前）
+@import "variables";
+
+// [必要] Bootstrap 的變數
+@import "bootstrap/scss/variables";
+
+// [自訂] Bootstrap map 調整（需在 bootstrap/scss/maps 之前）
+@import "maps";
+
+// [必要] Bootstrap 的 map、mixins、root
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/root";
+
+// [可選] Bootstrap 的 reboot、grid 系統、utilities
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/utilities";
+
+// [自訂] Utilities 擴充（需在 bootstrap/scss/utilities/api 之前）
+@import "utilities";
+
+// [可選] Utilities API，讓自訂 utility class 生效
+@import "bootstrap/scss/utilities/api";

@@ -336,6 +336,7 @@ onMounted(async () => {
 .hero-quote-section__text {
   padding: 0 24px;
   margin: 0;
+  font-family: $font-family-zh-serif;
   font-size: 2rem;
   font-weight: 600;
   color: #1a1a1a;
@@ -378,14 +379,14 @@ onMounted(async () => {
 .fossils-page {
   width: 100%;
   min-height: 100vh;
-  background-color: #fff;
+  background-color: var(--lc-color-white);
 
   // 圖鑑區塊（在 Hero 下方，白色背景）
   &__gallery {
     position: relative;
     z-index: 1;
     padding-top: 0;
-    background-color: #fff;
+    background-color: var(--lc-color-white);
 
     @include tb {
       padding-top: 0;
@@ -401,12 +402,12 @@ onMounted(async () => {
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 40px;
-    margin-bottom: 20px;
+    padding: var(--lc-space-lg);
+    margin-bottom: var(--lc-space-sm);
     text-align: center;
 
     @include sp {
-      padding: 30px 20px 0;
+      padding: var(--lc-space-md) var(--lc-space-sm) 0;
       margin-top: 68px;
       margin-bottom: 0;
     }
@@ -417,7 +418,7 @@ onMounted(async () => {
     width: 100%;
     max-width: 1000px;
     height: auto;
-    padding: 20px;
+    padding: var(--lc-space-sm);
     margin: 0 auto;
 
     @include sp {
@@ -430,7 +431,7 @@ onMounted(async () => {
     visibility: hidden;
     width: 100%;
     height: 1px;
-    margin: 20px 0;
+    margin: var(--lc-space-sm) 0;
   }
 }
 </style>

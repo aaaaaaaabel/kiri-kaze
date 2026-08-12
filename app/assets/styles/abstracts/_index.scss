@@ -1,0 +1,11 @@
+/**
+ * Abstracts 入口
+ * 統一 @forward，讓其他層可以用 `@use "abstracts" as *;` 一次拿到
+ * 變數、token map、mixins。Bootstrap 的實際整合請見 vendors/bootstrap/。
+ */
+
+@forward "variables";
+@forward "tokens";
+@forward "bootstrap";
+@forward "functions";
+@forward "mixins";

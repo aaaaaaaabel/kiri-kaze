@@ -247,11 +247,11 @@ async function handleSubmit() {
 .booking-modal__backdrop {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: var(--lc-z-overlay);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: var(--lc-space-sm);
   background: rgb(0 0 0 / 50%);
   backdrop-filter: blur(4px);
 }
@@ -264,7 +264,7 @@ async function handleSubmit() {
   padding: 32px 28px;
   overflow-y: auto;
   background: $color-bg;
-  border-radius: 12px;
+  border-radius: var(--lc-radius-md);
   box-shadow: 0 12px 40px rgb(0 0 0 / 15%);
 }
 
@@ -279,12 +279,12 @@ async function handleSubmit() {
   height: 32px;
   font-size: 1.25rem;
   line-height: 1;
-  color: #666;
+  color: var(--lc-color-text-muted);
   cursor: pointer;
   background: transparent;
   border: none;
   border-radius: 50%;
-  transition: background 0.2s, color 0.2s;
+  transition: background var(--lc-transition-quick), color var(--lc-transition-quick);
 
   &:hover {
     color: $color-primary;
@@ -303,7 +303,7 @@ async function handleSubmit() {
 .booking-modal__subtitle {
   margin: 0 0 24px;
   font-size: 0.9rem;
-  color: #666;
+  color: var(--lc-color-text-muted);
 }
 
 .booking-modal__error {
@@ -312,7 +312,7 @@ async function handleSubmit() {
   font-size: 0.875rem;
   color: #b91c1c;
   background: #fef2f2;
-  border-radius: 8px;
+  border-radius: var(--lc-radius-sm);
 }
 
 .booking-modal__form {
@@ -338,7 +338,7 @@ async function handleSubmit() {
     font-family: inherit;
     font-size: 1rem;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: var(--lc-radius-sm);
 
     &:focus {
       outline: none;
@@ -360,12 +360,12 @@ async function handleSubmit() {
   padding: 12px 20px;
   margin-top: 8px;
   font-size: 1rem;
-  color: #fff;
+  color: var(--lc-color-white);
   cursor: pointer;
   background: $color-primary;
   border: none;
-  border-radius: 8px;
-  transition: background 0.2s;
+  border-radius: var(--lc-radius-sm);
+  transition: background var(--lc-transition-quick);
 
   &:hover:not(:disabled) {
     background: color.adjust($color-primary, $lightness: -8%);
@@ -381,7 +381,7 @@ async function handleSubmit() {
   width: 18px;
   height: 18px;
   border: 2px solid rgb(255 255 255 / 40%);
-  border-top-color: #fff;
+  border-top-color: var(--lc-color-white);
   border-radius: 50%;
   animation: booking-modal-spin 0.7s linear infinite;
 }
@@ -418,7 +418,7 @@ async function handleSubmit() {
   stroke-width: 2;
   stroke-dasharray: 151;
   stroke-dashoffset: 151;
-  animation: booking-modal-success-circle 0.5s ease-out forwards;
+  animation: booking-modal-success-circle var(--lc-transition-normal) ease-out forwards;
 }
 
 .booking-modal__success-check {
@@ -454,7 +454,7 @@ async function handleSubmit() {
   margin: 0 0 28px;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #666;
+  color: var(--lc-color-text-muted);
 
   strong {
     font-weight: 600;
@@ -465,12 +465,12 @@ async function handleSubmit() {
 .booking-modal__btn-close {
   padding: 10px 20px;
   font-size: 1rem;
-  color: #fff;
+  color: var(--lc-color-white);
   cursor: pointer;
   background: $color-primary;
   border: none;
-  border-radius: 8px;
-  transition: background 0.2s;
+  border-radius: var(--lc-radius-sm);
+  transition: background var(--lc-transition-quick);
 
   &:hover {
     background: color.adjust($color-primary, $lightness: -8%);
@@ -479,10 +479,10 @@ async function handleSubmit() {
 
 .booking-modal-enter-active,
 .booking-modal-leave-active {
-  transition: opacity 0.2s ease;
+  transition: opacity var(--lc-transition-quick) ease;
 
   .booking-modal__card {
-    transition: transform 0.2s ease;
+    transition: transform var(--lc-transition-quick) ease;
   }
 }
 

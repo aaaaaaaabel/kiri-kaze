@@ -104,23 +104,10 @@ onMounted(async () => {
 </script>
 
 <style scoped lang="scss">
-@use "~/assets/styles/variables" as *;
-@use "~/assets/styles/mixins" as *;
+@use "~/assets/styles/abstracts" as *;
 
-.portfolio-page {
-  width: 100%;
-  min-height: 100vh;
-  padding: 0;
-  background-color: #fff;
-}
-
-.contents {
-  width: 100%;
-}
-
-.contents_inner {
-  width: 100%;
-}
+// .portfolio-page / .contents / .contents_inner / .contents_detail_inner 不用在這裡
+// 重複宣告：components/_portfolio.scss、layouts/_layout.scss 已經有一樣的全域規則。
 
 .contents_detail {
   width: 100%;
@@ -133,12 +120,8 @@ onMounted(async () => {
 
   @include sp {
     padding-top: 150px;
-    margin-bottom: 30px;
+    margin-bottom: var(--lc-space-md);
   }
-}
-
-.contents_detail_inner {
-  width: 100%;
 }
 
 .contents_block {
@@ -148,17 +131,17 @@ onMounted(async () => {
   padding-bottom: 75px;
 
   @include tb {
-    padding-right: 60px;
-    padding-bottom: 60px;
-    padding-left: 60px;
+    padding-right: var(--lc-space-xl);
+    padding-bottom: var(--lc-space-xl);
+    padding-left: var(--lc-space-xl);
   }
 
   @include sp {
-    padding: 45px 30px;
+    padding: 45px var(--lc-space-md);
   }
 }
 
-// #home 特殊樣式
+// #home 特殊樣式：這頁的 grid 不吃 layouts/_layout.scss 的 1200px 版寬上限
 #home .contents_block_inner {
   width: 100%;
   max-width: 100%;
@@ -170,10 +153,8 @@ onMounted(async () => {
   line-height: 0;
 }
 
+// layouts/_layout.scss 的 .grid_block 已經有 width/font-size/line-height，這裡只加這頁需要的 text-align
 .grid_block {
-  width: 100%;
-  font-size: 0;
-  line-height: 0;
   text-align: left;
 }
 
@@ -185,15 +166,15 @@ onMounted(async () => {
   padding: 2rem;
   font-size: 1rem;
   line-height: 1.5;
-  color: #333;
+  color: var(--lc-color-text-soft);
   text-align: center;
 }
 
 // #grid 特殊樣式
 #grid {
   padding-top: 0;
-  padding-right: 40px;
-  padding-left: 40px;
+  padding-right: var(--lc-space-lg);
+  padding-left: var(--lc-space-lg);
 
   @include sp {
     padding-right: 15px;

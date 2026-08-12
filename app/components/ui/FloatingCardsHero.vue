@@ -624,7 +624,7 @@ onUnmounted(() => {
   min-height: 100px;
   max-height: 180px;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: var(--lc-radius-md);
   box-shadow:
     0 4px 20px rgb(0 0 0 / 15%),
     0 2px 8px rgb(0 0 0 / 10%),
@@ -659,8 +659,8 @@ onUnmounted(() => {
   height: 100%;
   backdrop-filter: blur(0.5px);
   transition:
-    opacity 0.25s ease-out,
-    transform 0.25s ease-out;
+    opacity var(--lc-transition-fast) ease-out,
+    transform var(--lc-transition-fast) ease-out;
 
   &::before {
     position: absolute;
@@ -690,10 +690,11 @@ onUnmounted(() => {
 
 .floating-cards-hero__title {
   margin: 0 0 16px;
+  font-family: $font-family-zh-serif;
   font-size: 3rem;
   font-weight: 400;
   line-height: 1.2;
-  color: #fff;
+  color: var(--lc-color-white);
   letter-spacing: 0.15rem;
   text-shadow: 0 4px 12px rgb(0 0 0 / 50%);
 
@@ -726,13 +727,13 @@ onUnmounted(() => {
   padding: 12px 24px;
   font-size: 1rem;
   font-weight: 400;
-  color: #fff;
+  color: var(--lc-color-white);
   letter-spacing: 0.1rem;
   text-shadow: 0 2px 4px rgb(0 0 0 / 20%);
   cursor: pointer;
   background: rgb(255 255 255 / 15%);
   border: 2px solid rgb(255 255 255 / 30%);
-  border-radius: 50px;
+  border-radius: var(--lc-radius-pill);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 
