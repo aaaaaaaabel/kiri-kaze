@@ -26,20 +26,45 @@
         "selector-pseudo-class-no-unknown": [true, {
           "ignorePseudoClasses": ["global", "local", "deep"]
         }],
-        "property-no-vendor-prefix": null
+        "property-no-vendor-prefix": null,
+        "custom-property-pattern": "^(?:lc|bs)-[a-z][a-z0-9-]*$"
       }
     },
     {
       "files": ["**/*.{scss,vue}"],
       "rules": {
         "scss/no-global-function-names": null,
-        "scss/dollar-variable-pattern": null,
+        "scss/dollar-variable-pattern": ["^lc-[a-z][a-z0-9-]*$", { "ignore": ["local"] }],
+        "scss/at-mixin-pattern": "^lc-[a-z][a-z0-9-]*$",
+        "scss/at-function-pattern": "^lc-[a-z][a-z0-9-]*$",
+        "scss/no-duplicate-mixins": true,
         "value-keyword-case": null,
         "scss/dollar-variable-empty-line-before": null,
         "color-hex-length": "short",
         "property-no-deprecated": null,
         "at-rule-empty-line-before": null,
         "media-feature-range-notation": null
+      }
+    },
+    {
+      "files": ["**/*.vue"],
+      "rules": {
+        "custom-property-pattern": null
+      }
+    },
+    {
+      "files": [
+        "app/assets/styles/_variables.scss",
+        "app/assets/styles/_mixins.scss",
+        "app/assets/styles/_menu.scss",
+        "app/assets/styles/vendors/**/*.scss",
+        "app/assets/styles/overrides/**/*.scss"
+      ],
+      "rules": {
+        "scss/dollar-variable-pattern": null,
+        "scss/at-mixin-pattern": null,
+        "scss/at-function-pattern": null,
+        "custom-property-pattern": null
       }
     },
     {

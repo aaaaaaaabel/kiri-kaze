@@ -17,6 +17,7 @@ Lacunae 是一個 Nuxt 4 應用，包含化石圖鑑、作品集與活動報名�
 | [refactor-roadmap.md](./refactor-roadmap.md) | 分階段重構計畫、目標結構、驗收條件與 commit 策略 | 要交給 Cursor/Claude 分段重構 |
 | [branding-and-fonts.md](./branding-and-fonts.md) | Lacunae 品牌字（Bodoni Moda）怎麼設定的、之後買到正版字體要怎麼換 | 要調整字標樣式，或買到 Bodoni Poster Std 授權後要接上 |
 | [scripts-reference.md](./scripts-reference.md) | `scripts/`、`data/` 底下每個維護腳本的用途與指令 | 要新增化石標本、重新產生 seed 資料、更新圖片 |
+| [scss-governance.md](./scss-governance.md) | SCSS 分層、token 唯一來源、`$lc-*`/`var(--lc-*)` 使用時機、legacy 相容層與後續遷移順序 | 要寫/改元件樣式、要繼續遷移舊入口的 `.vue` 檔 |
 | [qa-interaction-report.md](./qa-interaction-report.md) | **臨時** QA／體感 bug 清單（Menu、scroll 等） | 修互動問題時對照；**問題修完即可刪** |
 
 ## 快速上手

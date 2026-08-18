@@ -390,7 +390,7 @@ watch(slug, async (newSlug, oldSlug) => {
 
 // Loading & Error States
 .project-error {
-    @include state-panel(60vh);
+    @include lc-state-panel(60vh);
 
     h2 {
         margin-bottom: 24px;
@@ -411,7 +411,7 @@ watch(slug, async (newSlug, oldSlug) => {
     box-sizing: border-box;
     width: 100%;
     max-width: 100%;
-    @include section-padding-responsive;
+    @include lc-section-padding-responsive;
 
     background-color: var(--lc-color-gray-light);
 
@@ -510,7 +510,7 @@ watch(slug, async (newSlug, oldSlug) => {
         max-width: min(1000px, 100%);
         margin: 0 auto;
         overflow: hidden;
-        @include radius-sm-responsive;
+        @include lc-radius-sm-responsive;
 
         box-shadow: 0 8px 24px rgb(0 0 0 / 10%);
 
@@ -543,7 +543,7 @@ watch(slug, async (newSlug, oldSlug) => {
     text-decoration: none;
     background-color: var(--lc-color-white);
     border: 1px solid var(--lc-color-border-light);
-    @include radius-sm-responsive;
+    @include lc-radius-sm-responsive;
 
     transition: all $lc-transition-fast ease-in-out;
 
@@ -557,7 +557,7 @@ watch(slug, async (newSlug, oldSlug) => {
         font-size: 0.8125rem;
     }
 
-    @include hover-accent-fill;
+    @include lc-hover-accent-fill;
 
     &:hover {
         transform: translateX(-4px);
@@ -579,7 +579,7 @@ watch(slug, async (newSlug, oldSlug) => {
     box-sizing: border-box;
     width: 100%;
     max-width: 100%;
-    @include section-padding-responsive;
+    @include lc-section-padding-responsive;
 
     &--alt {
         background-color: var(--lc-color-gray-light);
@@ -675,7 +675,7 @@ watch(slug, async (newSlug, oldSlug) => {
         border-radius: 16px;
     }
 
-    @include hover-accent-fill;
+    @include lc-hover-accent-fill;
 }
 
 // ==========================================
@@ -702,7 +702,7 @@ watch(slug, async (newSlug, oldSlug) => {
         min-width: 0;
         max-width: 100%;
         overflow: hidden;
-        @include radius-sm-responsive;
+        @include lc-radius-sm-responsive;
 
         box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
 
@@ -740,7 +740,7 @@ watch(slug, async (newSlug, oldSlug) => {
     text-decoration: none;
     background-color: var(--lc-color-gray-light);
     border: 1px solid var(--lc-color-border-light);
-    @include radius-sm-responsive;
+    @include lc-radius-sm-responsive;
 
     transition: all $lc-transition-fast ease-in-out;
 
@@ -750,7 +750,7 @@ watch(slug, async (newSlug, oldSlug) => {
         font-size: 0.9375rem;
     }
 
-    @include hover-accent-fill;
+    @include lc-hover-accent-fill;
 
     &:hover {
         box-shadow: 0 4px 12px rgb(164 138 86 / 30%);
@@ -773,7 +773,7 @@ watch(slug, async (newSlug, oldSlug) => {
     box-sizing: border-box;
     width: 100%;
     max-width: 100%;
-    @include section-padding-responsive;
+    @include lc-section-padding-responsive;
 
     background-color: var(--lc-color-gray-light);
 
@@ -806,7 +806,7 @@ watch(slug, async (newSlug, oldSlug) => {
     text-decoration: none;
     background-color: var(--lc-color-white);
     border: 1px solid var(--lc-color-border-light);
-    @include radius-sm-responsive;
+    @include lc-radius-sm-responsive;
 
     transition: all $lc-transition-fast ease-in-out;
 
@@ -814,7 +814,7 @@ watch(slug, async (newSlug, oldSlug) => {
         padding: 18px 16px;
     }
 
-    @include hover-accent-fill;
+    @include lc-hover-accent-fill;
 
     &:hover {
         box-shadow: 0 8px 24px rgb(164 138 86 / 20%);

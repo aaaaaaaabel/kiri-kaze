@@ -439,7 +439,7 @@ useHead({
   margin: 0 auto;
   margin-bottom: 120px;
   overflow: hidden;
-  @include radius-sm-responsive;
+  @include lc-radius-sm-responsive;
 
   transform: translateY(60px);
 
@@ -803,7 +803,7 @@ useHead({
   margin: 0 auto;
   color: var(--lc-color-white);
   background-color: #1e1e1e;
-  @include radius-sm-responsive;
+  @include lc-radius-sm-responsive;
 
   @include tb {
     padding: 50px 40px;

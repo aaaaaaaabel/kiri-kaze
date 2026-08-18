@@ -29,8 +29,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <style scoped lang="scss">
-@use "~/assets/styles/variables" as *;
-@use "~/assets/styles/mixins" as *;
+@use "~/assets/styles/abstracts" as *;
 
 .loading-spinner {
   display: flex;
@@ -52,9 +51,9 @@ withDefaults(defineProps<Props>(), {
     width: 40px;
     height: 40px;
     border: 3px solid #f3f3f3;
-    border-top: 3px solid $color-primary;
+    border-top: 3px solid var(--lc-color-black);
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    animation: spin var(--lc-transition-slow) linear infinite;
   }
 
   &--small {
@@ -90,7 +89,7 @@ withDefaults(defineProps<Props>(), {
   &__message {
     margin-top: 16px;
     font-size: 0.95rem;
-    color: #666;
+    color: var(--lc-color-text-muted);
     text-align: center;
   }
 }

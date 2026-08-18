@@ -9,7 +9,7 @@
 
 // Detail 頁常見的區塊留白：portfolio/[slug].vue 的 hero / section / navigation
 // 都用同一組響應式 padding。
-@mixin section-padding-responsive {
+@mixin lc-section-padding-responsive {
   padding: 60px 40px;
 
   @include legacy.tb {
@@ -23,7 +23,7 @@
 
 // hover 時填滿品牌色：portfolio/[slug].vue 的 back-button / tech-tag /
 // project-link / project-nav-item 都是同一種「外框 → hover 填滿 accent」效果。
-@mixin hover-accent-fill {
+@mixin lc-hover-accent-fill {
   &:hover {
     color: $lc-color-white;
     background-color: $lc-color-accent;
@@ -34,7 +34,7 @@
 // 卡片/按鈕常見的圓角在 sp 斷點縮小一號：
 // portfolio/[slug].vue（back-button/gallery item/project-link/project-nav-item）
 // 跟 about.vue（hero-image/studio-card）都是 8px → 6px。
-@mixin radius-sm-responsive {
+@mixin lc-radius-sm-responsive {
   border-radius: $lc-radius-sm;
 
   @include legacy.sp {
@@ -44,7 +44,7 @@
 
 // 白底圓角卡片：species/[slug].vue 裡 main-image / location-tabs / tabs /
 // content 這 4 個區塊都是同一種「白底、圓角、淺陰影」卡片殼。
-@mixin white-card {
+@mixin lc-white-card {
   background: $lc-color-white;
   border-radius: $lc-radius-sm;
   box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
@@ -53,7 +53,7 @@
 // 空狀態／錯誤狀態的置中面板殼層：events 的 empty、portfolio 的 empty、
 // portfolio/[slug] 與 species/[slug] 的 error 都是同一個「置中訊息區塊」骨架，
 // 各頁再疊自己的文字/按鈕樣式。
-@mixin state-panel($min-height: 60vh) {
+@mixin lc-state-panel($min-height: 60vh) {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

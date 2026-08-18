@@ -113,8 +113,7 @@ watch(
 </script>
 
 <style scoped lang="scss">
-@use "~/assets/styles/variables" as *;
-@use "~/assets/styles/mixins" as *;
+@use "~/assets/styles/abstracts" as *;
 
 .auth-modal__backdrop {
   position: fixed;
@@ -133,8 +132,8 @@ watch(
   width: 100%;
   max-width: 380px;
   padding: 32px 28px;
-  background: $color-bg;
-  border-radius: 12px;
+  background: var(--lc-color-bg);
+  border-radius: var(--lc-radius-md);
   box-shadow: 0 12px 40px rgb(0 0 0 / 15%);
 }
 
@@ -149,27 +148,27 @@ watch(
   height: 32px;
   font-size: 1.25rem;
   line-height: 1;
-  color: #666;
+  color: var(--lc-color-text-muted);
   cursor: pointer;
   background: transparent;
   border: none;
   border-radius: 50%;
   transition:
-    background 0.2s,
-    color 0.2s;
+    background var(--lc-transition-quick),
+    color var(--lc-transition-quick);
 
   &:hover {
-    color: $color-primary;
-    background: $color-gray-light;
+    color: var(--lc-color-black);
+    background: var(--lc-color-gray-light);
   }
 }
 
 .auth-modal__title {
   margin: 0 0 24px;
-  font-family: $font-family-en;
+  font-family: var(--lc-font-en);
   font-size: 1.5rem;
   font-weight: 600;
-  color: $color-primary;
+  color: var(--lc-color-black);
 }
 
 .auth-modal__error {
@@ -178,13 +177,13 @@ watch(
   font-size: 0.875rem;
   color: #b91c1c;
   background: #fef2f2;
-  border-radius: 8px;
+  border-radius: var(--lc-radius-sm);
 }
 
 .auth-modal__hint {
   margin: 0 0 20px;
   font-size: 0.95rem;
-  color: #666;
+  color: var(--lc-color-text-muted);
 }
 
 .auth-modal__google {
@@ -194,20 +193,20 @@ watch(
   justify-content: center;
   width: 100%;
   padding: 12px 20px;
-  font-family: $font-family-en;
+  font-family: var(--lc-font-en);
   font-size: 1rem;
   color: #3c4043;
   cursor: pointer;
-  background: #fff;
+  background: var(--lc-color-white);
   border: 1px solid #dadce0;
-  border-radius: 8px;
+  border-radius: var(--lc-radius-sm);
   transition:
-    background 0.2s,
-    border-color 0.2s;
+    background var(--lc-transition-quick),
+    border-color var(--lc-transition-quick);
 
   &:hover:not(:disabled) {
-    background: $color-gray-light;
-    border-color: #ccc;
+    background: var(--lc-color-gray-light);
+    border-color: var(--lc-color-gray-mid);
   }
 
   &:disabled {
@@ -231,15 +230,15 @@ watch(
   p {
     margin: 0;
     font-size: 0.95rem;
-    color: #666;
+    color: var(--lc-color-text-muted);
   }
 }
 
 .auth-modal__spinner {
   width: 32px;
   height: 32px;
-  border: 3px solid $color-gray-light;
-  border-top-color: $color-primary;
+  border: 3px solid var(--lc-color-gray-light);
+  border-top-color: var(--lc-color-black);
   border-radius: 50%;
   animation: auth-modal-spin 0.8s linear infinite;
 }
@@ -253,10 +252,10 @@ watch(
 // Transition
 .auth-modal-enter-active,
 .auth-modal-leave-active {
-  transition: opacity 0.2s ease;
+  transition: opacity var(--lc-transition-quick) ease;
 
   .auth-modal__card {
-    transition: transform 0.2s ease;
+    transition: transform var(--lc-transition-quick) ease;
   }
 }
 

@@ -1046,7 +1046,7 @@ useHead(() => ({
     width: 100%;
     margin: 0 auto var(--lc-space-sm);
     overflow: hidden;
-    @include white-card;
+    @include lc-white-card;
 
     img {
       display: block;
@@ -1113,7 +1113,7 @@ useHead(() => ({
     gap: 8px;
     padding: 16px;
     margin-bottom: var(--lc-space-sm);
-    @include white-card;
+    @include lc-white-card;
 
     .location-tab-btn {
       display: flex;
@@ -1149,7 +1149,7 @@ useHead(() => ({
 
   .tabs {
     padding: 16px;
-    @include white-card;
+    @include lc-white-card;
 
     .tab-btn {
       width: 100%;
@@ -1197,7 +1197,7 @@ useHead(() => ({
   .content {
     padding: 24px;
     margin-bottom: var(--lc-space-sm);
-    @include white-card;
+    @include lc-white-card;
 
     .content-section {
       margin-bottom: 32px;

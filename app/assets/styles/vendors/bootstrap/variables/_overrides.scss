@@ -9,6 +9,12 @@
 // :root CSS 變數前綴，避免跟自己的 --lc- 變數混在一起
 $prefix: bs-;
 
+// Bootstrap 預設會把 html 設成 scroll-behavior: smooth，這會讓所有 window.scrollTo()
+// 呼叫（包含逐幀動畫，見 FloatingCardsHero.vue 的 animateScrollTo）都被瀏覽器自己
+// 再插值一次，等於自己算好的緩動又被追著跑，動畫會卡在中間出不去。關掉，
+// 交回 JS 自己控制節奏。
+$enable-smooth-scroll: false;
+
 // 間距（Bootstrap utilities 的 spacer 尺度，對齊 $lc-space-*）
 $spacer: $lc-space-sm;
 $spacers: (

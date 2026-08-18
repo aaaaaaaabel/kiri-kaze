@@ -28,7 +28,7 @@
             Discover traces of life from millions of years ago, each fossil is a
             witness of time
           </p>
-          <button class="floating-cards-hero__cta" @click="triggerGoToQuote">
+          <button class="floating-cards-hero__cta" @click="scrollToQuote">
             Start Exploring
           </button>
         </div>
@@ -55,19 +55,11 @@ const props = withDefaults(defineProps<Props>(), {
   fossils: () => [],
 });
 
-const isTouchDevice = ref(false);
 const heroRef = ref<HTMLElement | null>(null);
 const mouseX = ref(0);
 const mouseY = ref(0);
 const scrollProgress = ref(0);
 const contentFadeProgress = ref(0);
-const TRANSITION_DURATION = 1500;
-const isTransitioning = ref(false);
-const isReverseTransitioning = ref(false);
-let transitionRafId = 0;
-let reverseTransitionRafId = 0;
-let touchStartY = 0;
-let touchSnapFired = false;
 
 const HERO_BN_BASE = "/images/hero_bn";
 const CARD_MAX_W = 140;
@@ -190,176 +182,6 @@ const handleImageError = (event: Event) => {
   img.style.display = "none";
 };
 
-const smoothScrollTo = (targetScrollY: number, durationMs: number) => {
-  if (!import.meta.client) return;
-  const startY = window.scrollY;
-  const startTime = performance.now();
-  const tick = () => {
-    const elapsed = performance.now() - startTime;
-    const t = Math.min(elapsed / durationMs, 1);
-    const eased = 1 - (1 - t) ** 1.5;
-    const y = startY + (targetScrollY - startY) * eased;
-    window.scrollTo(0, y);
-    if (t < 1) requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
-};
-
-// Anchors cache: wheel snap / CTA only; scroll handler does not use anchors
-type Anchors = { hero: number; quote: number; gallery: number };
-const anchorsCache = ref<Anchors | null>(null);
-
-function refreshAnchorsCache(): Anchors | null {
-  if (!import.meta.client) return null;
-  const quoteEl = document.querySelector(".hero-quote-section");
-  const galleryEl = document.querySelector(".fossils-page__gallery");
-  if (!quoteEl || !galleryEl) {
-    anchorsCache.value = null;
-    return null;
-  }
-  const y = window.scrollY;
-  const next: Anchors = {
-    hero: 0,
-    quote: quoteEl.getBoundingClientRect().top + y,
-    gallery: galleryEl.getBoundingClientRect().top + y,
-  };
-  anchorsCache.value = next;
-  return next;
-}
-
-function getAnchors(): Anchors | null {
-  if (anchorsCache.value) return anchorsCache.value;
-  return refreshAnchorsCache();
-}
-
-type Zone = "hero" | "quote" | "gallery";
-const ZONE_MARGIN = 40;
-const GALLERY_TOP_THRESHOLD = 180;
-
-const getZone = (scrollY: number, anchors: Anchors): Zone => {
-  if (scrollY < anchors.quote - ZONE_MARGIN) return "hero";
-  if (scrollY < anchors.gallery - ZONE_MARGIN) return "quote";
-  return "gallery";
-};
-
-const isAtTopOfGallery = (scrollY: number, anchors: Anchors): boolean =>
-  scrollY <= anchors.gallery + GALLERY_TOP_THRESHOLD;
-
-const getQuoteSectionScrollTop = (): number | null => {
-  const a = getAnchors();
-  return a ? a.quote : null;
-};
-
-const emit = defineEmits<{ (e: "navigatedToQuote"): void }>();
-
-const hasTriggeredAutoScroll = ref(false);
-const isAutoScrolling = ref(false);
-
-const triggerGoToQuote = () => {
-  if (hasTriggeredAutoScroll.value) return;
-  hasTriggeredAutoScroll.value = true;
-  emit("navigatedToQuote");
-  startTransition();
-};
-
-const startTransition = () => {
-  if (!heroRef.value?.parentElement || isTransitioning.value) return;
-  const targetY = getQuoteSectionScrollTop();
-  if (targetY !== null) {
-    isAutoScrolling.value = true;
-    smoothScrollTo(targetY, TRANSITION_DURATION);
-    setTimeout(() => {
-      isAutoScrolling.value = false;
-    }, TRANSITION_DURATION + 50);
-  }
-  const wrapper = heroRef.value.parentElement;
-  const wrapperHeight = wrapper.getBoundingClientRect().height;
-  const startTime = performance.now();
-  isTransitioning.value = true;
-  const tick = () => {
-    const elapsed = performance.now() - startTime;
-    const t = Math.min(elapsed / TRANSITION_DURATION, 1);
-    const eased = 1 - (1 - t) ** 1.5;
-    contentFadeProgress.value = eased;
-    scrollProgress.value = eased;
-    if (heroRef.value) {
-      heroRef.value.style.transform = `translateY(${-eased * wrapperHeight * 0.7}px)`;
-    }
-    if (t < 1) {
-      transitionRafId = requestAnimationFrame(tick);
-    } else {
-      isTransitioning.value = false;
-    }
-  };
-  transitionRafId = requestAnimationFrame(tick);
-};
-
-const startReverseTransition = () => {
-  if (!heroRef.value?.parentElement || isReverseTransitioning.value) return;
-  const wrapper = heroRef.value.parentElement;
-  const heroSectionTop = Math.max(
-    0,
-    wrapper.getBoundingClientRect().top + window.scrollY,
-  );
-  isAutoScrolling.value = true;
-  smoothScrollTo(heroSectionTop, TRANSITION_DURATION);
-  setTimeout(() => {
-    isAutoScrolling.value = false;
-  }, TRANSITION_DURATION + 50);
-  const wrapperHeight = wrapper.getBoundingClientRect().height;
-  const startTime = performance.now();
-  isReverseTransitioning.value = true;
-  const tick = () => {
-    const elapsed = performance.now() - startTime;
-    const t = Math.min(elapsed / TRANSITION_DURATION, 1);
-    const progress = (1 - t) ** 1.5;
-    contentFadeProgress.value = progress;
-    scrollProgress.value = progress;
-    if (heroRef.value) {
-      heroRef.value.style.transform = `translateY(${-progress * wrapperHeight * 0.7}px)`;
-    }
-    if (t < 1) {
-      reverseTransitionRafId = requestAnimationFrame(tick);
-    } else {
-      contentFadeProgress.value = 0;
-      scrollProgress.value = 0;
-      if (heroRef.value) heroRef.value.style.transform = "translateY(0)";
-      isReverseTransitioning.value = false;
-      hasTriggeredAutoScroll.value = false;
-    }
-  };
-  reverseTransitionRafId = requestAnimationFrame(tick);
-};
-
-// goToAnchor: isAutoScrolling only set inside here / startTransition / startReverseTransition
-const goToAnchor = (target: Zone, fromZone: Zone) => {
-  const anchors = getAnchors();
-  if (!anchors) return;
-  if (target === "hero") {
-    startReverseTransition();
-    return;
-  }
-  if (target === "quote") {
-    if (fromZone === "hero") {
-      triggerGoToQuote();
-    } else {
-      isAutoScrolling.value = true;
-      smoothScrollTo(anchors.quote, TRANSITION_DURATION);
-      setTimeout(() => {
-        isAutoScrolling.value = false;
-      }, TRANSITION_DURATION + 50);
-    }
-    return;
-  }
-  if (target === "gallery") {
-    isAutoScrolling.value = true;
-    smoothScrollTo(anchors.gallery, TRANSITION_DURATION);
-    setTimeout(() => {
-      isAutoScrolling.value = false;
-    }, TRANSITION_DURATION + 50);
-  }
-};
-
 const handleMouseMove = (event: MouseEvent) => {
   if (!heroRef.value || !import.meta.client) return;
   const rect = heroRef.value.getBoundingClientRect();
@@ -367,29 +189,13 @@ const handleMouseMove = (event: MouseEvent) => {
   mouseY.value = (event.clientY - rect.top) / rect.height;
 };
 
-// Desktop-only wheel snap: (hover: hover) and (pointer: fine)
-const isDesktopSnapMode = ref(false);
-let mql: MediaQueryList | null = null;
 let optimizedScroll: () => void = () => {};
-let onWheelHandler: (e: WheelEvent) => void = () => {};
-let onMatchChange: (e: MediaQueryListEvent) => void = () => {};
-let resizeHandler: () => void = () => {};
-let orientationHandler: () => void = () => {};
-let loadHandler: () => void = () => {};
-let onTouchStart: (e: TouchEvent) => void = () => {};
-let onTouchEnd: () => void = () => {};
-let onTouchMove: (e: TouchEvent) => void = () => {};
 
-// Scroll: visual sync only (no anchors, no goToAnchor)
+// 被動同步視覺效果：hero 區塊隨捲動位置淡出/位移，永遠只看「目前實際捲動位置」，
+// 不管這個位置是使用者自己滑的還是下面 animateScrollTo() 動畫改的，兩者共用同一份邏輯，
+// 不會出現「捲動位置」跟「淡出效果」各自跑各自的、對不齊的狀況。
 const handleScroll = () => {
   if (!heroRef.value || !import.meta.client) return;
-  if (
-    isAutoScrolling.value ||
-    isTransitioning.value ||
-    isReverseTransitioning.value
-  ) {
-    return;
-  }
   const wrapper = heroRef.value.parentElement;
   if (!wrapper) return;
   const wrapperRect = wrapper.getBoundingClientRect();
@@ -401,86 +207,158 @@ const handleScroll = () => {
     const p = Math.min(Math.abs(wrapperTop) / wrapperHeight, 1);
     scrollProgress.value = p;
     contentFadeProgress.value = p;
-    if (heroRef.value) {
-      heroRef.value.style.transform = `translateY(${wrapperTop * 0.7}px)`;
-    }
+    heroRef.value.style.transform = `translateY(${wrapperTop * 0.7}px)`;
   } else if (wrapperTop + wrapperHeight <= 0) {
     scrollProgress.value = 1;
     contentFadeProgress.value = 1;
-    if (heroRef.value) {
-      heroRef.value.style.transform = `translateY(${-wrapperHeight * 0.7}px)`;
-    }
+    heroRef.value.style.transform = `translateY(${-wrapperHeight * 0.7}px)`;
   } else {
     scrollProgress.value = 0;
     contentFadeProgress.value = scrollY <= 0 ? 0 : contentFadeProgress.value;
-    if (scrollY <= 0) hasTriggeredAutoScroll.value = false;
-    if (heroRef.value) heroRef.value.style.transform = "translateY(0)";
+    heroRef.value.style.transform = "translateY(0)";
   }
 };
 
-const WHEEL_DELTA_THRESHOLD = 8;
+// ────────────────────────────────────────────────────────────────
+// 區塊跳轉：偵測到 wheel/touch 就直接動畫捲到下一/上一個區塊，
+// 只有一個 isAnimating flag，只有動畫迴圈自己跑完才會清掉，
+// 不會有第二條計時器邏輯跟它對不齊。
+// ────────────────────────────────────────────────────────────────
+type AnchorKey = "hero" | "quote" | "gallery";
+type Anchors = { hero: number; quote: number; gallery: number };
+const ZONE_MARGIN = 24;
+const GALLERY_TOP_THRESHOLD = 160;
+const isAnimating = ref(false);
+let isTouchDevice = false;
+let touchStartY = 0;
+let touchFired = false;
+let animationRafId = 0;
+let settleRafId = 0;
+
+// 首頁圖片還在陸續載入時，quote/gallery 區塊的實際位置會被撐開的版面往下推，
+// 所以量測一律用「即時位置」，不要在動畫開始時就把座標寫死。
+const getAnchorY = (key: AnchorKey): number => {
+  if (key === "hero") return 0;
+  const el = document.querySelector(key === "quote" ? ".hero-quote-section" : ".fossils-page__gallery");
+  return el ? el.getBoundingClientRect().top + window.scrollY : window.scrollY;
+};
+
+const computeAnchors = (): Anchors | null => {
+  const quoteEl = document.querySelector(".hero-quote-section");
+  const galleryEl = document.querySelector(".fossils-page__gallery");
+  if (!quoteEl || !galleryEl) return null;
+  const y = window.scrollY;
+  return {
+    hero: 0,
+    quote: quoteEl.getBoundingClientRect().top + y,
+    gallery: galleryEl.getBoundingClientRect().top + y,
+  };
+};
+
+type Zone = "hero" | "quote" | "free";
+const getZone = (y: number, anchors: Anchors): Zone => {
+  if (y < anchors.quote - ZONE_MARGIN) return "hero";
+  if (y < anchors.gallery - ZONE_MARGIN) return "quote";
+  return "free";
+};
+
+// 先慢後快再慢：跟舊版「一開始就全速」比起來，起手跟落點都更柔和。
+const easeInOut = (t: number) => (t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2);
+
+// 固定時長，像投影片切換一樣：無論滑多用力、區塊間距多遠，每次過場的節奏都一致。
+const TRANSITION_DURATION_MS = 900;
+
+// 動畫落地後的鎖定期：觸控板一次「用力滑」的物理手勢，實際上會連續送出好幾個
+// wheel 事件（慣性捲動），若動畫一結束就馬上放行下一個事件，會被同一次手勢
+// 送第二次前進，變成「一滑就跳兩格、中間區塊被跳過」。落地後再鎖一小段時間，
+// 讓同一次手勢的殘留事件全部被吃掉，「滑一次＝進一格」才會成立。
+const LANDING_COOLDOWN_MS = 500;
+let lockedUntil = 0;
+const isInputLocked = () => isAnimating.value || performance.now() < lockedUntil;
+
+// target 傳區塊代號、不傳寫死的座標：每一幀都重新量測那個區塊的即時位置，
+// 版面因為圖片載入撐開而移動時，動畫會自動修正方向，不會跳歪、跳短。
+const animateScrollTo = (target: AnchorKey) => {
+  if (isAnimating.value) return;
+  const startY = window.scrollY;
+  const initialTarget = getAnchorY(target);
+  const distance = Math.abs(initialTarget - startY);
+  if (distance < 1) return;
+  const startTime = performance.now();
+  isAnimating.value = true;
+  const tick = () => {
+    const elapsed = performance.now() - startTime;
+    const t = Math.min(elapsed / TRANSITION_DURATION_MS, 1);
+    const currentTarget = getAnchorY(target);
+    window.scrollTo(0, startY + (currentTarget - startY) * easeInOut(t));
+    // 直接同步呼叫，不要等被動的 scroll 事件（會晚一個 rAF frame）才更新，
+    // 背景淡出跟位移才會是「同一幀算出來的同一組數字」，感覺才會是同一個動作。
+    handleScroll();
+    if (t < 1) {
+      animationRafId = requestAnimationFrame(tick);
+    } else {
+      // 動畫本身在跑的時候，中途的 handleScroll/scroll 事件有時候會讓最後一幀的
+      // scrollTo 沒有真的生效（量到落點跟目標差了幾十 px）。跑完之後多驗一次、
+      // 沒對齊就直接補一次 scrollTo，保證最後一定停在正確的區塊上。
+      settleRafId = requestAnimationFrame(() => {
+        const settled = getAnchorY(target);
+        if (Math.abs(window.scrollY - settled) > 2) window.scrollTo(0, settled);
+        handleScroll();
+        isAnimating.value = false;
+        lockedUntil = performance.now() + LANDING_COOLDOWN_MS;
+        settleRafId = 0;
+      });
+      animationRafId = 0;
+    }
+  };
+  animationRafId = requestAnimationFrame(tick);
+};
+
+// direction > 0：往下/往前；direction < 0：往上/往後。回傳是否有接手處理（要 preventDefault）。
+const tryAdvance = (direction: number): boolean => {
+  if (isInputLocked()) return true; // 動畫還在跑或還在落地鎖定期，吃掉這次輸入避免跟原生捲動打架、跳過中間區塊
+  const anchors = computeAnchors();
+  if (!anchors) return false;
+  const zone = getZone(window.scrollY, anchors);
+
+  if (direction > 0) {
+    if (zone === "hero") {
+      animateScrollTo("quote");
+      return true;
+    }
+    if (zone === "quote") {
+      animateScrollTo("gallery");
+      return true;
+    }
+    return false; // 已經在圖鑑區，交給原生自由捲動
+  }
+
+  if (zone === "quote") {
+    animateScrollTo("hero");
+    return true;
+  }
+  if (zone === "free" && window.scrollY <= anchors.gallery + GALLERY_TOP_THRESHOLD) {
+    animateScrollTo("quote");
+    return true;
+  }
+  return false;
+};
+
+// 點「Start Exploring」：跟 wheel/touch 用同一套動畫，感覺才會一致。
+const scrollToQuote = () => {
+  if (import.meta.client) animateScrollTo("quote");
+};
+
+const WHEEL_MIN_DELTA = 2;
+let onWheelHandler: (e: WheelEvent) => void = () => {};
+let onTouchStart: (e: TouchEvent) => void = () => {};
+let onTouchMove: (e: TouchEvent) => void = () => {};
+let onTouchEnd: () => void = () => {};
 
 onMounted(() => {
   if (!import.meta.client) return;
 
-  mql = window.matchMedia("(hover: hover) and (pointer: fine)");
-  isDesktopSnapMode.value = mql.matches;
-  isTouchDevice.value = navigator.maxTouchPoints > 0;
-  onMatchChange = (e: MediaQueryListEvent) => {
-    isDesktopSnapMode.value = e.matches;
-  };
-  mql.addEventListener("change", onMatchChange);
-
-  onTouchStart = (e: TouchEvent) => {
-    if (!e.touches[0]) return;
-    touchStartY = e.touches[0].clientY;
-    touchSnapFired = false;
-  };
-  onTouchMove = (e: TouchEvent) => {
-    if (touchSnapFired) {
-      e.preventDefault();
-      return;
-    }
-    if (!e.touches[0]) return;
-    if (
-      isAutoScrolling.value ||
-      isTransitioning.value ||
-      isReverseTransitioning.value
-    )
-      return;
-    const deltaY = touchStartY - e.touches[0].clientY;
-    if (Math.abs(deltaY) < 10) return;
-    const anchors = getAnchors();
-    if (!anchors) return;
-    const zone = getZone(window.scrollY, anchors);
-    if (deltaY > 0) {
-      if (zone === "hero") {
-        touchSnapFired = true;
-        e.preventDefault();
-        goToAnchor("quote", "hero");
-      } else if (zone === "quote") {
-        touchSnapFired = true;
-        e.preventDefault();
-        goToAnchor("gallery", "quote");
-      }
-    } else {
-      if (zone === "gallery" && isAtTopOfGallery(window.scrollY, anchors)) {
-        touchSnapFired = true;
-        e.preventDefault();
-        goToAnchor("quote", "gallery");
-      } else if (zone === "quote") {
-        touchSnapFired = true;
-        e.preventDefault();
-        goToAnchor("hero", "quote");
-      }
-    }
-  };
-  onTouchEnd = () => {
-    touchSnapFired = false;
-  };
-  window.addEventListener("touchstart", onTouchStart, { passive: true });
-  window.addEventListener("touchmove", onTouchMove, { passive: false });
-  window.addEventListener("touchend", onTouchEnd, { passive: true });
+  isTouchDevice = navigator.maxTouchPoints > 0;
 
   initCardPositions();
   if (heroRef.value) {
@@ -499,63 +377,45 @@ onMounted(() => {
   };
   window.addEventListener("scroll", optimizedScroll, { passive: true });
 
-  // Desktop-only wheel snap; |deltaY| >= 8 to avoid touchpad jitter; isAutoScrolling only inside goToAnchor/start*
   onWheelHandler = (e: WheelEvent) => {
-    if (isTouchDevice.value) return;
-    if (
-      isAutoScrolling.value ||
-      isTransitioning.value ||
-      isReverseTransitioning.value
-    ) {
-      e.preventDefault();
-      return;
-    }
-    if (!isDesktopSnapMode.value) return;
-    if (Math.abs(e.deltaY) < WHEEL_DELTA_THRESHOLD) return;
-
-    const anchors = getAnchors();
-    if (!anchors) return;
-    const zone = getZone(window.scrollY, anchors);
-
-    if (e.deltaY > 0) {
-      if (zone === "hero") {
-        e.preventDefault();
-        goToAnchor("quote", "hero");
-      } else if (zone === "quote") {
-        e.preventDefault();
-        goToAnchor("gallery", "quote");
-      }
-    } else if (e.deltaY < 0) {
-      if (zone === "gallery" && isAtTopOfGallery(window.scrollY, anchors)) {
-        e.preventDefault();
-        goToAnchor("quote", "gallery");
-      } else if (zone === "quote") {
-        e.preventDefault();
-        goToAnchor("hero", "quote");
-      }
-    }
+    if (isTouchDevice) return;
+    if (Math.abs(e.deltaY) < WHEEL_MIN_DELTA) return;
+    if (tryAdvance(e.deltaY > 0 ? 1 : -1)) e.preventDefault();
   };
   window.addEventListener("wheel", onWheelHandler, { passive: false });
 
-  refreshAnchorsCache();
-  resizeHandler = () => refreshAnchorsCache();
-  orientationHandler = () => {
-    nextTick(() => refreshAnchorsCache());
+  onTouchStart = (e: TouchEvent) => {
+    if (!e.touches[0]) return;
+    touchStartY = e.touches[0].clientY;
+    touchFired = false;
   };
-  loadHandler = () => refreshAnchorsCache();
-  window.addEventListener("resize", resizeHandler);
-  window.addEventListener("orientationchange", orientationHandler);
-  window.addEventListener("load", loadHandler);
+  onTouchMove = (e: TouchEvent) => {
+    if (touchFired) {
+      e.preventDefault();
+      return;
+    }
+    if (!e.touches[0] || isAnimating.value) return;
+    const deltaY = touchStartY - e.touches[0].clientY; // 手指往上滑 = 內容往下捲（跟 wheel deltaY 同符號）
+    if (Math.abs(deltaY) < 20) return;
+    if (tryAdvance(deltaY > 0 ? 1 : -1)) {
+      touchFired = true;
+      e.preventDefault();
+    }
+  };
+  onTouchEnd = () => {
+    touchFired = false;
+  };
+  window.addEventListener("touchstart", onTouchStart, { passive: true });
+  window.addEventListener("touchmove", onTouchMove, { passive: false });
+  window.addEventListener("touchend", onTouchEnd, { passive: true });
 
-  nextTick(() => {
-    refreshAnchorsCache();
-    handleScroll();
-  });
+  nextTick(handleScroll);
 });
 
 onUnmounted(() => {
-  if (transitionRafId) cancelAnimationFrame(transitionRafId);
-  if (reverseTransitionRafId) cancelAnimationFrame(reverseTransitionRafId);
+  if (animationRafId) cancelAnimationFrame(animationRafId);
+  if (settleRafId) cancelAnimationFrame(settleRafId);
+  isAnimating.value = false;
   if (heroRef.value) {
     heroRef.value.removeEventListener("mousemove", handleMouseMove);
   }
@@ -564,10 +424,6 @@ onUnmounted(() => {
   window.removeEventListener("touchstart", onTouchStart);
   window.removeEventListener("touchmove", onTouchMove);
   window.removeEventListener("touchend", onTouchEnd);
-  if (mql) mql.removeEventListener("change", onMatchChange);
-  window.removeEventListener("resize", resizeHandler);
-  window.removeEventListener("orientationchange", orientationHandler);
-  window.removeEventListener("load", loadHandler);
 });
 </script>
 
@@ -602,9 +458,9 @@ onUnmounted(() => {
   overflow: hidden;
   background: transparent;
   border: none;
-  transition:
-    opacity 0.45s ease-out,
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // opacity/transform 每個 scroll frame 都被 JS 改一次（見 handleScroll），
+  // 這裡不能再疊 CSS transition，否則會一直在追一個持續移動的目標，變成黏黏的滯後感。
   will-change: transform;
 }
 
@@ -658,9 +514,9 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   backdrop-filter: blur(0.5px);
-  transition:
-    opacity var(--lc-transition-fast) ease-out,
-    transform var(--lc-transition-fast) ease-out;
+
+  // opacity/transform 每個 scroll frame 都被 JS 改一次（見 foregroundStyle），
+  // 這裡不能再疊 CSS transition，理由同 .floating-cards-hero。
 
   &::before {
     position: absolute;
