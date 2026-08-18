@@ -26,3 +26,7 @@ logs
 
 # Local credential files (do not commit)
 serviceAccountKey.json
+.vercel
+.env*
+.agents/
+skills-lock.json
