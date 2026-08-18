@@ -39,14 +39,24 @@ hub: {
 ### 服務圖片：`server/routes/cdn/[...pathname].get.ts`
 
 ```ts
+import { head } from "@vercel/blob";
+
 export default defineEventHandler(async (event) => {
   const pathname = getRouterParam(event, "pathname");
   if (!pathname) throw createError({ statusCode: 400, statusMessage: "缺少路徑" });
+
+  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (token) {
+    const meta = await head(pathname, { token }).catch(() => null);
+    if (!meta) throw createError({ statusCode: 404, statusMessage: "Not Found" });
+    return sendRedirect(event, meta.url, 302);
+  }
+
   return blob.serve(event, pathname);
 });
 ```
 
-任何打到 `/cdn/{key}` 的請求都會去 blob 儲存找對應 key 的檔案並回傳。`blob.serve()` 會處理 `Content-Type` 與快取標頭。
+任何打到 `/cdn/{key}` 的請求都會去 blob 儲存找對應 key。本機沒有 `BLOB_READ_WRITE_TOKEN` 時走 NuxtHub `blob.serve()`；Vercel 正式環境有 token 時，用 `@vercel/blob` 查到公開 URL 後回 302，交給 Vercel Blob 自己處理 `Content-Type` 與快取標頭。
 
 ### 搬遷歷史資料：`POST /api/_dev/migrate-images`
 
@@ -66,6 +76,6 @@ export default defineEventHandler(async (event) => {
 網站部署在 **Vercel** 時，正式環境的 blob 儲存使用 **Vercel Blob**。設定方式：
 
 1. Vercel Dashboard → Storage → 建立 **Blob** store，會拿到 `BLOB_READ_WRITE_TOKEN` 環境變數
-2. `nuxt.config.ts` 的 `hub.blob` **完全不用改**——`blob: true` 這行本來就是通用寫法，NuxtHub 會自動偵測到 `BLOB_READ_WRITE_TOKEN` 存在就切換成 Vercel Blob，`/cdn/` route、搬遷腳本、`blob.put()`/`blob.serve()` 呼叫方式都完全一樣，不需要改任何程式碼
+2. `nuxt.config.ts` 的 `hub.blob` **完全不用改**——`blob: true` 這行本來就是通用寫法，NuxtHub 會自動偵測到 `BLOB_READ_WRITE_TOKEN` 存在就切換成 Vercel Blob。`/cdn/` route 在 Vercel 上會 redirect 到 Blob 公開 URL，本機則維持 NuxtHub 檔案系統模擬。
 
 跟 [database.md](./database.md#部署到正式環境時要做的事本機開發不需要) 的 Turso 設定一樣，底層供應商透過環境變數切換，程式碼不用動。
