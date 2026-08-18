@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const hasTursoEnv = Boolean(process.env.TURSO_DATABASE_URL && process.env.TURSO_AUTH_TOKEN);
+
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
 
@@ -39,7 +41,7 @@ export default defineNuxtConfig({
   ],
 
   hub: {
-    db: "sqlite",
+    db: hasTursoEnv ? { dialect: "sqlite", driver: "libsql" } : "sqlite",
     blob: true,
   },
 

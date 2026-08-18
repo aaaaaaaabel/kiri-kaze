@@ -1,5 +1,5 @@
 /**
- * NuxtHub（Cloudflare D1）資料庫 Schema
+ * NuxtHub SQLite/Turso 相容資料庫 Schema
  * 巢狀物件（taxonomy、period、specimen、location、measurements、images[]、tags[]）
  * 直接存成 JSON 欄位，對齊 app/types/fossil.ts、app/types/portfolio.ts 的現有 TS 型別，
  * API 層幾乎零轉換即可回傳給前端。

@@ -1,6 +1,6 @@
 /**
  * 開發用一次性搬遷端點：把 public/images/fossils、public/images/case 底下的圖片
- * 上傳進 NuxtHub blob 儲存（本機模擬、正式環境是 Cloudflare R2），
+ * 上傳進 NuxtHub blob 儲存（本機模擬、正式環境是 Vercel Blob），
  * 並把資料庫裡對應的圖片路徑欄位（thumbnail/cover/images[]/representativeImage/image）
  * 從 /images/... 改成 /cdn/images/...。
  *

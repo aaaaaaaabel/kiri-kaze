@@ -133,13 +133,16 @@ npx drizzle-kit studio --config=drizzle-studio.config.ts
 網站實際部署在 **Vercel**（不是 Cloudflare），NuxtHub 也支援這個組合，但正式環境的資料庫要換成 **Turso**（不是 D1）。Turso 底層一樣是 SQLite，跟現在的 `server/db/schema.ts`、migration 完全相容，**不需要改任何程式碼**，只有部署設定不一樣：
 
 1. Vercel Dashboard → Storage → 安裝 **Turso** marketplace 整合，會拿到 `TURSO_DATABASE_URL`、`TURSO_AUTH_TOKEN` 兩個環境變數
-2. `nuxt.config.ts` 的 `hub.db` 改成：
+2. 確認 `nuxt.config.ts` 的 `hub.db` 在有 Turso 環境變數時會切到 libsql：
    ```ts
+   const hasTursoEnv = Boolean(process.env.TURSO_DATABASE_URL && process.env.TURSO_AUTH_TOKEN);
+
    hub: {
-     db: { dialect: "sqlite", driver: "libsql" }, // 正式環境讀 TURSO_* 環境變數
+     db: hasTursoEnv ? { dialect: "sqlite", driver: "libsql" } : "sqlite",
    },
    ```
-3. 正式環境跑一次 migration（`npx nuxt db migrate`，指向 Turso），並決定怎麼把資料灌進去（比照本機的 seed 端點模式，或用 `hub.remote: true` 讓本機直接寫正式資料庫）
+   本機沒有 `TURSO_*` 時仍使用 `.data/db/sqlite.db`，避免本機 build 因缺正式環境變數失敗。
+3. 正式環境跑一次 migration（Vercel build 會在有 `TURSO_*` 時自動套用 migration），並決定怎麼把資料灌進去（比照本機的 seed 端點模式，或用 `hub.remote: true` 讓本機直接寫正式資料庫）
 
 ⚠️ 不要選 **Vercel Postgres**——那是真正的 Postgres，`schema.ts` 要整個改寫成 `pg-core` 語法，等於重做一次，沒有必要。
 
