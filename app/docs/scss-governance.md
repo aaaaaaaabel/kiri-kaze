@@ -61,17 +61,9 @@ app/assets/styles/
 還在使用舊入口（`@use "~/assets/styles/variables"` / `"~/assets/styles/mixins"`）的檔案：
 
 - `app/assets/styles/_mixins.scss`、`app/assets/styles/_menu.scss`（相容層本身，互相引用，維持原樣）
-- `app/components/ui/BookingModal.vue`
-- `app/components/ui/FloatingCardsHero.vue`
-- `app/components/layout/OpeningScreen.vue`
 - `app/components/layout/Menu.vue`
-- `app/components/layout/MainNav.vue`
-- `app/components/layout/Loading.vue`
-- `app/components/layout/Footer.vue`
-- `app/components/fossil/FossilCard.vue`
-- `app/pages/index.vue`
 
-其中 `FloatingCardsHero.vue` 這次有獨立的 scroll/過場行為修正，但它的 `<style>` block 仍保留舊入口，未納入本輪 SCSS token 遷移。
+其餘原本清單上的檔案（`BookingModal.vue`、`FloatingCardsHero.vue`、`OpeningScreen.vue`、`MainNav.vue`、`Loading.vue`、`Footer.vue`、`FossilCard.vue`、`index.vue`）已經在 2026-08-18 這一輪遷移完成，全部改用 `@use "~/assets/styles/abstracts" as *;`，能對上現有 token 的硬編碼值也一併換掉。`Menu.vue`／`_menu.scss` 刻意留到最後，理由見第 4 節。
 
 ## 5. 新程式碼禁止使用舊入口
 
@@ -88,7 +80,7 @@ app/assets/styles/
 @use "~/assets/styles/mixins" as *;
 ```
 
-已經改用 `abstracts` 的檔案：`app/components/ui/AuthModal.vue`、`app/components/ui/LoadingSpinner.vue`。
+已經改用 `abstracts` 的檔案：`AuthModal.vue`、`LoadingSpinner.vue`、`BookingModal.vue`、`FossilCard.vue`、`OpeningScreen.vue`、`Loading.vue`、`index.vue`、`FloatingCardsHero.vue`、`MainNav.vue`、`Footer.vue`（見第 8 節的遷移進度）。
 
 同時，新的顏色/圓角/間距/動畫時間一律用 `var(--lc-*)` 或 `$lc-*`（見第 3 節），不要再寫死 `#fff`、`#666`、`rgb(...)`、固定 px 圓角這類數值——如果數值剛好對得上現有 token（例如 `#666` = `$lc-color-text-muted`、`#ccc` = `$lc-color-gray-mid`、`12px` 圓角 = `$lc-radius-md`），直接換成對應 token；如果專案還沒有對應 token（例如錯誤提示的紅色、Google 登入按鈕的品牌色），先不要亂猜或新增 token，維持原樣並在 PR 說明或這份文件的「待補 token」清單提出。
 
@@ -124,19 +116,17 @@ app/assets/styles/
 
 ## 7. 本次刻意不動的範圍
 
-- `Menu.vue`、`MainNav.vue`、`Footer.vue`、`FossilCard.vue`、`ProjectCard.vue`：牽動較廣的版面/互動元件，本次沒有做 token 或 import 遷移。
-- `FloatingCardsHero.vue`：本次只補 scroll/過場行為修正與 RAF 清理，未做 `<style>` import/token 遷移。
+- `Menu.vue` / `_menu.scss`：牽動最多動畫時序與狀態 class（`menu_on`/`menu_off`/`menu_closing`），近期才修過閃爍關閉的問題，留到獨立一輪、有回歸測試的時段再處理，不跟其他遷移混在同一個 PR。
+- `ProjectCard.vue`：本身沒有 `@use` 任何共用變數/mixin，純寫死 CSS 值，不在這輪「換 import」的範圍內；之後有機會可以評估要不要換成 token，但不算「還沒遷移」。
 - 所有既有的 scoped style 都留在原本的元件內，沒有搬到全域 `components/` 層。
 - 沒有調整任何視覺設計（顏色、間距、圓角的實際呈現值不變，只是把「寫死的數字」換成「數值相同的 token」）。
 
-## 8. 後續遷移順序建議
+## 8. 遷移進度
 
-依風險由低到高：
+第一輪（2026-08-18，AuthModal.vue／LoadingSpinner.vue）之後，第二輪把剩下所有還在用舊入口的元件都換完了：`BookingModal.vue`、`FossilCard.vue`、`OpeningScreen.vue`、`Loading.vue`、`index.vue`、`FloatingCardsHero.vue`、`MainNav.vue`、`Footer.vue`。每批換完都跑過 `npm run lint:style`、`npm run typecheck` 確認沒有新增失敗。
 
-1. **`BookingModal.vue`、`FossilCard.vue`**：跟本次遷移的 `AuthModal.vue` 性質類似（獨立 modal/card，不涉及全站互動狀態），可以用同樣的方式換 import + 對得上的 token。
-2. **`OpeningScreen.vue`、`Loading.vue`**：有進場動畫，但範圍侷限在自己元件內，遷移時要留意動畫時間（`0.2s`/`0.5s`/`1s`）能不能對應 `$lc-transition-*`。
-3. **`index.vue`、`FloatingCardsHero.vue`**：`FloatingCardsHero.vue` 目前有其他人正在修改中的邏輯（滾動/過場行為），等那部分穩定後再處理它的 `<style>` block；`index.vue` 可以先行。
-4. **`MainNav.vue`、`Footer.vue`**：全站共用版面，改動前建議先跑過所有頁面確認視覺無誤。
-5. **`Menu.vue` / `_menu.scss`**：留到最後。牽動最多動畫時序與狀態 class（`menu_on`/`menu_off`/`menu_closing`），近期才修過閃爍關閉的問題，需要獨立一輪、有回歸測試的時段再處理，不要跟其他遷移混在同一個 PR。
+只剩 `Menu.vue` / `_menu.scss` 還沒動，原因見上一節。之後要處理時：
 
-每遷移一批檔案，先跑 `npm run lint:style`，再跑 `npm run typecheck`，確認沒有新增的失敗再進下一批。
+- 獨立一輪進行，前後都要手動測過開/關 Menu、連點、路由切換關閉這幾個情境，不能只靠 lint/typecheck。
+- `_menu.scss` 目前用的動畫時間（`0.5s`）、z-index（`$z-index-menu`）已經是走相容層轉出的 `$lc-*` 數值，遷移時只是換 import 跟變數名稱，不會動到數值本身。
+- 完成後記得回來更新第 4 節、第 6 節的例外清單，把 `_menu.scss` 從放寬名單移掉。

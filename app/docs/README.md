@@ -13,12 +13,11 @@ Lacunae 是一個 Nuxt 4 應用，包含化石圖鑑、作品集與活動報名�
 | [database.md](./database.md) | 資料庫 schema、migration、seed、怎麼查看/修改資料 | 要改資料、加欄位、清庫重灌 |
 | [images-and-blob.md](./images-and-blob.md) | 圖片為什麼搬進 blob 儲存、`/cdn/` 服務路由、之後後台上傳要怎麼接 | 要處理圖片相關的事、規劃後台上傳功能 |
 | [api-reference.md](./api-reference.md) | `server/api/` 底下每個 REST endpoint 的參數與回傳格式 | 要串新頁面、或除錯某個 API 回傳不對 |
-| [maintenance.md](./maintenance.md) | 維護狀態、從公司 Nuxt 標準模板可借用的做法、下一步整理方向 | 要判斷下一輪重構或後台開發優先順序 |
 | [refactor-roadmap.md](./refactor-roadmap.md) | 分階段重構計畫、目標結構、驗收條件與 commit 策略 | 要交給 Cursor/Claude 分段重構 |
+| [admin-panel-plan.md](./admin-panel-plan.md) | 後台規劃：登入方式、角色、審核／上架流程、待決問題 | 要開始動後台（editor 上傳/編輯、admin 審核）相關工作 |
 | [branding-and-fonts.md](./branding-and-fonts.md) | Lacunae 品牌字（Bodoni Moda）怎麼設定的、之後買到正版字體要怎麼換 | 要調整字標樣式，或買到 Bodoni Poster Std 授權後要接上 |
 | [scripts-reference.md](./scripts-reference.md) | `scripts/`、`data/` 底下每個維護腳本的用途與指令 | 要新增化石標本、重新產生 seed 資料、更新圖片 |
 | [scss-governance.md](./scss-governance.md) | SCSS 分層、token 唯一來源、`$lc-*`/`var(--lc-*)` 使用時機、legacy 相容層與後續遷移順序 | 要寫/改元件樣式、要繼續遷移舊入口的 `.vue` 檔 |
-| [qa-interaction-report.md](./qa-interaction-report.md) | **臨時** QA／體感 bug 清單（Menu、scroll 等） | 修互動問題時對照；**問題修完即可刪** |
 
 ## 快速上手
 
