@@ -310,8 +310,7 @@ onMounted(async () => {
 </script>
 
 <style scoped lang="scss">
-@use "~/assets/styles/variables" as *;
-@use "~/assets/styles/mixins" as *;
+@use "~/assets/styles/abstracts" as *;
 
 // 父層：背景由 JS 依 scroll 設為黑→白；高度略大於一屏即可完成過渡，避免 200vh 空轉
 .hero-quote-parent {
@@ -336,7 +335,7 @@ onMounted(async () => {
 .hero-quote-section__text {
   padding: 0 24px;
   margin: 0;
-  font-family: $font-family-zh-serif;
+  font-family: var(--lc-font-serif-tc);
   font-size: 2rem;
   font-weight: 600;
   color: #1a1a1a;

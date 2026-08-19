@@ -156,8 +156,7 @@ const handleImageLoad = (event: Event) => {
 </script>
 
 <style scoped lang="scss">
-@use "~/assets/styles/variables" as *;
-@use "~/assets/styles/mixins" as *;
+@use "~/assets/styles/abstracts" as *;
 
 .fossil-card {
   width: 100%;
@@ -222,10 +221,10 @@ const handleImageLoad = (event: Event) => {
     cursor: pointer;
     background-color: rgb(255 255 255 / 90%);
     border-radius: 50%;
-    transition: all 0.2s ease-in-out;
+    transition: all var(--lc-transition-quick) ease-in-out;
 
     &:hover {
-      background-color: #fff;
+      background-color: var(--lc-color-white);
       transform: scale(1.1);
     }
   }
@@ -234,16 +233,16 @@ const handleImageLoad = (event: Event) => {
     flex-shrink: 0;
     fill: none;
     stroke: rgb(0 0 0 / 35%);
-    transition: stroke 0.2s ease-in-out, fill 0.2s ease-in-out;
+    transition: stroke var(--lc-transition-quick) ease-in-out, fill var(--lc-transition-quick) ease-in-out;
 
     &.liked {
-      fill: $color-accent;
-      stroke: $color-accent;
+      fill: var(--lc-color-accent);
+      stroke: var(--lc-color-accent);
     }
   }
 
   &__info {
-    color: #fff;
+    color: var(--lc-color-white);
   }
 
   &__title {
@@ -251,14 +250,14 @@ const handleImageLoad = (event: Event) => {
     font-size: 1.125rem;
     font-weight: 600;
     line-height: 1.4;
-    color: #fff;
+    color: var(--lc-color-white);
   }
 
   &__period {
     margin: 0;
     font-size: 0.875rem;
     line-height: 1.4;
-    color: #fff;
+    color: var(--lc-color-white);
     opacity: 0.9;
   }
 
@@ -267,7 +266,7 @@ const handleImageLoad = (event: Event) => {
     font-size: 0.75rem;
     font-style: italic;
     line-height: 1.4;
-    color: #fff;
+    color: var(--lc-color-white);
     opacity: 0.8;
   }
 }

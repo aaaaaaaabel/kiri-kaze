@@ -240,8 +240,7 @@ async function handleSubmit() {
 </script>
 
 <style scoped lang="scss">
-@use "~/assets/styles/variables" as *;
-@use "~/assets/styles/mixins" as *;
+@use "~/assets/styles/abstracts" as *;
 @use "sass:color";
 
 .booking-modal__backdrop {
@@ -263,7 +262,7 @@ async function handleSubmit() {
   max-height: 90vh;
   padding: 32px 28px;
   overflow-y: auto;
-  background: $color-bg;
+  background: var(--lc-color-bg);
   border-radius: var(--lc-radius-md);
   box-shadow: 0 12px 40px rgb(0 0 0 / 15%);
 }
@@ -287,17 +286,17 @@ async function handleSubmit() {
   transition: background var(--lc-transition-quick), color var(--lc-transition-quick);
 
   &:hover {
-    color: $color-primary;
-    background: $color-gray-light;
+    color: var(--lc-color-black);
+    background: var(--lc-color-gray-light);
   }
 }
 
 .booking-modal__title {
   margin: 0 0 4px;
-  font-family: $font-family-en;
+  font-family: var(--lc-font-en);
   font-size: 1.35rem;
   font-weight: 600;
-  color: $color-primary;
+  color: var(--lc-color-black);
 }
 
 .booking-modal__subtitle {
@@ -329,7 +328,7 @@ async function handleSubmit() {
   label {
     font-size: 0.875rem;
     font-weight: 500;
-    color: $color-primary;
+    color: var(--lc-color-black);
   }
 
   input,
@@ -342,7 +341,7 @@ async function handleSubmit() {
 
     &:focus {
       outline: none;
-      border-color: $color-primary;
+      border-color: var(--lc-color-black);
     }
   }
 
@@ -362,13 +361,13 @@ async function handleSubmit() {
   font-size: 1rem;
   color: var(--lc-color-white);
   cursor: pointer;
-  background: $color-primary;
+  background: $lc-color-black;
   border: none;
   border-radius: var(--lc-radius-sm);
   transition: background var(--lc-transition-quick);
 
   &:hover:not(:disabled) {
-    background: color.adjust($color-primary, $lightness: -8%);
+    background: color.adjust($lc-color-black, $lightness: -8%);
   }
 
   &:disabled {
@@ -426,7 +425,7 @@ async function handleSubmit() {
   stroke: #15803d;
   stroke-dasharray: 50;
   stroke-dashoffset: 50;
-  animation: booking-modal-success-check 0.4s ease-out 0.25s forwards;
+  animation: booking-modal-success-check 0.4s ease-out var(--lc-transition-fast) forwards;
 }
 
 @keyframes booking-modal-success-circle {
@@ -443,11 +442,11 @@ async function handleSubmit() {
 
 .booking-modal__success-title {
   margin: 0 0 12px;
-  font-family: $font-family-en;
+  font-family: var(--lc-font-en);
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.4;
-  color: $color-primary;
+  color: var(--lc-color-black);
 }
 
 .booking-modal__success-desc {
@@ -458,7 +457,7 @@ async function handleSubmit() {
 
   strong {
     font-weight: 600;
-    color: $color-primary;
+    color: var(--lc-color-black);
   }
 }
 
@@ -467,13 +466,13 @@ async function handleSubmit() {
   font-size: 1rem;
   color: var(--lc-color-white);
   cursor: pointer;
-  background: $color-primary;
+  background: $lc-color-black;
   border: none;
   border-radius: var(--lc-radius-sm);
   transition: background var(--lc-transition-quick);
 
   &:hover {
-    background: color.adjust($color-primary, $lightness: -8%);
+    background: color.adjust($lc-color-black, $lightness: -8%);
   }
 }
 

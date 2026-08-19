@@ -142,8 +142,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="scss">
-@use "~/assets/styles/variables" as *;
-@use "~/assets/styles/mixins" as *;
+@use "~/assets/styles/abstracts" as *;
 
 .footer {
   width: 100%;

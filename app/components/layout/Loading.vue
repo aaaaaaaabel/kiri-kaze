@@ -21,8 +21,7 @@ defineProps<Props>();
 </script>
 
 <style scoped lang="scss">
-@use "~/assets/styles/variables" as *;
-@use "~/assets/styles/mixins" as *;
+@use "~/assets/styles/abstracts" as *;
 
 .loading {
   position: fixed;
@@ -39,12 +38,12 @@ defineProps<Props>();
   background-color: transparent;
 
   &--on {
-    z-index: 400;
-    background-color: #000;
+    z-index: var(--lc-z-loading);
+    background-color: var(--lc-color-black);
   }
 
   &--off {
-    animation: loading-fade-out 1s ease-out forwards;
+    animation: loading-fade-out var(--lc-transition-slow) ease-out forwards;
   }
 }
 
@@ -64,11 +63,11 @@ defineProps<Props>();
 
 .loading_text {
   margin: 0;
-  font-family: $font-family-logo;
+  font-family: var(--lc-font-logo);
   font-size: clamp(2rem, 6vw, 3.5rem);
   font-style: italic;
   font-weight: 900;
-  color: #fff;
+  color: var(--lc-color-white);
   letter-spacing: 0;
   opacity: 0;
   transform: scale(0.98);

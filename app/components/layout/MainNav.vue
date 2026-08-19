@@ -301,14 +301,13 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="scss">
-@use "~/assets/styles/variables" as *;
-@use "~/assets/styles/mixins" as *;
+@use "~/assets/styles/abstracts" as *;
 
 .header {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: $z-index-header;
+  z-index: var(--lc-z-header);
   width: 100%;
   background: transparent; // ⭐ 確保 header 背景透明，讓混合模式生效
 
@@ -414,7 +413,7 @@ onUnmounted(() => {
   display: inline-block;
   padding: 0;
   margin: 0;
-  font-family: $font-family-en;
+  font-family: var(--lc-font-en);
   font-size: inherit;
   color: inherit;
   text-decoration: none;
@@ -475,12 +474,12 @@ onUnmounted(() => {
     }
 
     text {
-      font-family: $font-family-en;
+      font-family: var(--lc-font-en);
       font-size: 32px;
       font-weight: 400;
       text-transform: uppercase;
       letter-spacing: 17px;
-      fill: $color-primary;
+      fill: var(--lc-color-black);
 
       @include tb {
         font-size: 26px;
@@ -513,11 +512,11 @@ onUnmounted(() => {
   }
 
   &__text {
-    font-family: $font-family-en;
+    font-family: var(--lc-font-en);
     font-size: 36px;
     font-weight: 400;
     line-height: 1;
-    color: $color-primary;
+    color: var(--lc-color-black);
     letter-spacing: 5px;
     user-select: none;
 
@@ -574,8 +573,8 @@ onUnmounted(() => {
     margin: 0;
     text-decoration: none;
     cursor: pointer;
-    background-color: $color-primary;
-    border: 1px solid $color-primary;
+    background-color: var(--lc-color-black);
+    border: 1px solid var(--lc-color-black);
     border-radius: 50%;
 
     div {
@@ -602,9 +601,9 @@ onUnmounted(() => {
         display: block;
         width: 100%;
         height: 100%;
-        background-color: $color-secondary;
+        background-color: var(--lc-color-white);
 
-        @include transition(all, $transition-normal);
+        @include transition(all);
       }
     }
 

@@ -47,8 +47,7 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-@use "~/assets/styles/mixins" as *;
-@use "~/assets/styles/variables" as *;
+@use "~/assets/styles/abstracts" as *;
 
 .opening-screen {
   position: fixed;
@@ -84,7 +83,7 @@ onMounted(() => {
 
 .opening-screen__text {
   margin: 0;
-  font-family: $font-family-logo;
+  font-family: var(--lc-font-logo);
   font-size: clamp(2.5rem, 8vw, 5rem);
   font-style: italic;
   font-weight: 900;
