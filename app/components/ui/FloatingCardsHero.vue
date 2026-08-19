@@ -56,8 +56,11 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const heroRef = ref<HTMLElement | null>(null);
-const mouseX = ref(0);
-const mouseY = ref(0);
+// 0.5 代表「置中、無偏移」，對應 getCardStyle() 的 (mouseX.value - 0.5) 公式。
+// 設 0 的話，沒有滑鼠的裝置（手機/平板永遠不會觸發 mousemove）會卡在這個初始值，
+// 讓每張卡片永遠固定往左上偏移一截，不是預期行為。
+const mouseX = ref(0.5);
+const mouseY = ref(0.5);
 const scrollProgress = ref(0);
 const contentFadeProgress = ref(0);
 
@@ -65,43 +68,17 @@ const HERO_BN_BASE = "/images/hero_bn";
 const CARD_MAX_W = 140;
 const CARD_MAX_H = 180;
 
-const floatingCards = computed(() => {
-  const list = (heroBnList as HeroBnItem[]).filter(
-    (item) => item.file && (item.width || item.height),
-  );
-  if (list.length > 0) {
-    return list.map((item) => ({
-      thumbnail: `${HERO_BN_BASE}/${item.file}`,
-      speciesName: "化石",
-      id: item.file,
-      width: item.width || 800,
-      height: item.height || 600,
-    }));
-  }
-  return props.fossils.slice(0, 25).map((fossil) => ({
-    thumbnail: fossil.thumbnail || "",
-    speciesName: fossil.speciesRef?.name?.zh || "化石",
-    id: fossil.id || fossil.slug,
-    width: 800,
-    height: 600,
-  }));
-});
-
-const cardPositions = ref<
-  Array<{
-    x: number;
-    y: number;
-    rotation: number;
-    baseX: number;
-    baseY: number;
-  }>
->([]);
-
-const HERO_CARD_LAYOUT: Array<{
+interface CardSlot {
   baseX: number;
   baseY: number;
   rotation: number;
-}> = [
+  // 只有平板／手機的散落構圖需要每張卡片不同尺寸；桌機版不設定，走 CARD_MAX_W/CARD_MAX_H。
+  width?: number;
+  height?: number;
+}
+
+// 桌機版兩欄構圖（≥1000px）：欄內同張數在窄螢幕會被壓縮到重疊，只在 pc 斷點使用，維持原樣不動。
+const HERO_CARD_LAYOUT: CardSlot[] = [
   { baseX: 12, baseY: 11, rotation: -5 },
   { baseX: 18, baseY: 38, rotation: 4 },
   { baseX: 10, baseY: 58, rotation: -6 },
@@ -124,10 +101,92 @@ const HERO_CARD_LAYOUT: Array<{
   { baseX: 83, baseY: 66, rotation: -4 },
 ];
 
-const initCardPositions = () => {
-  if (cardPositions.value.length > 0) return;
-  const layout = HERO_CARD_LAYOUT;
-  cardPositions.value = floatingCards.value.map((_, index) => {
+// 平板（560–999px）跟手機（≤559px）用同一種構圖語言：滿版散落、大小不一、
+// 允許邊角輕微重疊，像一疊照片隨手攤開，而不是排得整整齊齊的兩欄格線。
+// 定案前先用 375×812 實際手機比例做過提案給人確認過構圖方向（方案 B）。
+
+// 平板：畫面比手機大，卡片數多一點、尺寸也可以更大一些，一樣避開正中央文字區。
+const HERO_CARD_LAYOUT_TABLET: CardSlot[] = [
+  { baseX: 6, baseY: 10, rotation: -7, width: 90, height: 114 },
+  { baseX: 46, baseY: 9, rotation: 5, width: 62, height: 80 },
+  { baseX: 80, baseY: 11, rotation: -5, width: 100, height: 128 },
+  { baseX: 20, baseY: 10, rotation: 4, width: 56, height: 72 },
+  { baseX: 66, baseY: 14, rotation: -6, width: 78, height: 100 },
+  { baseX: 4, baseY: 30, rotation: 6, width: 84, height: 108 },
+  { baseX: 90, baseY: 28, rotation: -4, width: 68, height: 88 },
+  { baseX: 12, baseY: 52, rotation: 5, width: 96, height: 122 },
+  { baseX: 85, baseY: 50, rotation: -8, width: 60, height: 78 },
+  { baseX: 6, baseY: 72, rotation: 4, width: 72, height: 92 },
+  { baseX: 92, baseY: 74, rotation: -5, width: 88, height: 112 },
+  { baseX: 24, baseY: 88, rotation: 6, width: 64, height: 82 },
+  { baseX: 68, baseY: 90, rotation: -6, width: 100, height: 128 },
+  { baseX: 46, baseY: 94, rotation: 3, width: 52, height: 68 },
+];
+
+// 手機：畫面太窄，卡片數從 20 降到 10（見下面 MOBILE_CARD_COUNT），大小從 50px 到
+// 128px 都有，少數幾張邊角互相壓到一點點——這是使用者從實際比例的提案裡挑的方向。
+const HERO_CARD_LAYOUT_MOBILE: CardSlot[] = [
+  { baseX: 6, baseY: 16, rotation: -8, width: 96, height: 122 },
+  { baseX: 58, baseY: 15, rotation: 6, width: 68, height: 88 },
+  { baseX: 34, baseY: 21, rotation: 3, width: 52, height: 66 },
+  { baseX: 74, baseY: 18, rotation: -5, width: 86, height: 108 },
+  { baseX: 4, baseY: 58, rotation: 7, width: 78, height: 100 },
+  { baseX: 22, baseY: 68, rotation: -4, width: 54, height: 70 },
+  { baseX: 66, baseY: 60, rotation: -6, width: 100, height: 128 },
+  { baseX: 8, baseY: 80, rotation: 5, width: 60, height: 78 },
+  { baseX: 70, baseY: 82, rotation: 4, width: 64, height: 82 },
+  { baseX: 40, baseY: 86, rotation: -7, width: 50, height: 64 },
+];
+
+const MOBILE_CARD_COUNT = HERO_CARD_LAYOUT_MOBILE.length;
+
+// 跟 abstracts/_variables.scss 的 $lc-breakpoint-sp / $lc-breakpoint-pc 對齊，
+// 這裡只是用來挑卡片版面／張數，跟 SCSS 斷點各自獨立不會互相依賴。
+const VIEWPORT_SP_MAX = 559;
+const VIEWPORT_TB_MAX = 999;
+
+type ViewportTier = "sp" | "tb" | "pc";
+
+const getViewportTier = (width: number): ViewportTier => {
+  if (width <= VIEWPORT_SP_MAX) return "sp";
+  if (width <= VIEWPORT_TB_MAX) return "tb";
+  return "pc";
+};
+
+const viewportTier = ref<ViewportTier>("pc");
+
+const activeCardLayout = computed(() => {
+  if (viewportTier.value === "sp") return HERO_CARD_LAYOUT_MOBILE;
+  if (viewportTier.value === "tb") return HERO_CARD_LAYOUT_TABLET;
+  return HERO_CARD_LAYOUT;
+});
+
+const floatingCards = computed(() => {
+  const list = (heroBnList as HeroBnItem[]).filter(
+    (item) => item.file && (item.width || item.height),
+  );
+  const all = list.length > 0
+    ? list.map((item) => ({
+        thumbnail: `${HERO_BN_BASE}/${item.file}`,
+        speciesName: "化石",
+        id: item.file,
+        width: item.width || 800,
+        height: item.height || 600,
+      }))
+    : props.fossils.slice(0, 25).map((fossil) => ({
+        thumbnail: fossil.thumbnail || "",
+        speciesName: fossil.speciesRef?.name?.zh || "化石",
+        id: fossil.id || fossil.slug,
+        width: 800,
+        height: 600,
+      }));
+  // 手機寬度不夠兩欄大卡片分散開，張數也跟著減少；平板／桌機維持全部顯示。
+  return viewportTier.value === "sp" ? all.slice(0, MOBILE_CARD_COUNT) : all;
+});
+
+const cardPositions = computed(() => {
+  const layout = activeCardLayout.value;
+  return floatingCards.value.map((_, index) => {
     const slot = layout[index % layout.length]!;
     return {
       x: slot.baseX,
@@ -135,9 +194,11 @@ const initCardPositions = () => {
       rotation: slot.rotation,
       baseX: slot.baseX,
       baseY: slot.baseY,
+      width: slot.width,
+      height: slot.height,
     };
   });
-};
+});
 
 const foregroundStyle = computed(() => {
   const p = contentFadeProgress.value;
@@ -166,8 +227,8 @@ const getCardStyle = (_card: unknown, index: number) => {
   return {
     left: `${pos.baseX}%`,
     top: `${pos.baseY}%`,
-    width: `${CARD_MAX_W}px`,
-    height: `${CARD_MAX_H}px`,
+    width: `${pos.width ?? CARD_MAX_W}px`,
+    height: `${pos.height ?? CARD_MAX_H}px`,
     transform: `
       translate(${cursorOffsetX + expandX}px, ${cursorOffsetY + expandY}px)
       rotate(${pos.rotation}deg)
@@ -354,13 +415,19 @@ let onWheelHandler: (e: WheelEvent) => void = () => {};
 let onTouchStart: (e: TouchEvent) => void = () => {};
 let onTouchMove: (e: TouchEvent) => void = () => {};
 let onTouchEnd: () => void = () => {};
+let updateViewportTier: () => void = () => {};
 
 onMounted(() => {
   if (!import.meta.client) return;
 
   isTouchDevice = navigator.maxTouchPoints > 0;
 
-  initCardPositions();
+  updateViewportTier = () => {
+    viewportTier.value = getViewportTier(window.innerWidth);
+  };
+  updateViewportTier();
+  window.addEventListener("resize", updateViewportTier, { passive: true });
+
   if (heroRef.value) {
     heroRef.value.addEventListener("mousemove", handleMouseMove, { passive: true });
   }
@@ -394,7 +461,14 @@ onMounted(() => {
       e.preventDefault();
       return;
     }
-    if (!e.touches[0] || isAnimating.value) return;
+    if (!e.touches[0]) return;
+    if (isAnimating.value) {
+      // 動畫還在跑時吃掉這次輸入，理由跟 wheel 走的 isInputLocked() 一樣：
+      // 不擋掉的話，原生捲動會在動畫途中插進來跟 animateScrollTo() 的 window.scrollTo() 互搶，
+      // 畫面會抖一下或跳到錯的位置。
+      e.preventDefault();
+      return;
+    }
     const deltaY = touchStartY - e.touches[0].clientY; // 手指往上滑 = 內容往下捲（跟 wheel deltaY 同符號）
     if (Math.abs(deltaY) < 20) return;
     if (tryAdvance(deltaY > 0 ? 1 : -1)) {
@@ -424,12 +498,12 @@ onUnmounted(() => {
   window.removeEventListener("touchstart", onTouchStart);
   window.removeEventListener("touchmove", onTouchMove);
   window.removeEventListener("touchend", onTouchEnd);
+  window.removeEventListener("resize", updateViewportTier);
 });
 </script>
 
 <style scoped lang="scss">
-@use "~/assets/styles/variables" as *;
-@use "~/assets/styles/mixins" as *;
+@use "~/assets/styles/abstracts" as *;
 
 .floating-cards-hero-wrapper {
   position: relative;
@@ -491,9 +565,20 @@ onUnmounted(() => {
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, opacity, filter;
 
+  // 平板／手機的卡片尺寸由 JS 端每張各自指定（見 HERO_CARD_LAYOUT_TABLET/MOBILE 的
+  // width/height），這裡的 min/max 只是安全範圍，不是實際生效的尺寸來源。
+  @include tb {
+    min-width: 48px;
+    max-width: 130px;
+    min-height: 60px;
+    max-height: 165px;
+  }
+
   @include sp {
-    max-width: 100px;
-    max-height: 130px;
+    min-width: 40px;
+    max-width: 130px;
+    min-height: 50px;
+    max-height: 165px;
   }
 
   &__image {
@@ -532,6 +617,7 @@ onUnmounted(() => {
       rgb(0 0 0 / 20%) 100%
     );
   }
+
 }
 
 .floating-cards-hero__content {
@@ -546,7 +632,7 @@ onUnmounted(() => {
 
 .floating-cards-hero__title {
   margin: 0 0 16px;
-  font-family: $font-family-zh-serif;
+  font-family: var(--lc-font-serif-tc);
   font-size: 3rem;
   font-weight: 400;
   line-height: 1.2;
